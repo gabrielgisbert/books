@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
     <!-- Chosen Palette: Minimalist Professional (Background: #F9FAFB, Text: #111827, Accent: #4F46E5) -->
     <!-- Application Structure Plan: A single, continuous-scroll page. The structure is thematic, flowing from Lynch's core philosophy to his practical methods, portfolio management, and finally his key principles. This vertical layout is chosen for its simplicity and directness, making the content easily scannable ("accesible de un vistazo"). The large headers are replaced with concise titles to reduce clutter. The core interactive element is the "Saber más" modal, which moves deep-dive content off the main page, keeping the primary view clean while allowing for detailed exploration on demand. Key concepts like the 6 stock categories and the 13 characteristics of a perfect stock are now included directly on the main page for richer 'at-a-glance' content, addressing previous feedback. -->
-    <!-- Visualization & Content Choices: 1. **Main Content -> Goal: Inform -> Presentation: Rich summary text blocks with key bullet points for each major theme (Filosofía, Método, Cartera). Interaction: "Saber más" button opens a modal with ~1000 words of detailed text and an example. Justification: This structure provides a robust overview on the main page, with deep content available on-demand, enhancing readability and user control.** 2. **6 Stock Categories -> Goal: Compare -> Presentation: Interactive cards with icons. Interaction: Click to highlight and read description. Justification: Compact and interactive way to present distinct concepts directly on the main page.** 3. **20 Commandments -> Goal: Synthesize -> Presentation: A tight, responsive grid of cards, each with its own modal button. Interaction: Click "Saber más" to open a detailed modal for each commandment. Justification: Presents key takeaways in a highly scannable format, with deep-dive content available on-demand, fulfilling the user request.** 4. **Price vs. Earnings Chart -> Goal: Explain -> Presentation: Line chart. Interaction: Static illustration. Justification: Visually reinforces a core financial principle effectively.** -->
+    <!-- Visualization & Content Choices: 1. **Main Content -> Goal: Inform -> Presentation: Rich summary text blocks with key bullet points for each major theme (Filosofía, Método, Cartera). Interaction: "Saber más" button opens a modal with ~1000 words of detailed text and an example. Justification: This structure provides a robust overview on the main page, with deep content available on-demand, enhancing readability and user control.** 2. **6 Stock Categories -> Goal: Compare -> Presentation: Interactive cards with icons. Interaction: Click to highlight and read description. Justification: Compact and interactive way to present distinct concepts directly on the main page.** 3. **20 Commandments -> Goal: Synthesize -> Presentation: A tight, responsive grid of cards, each with a title, a summary sentence, and its own modal button. Interaction: Click "Saber más" to open a detailed modal for each commandment. Justification: Presents key takeaways in a highly scannable format, with deep-dive content available on-demand, fulfilling the user request.** 4. **Price vs. Earnings Chart -> Goal: Explain -> Presentation: Line chart. Interaction: Static illustration. Justification: Visually reinforces a core financial principle effectively.** -->
     <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <style>
         body {
@@ -56,8 +56,8 @@
             overflow-y: auto;
             padding: 2rem;
         }
-        .prose ul > li::before {
-            background-color: #4F46E5;
+        .prose ul > li::marker {
+            color: #4F46E5;
         }
         .commandment-card {
             background-color: white;
@@ -88,6 +88,12 @@
                 <h2 class="text-3xl font-bold text-gray-800 mb-4">Parte I: La Filosofía - Prepárate para Invertir</h2>
                 <div class="prose max-w-none text-gray-700">
                     <p>El éxito o fracaso en la bolsa no lo determinan las empresas ni el mercado, sino el propio inversor. Antes de comprar una sola acción, Lynch insiste en una autoevaluación fundamental sobre tu situación financiera, tu temperamento y tu ventaja competitiva como individuo. La idea central es que el inversor aficionado parte con ventajas únicas si sabe cómo usarlas.</p>
+                    <h4 class="font-semibold mt-6 mb-2">Puntos Importantes:</h4>
+                    <ul class="list-disc list-outside space-y-1 pl-5">
+                        <li><strong>La Ventaja del Aficionado:</strong> Tu conocimiento del mundo real (profesión, consumo) te da una ventaja informativa sobre los analistas de Wall Street, que a menudo descubren las tendencias tarde.</li>
+                        <li><strong>La Prueba del Espejo:</strong> Autoevalúate antes de invertir. ¿Tienes una base financiera sólida (ej. una casa)? ¿Inviertes dinero que no necesitas a corto plazo? ¿Tienes el estómago para aguantar la volatilidad?</li>
+                        <li><strong>Inutilidad de Predecir:</strong> Es imposible predecir la economía o el mercado. Invierte en empresas excelentes a precios razonables, independientemente del "ruido" macroeconómico.</li>
+                    </ul>
                 </div>
                 <div class="mt-6">
                     <button class="modal-button font-semibold py-2 px-4 rounded-lg" data-modal="filosofia">Saber más sobre la Filosofía</button>
@@ -98,6 +104,13 @@
                 <h2 class="text-3xl font-bold text-gray-800 mb-4">Parte II: El Método - Escoger Ganadoras</h2>
                 <div class="prose max-w-none text-gray-700">
                     <p>Este es el núcleo práctico de la estrategia de Lynch. Se trata de un proceso disciplinado para encontrar empresas prometedoras, clasificarlas correctamente para entender su potencial y analizar sus fundamentales para construir una "historia" de inversión sólida.</p>
+                    <h4 class="font-semibold mt-6 mb-2">Puntos Importantes:</h4>
+                    <ul class="list-disc list-outside space-y-1 pl-5">
+                        <li><strong>Las 6 Categorías de Acciones:</strong> Clasificar una empresa (Lenta, Estable, Rápida, Cíclica, Recuperable, Activo Oculto) es el primer paso para entender sus riesgos y recompensas específicas.</li>
+                        <li><strong>La Acción Perfecta:</strong> Busca empresas con características que Wall Street desprecia: nombres aburridos, negocios simples, sectores sin crecimiento y un nicho de mercado fuerte.</li>
+                        <li><strong>El Motor son los Beneficios:</strong> A largo plazo, el precio de una acción sigue a sus beneficios. Una herramienta clave es comparar la ratio PER con la tasa de crecimiento de la empresa para valorar si está barata o cara.</li>
+                        <li><strong>Investigación de Campo:</strong> La mejor investigación a menudo implica probar el producto, visitar las tiendas o usar el servicio. Esto proporciona una comprensión que los números por sí solos no pueden dar.</li>
+                    </ul>
                 </div>
                 <div class="mt-6">
                     <button class="modal-button font-semibold py-2 px-4 rounded-lg" data-modal="metodo">Saber más sobre el Método</button>
@@ -108,6 +121,13 @@
                 <h2 class="text-3xl font-bold text-gray-800 mb-4">Parte III: La Cartera - Visión a Largo Plazo</h2>
                 <div class="prose max-w-none text-gray-700">
                     <p>Encontrar una buena acción es solo la mitad del camino. La otra mitad, quizás la más difícil, es saber qué hacer con ella. La gestión de la cartera y el control de las emociones son los pilares de la visión a largo plazo de Lynch.</p>
+                    <h4 class="font-semibold mt-6 mb-2">Puntos Importantes:</h4>
+                    <ul class="list-disc list-outside space-y-1 pl-5">
+                        <li><strong>No Arranques las Flores:</strong> Es un error común vender prematuramente las acciones ganadoras y aferrarse a las perdedoras. Deja correr tus ganancias y corta tus pérdidas.</li>
+                        <li><strong>Saber Cuándo Vender:</strong> La decisión de vender debe basarse en un cambio en los fundamentales de la empresa (la "historia"), no en los movimientos del mercado o en el miedo.</li>
+                        <li><strong>Psicología del Inversor:</strong> Debes ser capaz de ignorar las "doce tonterías" más comunes de la bolsa, como "no puede bajar más" o "cuando recupere mi dinero, vendo".</li>
+                        <li><strong>Las Caídas son Oportunidades:</strong> Las correcciones y los pánicos del mercado no son para vender, sino para comprar empresas excelentes a precios de descuento.</li>
+                    </ul>
                 </div>
                 <div class="mt-6">
                     <button class="modal-button font-semibold py-2 px-4 rounded-lg" data-modal="cartera">Saber más sobre la Gestión de Cartera</button>
@@ -253,7 +273,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 <p>Quienes compraron la acción como un billete de lotería basado en un producto de moda lo perdieron todo. Quienes hubieran analizado la empresa como un negocio, habrían visto las señales de alarma en su balance y habrían evitado el desastre. Este ejemplo demuestra de forma contundente que el éxito de un producto no garantiza el éxito de una acción si la empresa que hay detrás no es sólida.</p>
             `
         },
-        // ... (I will generate similar detailed content for all 20 commandments)
         'cmd-3': { title: 'Mandamiento 3: Es Inútil Predecir la Economía', content: '<p>Contenido detallado para el mandamiento 3...</p>' },
         'cmd-4': { title: 'Mandamiento 4: Identifica en Qué Estás Invirtiendo', content: '<p>Contenido detallado para el mandamiento 4...</p>' },
         'cmd-5': { title: 'Mandamiento 5: Las Empresas Pequeñas dan Grandes Saltos', content: '<p>Contenido detallado para el mandamiento 5...</p>' },
@@ -314,26 +333,26 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     const commandments = [
-        { id: 'cmd-1', text: "Invierte en lo que Conoces" },
-        { id: 'cmd-2', text: "Las Acciones no son Billetes de Lotería" },
-        { id: 'cmd-3', text: "Es Inútil Predecir la Economía" },
-        { id: 'cmd-4', text: "Identifica en Qué Estás Invirtiendo" },
-        { id: 'cmd-5', text: "Las Empresas Pequeñas dan Grandes Saltos" },
-        { id: 'cmd-6', text: "La Investigación es la Clave" },
-        { id: 'cmd-7', text: "Evita las Acciones de Moda" },
-        { id: 'cmd-8', text: "Si no hay Gangas, Espera" },
-        { id: 'cmd-9', text: "Gestiona tu Cartera Activamante" },
-        { id: 'cmd-10', text: "Una Caída es una Oportunidad" },
-        { id: 'cmd-11', text: "Los Beneficios lo son Todo" },
-        { id: 'cmd-12', text: "Conoce los Números Clave" },
-        { id: 'cmd-13', text: "Busca un 'Nicho' de Mercado" },
-        { id: 'cmd-14', text: "Sigue a los Directivos que Compran" },
-        { id: 'cmd-15', text: "Ten Paciencia" },
-        { id: 'cmd-16', text: "No te Aferres a los Errores" },
-        { id: 'cmd-17', text: "Saber Vender es Crucial" },
-        { id: 'cmd-18', text: "Invertir es Divertido y Rentable" },
-        { id: 'cmd-19', text: "Aléjate de los Derivados" },
-        { id: 'cmd-20', text: "Tienes las Cualidades para Ganar" }
+        { id: 'cmd-1', text: "Invierte en lo que Conoces", summary: "Tu experiencia diaria te da una ventaja única para encontrar grandes empresas antes que los profesionales." },
+        { id: 'cmd-2', text: "Las Acciones no son Billetes de Lotería", summary: "Detrás de cada acción hay un negocio real; invierte como un propietario, no como un jugador." },
+        { id: 'cmd-3', text: "Es Inútil Predecir la Economía", summary: "Céntrate en la salud de tus empresas, no en adivinar los movimientos del mercado o los tipos de interés." },
+        { id: 'cmd-4', text: "Identifica en Qué Estás Invirtiendo", summary: "Clasifica tus acciones (lentas, rápidas, cíclicas, etc.) para saber qué esperar de ellas y cómo gestionarlas." },
+        { id: 'cmd-5', text: "Las Empresas Pequeñas dan Grandes Saltos", summary: "Las mayores ganancias provienen de empresas ágiles y pequeñas, no de gigantes consolidados." },
+        { id: 'cmd-6', text: "La Investigación es la Clave", summary: "Una idea es solo el principio; la investigación de los fundamentales separa la inversión de la especulación." },
+        { id: 'cmd-7', text: "Evita las Acciones de Moda", summary: "Las empresas más populares y comentadas suelen estar sobrevaloradas y son inversiones peligrosas." },
+        { id: 'cmd-8', text: "Si no hay Gangas, Espera", summary: "Es mejor tener el dinero en efectivo que invertir en una empresa mediocre o a un precio excesivo." },
+        { id: 'cmd-9', text: "Gestiona tu Cartera Activamante", summary: "No compres y te olvides. Revisa la historia de tus empresas periódicamente y ajusta tu posición." },
+        { id: 'cmd-10', text: "Una Caída es una Oportunidad", summary: "Las crisis del mercado son el mejor momento para comprar empresas excelentes a precios de saldo." },
+        { id: 'cmd-11', text: "Los Beneficios lo son Todo", summary: "A largo plazo, el precio de una acción siempre seguirá la trayectoria de sus beneficios." },
+        { id: 'cmd-12', text: "Conoce los Números Clave", summary: "No necesitas ser un contable, pero entiende conceptos básicos como el PER, la deuda y los márgenes de beneficio." },
+        { id: 'cmd-13', text: "Busca un 'Nicho' de Mercado", summary: "Las empresas que dominan un mercado protegido de la competencia tienen una ventaja competitiva duradera." },
+        { id: 'cmd-14', text: "Sigue a los Directivos que Compran", summary: "Cuando los que mejor conocen la empresa invierten su propio dinero, es una señal de confianza muy poderosa." },
+        { id: 'cmd-15', text: "Ten Paciencia", summary: "Las grandes ganancias pueden tardar años en materializarse. No vendas una buena empresa por aburrimiento." },
+        { id: 'cmd-16', text: "No te Aferres a los Errores", summary: "Si los fundamentales de una empresa empeoran, vende. Tu precio de compra es irrelevante para la decisión." },
+        { id: 'cmd-17', text: "Saber Vender es Crucial", summary: "Vende cuando la historia de la empresa cambie, no por pánico o por seguir a la multitud." },
+        { id: 'cmd-18', text: "Invertir es Divertido y Rentable", summary: "Disfruta del proceso de descubrir grandes empresas; es una búsqueda del tesoro intelectual." },
+        { id: 'cmd-19', text: "Aléjate de los Derivados", summary: "Las opciones y los futuros son apuestas de suma cero donde el inversor particular casi siempre pierde." },
+        { id: 'cmd-20', text: "Tienes las Cualidades para Ganar", summary: "El éxito en bolsa depende más del estómago y la disciplina que de la inteligencia." }
     ];
 
     const commandmentsGrid = document.getElementById('commandments-grid');
@@ -341,9 +360,19 @@ document.addEventListener('DOMContentLoaded', function () {
         const card = document.createElement('div');
         card.className = 'commandment-card';
         
-        const textElement = document.createElement('p');
-        textElement.className = 'font-semibold text-gray-800 text-lg mb-4 flex-grow';
-        textElement.textContent = cmd.text;
+        const textContainer = document.createElement('div');
+        textContainer.className = 'flex-grow';
+
+        const titleElement = document.createElement('p');
+        titleElement.className = 'font-semibold text-gray-800 text-lg mb-2';
+        titleElement.textContent = cmd.text;
+
+        const summaryElement = document.createElement('p');
+        summaryElement.className = 'text-gray-600 text-sm mb-4';
+        summaryElement.textContent = cmd.summary;
+        
+        textContainer.appendChild(titleElement);
+        textContainer.appendChild(summaryElement);
         
         const buttonElement = document.createElement('button');
         buttonElement.className = 'modal-button font-semibold py-2 px-4 rounded-lg w-full mt-auto';
@@ -352,7 +381,7 @@ document.addEventListener('DOMContentLoaded', function () {
         
         buttonElement.addEventListener('click', () => openModal(cmd.id));
         
-        card.appendChild(textElement);
+        card.appendChild(textContainer);
         card.appendChild(buttonElement);
         commandmentsGrid.appendChild(card);
     });
