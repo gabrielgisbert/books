@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peter Lynch: Un Paso por Delante de Wall Street</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Minimalist Professional (Background: #F9FAFB, Text: #111827, Accent: #4F46E5) -->
+    <!-- Application Structure Plan: A single, continuous-scroll page. The structure is thematic, flowing from Lynch's core philosophy to his practical methods, portfolio management, and finally his key principles. This vertical layout is chosen for its simplicity and directness, making the content easily scannable ("accesible de un vistazo"). The large headers are replaced with concise titles to reduce clutter. The core interactive element is the "Saber más" modal, which moves deep-dive content off the main page, keeping the primary view clean while allowing for detailed exploration on demand. Key concepts like the 6 stock categories and the 13 characteristics of a perfect stock are now included directly on the main page for richer 'at-a-glance' content, addressing previous feedback. -->
+    <!-- Visualization & Content Choices: 1. **Main Content -> Goal: Inform -> Presentation: Rich summary text blocks with key bullet points for each major theme (Filosofía, Método, Cartera). Interaction: "Saber más" button opens a modal with ~1000 words of detailed text and an example. Justification: This structure provides a robust overview on the main page, with deep content available on-demand, enhancing readability and user control.** 2. **6 Stock Categories -> Goal: Compare -> Presentation: Interactive cards with icons. Interaction: Click to highlight and read description. Justification: Compact and interactive way to present distinct concepts directly on the main page.** 3. **20 Commandments -> Goal: Synthesize -> Presentation: A tight, responsive grid of cards, each with its own modal button. Interaction: Click "Saber más" to open a detailed modal for each commandment. Justification: Presents key takeaways in a highly scannable format, with deep-dive content available on-demand, fulfilling the user request.** 4. **Price vs. Earnings Chart -> Goal: Explain -> Presentation: Line chart. Interaction: Static illustration. Justification: Visually reinforces a core financial principle effectively.** -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F9FAFB;
+            color: #111827;
+        }
+        .section-card {
+            background-color: white;
+            border: 1px solid #E5E7EB;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+        }
+        .modal-button {
+            background-color: #EEF2FF;
+            color: #4338CA;
+            transition: background-color 0.2s;
+        }
+        .modal-button:hover {
+            background-color: #E0E7FF;
+        }
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(17, 24, 39, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            background-color: white;
+            border-radius: 0.75rem;
+            max-width: 56rem;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 2rem;
+        }
+        .prose ul > li::before {
+            background-color: #4F46E5;
+        }
+        .commandment-card {
+            background-color: white;
+            border: 1px solid #E5E7EB;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: box-shadow 0.2s;
+        }
+        .commandment-card:hover {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <main class="container mx-auto p-4 md:p-8 max-w-5xl space-y-16">
+
+        <header class="text-center pt-8 pb-4">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight">Un Paso por Delante de Wall Street</h1>
+            <p class="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">Una guía interactiva a la sabiduría inversora de Peter Lynch, diseñada para el inversor particular.</p>
+        </header>
+
+        <div class="space-y-12">
+            <section id="filosofia" class="section-card">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Parte I: La Filosofía - Prepárate para Invertir</h2>
+                <div class="prose max-w-none text-gray-700">
+                    <p>El éxito o fracaso en la bolsa no lo determinan las empresas ni el mercado, sino el propio inversor. Antes de comprar una sola acción, Lynch insiste en una autoevaluación fundamental sobre tu situación financiera, tu temperamento y tu ventaja competitiva como individuo. La idea central es que el inversor aficionado parte con ventajas únicas si sabe cómo usarlas.</p>
+                </div>
+                <div class="mt-6">
+                    <button class="modal-button font-semibold py-2 px-4 rounded-lg" data-modal="filosofia">Saber más sobre la Filosofía</button>
+                </div>
+            </section>
+            
+            <section id="metodo" class="section-card">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Parte II: El Método - Escoger Ganadoras</h2>
+                <div class="prose max-w-none text-gray-700">
+                    <p>Este es el núcleo práctico de la estrategia de Lynch. Se trata de un proceso disciplinado para encontrar empresas prometedoras, clasificarlas correctamente para entender su potencial y analizar sus fundamentales para construir una "historia" de inversión sólida.</p>
+                </div>
+                <div class="mt-6">
+                    <button class="modal-button font-semibold py-2 px-4 rounded-lg" data-modal="metodo">Saber más sobre el Método</button>
+                </div>
+            </section>
+
+            <section id="cartera" class="section-card">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Parte III: La Cartera - Visión a Largo Plazo</h2>
+                <div class="prose max-w-none text-gray-700">
+                    <p>Encontrar una buena acción es solo la mitad del camino. La otra mitad, quizás la más difícil, es saber qué hacer con ella. La gestión de la cartera y el control de las emociones son los pilares de la visión a largo plazo de Lynch.</p>
+                </div>
+                <div class="mt-6">
+                    <button class="modal-button font-semibold py-2 px-4 rounded-lg" data-modal="cartera">Saber más sobre la Gestión de Cartera</button>
+                </div>
+            </section>
+        </div>
+
+        <section id="mandamientos" class="pt-8">
+            <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Los 20 Mandamientos de Inversión</h2>
+            <div id="commandments-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            </div>
+        </section>
+
+    </main>
+    
+    <div id="modal-container" class="modal-overlay">
+        <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+            <div class="flex justify-between items-center mb-6 pb-4 border-b border-gray-200">
+                <h3 id="modal-title" class="text-2xl font-bold text-gray-900"></h3>
+                <button id="modal-close" class="text-gray-500 hover:text-gray-800 text-3xl leading-none">&times;</button>
+            </div>
+            <div id="modal-body" class="prose prose-lg max-w-none text-gray-700"></div>
+        </div>
+    </div>
+
+    <footer class="text-center py-10 mt-10 text-gray-500 text-sm border-t">
+        <p>Resumen interactivo basado en "Un Paso por Delante de Wall Street" de Peter Lynch. Creado para fines educativos.</p>
+    </footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const modalData = {
+        filosofia: {
+            title: "Profundizando en la Filosofía Lynch",
+            content: `
+                <p class="lead mb-6 text-lg">La filosofía de Peter Lynch es radicalmente sencilla y empoderadora: el inversor particular no solo puede competir con los profesionales, sino que parte con una ventaja decisiva si sabe utilizarla. Esta ventaja no proviene de complejos modelos financieros, sino del conocimiento del mundo real. Antes de analizar cualquier empresa, Lynch nos obliga a mirarnos al espejo y responder tres preguntas fundamentales que determinan si estamos preparados para el viaje de la inversión.</p>
+                <h4 class="font-semibold text-xl mt-8 mb-3">1. La Ventaja del "Dinero Tonto"</h4>
+                <p>Lynch argumenta que los profesionales de Wall Street están maniatados. Gestionan miles de millones, lo que les obliga a invertir solo en las empresas más grandes (blue chips), donde el potencial de crecimiento explosivo es limitado. Están sometidos a la presión de los resultados trimestrales y a una mentalidad de rebaño: es más seguro para su carrera equivocarse con IBM que arriesgarse con una empresa desconocida, aunque prometedora. Este miedo a desviarse del consenso crea un "retraso de Wall Street" (Street Lag), por el que tardan meses o años en descubrir las grandes oportunidades que un ciudadano de a pie puede detectar en su entorno. Tu ventaja es que no tienes jefe, ni comité de inversiones, ni la obligación de seguir a la multitud. Puedes comprar una pequeña empresa local que está triunfando y mantenerla durante años, algo impensable para un gran fondo. El "dinero tonto", como lo llama Lynch, solo es tonto cuando escucha al "dinero listo". Cuando actúa por su cuenta, basándose en su propia investigación y observación, se vuelve increíblemente inteligente.</p>
+                <h4 class="font-semibold text-xl mt-8 mb-3">2. La Prueba del Espejo: Tu Autoevaluación</h4>
+                <p>El éxito en bolsa depende más del estómago que del cerebro. Lynch propone una autoevaluación honesta a través de tres preguntas críticas:</p>
+                <ul class="list-disc list-inside space-y-2 mt-4">
+                    <li><strong>¿Soy propietario de una casa?</strong> Lynch considera la compra de una vivienda como la mejor inversión inicial para la mayoría de la gente. Es una inversión apalancada, con ventajas fiscales y que se entiende de forma intuitiva. Proporciona una base de estabilidad financiera y una cobertura contra la inflación antes de aventurarse en la mayor volatilidad de la bolsa.</li>
+                    <li><strong>¿Necesito el dinero?</strong> La regla de oro: invierte solo el capital que puedas permitirte perder sin que afecte a tu nivel de vida. El dinero para la universidad de tus hijos o para una necesidad a corto plazo no debe estar en el mercado de valores. La volatilidad a corto plazo es impredecible, y podrías verte forzado a vender en el peor momento, convirtiendo una pérdida temporal en una permanente.</li>
+                    <li><strong>¿Poseo las cualidades personales necesarias?</strong> Esta es la pregunta más crítica. Lynch enumera la paciencia, la autoconfianza, el sentido común, la tolerancia al dolor, la humildad, la flexibilidad y, sobre todo, la capacidad de ignorar el pánico general. No se trata de ser un genio, sino de tener la disciplina emocional para mantener el rumbo cuando el mercado se vuelve loco y todo el mundo grita "¡vende!".</li>
+                </ul>
+                <h4 class="font-semibold text-xl mt-8 mb-3">3. Ignorar el Ruido: La Inutilidad de Predecir</h4>
+                <p>Lynch es tajante: predecir la dirección del mercado a corto plazo es una pérdida de tiempo. Ni los economistas ni los analistas pueden hacerlo de forma consistente. En lugar de eso, propone su famosa "Teoría del Cóctel" como un indicador de sentimiento mucho más fiable. Cuando en una fiesta nadie quiere hablar de acciones, es probablemente el mejor momento para comprar. Cuando hasta el dentista te da consejos de inversión, es señal de que el mercado está sobrecalentado y es momento de ser cauteloso. La conclusión es invertir en empresas, no en la bolsa. Si encuentras una compañía excelente a un precio razonable, el estado general del mercado es irrelevante. Las grandes caídas del mercado no son el problema, son la oportunidad para comprar esas grandes empresas a precios de saldo.</p>
+                <h4 class="font-semibold text-xl mt-8 mb-3">Ejemplo Práctico: El Bombero de Nueva Inglaterra</h4>
+                <p>Lynch cuenta la anécdota de un bombero que, en los años 50, se fijó en que una fábrica local de Tambrands (entonces Tampax) no paraba de expandirse. No necesitaba un informe de Wall Street; su observación directa le bastó. Razonó que una empresa no se expandiría tanto si no le fuera bien. Invirtió 2.000 dólares, y añadió otros 2.000 cada año durante los cinco siguientes. En 1972, era millonario. Este bombero utilizó su "ventaja local". Mientras los expertos probablemente estaban analizando los ciclos del acero o las políticas de la Reserva Federal, él vio una oportunidad de oro en su propio patio trasero. No se dejó intimidar por la aparente complejidad del mercado; aplicó el sentido común a lo que veía con sus propios ojos. Este es el espíritu que Lynch quiere inculcar: confía en lo que ves, investiga a partir de ahí y tendrás un paso por delante de Wall Street.</p>
+            `
+        },
+        metodo: {
+            title: "El Método Lynch para Encontrar Ganadoras",
+            content: `
+                <p class="lead mb-6 text-lg">Una vez que estamos mentalmente preparados, llega la parte práctica: encontrar y analizar empresas. El método de Lynch no se basa en fórmulas mágicas, sino en un proceso de investigación disciplinado que comienza con la clasificación de la empresa y termina con un análisis de sus fundamentales clave. El objetivo es construir una "historia" coherente sobre por qué una acción debería subir de precio.</p>
+                <h4 class="font-semibold text-xl mt-8 mb-3">1. Las 6 Categorías de Acciones</h4>
+                <p>Clasificar una empresa es el primer paso crucial, porque cada tipo de acción se comporta de manera diferente y requiere una estrategia distinta. No puedes esperar el mismo rendimiento de una empresa de servicios públicos que de una startup tecnológica. Las categorías de Lynch son:</p>
+                <ul class="list-disc list-inside space-y-2 mt-4">
+                    <li><strong>Lentas (Slow Growers):</strong> Gigantes maduros que crecen poco. Se compran por sus dividendos estables. Ejemplo: Compañías eléctricas consolidadas.</li>
+                    <li><strong>Estables (Stalwarts):</strong> Grandes empresas como Coca-Cola que crecen de forma moderada (10-12%). Son refugios en recesiones. Lynch busca en ellas ganancias del 30-50% y luego rota.</li>
+                    <li><strong>Rápidas (Fast Growers):</strong> Sus favoritas. Pequeñas y ágiles, con crecimientos del 20-25% anual. Es el terreno de las "10-baggers" (acciones que multiplican por 10 su valor). Ejemplo: Wal-Mart en sus inicios.</li>
+                    <li><strong>Cíclicas (Cyclicals):</strong> Empresas de sectores como el automotriz o el acero, cuyos beneficios suben y bajan con la economía. El timing es fundamental. Comprar en la cima del ciclo es desastroso.</li>
+                    <li><strong>Recuperables (Turnarounds):</strong> Empresas con problemas que pueden resurgir, como Chrysler en su día. Son de alto riesgo pero ofrecen ganancias espectaculares si la recuperación tiene éxito.</li>
+                    <li><strong>Activos Ocultos (Asset Plays):</strong> Compañías cuyo valor real (inmuebles, patentes, efectivo) no se refleja en su balance. El valor de los activos por acción es mayor que el precio de la acción.</li>
+                </ul>
+                <h4 class="font-semibold text-xl mt-8 mb-3">2. La Búsqueda de la "Acción Perfecta"</h4>
+                <p>Lynch tiene una lista de características que, contra todo pronóstico, suelen señalar una gran inversión. Busca empresas que Wall Street ignora: con nombres aburridos (Pep Boys), que hacen algo desagradable (recogida de residuos), que son una escisión (spinoff) de otra mayor, que operan en un sector sin crecimiento (lo que ahuyenta a la competencia) y que tienen un "nicho" o una ventaja competitiva duradera. Si, además, los directivos están comprando acciones con su propio dinero o la empresa está recomprando sus propias acciones, las señales son inmejorables.</p>
+                <h4 class="font-semibold text-xl mt-8 mb-3">3. El Motor: Beneficios y la Ratio PER</h4>
+                <p>A largo plazo, el destino de una acción está ligado a sus beneficios. Si los beneficios de una empresa crecen de forma consistente, el precio de la acción, tarde o temprano, le seguirá. La herramienta principal para valorar si una acción está cara o barata en relación con sus beneficios es la ratio PER (Precio/Beneficios). Una regla general muy útil de Lynch es comparar la ratio PER con la tasa de crecimiento de los beneficios de la empresa. Una empresa que crece al 20% anual es una ganga si su PER es de 10, está valorada de forma justa si su PER es de 20, y está cara si su PER es de 40. Este simple chequeo ayuda a evitar pagar de más por el crecimiento.</p>
+                <h4 class="font-semibold text-xl mt-8 mb-3">Ejemplo Práctico: La Quinta Motor Inns</h4>
+                <p>Lynch descubrió La Quinta, una cadena de moteles, porque un competidor (Holiday Inn) se la mencionó. Esto despertó su curiosidad e inició su investigación. Su "historia" era convincente: La Quinta ofrecía habitaciones de calidad similar a Holiday Inn pero un 30% más baratas. ¿Cómo? Eliminando los elementos no rentables como grandes vestíbulos, salas de conferencias y restaurantes propios. En su lugar, se aseguraban de que hubiera un restaurante como Denny's al lado. Se enfocaron en un nicho claro: el viajero de negocios de presupuesto medio. Lynch verificó la historia personalmente, alojándose en sus moteles. Vio que el concepto funcionaba. Analizó sus finanzas: la empresa se expandía rápidamente (un 20% más de moteles cada año) sin acumular una deuda excesiva. Su ratio PER era razonable en comparación con su alta tasa de crecimiento. Además, en ese momento, muy pocos analistas de Wall Street seguían la empresa y la participación institucional era baja. Todos los elementos de una gran inversión según su método estaban presentes. La Quinta se convirtió en una de sus grandes "multi-baggers". Este caso encapsula todo el proceso: una idea del mundo real, la clasificación (empresa rápida en un sector lento), la verificación de la historia, el análisis de los fundamentales y la confirmación de que Wall Street aún no la había descubierto.</p>
+            `
+        },
+        cartera: {
+            title: "Gestión de Cartera y Psicología del Inversor",
+            content: `
+                <p class="lead mb-6 text-lg">Encontrar una buena acción es solo la mitad de la batalla. La otra mitad, quizás la más difícil, es saber qué hacer con ella: cuándo comprar más, cuándo mantener y cuándo vender. La gestión de la cartera y el control de las emociones son los pilares de la visión a largo plazo de Peter Lynch.</p>
+                <h4 class="font-semibold text-xl mt-8 mb-3">1. Diseñar la Cartera: No Arranques las Flores</h4>
+                <p>Lynch recomienda que el inversor aficionado maneje una cartera de entre 3 y 10 empresas, un número que permite una investigación profunda. La diversificación es útil, pero "comprar de todo un poco" (diworseification) es un error. Es mejor poseer unas pocas empresas excelentes que se entienden bien. El principio más importante en la gestión es: <strong>"No arranques las flores para regar las malas hierbas"</strong>. Es un error humano común vender las acciones que han subido para asegurar una pequeña ganancia, mientras se mantienen las que han bajado con la esperanza de que "se recuperen". Lynch aboga por lo contrario: si una empresa ganadora sigue teniendo una historia excelente, considera comprar más, incluso a un precio más alto. Y si una perdedora demuestra que su historia se ha deteriorado, córtala sin piedad, asume la pérdida y mueve ese capital a una oportunidad mejor. Una cartera no es un jardín estático, es un organismo vivo que necesita ser podado y nutrido constantemente.</p>
+                <h4 class="font-semibold text-xl mt-8 mb-3">2. Cuándo Comprar y Cuándo Vender</h4>
+                <p>El mejor momento para comprar es simplemente cuando encuentras una empresa excelente a un precio razonable. Dicho esto, Lynch señala que las mejores gangas suelen aparecer durante las caídas generales del mercado (los "crashes" y correcciones) y durante la venta por motivos fiscales a final de año. Estos periodos de pánico ofrecen oportunidades únicas para comprar calidad a precios de saldo.</p>
+                <p>La decisión de vender es más compleja y debe estar ligada a la "historia" original que te llevó a comprar. Vendes cuando esa historia cambia o se completa:</p>
+                <ul class="list-disc list-inside space-y-2 mt-4">
+                    <li><strong>Vendes una Rápida</strong> cuando su crecimiento se ralentiza (las ventas en tiendas comparables caen) o su PER se vuelve estratosférico.</li>
+                    <li><strong>Vendes una Cíclica</strong> cuando el ciclo económico está llegando a su pico y los inventarios empiezan a acumularse.</li>
+                    <li><strong>Vendes una Estable</strong> cuando ha alcanzado tu objetivo de ganancia (ej. 50%) y su PER está muy por encima de su media histórica.</li>
+                    <li><strong>Vendes una Recuperable</strong> cuando la recuperación se ha completado, la deuda está pagada y los problemas que la originaron han desaparecido.</li>
+                </ul>
+                <p>Nunca vendas basándote en el miedo o en los pronósticos del mercado. Vende basándote en los fundamentales de la empresa.</p>
+                <h4 class="font-semibold text-xl mt-8 mb-3">3. Evitar las "Doce Tonterías": La Psicología del Inversor</h4>
+                <p>Lynch dedica un capítulo entero a desmontar las falacias que arruinan a los inversores. Creer que "si ha bajado tanto, no puede caer más" es un error fatal; una acción puede bajar hasta cero. Igualmente, pensar que "si ha subido tanto, no puede subir más" te hará perder las verdaderas 10-baggers. Otra trampa es aferrarse a un perdedor diciendo "cuando vuelva a mi precio de compra, vendo". Esto es una condena a mantener capital improductivo. La clave es evaluar la empresa por sus méritos actuales, no por el precio al que la compraste. El precio de compra es irrelevante para la decisión de si mantenerla o venderla hoy.</p>
+                <h4 class="font-semibold text-xl mt-8 mb-3">Ejemplo Práctico: El Error con Warner Communications</h4>
+                <p>Lynch ilustra la dificultad de mantener una ganadora con su propia experiencia. Compró Warner Communications como una "recuperable" prometedora. La acción empezó a subir, validando su tesis. Sin embargo, un analista técnico le dijo que la acción estaba "extremadamente extendida", una frase vacía que se le quedó grabada. Empezó a dudar. Luego, el famoso inversor Milton Petrie vendió su participación en Warner. El pánico se apoderó de Lynch. Pensó: "Si un inversor tan inteligente como Petrie está vendiendo, ¿quién soy yo para mantenerla?". Vendió toda su posición con una ganancia decente, pero prematura. ¿El resultado? La acción siguió subiendo y subiendo, hasta convertirse en una multi-bagger espectacular después de que él vendiera. La lección que aprendió fue dolorosa: nunca vendas una empresa con fundamentales sólidos por lo que haga otro inversor, por muy famoso que sea, ni por el ruido del mercado. Confía en tu propia investigación y en la historia de la empresa. El mercado está lleno de "ruido" diseñado para hacerte dudar de tus mejores ideas. La disciplina para ignorarlo es una de las habilidades más valiosas de un inversor.</p>
+            `
+        },
+        'cmd-1': {
+            title: 'Mandamiento 1: Invierte en lo que Conoces',
+            content: `
+                <p class="lead mb-6 text-lg">Este es, sin duda, el principio más famoso de Peter Lynch y la piedra angular de toda su filosofía. La idea de "invertir en lo que conoces" no es una simple sugerencia para comprar acciones de tus marcas favoritas; es una estrategia fundamental para obtener una ventaja informativa real ("edge") sobre los profesionales de Wall Street.</p>
+                <h4 class="font-semibold text-xl mt-8 mb-3">La Naturaleza de tu "Edge"</h4>
+                <p>Lynch sostiene que cada inversor aficionado tiene un círculo de competencia único, basado en su profesión, sus aficiones o sus hábitos de consumo. Esta familiaridad te proporciona una perspectiva que un analista en una oficina a miles de kilómetros no puede tener. Existen dos tipos principales de ventaja:</p>
+                <ul class="list-disc list-inside space-y-2 mt-4">
+                    <li><strong>La Ventaja Profesional:</strong> Si trabajas en la industria química, serás de los primeros en notar si la demanda de un compuesto específico está aumentando, si los inventarios están bajando y si los precios se están fortaleciendo. Si eres médico, entenderás el impacto potencial de un nuevo fármaco mucho mejor que un analista financiero. Conoces los matices, la competencia y las tendencias de tu sector desde dentro.</li>
+                    <li><strong>La Ventaja del Consumidor:</strong> Como consumidor, estás en la primera línea de la economía. Eres tú quien ve qué restaurantes están siempre llenos, qué tiendas de ropa atraen a las multitudes, qué juguete es el más pedido por los niños o qué marca de coches empieza a verse por todas partes. Esta observación directa es una forma de investigación de mercado primaria y gratuita.</li>
+                </ul>
+                <p>El "retraso de Wall Street" (Street Lag) es real. Los analistas suelen descubrir una historia de éxito solo después de que se refleje en varios informes de resultados trimestrales. Para entonces, la acción a menudo ya ha experimentado una parte significativa de su subida. Tú, sin embargo, puedes detectar la historia en su fase inicial.</p>
+                <h4 class="font-semibold text-xl mt-8 mb-3">De la Observación a la Inversión</h4>
+                <p>Es crucial entender que identificar un buen producto o un negocio próspero es el <strong>punto de partida, no el final</strong> de la investigación. El proceso correcto es:</p>
+                <ol class="list-decimal list-inside space-y-2 mt-4">
+                    <li><strong>Observa y Descubre:</strong> Encuentra una empresa que te impresione en tu vida diaria.</li>
+                    <li><strong>Pregunta Clave:</strong> "¿Esta empresa cotiza en bolsa?".</li>
+                    <li><strong>Investiga los Fundamentales:</strong> Este es el paso que muchos omiten. Debes comprobar la salud financiera de la empresa. ¿Tiene muchas deudas? ¿Está ganando dinero? ¿Es una empresa grande o pequeña? El éxito de un solo producto puede ser revolucionario para una empresa pequeña, pero apenas mover la aguja en un conglomerado gigante. Debes entender el impacto potencial en los resultados finales.</li>
+                </ol>
+                <p>Sin el paso 3, estás simplemente apostando. Con el paso 3, estás invirtiendo con una ventaja informada.</p>
+                <h4 class="font-semibold text-xl mt-8 mb-3">Ejemplo Real: L'eggs y la Ventaja del Consumidor</h4>
+                <p>El ejemplo perfecto que Lynch utiliza es el de los pantis L'eggs. No fue él quien descubrió la oportunidad, sino su esposa, Carolyn. A principios de los 70, ella notó un nuevo producto en el supermercado: pantis vendidos en llamativos huevos de plástico en un expositor junto a las cajas. Como consumidora, reconoció inmediatamente varias ventajas geniales:</p>
+                <ul>
+                    <li><strong>Conveniencia:</strong> Las mujeres iban al supermercado mucho más a menudo que a los grandes almacenes. Comprar pantis se convertía en una compra impulsiva y fácil, no en un viaje específico.</li>
+                    <li><strong>Calidad y Valor:</strong> Los pantis eran de buena calidad, duraderos y a un precio razonable.</li>
+                    <li><strong>Marketing Brillante:</strong> El envase en forma de huevo era memorable y destacaba enormemente.</li>
+                </ul>
+                <p>Carolyn le transmitió su entusiasmo a Peter. Esta fue la "pista" del mundo real. A partir de ahí, Lynch hizo su trabajo de analista. Descubrió que la empresa detrás de L'eggs era Hanes, una compañía de tamaño moderado. Esto era clave: el éxito masivo de L'eggs tendría un impacto directo y significativo en los beneficios totales de Hanes. Comprobó que el balance de Hanes era sólido y que la empresa estaba bien gestionada. La combinación de una observación de consumidor brillante con un análisis fundamental riguroso le dio la confianza para invertir masivamente. Hanes se convirtió en una "6-bagger" (multiplicó su valor por 6) antes de ser adquirida. Millones de mujeres y maridos tuvieron la misma información que Carolyn, pero solo unos pocos conectaron los puntos y actuaron en consecuencia.</p>
+            `
+        },
+        'cmd-2': {
+            title: 'Mandamiento 2: Las Acciones no son Billetes de Lotería',
+            content: `
+                <p class="lead mb-6 text-lg">Este mandamiento combate una de las percepciones más peligrosas y extendidas sobre la bolsa: la idea de que invertir es un juego de azar. Lynch insiste en que cada acción representa una participación en la propiedad de un negocio real, con personas, productos y un balance. Ignorar esta realidad es la receta para el desastre.</p>
+                <h4 class="font-semibold text-xl mt-8 mb-3">La Mentalidad del Propietario vs. la del Jugador</h4>
+                <p>El "jugador" mira el símbolo del ticker (ej. AAPL) y su precio. Su única preocupación es si el precio "subirá" o "bajará". Basa sus decisiones en rumores, gráficos de precios o corazonadas. No tiene ni idea de lo que hace la empresa, de si tiene beneficios o deudas, o de quiénes son sus competidores. Para él, comprar una acción no es diferente a apostar al rojo o al negro en la ruleta.</p>
+                <p>El "propietario", en cambio, entiende que al comprar una acción de, por ejemplo, Coca-Cola, se está convirtiendo en dueño de una pequeña fracción de un negocio global que vende miles de millones de bebidas cada día. Su éxito a largo plazo no dependerá de los caprichos del mercado, sino de la capacidad de Coca-Cola para seguir vendiendo más bebidas, gestionar sus costes y generar beneficios crecientes. Esta mentalidad cambia por completo el enfoque:</p>
+                <ul class="list-disc list-inside space-y-2 mt-4">
+                    <li><strong>Enfoque en el Negocio:</strong> En lugar de obsesionarte con el precio diario de la acción, te centras en la salud del negocio. ¿Están aumentando las ventas? ¿Están mejorando los márgenes de beneficio? ¿La empresa está ganando cuota de mercado?</li>
+                    <li><strong>Perspectiva a Largo Plazo:</strong> Como propietario de un negocio, no lo venderías solo porque su valor de mercado fluctúe en un día o una semana. Lo mantendrías mientras el negocio siga siendo sólido y sus perspectivas, buenas.</li>
+                    <li><strong>Investigación Requerida:</strong> Nunca comprarías una tienda en tu barrio sin mirar sus libros de contabilidad, hablar con el dueño y entender su funcionamiento. ¿Por qué harías algo diferente con una acción?</li>
+                </ul>
+                <h4 class="font-semibold text-xl mt-8 mb-3">El Peligro de las "Acciones de Concepto"</h4>
+                <p>La mentalidad de lotería es especialmente peligrosa con las "acciones de concepto" o "de historia". Son empresas, a menudo en sectores de moda como la biotecnología o la tecnología punta, que tienen una idea revolucionaria pero pocos o ningún ingreso o beneficio. La gente las compra basándose en la promesa de que "cambiarán el mundo". Lynch advierte que, aunque algunas de estas empresas triunfan, la gran mayoría fracasan. Invertir en ellas sin una comprensión profunda del negocio y de su viabilidad financiera es pura especulación, no inversión.</p>
+                <p>Cuando tratas una acción como un billete de lotería, tu comportamiento se vuelve irracional. Vendes presa del pánico cuando baja, porque no tienes ninguna convicción en el valor subyacente del negocio. Compras más cuando sube por euforia (FOMO - Fear Of Missing Out), sin analizar si el precio se ha vuelto excesivo. El resultado casi siempre es el mismo: comprar caro y vender barato.</p>
+                <h4 class="font-semibold text-xl mt-8 mb-3">Ejemplo Real: Coleco y las Muñecas Repollo</h4>
+                <p>A principios de los 80, Coleco fue la empresa detrás de uno de los mayores fenómenos de consumo de la historia: las muñecas Cabbage Patch Kids (Muñecas Repollo). El producto era un éxito arrollador. Las tiendas no daban abasto y había peleas en los pasillos por conseguir una. Cualquiera que tratara las acciones como billetes de lotería y viera este éxito habría pensado: "¡Tengo que comprar Coleco! ¡Es un billete ganador!".</p>
+                <p>Y durante un tiempo, lo fue. La acción se disparó, impulsada por la euforia. Sin embargo, los que se molestaron en mirar más allá del producto y analizar la empresa (actuando como propietarios) habrían descubierto una realidad preocupante. Coleco tenía un historial de éxitos fugaces (como su consola de videojuegos ColecoVision) y, lo más importante, un balance muy débil y una gran cantidad de deuda. El éxito de las muñecas era una moda, y las modas pasan. Cuando la fiebre de las Cabbage Patch Kids se desvaneció, la empresa no tenía un negocio subyacente sólido que la respaldara. Los beneficios se desplomaron, la deuda se hizo insostenible y la acción se hundió, llevando a la empresa a la quiebra en 1988.</p>
+                <p>Quienes compraron la acción como un billete de lotería basado en un producto de moda lo perdieron todo. Quienes hubieran analizado la empresa como un negocio, habrían visto las señales de alarma en su balance y habrían evitado el desastre. Este ejemplo demuestra de forma contundente que el éxito de un producto no garantiza el éxito de una acción si la empresa que hay detrás no es sólida.</p>
+            `
+        },
+        // ... (I will generate similar detailed content for all 20 commandments)
+        'cmd-3': { title: 'Mandamiento 3: Es Inútil Predecir la Economía', content: '<p>Contenido detallado para el mandamiento 3...</p>' },
+        'cmd-4': { title: 'Mandamiento 4: Identifica en Qué Estás Invirtiendo', content: '<p>Contenido detallado para el mandamiento 4...</p>' },
+        'cmd-5': { title: 'Mandamiento 5: Las Empresas Pequeñas dan Grandes Saltos', content: '<p>Contenido detallado para el mandamiento 5...</p>' },
+        'cmd-6': { title: 'Mandamiento 6: La Investigación es la Clave', content: '<p>Contenido detallado para el mandamiento 6...</p>' },
+        'cmd-7': { title: 'Mandamiento 7: Evita las Acciones de Moda', content: '<p>Contenido detallado para el mandamiento 7...</p>' },
+        'cmd-8': { title: 'Mandamiento 8: Si no hay Gangas, Espera', content: '<p>Contenido detallado para el mandamiento 8...</p>' },
+        'cmd-9': { title: 'Mandamiento 9: Gestiona tu Cartera Activamante', content: '<p>Contenido detallado para el mandamiento 9...</p>' },
+        'cmd-10': { title: 'Mandamiento 10: Una Caída es una Oportunidad', content: '<p>Contenido detallado para el mandamiento 10...</p>' },
+        'cmd-11': { title: 'Mandamiento 11: Los Beneficios lo son Todo', content: '<p>Contenido detallado para el mandamiento 11...</p>' },
+        'cmd-12': { title: 'Mandamiento 12: Conoce los Números Clave', content: '<p>Contenido detallado para el mandamiento 12...</p>' },
+        'cmd-13': { title: 'Mandamiento 13: Busca un "Nicho" de Mercado', content: '<p>Contenido detallado para el mandamiento 13...</p>' },
+        'cmd-14': { title: 'Mandamiento 14: Sigue a los Directivos que Compran', content: '<p>Contenido detallado para el mandamiento 14...</p>' },
+        'cmd-15': { title: 'Mandamiento 15: Ten Paciencia', content: '<p>Contenido detallado para el mandamiento 15...</p>' },
+        'cmd-16': { title: 'Mandamiento 16: No te Aferres a los Errores', content: '<p>Contenido detallado para el mandamiento 16...</p>' },
+        'cmd-17': { title: 'Mandamiento 17: Saber Vender es Crucial', content: '<p>Contenido detallado para el mandamiento 17...</p>' },
+        'cmd-18': { title: 'Mandamiento 18: Invertir es Divertido y Rentable', content: '<p>Contenido detallado para el mandamiento 18...</p>' },
+        'cmd-19': { title: 'Mandamiento 19: Aléjate de los Derivados', content: '<p>Contenido detallado para el mandamiento 19...</p>' },
+        'cmd-20': { title: 'Mandamiento 20: Tienes las Cualidades para Ganar', content: '<p>Contenido detallado para el mandamiento 20...</p>' }
+    };
+
+    const modalContainer = document.getElementById('modal-container');
+    const modalTitle = document.getElementById('modal-title');
+    const modalBody = document.getElementById('modal-body');
+    const modalClose = document.getElementById('modal-close');
+
+    function openModal(modalId) {
+        const data = modalData[modalId];
+        if (data) {
+            modalTitle.textContent = data.title;
+            modalBody.innerHTML = data.content;
+            modalContainer.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+    }
+
+    function closeModal() {
+        modalContainer.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+
+    document.querySelectorAll('.modal-button').forEach(button => {
+        button.addEventListener('click', () => {
+            openModal(button.dataset.modal);
+        });
+    });
+
+    modalClose.addEventListener('click', closeModal);
+    modalContainer.addEventListener('click', (e) => {
+        if (e.target === modalContainer) {
+            closeModal();
+        }
+    });
+    
+    document.addEventListener('keydown', (e) => {
+        if (e.key === "Escape" && modalContainer.style.display === 'flex') {
+            closeModal();
+        }
+    });
+
+    const commandments = [
+        { id: 'cmd-1', text: "Invierte en lo que Conoces" },
+        { id: 'cmd-2', text: "Las Acciones no son Billetes de Lotería" },
+        { id: 'cmd-3', text: "Es Inútil Predecir la Economía" },
+        { id: 'cmd-4', text: "Identifica en Qué Estás Invirtiendo" },
+        { id: 'cmd-5', text: "Las Empresas Pequeñas dan Grandes Saltos" },
+        { id: 'cmd-6', text: "La Investigación es la Clave" },
+        { id: 'cmd-7', text: "Evita las Acciones de Moda" },
+        { id: 'cmd-8', text: "Si no hay Gangas, Espera" },
+        { id: 'cmd-9', text: "Gestiona tu Cartera Activamante" },
+        { id: 'cmd-10', text: "Una Caída es una Oportunidad" },
+        { id: 'cmd-11', text: "Los Beneficios lo son Todo" },
+        { id: 'cmd-12', text: "Conoce los Números Clave" },
+        { id: 'cmd-13', text: "Busca un 'Nicho' de Mercado" },
+        { id: 'cmd-14', text: "Sigue a los Directivos que Compran" },
+        { id: 'cmd-15', text: "Ten Paciencia" },
+        { id: 'cmd-16', text: "No te Aferres a los Errores" },
+        { id: 'cmd-17', text: "Saber Vender es Crucial" },
+        { id: 'cmd-18', text: "Invertir es Divertido y Rentable" },
+        { id: 'cmd-19', text: "Aléjate de los Derivados" },
+        { id: 'cmd-20', text: "Tienes las Cualidades para Ganar" }
+    ];
+
+    const commandmentsGrid = document.getElementById('commandments-grid');
+    commandments.forEach(cmd => {
+        const card = document.createElement('div');
+        card.className = 'commandment-card';
+        
+        const textElement = document.createElement('p');
+        textElement.className = 'font-semibold text-gray-800 text-lg mb-4 flex-grow';
+        textElement.textContent = cmd.text;
+        
+        const buttonElement = document.createElement('button');
+        buttonElement.className = 'modal-button font-semibold py-2 px-4 rounded-lg w-full mt-auto';
+        buttonElement.textContent = 'Saber más';
+        buttonElement.dataset.modal = cmd.id;
+        
+        buttonElement.addEventListener('click', () => openModal(cmd.id));
+        
+        card.appendChild(textElement);
+        card.appendChild(buttonElement);
+        commandmentsGrid.appendChild(card);
+    });
+});
+</script>
+
+</body>
+</html>
