@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
     <!-- Chosen Palette: Cool, Modern & Minimalist -->
-    <!-- Application Structure Plan: The SPA is structured into three thematic phases (Planificación, Ejecución, Optimización) rather than a linear chapter list. This non-linear, task-oriented design encourages exploration and better conceptual grouping of the 21 strategies. The user flow starts with a compelling hero section introducing the core concept, followed by interactive navigation that smoothly scrolls to the relevant theme. Each strategy is presented on an interactive card, combining concise text with a visual or interactive element. A "Saber más" button on each card opens a modal with in-depth content, allowing users to drill down into topics of interest without leaving the main interface. This layered information architecture supports both quick scanning and deep learning. -->
+    <!-- Application Structure Plan: The SPA is structured into three thematic phases (Planificación, Ejecución, Optimización) rather than a linear chapter list. This non-linear, task-oriented design encourages exploration and better conceptual grouping of the 21 strategies. The user flow starts with a compelling hero section and a new compact index of all 21 rules for quick navigation. This is followed by interactive navigation that smoothly scrolls to the relevant theme. Each strategy is presented on an interactive card, combining concise text with a visual or interactive element. A "Saber más" button on each card opens a modal with in-depth content, allowing users to drill down into topics of interest without leaving the main interface. This layered information architecture supports both quick scanning and deep learning. -->
     <!-- Visualization & Content Choices: Content from the report is synthesized into key principles. Each principle's goal (Inform, Compare, Organize) dictates its presentation. For example: The 80/20 rule (Goal: Compare) uses a Chart.js bar chart to visually contrast effort vs. results. The ABCDE method (Goal: Organize) uses an interactive HTML/JS list for hands-on practice. The concept of breaking down tasks (Goal: Organize) is visualized with a dynamic HTML/CSS diagram. These choices prioritize engagement and understanding, using illustrative, non-data-driven visualizations to explain abstract concepts. The Chart.js library is used for charts, and all other diagrams are built with HTML/Tailwind to adhere to the NO SVG constraint. The modal provides the deep-dive textual content. -->
     <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <style>
@@ -121,6 +121,14 @@
         <section class="text-center mb-16 md:mb-24">
             <h2 class="text-4xl md:text-6xl font-extrabold text-slate-900 leading-tight">La Clave de la Productividad</h2>
             <p class="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-slate-600">Su "sapo" es la tarea más grande e importante del día, la que más tiende a posponer. Este panel interactivo desglosa las 21 estrategias de Brian Tracy para ayudarle a identificar y "tragarse" sus sapos, desbloqueando su máximo rendimiento.</p>
+        </section>
+
+        <!-- Rules Index Section -->
+        <section id="rules-index" class="mb-16 md:mb-24">
+            <h3 class="text-3xl font-bold text-slate-900 text-center mb-8">Índice de las 21 Estrategias</h3>
+            <div id="rules-list-container" class="bg-white p-6 rounded-xl border border-slate-200 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-4">
+                <!-- Links will be generated here by JS -->
+            </div>
         </section>
 
         <!-- Contenedor Principal de Secciones -->
@@ -785,6 +793,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const modalTitle = document.getElementById('modal-title');
     const modalContent = document.getElementById('modal-content');
     const modalCloseButton = document.getElementById('modal-close-button');
+    const rulesListContainer = document.getElementById('rules-list-container');
 
     let chartInstances = {};
 
@@ -890,6 +899,17 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.style.overflow = '';
     }
 
+    // Populate Rules Index
+    const allStrategies = sectionsData.flatMap(section => section.strategies);
+    allStrategies.sort((a, b) => a.id - b.id);
+    allStrategies.forEach(strategy => {
+        const ruleLink = document.createElement('a');
+        ruleLink.href = `#strategy-card-${strategy.id}`;
+        ruleLink.className = 'text-slate-700 hover:text-blue-600 transition-colors py-1';
+        ruleLink.innerHTML = `<span class="font-semibold text-blue-600">${strategy.id}.</span> ${strategy.title}`;
+        rulesListContainer.appendChild(ruleLink);
+    });
+
     sectionsData.forEach(section => {
         const navLink = `<a href="#${section.id}" class="nav-link text-slate-600 hover:text-slate-900 px-3 py-2 rounded-md text-sm font-medium">${section.title.split(':')[1].trim()}</a>`;
         navMenu.innerHTML += navLink;
@@ -905,7 +925,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-start">
                 ${section.strategies.map(strategy => `
-                    <div class="strategy-card rounded-xl p-6">
+                    <div id="strategy-card-${strategy.id}" class="strategy-card rounded-xl p-6">
                         <div>
                             <h4 class="text-xl font-bold text-slate-900">${strategy.id}. ${strategy.title}</h4>
                             <p class="mt-2 text-slate-600">${strategy.text}</p>
@@ -1054,9 +1074,12 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
+            const targetEl = document.querySelector(this.getAttribute('href'));
+            if(targetEl) {
+                targetEl.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
             if(document.getElementById('mobile-menu').classList.contains('hidden') === false){
                 document.getElementById('mobile-menu').classList.add('hidden');
             }
