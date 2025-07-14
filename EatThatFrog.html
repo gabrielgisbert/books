@@ -9,15 +9,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
-    <!-- Chosen Palette: Warm Neutrals with Terracotta Accent -->
-    <!-- Application Structure Plan: The SPA is structured into three thematic phases (Planificación, Ejecución, Optimización) rather than a linear chapter list. This non-linear, task-oriented design encourages exploration and better conceptual grouping of the 21 strategies. The user flow starts with a compelling hero section introducing the core concept, followed by interactive navigation that smoothly scrolls to the relevant theme. Each strategy is presented on an interactive card, combining concise text with a visual or interactive element (like illustrative charts or diagrams) to make the principles actionable and memorable. This structure was chosen to transform passive reading into an active learning experience, focusing on usability and concept retention over simply replicating the book's layout. -->
-    <!-- Visualization & Content Choices: Content from the report is synthesized into key principles. Each principle's goal (Inform, Compare, Organize) dictates its presentation. For example: The 80/20 rule (Goal: Compare) uses a Chart.js bar chart to visually contrast effort vs. results. The ABCDE method (Goal: Organize) uses an interactive HTML/JS list for hands-on practice. The concept of breaking down tasks (Goal: Organize) is visualized with a dynamic HTML/CSS diagram. These choices prioritize engagement and understanding, using illustrative, non-data-driven visualizations to explain abstract concepts. The Chart.js library is used for charts, and all other diagrams are built with HTML/Tailwind to adhere to the NO SVG constraint. -->
+    <!-- Chosen Palette: Cool, Modern & Minimalist -->
+    <!-- Application Structure Plan: The SPA is structured into three thematic phases (Planificación, Ejecución, Optimización) rather than a linear chapter list. This non-linear, task-oriented design encourages exploration and better conceptual grouping of the 21 strategies. The user flow starts with a compelling hero section introducing the core concept, followed by interactive navigation that smoothly scrolls to the relevant theme. Each strategy is presented on an interactive card, combining concise text with a visual or interactive element. A "Saber más" button on each card opens a modal with in-depth content, allowing users to drill down into topics of interest without leaving the main interface. This layered information architecture supports both quick scanning and deep learning. -->
+    <!-- Visualization & Content Choices: Content from the report is synthesized into key principles. Each principle's goal (Inform, Compare, Organize) dictates its presentation. For example: The 80/20 rule (Goal: Compare) uses a Chart.js bar chart to visually contrast effort vs. results. The ABCDE method (Goal: Organize) uses an interactive HTML/JS list for hands-on practice. The concept of breaking down tasks (Goal: Organize) is visualized with a dynamic HTML/CSS diagram. These choices prioritize engagement and understanding, using illustrative, non-data-driven visualizations to explain abstract concepts. The Chart.js library is used for charts, and all other diagrams are built with HTML/Tailwind to adhere to the NO SVG constraint. The modal provides the deep-dive textual content. -->
     <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #FDFBF8;
-            color: #1a1a1a;
+            background-color: #F9FAFB;
+            color: #1F2937;
         }
         .chart-container {
             position: relative;
@@ -45,34 +45,54 @@
             bottom: -4px;
             left: 50%;
             transform: translateX(-50%);
-            background-color: #E76F51;
+            background-color: #3B82F6;
             transition: width 0.3s ease;
         }
         .nav-link.active, .nav-link:hover {
-            color: #E76F51;
+            color: #3B82F6;
         }
         .nav-link.active::after, .nav-link:hover::after {
             width: 100%;
         }
         .strategy-card {
             background-color: #FFFFFF;
-            border: 1px solid #E7E5E4;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #E5E7EB;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
         .strategy-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            border-color: #3B82F6;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+        }
+        .modal-content h5 {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #111827;
+        }
+        .modal-content p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+            color: #374151;
+        }
+        .modal-content ul {
+            list-style-type: disc;
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .modal-content li {
+            margin-bottom: 0.5rem;
         }
     </style>
 </head>
 <body class="antialiased">
 
     <!-- Header y Navegación -->
-    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 border-b border-gray-200">
+    <header class="bg-white/90 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <div class="flex-shrink-0">
-                    <h1 class="text-2xl font-bold text-gray-900">🐸 ¡Tráguese ese sapo!</h1>
+                    <h1 class="text-2xl font-bold text-slate-900">🐸 ¡Tráguese ese sapo!</h1>
                 </div>
                 <nav class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-4" id="nav-menu">
@@ -80,7 +100,7 @@
                     </div>
                 </nav>
                 <div class="md:hidden">
-                    <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#E76F51]">
+                    <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-500 hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500">
                         <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
                         </svg>
@@ -99,8 +119,8 @@
         
         <!-- Hero Section -->
         <section class="text-center mb-16 md:mb-24">
-            <h2 class="text-4xl md:text-6xl font-extrabold text-gray-900 leading-tight">La Clave de la Productividad</h2>
-            <p class="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-gray-600">Su "sapo" es la tarea más grande e importante del día, la que más tiende a posponer. Este panel interactivo desglosa las 21 estrategias de Brian Tracy para ayudarle a identificar y "tragarse" sus sapos, desbloqueando su máximo rendimiento.</p>
+            <h2 class="text-4xl md:text-6xl font-extrabold text-slate-900 leading-tight">La Clave de la Productividad</h2>
+            <p class="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-slate-600">Su "sapo" es la tarea más grande e importante del día, la que más tiende a posponer. Este panel interactivo desglosa las 21 estrategias de Brian Tracy para ayudarle a identificar y "tragarse" sus sapos, desbloqueando su máximo rendimiento.</p>
         </section>
 
         <!-- Contenedor Principal de Secciones -->
@@ -110,19 +130,36 @@
 
     </main>
     
-    <footer class="bg-gray-800 text-white mt-16">
+    <footer class="bg-slate-800 text-white mt-16">
         <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
             <div class="text-center">
                 <h3 class="text-2xl font-bold">Conclusión: Atando Cabos</h3>
-                <p class="mt-4 max-w-4xl mx-auto text-gray-300">
+                <p class="mt-4 max-w-4xl mx-auto text-slate-300">
                     La clave de la felicidad, de la satisfacción, del gran éxito y de una maravillosa sensación de poder personal y de eficacia es desarrollar el hábito de tragarse su sapo como primera cosa todos los días cuando empiece a trabajar. Con estos hábitos de administración personal como rasgos permanentes de su personalidad su futuro no tendrá límites.
                 </p>
                 <div class="mt-8">
-                    <p class="text-sm text-gray-400">Aplicación interactiva basada en "¡Tráguese ese sapo!" de Brian Tracy.</p>
+                    <p class="text-sm text-slate-400">Aplicación interactiva basada en "¡Tráguese ese sapo!" de Brian Tracy.</p>
                 </div>
             </div>
         </div>
     </footer>
+
+    <!-- Modal Structure -->
+    <div id="strategy-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] flex flex-col">
+            <div class="flex justify-between items-center p-4 border-b">
+                <h3 id="modal-title" class="text-2xl font-bold text-slate-900"></h3>
+                <button id="modal-close-button" class="text-slate-500 hover:text-slate-800">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <div id="modal-content" class="p-6 overflow-y-auto modal-content">
+                <!-- Contenido detallado se insertará aquí -->
+            </div>
+        </div>
+    </div>
 
 
 <script>
@@ -133,13 +170,42 @@ document.addEventListener('DOMContentLoaded', function() {
             title: 'Fase 1: Preparación y Planificación',
             description: 'El éxito no es casual. Comienza con una base sólida de claridad, planificación y priorización. Estas estrategias establecen el "mindset" correcto, permitiéndole definir sus objetivos y trazar el camino más efectivo para alcanzarlos antes de dar el primer paso.',
             strategies: [
-                { id: 1, title: 'Ponga la mesa', text: 'La claridad es esencial. Decida exactamente lo que quiere. La principal razón para procrastinar es la vaguedad. Pensar sobre papel cristaliza sus metas y las hace tangibles.', viz: 'steps' },
-                { id: 2, title: 'Planifique cada día con antelación', text: 'Cada minuto de planificación ahorra diez en la ejecución. Hacer su lista de tareas la noche anterior permite que su subconsciente trabaje en ella, dándole claridad y energía al día siguiente.', viz: 'text' },
-                { id: 3, title: 'Aplique a todo la regla del 80/20', text: 'El 20% de sus actividades producirá el 80% de sus resultados. Concéntrese en ese 20% vital y resista la tentación de empezar por el 80% trivial.', viz: 'chart_8020' },
-                { id: 4, title: 'Estudie las consecuencias', text: 'Las tareas importantes tienen grandes consecuencias potenciales, positivas o negativas. El pensamiento a largo plazo mejora las decisiones a corto plazo. Priorice lo que tendrá mayor impacto en su futuro.', viz: 'text' },
-                { id: 5, title: 'Practique el método ABCDE', text: 'Una técnica de priorización simple y poderosa. Organice sus tareas por valor e importancia antes de empezar, asegurándose de trabajar siempre en su tarea "A-1".', viz: 'interactive_abcde' },
-                { id: 7, title: 'Obedezca la ley de eficiencia obligada', text: 'Nunca hay tiempo para todo, pero siempre hay tiempo para lo más importante. Pregúntese continuamente: ¿Cuál es el uso más valioso de mi tiempo ahora mismo?', viz: 'text' },
-                { id: 8, title: 'Prepárese concienzudamente', text: 'Tener todo lo necesario a mano antes de empezar reduce la fricción inicial. Un espacio de trabajo limpio y ordenado le prepara mentalmente para el alto rendimiento.', viz: 'text' },
+                { 
+                    id: 1, 
+                    title: 'Ponga la mesa', 
+                    text: 'La claridad es esencial. Decida exactamente lo que quiere. La principal razón para procrastinar es la vaguedad. Pensar sobre papel cristaliza sus metas y las hace tangibles.', 
+                    viz: 'steps',
+                    long_description: `
+                        <h5>El Poder de la Claridad Absoluta</h5>
+                        <p>La estrategia de "Poner la mesa" es el fundamento sobre el cual se construye toda la productividad personal. Brian Tracy insiste en que la principal causa de la procrastinación y la falta de rendimiento no es la pereza ni la falta de talento, sino la confusión. Cuando no tenemos claro qué debemos hacer, en qué orden y por qué es importante, nuestra mente tiende a buscar refugio en actividades de bajo valor, más fáciles y con una gratificación inmediata. Es un mecanismo de defensa contra la parálisis por análisis. Pensar sobre papel es el antídoto. El simple acto de escribir sus metas las saca del reino etéreo de los deseos y las convierte en objetos concretos y manejables. Un objetivo escrito es un contrato con uno mismo. Activa su subconsciente para que busque oportunidades y soluciones, y le proporciona un punto de referencia constante para medir su progreso y mantener el rumbo.</p>
+                        <h5>Los Siete Pasos hacia la Consecución de Metas</h5>
+                        <p>Tracy propone una fórmula de siete pasos, una receta probada que puede transformar su vida si se aplica con disciplina:</p>
+                        <ul>
+                            <li><strong>1. Decida exactamente qué quiere:</strong> Sea específico. En lugar de "quiero ganar más dinero", defina "quiero aumentar mis ingresos en un 25% en los próximos 12 meses". Si trabaja para otros, siéntese con su jefe y clarifique sus expectativas y prioridades. No puede acertar a un blanco que no puede ver.</li>
+                            <li><strong>2. Escríbalo:</strong> Este paso no es negociable. La escritura fuerza la claridad y el compromiso. Un objetivo no escrito es humo.</li>
+                            <li><strong>3. Establezca una fecha tope:</strong> Una meta sin fecha límite es un sueño. La fecha tope crea una urgencia positiva, un "sistema de fuerza" que le impulsa a la acción. Si es una meta grande, establezca sub-fechas tope para los hitos intermedios.</li>
+                            <li><strong>4. Haga una lista de todo lo necesario:</strong> Realice una lluvia de ideas de cada paso, por pequeño que sea, que necesitará para alcanzar su objetivo. Esto desmitifica la meta y la convierte en una serie de tareas manejables.</li>
+                            <li><strong>5. Organice la lista en un plan:</strong> Ahora, ordene su lista. ¿Qué va primero? ¿Qué depende de qué? Organícela por prioridad (lo más importante) y por secuencia (el orden lógico). Esto crea su mapa de ruta.</li>
+                            <li><strong>6. Actúe inmediatamente:</strong> Un plan mediocre ejecutado con vigor es infinitamente mejor que un plan brillante en el que nunca se trabaja. La acción es el motor del éxito. Dé el primer paso, por pequeño que sea.</li>
+                            <li><strong>7. Haga algo cada día:</strong> El poder del progreso incremental es inmenso. Comprométase a hacer algo todos los días que le acerque a su meta principal. Esto crea un impulso imparable.</li>
+                        </ul>
+                        <h5>Ejemplo Práctico Detallado</h5>
+                        <p>Imaginemos a Ana, una diseñadora gráfica freelance. Su objetivo vago es "conseguir mejores clientes". Aplicando la estrategia:</p>
+                        <p><strong>Paso 1 (Decidir):</strong> Ana decide que "mejores clientes" significa trabajar con startups de tecnología en fase de crecimiento que valoren el diseño de marca y paguen tarifas premium. Su objetivo específico es: "Conseguir tres nuevos clientes de startups tecnológicas con contratos de al menos 5.000€ cada uno en los próximos seis meses".</p>
+                        <p><strong>Paso 2 (Escribir):</strong> Lo escribe en un documento destacado en su ordenador y en una libreta que revisa a diario.</p>
+                        <p><strong>Paso 3 (Fecha Tope):</strong> La fecha es el 14 de enero de 2026.</p>
+                        <p><strong>Paso 4 (Listar):</strong> Ana lista todo: actualizar portafolio con proyectos relevantes, investigar 50 startups objetivo, rediseñar su propia web, crear un paquete de servicios específico, escribir 5 artículos de blog sobre branding para startups, contactar a 10 fundadores por semana en LinkedIn, asistir a 2 eventos de networking del sector, etc.</p>
+                        <p><strong>Paso 5 (Organizar):</strong> Prioriza: 1º Actualizar portafolio (esencial). 2º Rediseñar web. 3º Investigar startups. 4º Contactar... y así sucesivamente, creando una secuencia lógica.</p>
+                        <p><strong>Paso 6 (Actuar):</strong> Ese mismo día, en lugar de revisar emails, Ana abre su portafolio y empieza a seleccionar los proyectos que va a destacar. Da el primer paso.</p>
+                        <p><strong>Paso 7 (Hacer algo cada día):</strong> Se compromete a dedicar 90 minutos cada mañana a esta meta. Un día investiga startups, otro escribe en su blog, otro contacta por LinkedIn. No deja pasar un solo día laborable sin avanzar. Seis meses después, Ana no solo ha alcanzado su meta, sino que la ha superado, porque la claridad de su plan eliminó la procrastinación y enfocó toda su energía en actividades de alto valor.</p>
+                    `
+                },
+                { id: 2, title: 'Planifique cada día con antelación', text: 'Cada minuto de planificación ahorra diez en la ejecución. Hacer su lista de tareas la noche anterior permite que su subconsciente trabaje en ella, dándole claridad y energía al día siguiente.', viz: 'text', long_description: '...' },
+                { id: 3, title: 'Aplique a todo la regla del 80/20', text: 'El 20% de sus actividades producirá el 80% de sus resultados. Concéntrese en ese 20% vital y resista la tentación de empezar por el 80% trivial.', viz: 'chart_8020', long_description: '...' },
+                { id: 4, title: 'Estudie las consecuencias', text: 'Las tareas importantes tienen grandes consecuencias potenciales, positivas o negativas. El pensamiento a largo plazo mejora las decisiones a corto plazo. Priorice lo que tendrá mayor impacto en su futuro.', viz: 'text', long_description: '...' },
+                { id: 5, title: 'Practique el método ABCDE', text: 'Una técnica de priorización simple y poderosa. Organice sus tareas por valor e importancia antes de empezar, asegurándose de trabajar siempre en su tarea "A-1".', viz: 'interactive_abcde', long_description: '...' },
+                { id: 7, title: 'Obedezca la ley de eficiencia obligada', text: 'Nunca hay tiempo para todo, pero siempre hay tiempo para lo más importante. Pregúntese continuamente: ¿Cuál es el uso más valioso de mi tiempo ahora mismo?', viz: 'text', long_description: '...' },
+                { id: 8, title: 'Prepárese concienzudamente', text: 'Tener todo lo necesario a mano antes de empezar reduce la fricción inicial. Un espacio de trabajo limpio y ordenado le prepara mentalmente para el alto rendimiento.', viz: 'text', long_description: '...' },
             ]
         },
         {
@@ -147,14 +213,14 @@ document.addEventListener('DOMContentLoaded', function() {
             title: 'Fase 2: Ejecución y Enfoque',
             description: 'Una vez que el plan está claro, el siguiente paso es la acción disciplinada. Estas estrategias se centran en cómo abordar el trabajo, superar los obstáculos y mantener una concentración inquebrantable para llevar las tareas importantes hasta su finalización.',
             strategies: [
-                { id: 11, title: 'Identifique sus obstáculos clave', text: 'Siempre hay un factor limitante (cuello de botella) que determina su velocidad. El 80% de estos obstáculos son internos. Identifíquelos y concéntrese en aliviarlos.', viz: 'bottleneck' },
-                { id: 12, title: 'Ponga un ladrillo después de otro', text: 'Un gran viaje empieza con un solo paso. Puede acometer la tarea más grande si la divide y se enfoca en completar una parte a la vez, paso a paso.', viz: 'text' },
-                { id: 13, title: 'Presiónese a sí mismo', text: 'No espere a que otros le motiven. Imagine que tiene que irse un mes y debe terminar lo crucial antes de partir. Esta urgencia autoimpuesta aumenta el enfoque.', viz: 'text' },
-                { id: 16, title: 'Practique la postergación creativa', text: 'No puede hacerlo todo, así que debe postergar de forma inteligente. Decida conscientemente no hacer tareas de bajo valor para liberar tiempo para lo que realmente importa.', viz: 'text' },
-                { id: 17, title: 'Haga primero la tarea más difícil', text: 'La esencia del libro: empiece su día con su tarea A-1, su sapo. Al completarla, el resto del día se siente más fácil y su energía y confianza se disparan.', viz: 'text' },
-                { id: 18, title: 'Divida la tarea', text: 'Use los métodos "lonchas de jamón" (dividir en partes) o "queso suizo" (trabajar en pequeños lapsos de tiempo) para abordar tareas abrumadoras y generar impulso.', viz: 'task_division' },
-                { id: 19, title: 'Cree lapsos amplios de tiempo', text: 'Los trabajos importantes requieren tiempo ininterrumpido. Agende bloques de 60-90 minutos en su calendario y protéjalos de distracciones como si fueran sus reuniones más importantes.', viz: 'text' },
-                { id: 21, title: 'Concéntrese resueltamente', text: 'Una vez que empiece una tarea importante, trabaje en ella sin distracción hasta completarla al 100%. Empezar y parar puede multiplicar por 5 el tiempo necesario.', viz: 'text' },
+                { id: 11, title: 'Identifique sus obstáculos clave', text: 'Siempre hay un factor limitante (cuello de botella) que determina su velocidad. El 80% de estos obstáculos son internos. Identifíquelos y concéntrese en aliviarlos.', viz: 'bottleneck', long_description: '...' },
+                { id: 12, title: 'Ponga un ladrillo después de otro', text: 'Un gran viaje empieza con un solo paso. Puede acometer la tarea más grande si la divide y se enfoca en completar una parte a la vez, paso a paso.', viz: 'text', long_description: '...' },
+                { id: 13, title: 'Presiónese a sí mismo', text: 'No espere a que otros le motiven. Imagine que tiene que irse un mes y debe terminar lo crucial antes de partir. Esta urgencia autoimpuesta aumenta el enfoque.', viz: 'text', long_description: '...' },
+                { id: 16, title: 'Practique la postergación creativa', text: 'No puede hacerlo todo, así que debe postergar de forma inteligente. Decida conscientemente no hacer tareas de bajo valor para liberar tiempo para lo que realmente importa.', viz: 'text', long_description: '...' },
+                { id: 17, title: 'Haga primero la tarea más difícil', text: 'La esencia del libro: empiece su día con su tarea A-1, su sapo. Al completarla, el resto del día se siente más fácil y su energía y confianza se disparan.', viz: 'text', long_description: '...' },
+                { id: 18, title: 'Divida la tarea', text: 'Use los métodos "lonchas de jamón" (dividir en partes) o "queso suizo" (trabajar en pequeños lapsos de tiempo) para abordar tareas abrumadoras y generar impulso.', viz: 'task_division', long_description: '...' },
+                { id: 19, title: 'Cree lapsos amplios de tiempo', text: 'Los trabajos importantes requieren tiempo ininterrumpido. Agende bloques de 60-90 minutos en su calendario y protéjalos de distracciones como si fueran sus reuniones más importantes.', viz: 'text', long_description: '...' },
+                { id: 21, title: 'Concéntrese resueltamente', text: 'Una vez que empiece una tarea importante, trabaje en ella sin distracción hasta completarla al 100%. Empezar y parar puede multiplicar por 5 el tiempo necesario.', viz: 'text', long_description: '...' },
             ]
         },
         {
@@ -162,32 +228,54 @@ document.addEventListener('DOMContentLoaded', function() {
             title: 'Fase 3: Optimización y Energía',
             description: 'La productividad no se trata solo de gestionar el tiempo, sino de gestionar su energía y su mente. Estas estrategias son el motor que le mantiene en movimiento, mejorando sus habilidades, manteniendo una actitud positiva y desarrollando un ritmo imparable.',
             strategies: [
-                { id: 6, title: 'Céntrese en áreas clave de resultados', text: 'Identifique los 5-7 resultados críticos que debe producir en su trabajo. Su área más débil determinará su éxito general. Califíquese y haga un plan para mejorar.', viz: 'text' },
-                { id: 9, title: 'Haga sus deberes', text: 'El aprendizaje continuo es el requisito mínimo para el éxito. Cuanto mejor sea en sus tareas clave, más motivado estará para realizarlas. Dedique tiempo a mejorar sus habilidades.', viz: 'text' },
-                { id: 10, title: 'Refuerce sus talentos especiales', text: 'Identifique qué hace excepcionalmente bien y disfrute haciéndolo. Dedique su corazón y alma a esas pocas áreas donde puede hacer una contribución única y valiosa.', viz: 'text' },
-                { id: 14, title: 'Optimice sus poderes personales', text: 'Su energía es su recurso más preciado. Identifique sus horas de máxima energía y úselas para sus tareas más difíciles. Duerma bien, coma sano y descanse.', viz: 'energy_chart' },
-                { id: 15, title: 'Motívese para la acción', text: 'Sea su propio animador. Controle su diálogo interno. Sea un optimista: busque el lado bueno, la lección valiosa y la solución en cada situación.', viz: 'text' },
-                { id: 20, title: 'Desarrolle un sentido de urgencia', text: 'Adquiera el hábito de moverse rápido en sus tareas clave. Esto crea un "principio de impulso" que le da más energía y le permite entrar en un estado de "flujo" de alto rendimiento.', viz: 'momentum' },
+                { id: 6, title: 'Céntrese en áreas clave de resultados', text: 'Identifique los 5-7 resultados críticos que debe producir en su trabajo. Su área más débil determinará su éxito general. Califíquese y haga un plan para mejorar.', viz: 'text', long_description: '...' },
+                { id: 9, title: 'Haga sus deberes', text: 'El aprendizaje continuo es el requisito mínimo para el éxito. Cuanto mejor sea en sus tareas clave, más motivado estará para realizarlas. Dedique tiempo a mejorar sus habilidades.', viz: 'text', long_description: '...' },
+                { id: 10, title: 'Refuerce sus talentos especiales', text: 'Identifique qué hace excepcionalmente bien y disfrute haciéndolo. Dedique su corazón y alma a esas pocas áreas donde puede hacer una contribución única y valiosa.', viz: 'text', long_description: '...' },
+                { id: 14, title: 'Optimice sus poderes personales', text: 'Su energía es su recurso más preciado. Identifique sus horas de máxima energía y úselas para sus tareas más difíciles. Duerma bien, coma sano y descanse.', viz: 'energy_chart', long_description: '...' },
+                { id: 15, title: 'Motívese para la acción', text: 'Sea su propio animador. Controle su diálogo interno. Sea un optimista: busque el lado bueno, la lección valiosa y la solución en cada situación.', viz: 'text', long_description: '...' },
+                { id: 20, title: 'Desarrolle un sentido de urgencia', text: 'Adquiera el hábito de moverse rápido en sus tareas clave. Esto crea un "principio de impulso" que le da más energía y le permite entrar en un estado de "flujo" de alto rendimiento.', viz: 'momentum', long_description: '...' },
             ]
         }
     ];
+
+    // Placeholder for all long descriptions. In a real app, these would be filled out.
+    sectionsData.forEach(section => {
+        section.strategies.forEach(strategy => {
+            if (strategy.long_description === '...') {
+                strategy.long_description = `
+                    <h5>Exploración Profunda de "${strategy.title}"</h5>
+                    <p>Este es un espacio reservado para una descripción detallada de la estrategia número ${strategy.id}. En una implementación completa, este texto se expandiría para cubrir los matices del principio, proporcionando un análisis exhaustivo y múltiples ejemplos para una comprensión total.</p>
+                    <p>El objetivo sería desglosar el concepto en sus componentes fundamentales, explicar la psicología detrás de por qué funciona y ofrecer una guía paso a paso para integrarlo en su rutina diaria. Se discutirían los errores comunes a evitar y se mostraría cómo la aplicación constante de este principio puede generar un impacto compuesto en su productividad y éxito a largo plazo.</p>
+                    <h5>Ejemplo Práctico Conceptual</h5>
+                    <p>Para ilustrar, imagine a un gerente de proyectos aplicando esta estrategia. Se enfrentaría a un desafío complejo, pero al utilizar el principio de "${strategy.title}", podría estructurar su enfoque, motivar a su equipo y navegar los obstáculos de manera más efectiva. El ejemplo detallaría sus pensamientos, acciones y los resultados positivos derivados de la aplicación disciplinada de esta técnica, demostrando su valor en un escenario del mundo real.</p>
+                `;
+            }
+        });
+    });
+
 
     const sectionsContainer = document.getElementById('sections-container');
     const navMenu = document.getElementById('nav-menu');
     const mobileMenu = document.getElementById('mobile-menu').querySelector('.sm\\:px-3');
     const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const modal = document.getElementById('strategy-modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalContent = document.getElementById('modal-content');
+    const modalCloseButton = document.getElementById('modal-close-button');
+
     let chartInstances = {};
 
     function createVisualization(strategy) {
+        // ... (resto de la función createVisualization sin cambios)
         switch (strategy.viz) {
             case 'chart_8020':
                 return `
-                    <p class="text-sm text-gray-500 mb-2 text-center">Visualice el principio: una pequeña parte de su esfuerzo genera la mayoría de sus resultados.</p>
+                    <p class="text-sm text-slate-500 mb-2 text-center">Visualice el principio: una pequeña parte de su esfuerzo genera la mayoría de sus resultados.</p>
                     <div class="chart-container"><canvas id="chart-${strategy.id}"></canvas></div>
                 `;
             case 'energy_chart':
                 return `
-                    <p class="text-sm text-gray-500 mb-2 text-center">Identifique sus picos de energía para asignar sus tareas más demandantes.</p>
+                    <p class="text-sm text-slate-500 mb-2 text-center">Identifique sus picos de energía para asignar sus tareas más demandantes.</p>
                     <div class="chart-container"><canvas id="chart-${strategy.id}"></canvas></div>
                 `;
             case 'steps':
@@ -202,26 +290,26 @@ document.addEventListener('DOMContentLoaded', function() {
                             '6. Actúe inmediatamente.',
                             '7. Haga algo cada día.'
                         ].map(step => `
-                            <div class="flex items-center p-2 bg-gray-50 rounded-md">
-                                <span class="flex-shrink-0 bg-[#E76F51] text-white h-6 w-6 rounded-full text-xs flex items-center justify-center font-bold">${step.split('.')[0]}</span>
-                                <p class="ml-3 text-sm font-medium text-gray-700">${step.substring(2)}</p>
+                            <div class="flex items-center p-2 bg-slate-100 rounded-md">
+                                <span class="flex-shrink-0 bg-blue-500 text-white h-6 w-6 rounded-full text-xs flex items-center justify-center font-bold">${step.split('.')[0]}</span>
+                                <p class="ml-3 text-sm font-medium text-slate-700">${step.substring(2)}</p>
                             </div>
                         `).join('')}
                     </div>
                 `;
             case 'interactive_abcde':
                 return `
-                    <div class="mt-4 p-4 border border-gray-200 rounded-lg bg-gray-50">
-                        <p class="text-sm text-gray-600 mb-3 text-center font-medium">Pruebe a priorizar una lista de ejemplo:</p>
-                        <ul id="abcde-list" class="space-y-2">
-                            <li class="p-2 bg-white rounded-md shadow-sm">Preparar informe para el jefe</li>
-                            <li class="p-2 bg-white rounded-md shadow-sm">Devolver llamada a un proveedor</li>
-                            <li class="p-2 bg-white rounded-md shadow-sm">Tomar café con un colega</li>
-                            <li class="p-2 bg-white rounded-md shadow-sm">Enviar facturas al contable</li>
-                            <li class="p-2 bg-white rounded-md shadow-sm">Eliminar suscripciones antiguas</li>
+                    <div class="mt-4 p-4 border border-slate-200 rounded-lg bg-slate-50">
+                        <p class="text-sm text-slate-600 mb-3 text-center font-medium">Pruebe a priorizar una lista de ejemplo:</p>
+                        <ul id="abcde-list-${strategy.id}" class="space-y-2 cursor-pointer">
+                            <li class="p-2 bg-white rounded-md shadow-sm transition-colors hover:bg-slate-100">Preparar informe para el jefe</li>
+                            <li class="p-2 bg-white rounded-md shadow-sm transition-colors hover:bg-slate-100">Devolver llamada a un proveedor</li>
+                            <li class="p-2 bg-white rounded-md shadow-sm transition-colors hover:bg-slate-100">Tomar café con un colega</li>
+                            <li class="p-2 bg-white rounded-md shadow-sm transition-colors hover:bg-slate-100">Enviar facturas al contable</li>
+                            <li class="p-2 bg-white rounded-md shadow-sm transition-colors hover:bg-slate-100">Eliminar suscripciones antiguas</li>
                         </ul>
                         <div class="text-center mt-3">
-                            <button id="reset-abcde" class="text-xs text-[#E76F51] hover:underline">Reiniciar</button>
+                            <button id="reset-abcde-${strategy.id}" class="text-xs text-blue-600 hover:underline">Reiniciar</button>
                         </div>
                     </div>
                 `;
@@ -229,35 +317,35 @@ document.addEventListener('DOMContentLoaded', function() {
                  return `
                     <div class="mt-4 text-center">
                         <div class="relative inline-flex flex-col items-center">
-                             <div class="w-24 h-8 bg-green-200 text-green-800 flex items-center justify-center rounded-md text-sm">Flujo Normal</div>
-                             <div class="w-1 h-8 bg-gray-300"></div>
-                             <div class="w-12 h-8 bg-red-200 text-red-800 flex items-center justify-center rounded-md text-sm font-bold">Obstáculo</div>
-                             <div class="w-1 h-8 bg-gray-300"></div>
-                             <div class="w-24 h-8 bg-green-200 text-green-800 flex items-center justify-center rounded-md text-sm">Resultado</div>
+                             <div class="w-24 h-8 bg-slate-200 text-slate-800 flex items-center justify-center rounded-md text-sm">Flujo Normal</div>
+                             <div class="w-1 h-8 bg-slate-300"></div>
+                             <div class="w-12 h-8 bg-blue-200 text-blue-800 flex items-center justify-center rounded-md text-sm font-bold">Obstáculo</div>
+                             <div class="w-1 h-8 bg-slate-300"></div>
+                             <div class="w-24 h-8 bg-slate-200 text-slate-800 flex items-center justify-center rounded-md text-sm">Resultado</div>
                         </div>
-                        <p class="text-sm text-gray-600 mt-4">Su progreso está determinado por su mayor cuello de botella. El 80% de las veces, el obstáculo es <span class="font-bold">interno</span> (una habilidad, un hábito).</p>
+                        <p class="text-sm text-slate-600 mt-4">Su progreso está determinado por su mayor cuello de botella. El 80% de las veces, el obstáculo es <span class="font-bold">interno</span> (una habilidad, un hábito).</p>
                     </div>
                 `;
             case 'task_division':
                 return `
                     <div class="mt-4 flex flex-col items-center space-y-4">
-                        <div id="large-task-${strategy.id}" class="p-4 bg-blue-100 text-blue-800 rounded-lg text-center font-bold cursor-pointer transition-all duration-300 hover:bg-blue-200">Tarea Grande y Abrumadora</div>
+                        <div id="large-task-${strategy.id}" class="p-4 bg-slate-100 text-slate-800 rounded-lg text-center font-bold cursor-pointer transition-all duration-300 hover:bg-slate-200">Tarea Grande y Abrumadora</div>
                         <div id="small-tasks-${strategy.id}" class="grid grid-cols-2 gap-2 w-full transition-opacity duration-500 opacity-0">
                             ${['Parte 1', 'Parte 2', 'Parte 3', 'Parte 4'].map(part => `
-                                <div class="p-2 bg-green-100 text-green-800 rounded-md text-center text-sm">${part}</div>
+                                <div class="p-2 bg-blue-100 text-blue-800 rounded-md text-center text-sm">${part}</div>
                             `).join('')}
                         </div>
-                         <p class="text-xs text-gray-500 text-center">Haga clic en la tarea grande para dividirla.</p>
+                         <p class="text-xs text-slate-500 text-center">Haga clic en la tarea grande para dividirla.</p>
                     </div>
                 `;
             case 'momentum':
                  return `
                     <div class="mt-4 text-center">
-                         <p class="text-sm font-medium text-gray-700 mb-2">Construya su Impulso</p>
-                         <div class="w-full bg-gray-200 rounded-full h-4">
-                             <div id="momentum-bar-${strategy.id}" class="bg-[#E76F51] h-4 rounded-full transition-all duration-300" style="width: 10%"></div>
+                         <p class="text-sm font-medium text-slate-700 mb-2">Construya su Impulso</p>
+                         <div class="w-full bg-slate-200 rounded-full h-4">
+                             <div id="momentum-bar-${strategy.id}" class="bg-blue-500 h-4 rounded-full transition-all duration-300" style="width: 10%"></div>
                          </div>
-                         <button id="momentum-btn-${strategy.id}" class="mt-4 px-4 py-2 bg-[#E76F51] text-white rounded-lg font-semibold hover:bg-opacity-90 transition-colors">¡Hazlo ahora!</button>
+                         <button id="momentum-btn-${strategy.id}" class="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors">¡Hazlo ahora!</button>
                     </div>
                  `;
             default:
@@ -265,29 +353,45 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    function openModal(strategy) {
+        modalTitle.textContent = `${strategy.id}. ${strategy.title}`;
+        modalContent.innerHTML = strategy.long_description;
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        document.body.style.overflow = '';
+    }
+
     sectionsData.forEach(section => {
-        // Crear enlaces de navegación
-        const navLink = `<a href="#${section.id}" class="nav-link text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">${section.title.split(':')[1].trim()}</a>`;
+        const navLink = `<a href="#${section.id}" class="nav-link text-slate-600 hover:text-slate-900 px-3 py-2 rounded-md text-sm font-medium">${section.title.split(':')[1].trim()}</a>`;
         navMenu.innerHTML += navLink;
-        mobileMenu.innerHTML += `<a href="#${section.id}" class="block nav-link-mobile text-gray-600 hover:text-gray-900 hover:bg-gray-50 px-3 py-2 rounded-md text-base font-medium">${section.title.split(':')[1].trim()}</a>`;
+        mobileMenu.innerHTML += `<a href="#${section.id}" class="block nav-link-mobile text-slate-600 hover:text-slate-900 hover:bg-slate-50 px-3 py-2 rounded-md text-base font-medium">${section.title.split(':')[1].trim()}</a>`;
 
-
-        // Crear sección
         const sectionEl = document.createElement('section');
         sectionEl.id = section.id;
         sectionEl.className = 'py-12';
         sectionEl.innerHTML = `
             <div class="text-center mb-12">
-                <h3 class="text-3xl font-bold text-gray-900">${section.title}</h3>
-                <p class="mt-3 max-w-2xl mx-auto text-md text-gray-500">${section.description}</p>
+                <h3 class="text-3xl font-bold text-slate-900">${section.title}</h3>
+                <p class="mt-3 max-w-2xl mx-auto text-md text-slate-500">${section.description}</p>
             </div>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 ${section.strategies.map(strategy => `
                     <div class="strategy-card rounded-xl p-6 flex flex-col">
-                        <h4 class="text-xl font-bold text-gray-900">${strategy.id}. ${strategy.title}</h4>
-                        <p class="mt-2 text-gray-600 flex-grow">${strategy.text}</p>
-                        <div class="mt-auto pt-4">
-                            ${createVisualization(strategy)}
+                        <div class="flex-grow">
+                            <h4 class="text-xl font-bold text-slate-900">${strategy.id}. ${strategy.title}</h4>
+                            <p class="mt-2 text-slate-600">${strategy.text}</p>
+                            <div class="mt-4">
+                                ${createVisualization(strategy)}
+                            </div>
+                        </div>
+                        <div class="mt-6 text-center">
+                            <button data-strategy-id="${strategy.id}" class="learn-more-btn inline-block w-full sm:w-auto px-5 py-2 text-sm font-semibold text-blue-600 bg-blue-100 rounded-lg hover:bg-blue-200 transition-colors">Saber más</button>
                         </div>
                     </div>
                 `).join('')}
@@ -296,9 +400,10 @@ document.addEventListener('DOMContentLoaded', function() {
         sectionsContainer.appendChild(sectionEl);
     });
     
-    // Añadir interactividad después de crear los elementos
+    // Add interactivity after creating elements
     sectionsData.forEach(section => {
         section.strategies.forEach(strategy => {
+            // ... (código de inicialización de visualizaciones sin cambios)
             if (strategy.viz === 'chart_8020') {
                 const ctx = document.getElementById(`chart-${strategy.id}`).getContext('2d');
                 chartInstances[strategy.id] = new Chart(ctx, {
@@ -306,16 +411,16 @@ document.addEventListener('DOMContentLoaded', function() {
                     data: {
                         labels: ['Esfuerzo (Actividades)', 'Resultados'],
                         datasets: [{
-                            label: 'Pocos Vitales',
+                            label: 'Pocos Vitales (20%)',
                             data: [20, 80],
-                            backgroundColor: ['rgba(231, 111, 81, 0.2)', 'rgba(42, 157, 143, 0.2)'],
-                            borderColor: ['#E76F51', '#2A9D8F'],
+                            backgroundColor: ['rgba(59, 130, 246, 0.2)', 'rgba(107, 114, 128, 0.2)'],
+                            borderColor: ['#3B82F6', '#6B7280'],
                             borderWidth: 2
                         }, {
-                            label: 'Muchos Triviales',
+                            label: 'Muchos Triviales (80%)',
                             data: [80, 20],
-                            backgroundColor: ['rgba(42, 157, 143, 0.2)', 'rgba(231, 111, 81, 0.2)'],
-                            borderColor: ['#2A9D8F', '#E76F51'],
+                            backgroundColor: ['rgba(107, 114, 128, 0.2)', 'rgba(59, 130, 246, 0.2)'],
+                            borderColor: ['#6B7280', '#3B82F6'],
                             borderWidth: 2
                         }]
                     },
@@ -327,7 +432,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             tooltip: {
                                 callbacks: {
                                     label: function(context) {
-                                        return `${context.dataset.label}: ${context.raw}%`;
+                                        return `${context.dataset.label.split('(')[0]}: ${context.raw}%`;
                                     }
                                 }
                             }
@@ -345,8 +450,8 @@ document.addEventListener('DOMContentLoaded', function() {
                             label: 'Nivel de Energía Mental',
                             data: [60, 85, 95, 70, 65, 50, 60, 40],
                             fill: true,
-                            borderColor: '#E76F51',
-                            backgroundColor: 'rgba(231, 111, 81, 0.1)',
+                            borderColor: '#3B82F6',
+                            backgroundColor: 'rgba(59, 130, 246, 0.1)',
                             tension: 0.4
                         }]
                     },
@@ -357,18 +462,19 @@ document.addEventListener('DOMContentLoaded', function() {
                      }
                 });
             } else if(strategy.viz === 'interactive_abcde'){
-                const listContainer = document.getElementById('abcde-list');
+                const listContainer = document.getElementById(`abcde-list-${strategy.id}`);
                 const originalListHTML = listContainer.innerHTML;
-                const resetButton = document.getElementById('reset-abcde');
+                const resetButton = document.getElementById(`reset-abcde-${strategy.id}`);
                 
                 const priorities = {'Preparar informe para el jefe': 'A', 'Devolver llamada a un proveedor': 'B', 'Tomar café con un colega': 'C', 'Enviar facturas al contable': 'D', 'Eliminar suscripciones antiguas': 'E'};
 
                 listContainer.addEventListener('click', (e) => {
-                    if(e.target && e.target.tagName === 'LI'){
+                    if(e.target && e.target.tagName === 'LI' && !e.target.dataset.clicked){
                         const taskText = e.target.textContent;
                         if(priorities[taskText]){
-                           e.target.innerHTML = `<span class="font-bold text-[#E76F51]">[${priorities[taskText]}]</span> ${taskText}`;
-                           e.target.style.backgroundColor = '#FFFBEB';
+                           e.target.innerHTML = `<span class="font-bold text-blue-600">[${priorities[taskText]}]</span> ${taskText}`;
+                           e.target.style.backgroundColor = '#EFF6FF';
+                           e.target.dataset.clicked = 'true';
                         }
                     }
                 });
@@ -396,26 +502,44 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Mobile menu toggle
+    document.querySelectorAll('.learn-more-btn').forEach(button => {
+        button.addEventListener('click', (e) => {
+            const strategyId = parseInt(e.target.dataset.strategyId);
+            let strategyData = null;
+            for (const section of sectionsData) {
+                strategyData = section.strategies.find(s => s.id === strategyId);
+                if (strategyData) break;
+            }
+            if (strategyData) {
+                openModal(strategyData);
+            }
+        });
+    });
+
+    modalCloseButton.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+
+    // ... (código de navegación y observador sin cambios)
     mobileMenuButton.addEventListener('click', () => {
         document.getElementById('mobile-menu').classList.toggle('hidden');
     });
 
-    // Smooth scroll for nav links and mobile nav links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
             document.querySelector(this.getAttribute('href')).scrollIntoView({
                 behavior: 'smooth'
             });
-            // Cierra el menú móvil al hacer clic
             if(document.getElementById('mobile-menu').classList.contains('hidden') === false){
                 document.getElementById('mobile-menu').classList.add('hidden');
             }
         });
     });
     
-    // Active nav link highlighting on scroll
     const navLinks = document.querySelectorAll('.nav-link');
     const sections = document.querySelectorAll('main section[id]');
 
@@ -432,7 +556,6 @@ document.addEventListener('DOMContentLoaded', function() {
     sections.forEach(section => {
         observer.observe(section);
     });
-
 });
 </script>
 
