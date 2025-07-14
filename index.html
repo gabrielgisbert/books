@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía Interactiva: 21 Estrategias para Vencer la Procrastinación con IA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 350px;
+        }
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 250px;
+                max-height: 250px;
+            }
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #118AB2, #06D6A0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .strategy-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #e2e8f0;
+        }
+        .strategy-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+        }
+        .number-badge {
+            background: linear-gradient(to bottom right, #118AB2, #06D6A0);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+        .section-header {
+            border-radius: 0.75rem;
+            padding: 2rem 1.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .loader {
+            width: 48px;
+            height: 48px;
+            border: 5px solid #FFF;
+            border-bottom-color: #FF3D00;
+            border-radius: 50%;
+            display: inline-block;
+            box-sizing: border-box;
+            animation: rotation 1s linear infinite;
+            margin: 20px auto;
+        }
+        @keyframes rotation {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+
+        <header class="text-center my-12 md:my-16">
+            <h1 class="text-4xl md:text-6xl font-black tracking-tight text-slate-900 leading-tight">Domina tu Día: Las 21 Leyes</h1>
+            <h2 class="text-4xl md:text-6xl font-black tracking-tight gradient-text">Anti-Procrastinación con IA</h2>
+            <p class="mt-6 max-w-3xl mx-auto text-lg text-slate-600">
+                Una guía interactiva inspirada en "¡Tráguese ese sapo!" de Brian Tracy. Descubre cómo afrontar tus tareas más difíciles y multiplicar tu productividad con ayuda de la IA.
+            </p>
+        </header>
+
+        <main class="space-y-12">
+            
+            <section id="fundamentos">
+                <div class="section-header bg-sky-900 text-white">
+                     <h3 class="text-3xl font-bold">1. Fundamentos: Prepara el Terreno para el Éxito</h3>
+                     <p class="mt-2 text-sky-200">Antes de actuar, debes pensar. La claridad, la planificación y la priorización son los cimientos de la productividad.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="strategy-card lg:col-span-2">
+                        <div class="flex items-start gap-4">
+                            <div class="number-badge">1</div>
+                            <div>
+                                <h3 class="text-xl font-bold mb-2">Ponga la mesa</h3>
+                                <p class="mb-4 text-slate-600">La confusión es el enemigo nº 1. Define tus metas con el método de 7 pasos. Y ahora, ¡deja que la IA te ayude a crear el plan!</p>
+                            </div>
+                        </div>
+                        <div class="mt-4 pt-4 border-t border-slate-200">
+                            <label for="goalInput" class="block text-md font-semibold text-slate-700 mb-2">Introduce tu gran objetivo:</label>
+                            <input type="text" id="goalInput" class="w-full p-2 border border-slate-300 rounded-md" placeholder="Ej: Lanzar mi podcast este trimestre">
+                            <button id="generatePlanBtn" class="mt-3 w-full bg-sky-600 text-white font-bold py-2 px-4 rounded-md hover:bg-sky-700 transition-colors">
+                                ✨ Generar Plan de Acción
+                            </button>
+                            <div id="planResult" class="mt-4 p-4 bg-slate-50 rounded-md hidden"></div>
+                        </div>
+                    </div>
+
+                    <div class="strategy-card">
+                         <div class="flex items-start gap-4 mb-4">
+                            <div class="number-badge">2</div>
+                            <div>
+                                <h3 class="text-xl font-bold">Planifique cada día</h3>
+                            </div>
+                        </div>
+                        <p class="mb-4 text-slate-600">La fórmula 10/90 es clave: 10% del tiempo planificando ahorra 90% en ejecución. Haz tu lista la noche anterior.</p>
+                        <div class="bg-sky-100 text-sky-900 p-4 rounded-lg text-center">
+                            <div class="text-5xl font-black">10 min</div>
+                            <div class="text-lg font-semibold mt-1">→ Ahorran hasta 2 horas</div>
+                        </div>
+                    </div>
+                    
+                    <div class="strategy-card">
+                        <div class="flex items-start gap-4 mb-4">
+                            <div class="number-badge">3</div>
+                            <div>
+                                <h3 class="text-xl font-bold">Aplique la regla 80/20</h3>
+                            </div>
+                        </div>
+                        <p class="mb-4 text-slate-600">El 20% de tus acciones generan el 80% de tus resultados. Enfócate en ese 20% vital. ¡Resiste la tentación de empezar por lo fácil!</p>
+                        <div class="chart-container h-48 max-h-48">
+                            <canvas id="paretoChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="strategy-card">
+                        <div class="flex items-start gap-4">
+                            <div class="number-badge">4</div>
+                            <div>
+                                <h3 class="text-xl font-bold">Estudie las consecuencias</h3>
+                                <p class="text-slate-600 mt-2">Tu "sapo" es la tarea con las mayores consecuencias potenciales a largo plazo. Piensa en el futuro para tomar mejores decisiones hoy.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="strategy-card">
+                         <div class="flex items-start gap-4">
+                            <div class="number-badge">5</div>
+                            <div>
+                                <h3 class="text-xl font-bold">Use el método ABCDE</h3>
+                                <p class="text-slate-600 mt-2">Prioriza tu lista: **A** (Vital), **B** (Debería), **C** (Agradable), **D** (Delegar), **E** (Eliminar). Tu misión: empezar por la tarea A-1 y no parar.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="sapo-finder">
+                <div class="strategy-card bg-gradient-to-br from-amber-400 to-orange-500 text-white lg:col-span-3">
+                    <h3 class="text-3xl font-black text-center mb-4">✨ ¡Encuentra tu Sapo del Día!</h3>
+                    <p class="text-center text-amber-100 mb-6">¿No estás seguro de cuál es tu tarea más importante? Lista tus pendientes y deja que la IA te ayude a identificar tu "sapo".</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                        <div>
+                            <label for="taskList" class="block text-md font-semibold mb-2">Escribe tus tareas del día (una por línea):</label>
+                            <textarea id="taskList" rows="5" class="w-full p-2 border border-amber-300 rounded-md bg-white/20 text-white placeholder-amber-200"></textarea>
+                            <button id="findSapoBtn" class="mt-3 w-full bg-white text-orange-600 font-bold py-2 px-4 rounded-md hover:bg-amber-50 transition-colors">
+                                ¡Encontrar mi Sapo!
+                            </button>
+                        </div>
+                        <div id="sapoResult" class="p-4 bg-white/20 rounded-md min-h-[180px] flex items-center justify-center">
+                            <p class="text-amber-100">Aquí aparecerá tu resultado...</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="enfoque">
+                 <div class="section-header bg-teal-900 text-white">
+                     <h3 class="text-3xl font-bold">2. Enfoque y Ejecución: El Camino a la Maestría</h3>
+                     <p class="mt-2 text-teal-200">Identifica en qué trabajar, elimina los frenos y conviértete en el mejor en lo que haces.</p>
+                </div>
+                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="strategy-card lg:col-span-2">
+                        <div class="flex items-start gap-4 mb-4">
+                            <div class="number-badge">6</div>
+                            <div>
+                                <h3 class="text-xl font-bold">Céntrese en áreas clave</h3>
+                                <p class="mt-2 text-slate-600">Identifica las 5-7 áreas de resultado de tu trabajo. Tu área más débil marca tu techo. Evalúate y mejora donde más impacto tendrá.</p>
+                            </div>
+                        </div>
+                        <div class="chart-container h-64 max-h-64">
+                            <canvas id="radarChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="strategy-card">
+                         <div class="flex items-start gap-4 mb-4">
+                            <div class="number-badge">9</div>
+                            <div>
+                                <h3 class="text-xl font-bold">Haga sus deberes</h3>
+                                <p class="mt-2 text-slate-600">La sensación de ineptitud paraliza. El aprendizaje continuo es el antídoto. Cuanto mejor seas, más ganas tendrás de hacerlo.</p>
+                            </div>
+                        </div>
+                        <div class="chart-container h-64 max-h-64">
+                            <canvas id="learningChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="strategy-card">
+                        <div class="flex items-start gap-4">
+                            <div class="number-badge">7</div>
+                            <h3 class="text-xl font-bold">Obedezca la eficiencia obligada</h3>
+                        </div>
+                        <p class="mt-4 text-slate-600">Nunca habrá tiempo para todo. Acepta que solo puedes estar al día en lo más importante. Pregúntate: ¿Cuál es el uso más valioso de mi tiempo ahora mismo?</p>
+                    </div>
+
+                    <div class="strategy-card">
+                        <div class="flex items-start gap-4">
+                            <div class="number-badge">8</div>
+                            <h3 class="text-xl font-bold">Prepárese concienzudamente</h3>
+                        </div>
+                        <p class="mt-4 text-slate-600">Afila el hacha antes de cortar. Ten todo a mano (información, herramientas, un espacio limpio) para que empezar sea un acto reflejo.</p>
+                    </div>
+
+                    <div class="strategy-card">
+                        <div class="flex items-start gap-4">
+                            <div class="number-badge">10</div>
+                            <h3 class="text-xl font-bold">Refuerce sus talentos</h3>
+                        </div>
+                        <p class="mt-4 text-slate-600">Identifica aquello que haces excepcionalmente bien y con lo que disfrutas. Dedica tu corazón a esas tareas. Ahí reside tu máximo valor.</p>
+                    </div>
+
+                    <div class="strategy-card lg:col-span-3">
+                         <div class="flex items-start gap-4">
+                            <div class="number-badge">11</div>
+                            <div>
+                                <h3 class="text-xl font-bold">Identifique sus obstáculos clave</h3>
+                                <p class="mt-2 text-slate-600">Siempre hay un cuello de botella que limita tu progreso. El 80% de las veces, ese obstáculo es interno (una habilidad, un hábito). Identifícalo y centra toda tu energía en eliminarlo. Su eliminación puede ser tu sapo más importante del día.</p>
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+            </section>
+            
+            <section id="mentalidad">
+                <div class="section-header bg-indigo-900/90 text-white">
+                     <h3 class="text-3xl font-bold">3. Mentalidad e Impulso: Gana la Guerra Interior</h3>
+                     <p class="mt-2 text-indigo-200">La productividad es un juego mental. Cultiva los hábitos y la actitud que te darán un impulso imparable.</p>
+                </div>
+                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="strategy-card">
+                         <div class="flex items-start gap-4">
+                            <div class="number-badge">12</div>
+                            <h3 class="text-xl font-bold">Ponga un ladrillo a la vez</h3>
+                        </div>
+                        <p class="mt-4 text-slate-600">Un viaje de mil leguas empieza con un solo paso. Ante una tarea abrumadora, olvida el final del camino y céntrate solo en el siguiente paso.</p>
+                    </div>
+
+                    <div class="strategy-card">
+                         <div class="flex items-start gap-4">
+                            <div class="number-badge">13</div>
+                            <h3 class="text-xl font-bold">Presiónese a sí mismo</h3>
+                        </div>
+                        <p class="mt-4 text-slate-600">Imagina que te vas de viaje un mes y tienes que terminar tus tareas clave hoy. ¡Esa es la urgencia que necesitas!</p>
+                    </div>
+
+                    <div class="strategy-card">
+                        <div class="flex items-start gap-4 mb-4">
+                            <div class="number-badge">14</div>
+                            <h3 class="text-xl font-bold">Optimice sus poderes</h3>
+                        </div>
+                        <p class="mb-4 text-slate-600">Gestiona tu energía. Duerme bien, come sano y trabaja en tus tareas más duras durante tus picos de energía.</p>
+                        <div class="chart-container h-48 max-h-48">
+                            <canvas id="energyChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="strategy-card">
+                         <div class="flex items-start gap-4">
+                            <div class="number-badge">15</div>
+                            <h3 class="text-xl font-bold">Motívese para la acción</h3>
+                        </div>
+                        <p class="mt-4 text-slate-600">Conviértete en un optimista incurable. Controla tu diálogo interno. Repítete "¡Puedo hacerlo!" y busca siempre la solución.</p>
+                    </div>
+
+                    <div class="strategy-card">
+                         <div class="flex items-start gap-4">
+                            <div class="number-badge">16</div>
+                            <h3 class="text-xl font-bold">Postergación creativa</h3>
+                        </div>
+                        <p class="mt-4 text-slate-600">No puedes hacerlo todo. Aprende a decir "No" conscientemente a las tareas de bajo valor para tener tiempo para las que sí importan.</p>
+                    </div>
+
+                    <div class="strategy-card">
+                         <div class="flex items-start gap-4">
+                            <div class="number-badge">17</div>
+                            <h3 class="text-xl font-bold">Haga lo más difícil primero</h3>
+                        </div>
+                        <p class="mt-4 text-slate-600">La esencia del libro: empieza tu día con tu tarea A-1. Generarás un impulso de logro para el resto del día.</p>
+                    </div>
+                </div>
+            </section>
+            
+             <section id="avanzadas">
+                 <div class="section-header bg-rose-900 text-white">
+                     <h3 class="text-3xl font-bold">4. Tácticas Avanzadas: Conviértete en Imparable</h3>
+                     <p class="mt-2 text-rose-200">Aplica estas técnicas para manejar grandes proyectos y mantener un ritmo de alto rendimiento.</p>
+                </div>
+                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="strategy-card">
+                        <div class="flex items-start gap-4">
+                            <div class="number-badge">18</div>
+                            <h3 class="text-xl font-bold">Divida la tarea</h3>
+                        </div>
+                        <p class="mt-4 text-slate-600">Usa el método de las "lonchas de jamón" (dividir en pasos) o el "queso suizo" (trabajar solo 5-10 min) para empezar tareas enormes.</p>
+                    </div>
+
+                    <div class="strategy-card">
+                        <div class="flex items-start gap-4">
+                            <div class="number-badge">19</div>
+                            <h3 class="text-xl font-bold">Cree lapsos de tiempo</h3>
+                        </div>
+                        <p class="mt-4 text-slate-600">Programa citas contigo mismo. Bloquea periodos de 30, 60 o 90 minutos de trabajo ininterrumpido y de enfoque profundo.</p>
+                    </div>
+
+                    <div class="strategy-card">
+                        <div class="flex items-start gap-4">
+                            <div class="number-badge">20</div>
+                            <h3 class="text-xl font-bold">Desarrolle urgencia</h3>
+                        </div>
+                        <p class="mt-4 text-slate-600">Gánate la reputación de ser alguien que actúa rápido. Repítete: "¡Hazlo ahora!". El ritmo rápido atrae el éxito.</p>
+                    </div>
+
+                    <div class="strategy-card lg:col-span-3">
+                        <div class="flex items-center gap-4">
+                             <div class="flex-shrink-0">
+                                <div class="number-badge">21</div>
+                            </div>
+                            <div class="flex-grow">
+                                <h3 class="text-xl font-bold">Concéntrese resueltamente</h3>
+                                <p class="mt-2 text-slate-600">Una vez que empieces tu tarea más importante, quédate con ella sin distracciones hasta que esté 100% completa. Este es el verdadero test de tu carácter y la clave del alto rendimiento.</p>
+                            </div>
+                            <div class="w-1/3 hidden md:block">
+                                <div class="chart-container h-32 max-h-32">
+                                    <canvas id="focusChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+            </section>
+        </main>
+
+        <footer class="mt-16 pt-8 border-t border-slate-200">
+             <div class="strategy-card bg-slate-900 text-white">
+                <h3 class="text-2xl md:text-3xl font-bold mb-4 text-center gradient-text">La Clave Final: Tu Hábito Diario</h3>
+                <div class="max-w-3xl mx-auto text-slate-300 space-y-4 text-center md:text-lg">
+                    <p>La clave de la felicidad, de la satisfacción, del gran éxito y de una maravillosa sensación de poder personal y de eficacia es desarrollar el hábito de tragarse su sapo como primera cosa todos los días cuando empiece a trabajar.</p>
+                    <p>Con estos hábitos de administración personal como rasgos permanentes de su personalidad, su futuro no tendrá límites.</p>
+                    <p class="font-bold text-slate-100 mt-6">¡Ahora, ve a por tu sapo!</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tooltipTitleCallback = {
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                                return label.join(' ');
+                            }
+                            return label;
+                        }
+                    }
+                }
+            };
+            
+            const sharedChartOptions = {
+                 responsive: true,
+                 maintainAspectRatio: false,
+                 plugins: {
+                    legend: {
+                        labels: {
+                            color: '#475569',
+                            font: { size: 12 }
+                        }
+                    },
+                    ...tooltipTitleCallback
+                 }
+            };
+
+            new Chart(document.getElementById('paretoChart').getContext('2d'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['80% Esfuerzo Trivial', '20% Esfuerzo Vital'],
+                    datasets: [{
+                        data: [80, 20],
+                        backgroundColor: ['#118AB2', '#FFD166'],
+                        borderColor: '#FFFFFF',
+                        borderWidth: 4,
+                        hoverOffset: 4
+                    }]
+                },
+                options: { ...sharedChartOptions, cutout: '70%' }
+            });
+
+            new Chart(document.getElementById('radarChart').getContext('2d'), {
+                type: 'radar',
+                data: {
+                    labels: [['Planificar', 'y Organizar'], ['Delegar', 'Eficazmente'], 'Supervisar', ['Medir', 'Resultados'], ['Comunicar', 'con Claridad']],
+                    datasets: [{
+                        label: 'Tu Puntuación de Eficacia',
+                        data: [9, 7, 4, 8, 6],
+                        backgroundColor: 'rgba(6, 214, 160, 0.2)',
+                        borderColor: '#06D6A0',
+                        pointBackgroundColor: '#06D6A0',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: '#06D6A0'
+                    }]
+                },
+                options: { ...sharedChartOptions, scales: { r: { beginAtZero: true, max: 10, pointLabels: { color: '#475569', font: { size: 12 } }, grid: { color: '#e2e8f0' }, angleLines: { color: '#e2e8f0' } } } }
+            });
+            
+            new Chart(document.getElementById('learningChart').getContext('2d'), {
+                type: 'line',
+                data: {
+                    labels: ['Mes 1', 'Mes 2', 'Mes 3', 'Mes 4'],
+                    datasets: [{
+                        label: 'Mejora de Habilidad Clave',
+                        data: [20, 35, 60, 85],
+                        backgroundColor: 'rgba(255, 107, 107, 0.2)',
+                        borderColor: '#FF6B6B',
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: { ...sharedChartOptions, scales: { y: { beginAtZero: true, max: 100 } } }
+            });
+
+            new Chart(document.getElementById('energyChart').getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: [['Poco', 'Sueño'], ['Buen', 'Sueño'], ['Mala', 'Dieta'], ['Dieta', 'Sana']],
+                    datasets: [{
+                        label: 'Nivel de Energía (%)',
+                        data: [40, 90, 50, 85],
+                        backgroundColor: ['#FF6B6B', '#06D6A0', '#FFD166', '#118AB2'],
+                        borderRadius: 4,
+                        borderWidth: 0
+                    }]
+                },
+                options: { ...sharedChartOptions, plugins: { ...sharedChartOptions.plugins, legend: { display: false }}, scales: { y: { beginAtZero: true, max: 100 } } }
+            });
+            
+            new Chart(document.getElementById('focusChart').getContext('2d'), {
+                type: 'pie',
+                data: {
+                    labels: ['100% Completado'],
+                    datasets: [{
+                        data: [100],
+                        backgroundColor: ['#06D6A0'],
+                        borderColor: '#FFFFFF',
+                        borderWidth: 4
+                    }]
+                },
+                options: { ...sharedChartOptions, plugins: { ...sharedChartOptions.plugins, legend: { display: false }, tooltip: { enabled: false }}}
+            });
+
+            // Gemini API Integration
+            const generatePlanBtn = document.getElementById('generatePlanBtn');
+            const goalInput = document.getElementById('goalInput');
+            const planResult = document.getElementById('planResult');
+
+            const findSapoBtn = document.getElementById('findSapoBtn');
+            const taskList = document.getElementById('taskList');
+            const sapoResult = document.getElementById('sapoResult');
+
+            const apiKey = ""; 
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+            const showLoader = (element) => {
+                element.innerHTML = '<div class="loader" style="border-bottom-color: #118AB2;"></div>';
+                element.classList.remove('hidden');
+            };
+
+            const displayError = (element, message) => {
+                element.innerHTML = `<p class="text-red-500 font-semibold">${message}</p>`;
+            };
+
+            generatePlanBtn.addEventListener('click', async () => {
+                const goal = goalInput.value.trim();
+                if (!goal) {
+                    displayError(planResult, 'Por favor, introduce un objetivo.');
+                    planResult.classList.remove('hidden');
+                    return;
+                }
+                
+                showLoader(planResult);
+
+                const prompt = `Actúa como un coach de productividad experto. Un usuario quiere lograr el siguiente objetivo: "${goal}". Desglosa este objetivo en un plan de acción claro con pasos secuenciales y fases. Presenta el resultado en formato HTML simple usando encabezados h4 para las fases y una lista desordenada (ul/li) para los pasos.`;
+
+                try {
+                    const payload = { contents: [{ parts: [{ text: prompt }] }] };
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`API error: ${response.statusText}`);
+                    }
+
+                    const result = await response.json();
+                    if (result.candidates && result.candidates.length > 0) {
+                        const text = result.candidates[0].content.parts[0].text;
+                        planResult.innerHTML = text;
+                    } else {
+                        throw new Error('No se recibió un plan válido.');
+                    }
+                } catch (error) {
+                    console.error('Error generating plan:', error);
+                    displayError(planResult, 'Hubo un error al generar el plan. Inténtalo de nuevo.');
+                }
+            });
+
+            findSapoBtn.addEventListener('click', async () => {
+                const tasks = taskList.value.trim();
+                if (!tasks) {
+                    sapoResult.innerHTML = `<p class="text-amber-100 font-semibold">Por favor, introduce al menos una tarea.</p>`;
+                    return;
+                }
+
+                sapoResult.innerHTML = '<div class="loader"></div>';
+
+                const prompt = `Actúa como un experto en productividad siguiendo la metodología 'Tráguese ese sapo' de Brian Tracy. Un usuario tiene la siguiente lista de tareas para el día:\n\n${tasks}\n\nAnaliza estas tareas e identifica la única tarea más importante (el 'sapo'), que es la que tendrá el mayor impacto positivo en sus objetivos a largo plazo o resolverá el mayor problema. Devuelve un objeto JSON con la clave "sapo" para el nombre de la tarea y "justificacion" para una breve explicación de 2-3 frases de por qué es la más crítica.`;
+                
+                const payload = {
+                    contents: [{ parts: [{ text: prompt }] }],
+                    generationConfig: {
+                        responseMimeType: "application/json",
+                    }
+                };
+
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`API error: ${response.statusText}`);
+                    }
+
+                    const result = await response.json();
+                    if (result.candidates && result.candidates.length > 0) {
+                        const jsonText = result.candidates[0].content.parts[0].text;
+                        const parsedJson = JSON.parse(jsonText);
+                        sapoResult.innerHTML = `
+                            <div class="text-center">
+                                <p class="text-md text-amber-100 mb-1">Tu Sapo es:</p>
+                                <h4 class="text-2xl font-black text-white mb-3">${parsedJson.sapo}</h4>
+                                <p class="text-amber-100">${parsedJson.justificacion}</p>
+                            </div>
+                        `;
+                    } else {
+                        throw new Error('No se recibió una respuesta válida.');
+                    }
+                } catch (error) {
+                    console.error('Error finding sapo:', error);
+                    sapoResult.innerHTML = `<p class="text-red-300 font-semibold">Hubo un error al identificar tu sapo. Inténtalo de nuevo.</p>`;
+                }
+            });
+        });
+    </script>
+</body>
+</html> 
