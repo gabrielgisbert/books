@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aplicación Interactiva: ¡Eat That Frog!</title>
+    <title>Aplicación Interactiva: ¡Tráguese ese sapo!</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -92,7 +92,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
                 <div class="flex-shrink-0">
-                    <h1 class="text-2xl font-bold text-slate-900">🐸 ¡Eat That Frog!</h1>
+                    <h1 class="text-2xl font-bold text-slate-900">🐸 ¡Tráguese ese sapo!</h1>
                 </div>
                 <nav class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-4" id="nav-menu">
@@ -200,12 +200,189 @@ document.addEventListener('DOMContentLoaded', function() {
                         <p><strong>Paso 7 (Hacer algo cada día):</strong> Se compromete a dedicar 90 minutos cada mañana a esta meta. Un día investiga startups, otro escribe en su blog, otro contacta por LinkedIn. No deja pasar un solo día laborable sin avanzar. Seis meses después, Ana no solo ha alcanzado su meta, sino que la ha superado, porque la claridad de su plan eliminó la procrastinación y enfocó toda su energía en actividades de alto valor.</p>
                     `
                 },
-                { id: 2, title: 'Planifique cada día con antelación', text: 'Cada minuto de planificación ahorra diez en la ejecución. Hacer su lista de tareas la noche anterior permite que su subconsciente trabaje en ella, dándole claridad y energía al día siguiente.', viz: 'text', long_description: '...' },
-                { id: 3, title: 'Aplique a todo la regla del 80/20', text: 'El 20% de sus actividades producirá el 80% de sus resultados. Concéntrese en ese 20% vital y resista la tentación de empezar por el 80% trivial.', viz: 'chart_8020', long_description: '...' },
-                { id: 4, title: 'Estudie las consecuencias', text: 'Las tareas importantes tienen grandes consecuencias potenciales, positivas o negativas. El pensamiento a largo plazo mejora las decisiones a corto plazo. Priorice lo que tendrá mayor impacto en su futuro.', viz: 'text', long_description: '...' },
-                { id: 5, title: 'Practique el método ABCDE', text: 'Una técnica de priorización simple y poderosa. Organice sus tareas por valor e importancia antes de empezar, asegurándose de trabajar siempre en su tarea "A-1".', viz: 'interactive_abcde', long_description: '...' },
-                { id: 7, title: 'Obedezca la ley de eficiencia obligada', text: 'Nunca hay tiempo para todo, pero siempre hay tiempo para lo más importante. Pregúntese continuamente: ¿Cuál es el uso más valioso de mi tiempo ahora mismo?', viz: 'text', long_description: '...' },
-                { id: 8, title: 'Prepárese concienzudamente', text: 'Tener todo lo necesario a mano antes de empezar reduce la fricción inicial. Un espacio de trabajo limpio y ordenado le prepara mentalmente para el alto rendimiento.', viz: 'text', long_description: '...' },
+                { 
+                    id: 2, 
+                    title: 'Planifique cada día con antelación', 
+                    text: 'Cada minuto de planificación ahorra diez en la ejecución. Hacer su lista de tareas la noche anterior permite que su subconsciente trabaje en ella, dándole claridad y energía al día siguiente.', 
+                    viz: 'text',
+                    long_description: `
+                        <h5>El Arquitecto de su Día</h5>
+                        <p>La planificación diaria es el acto de traer el futuro al presente para poder actuar sobre él ahora. La acción sin planificación, como dice Alex MacKenzie, es la causa de todos los fracasos. Su capacidad para elaborar un buen plan antes de actuar es una medida directa de su competencia. Un plan detallado no solo le guía, sino que también le motiva, ya que transforma una montaña abrumadora en una serie de colinas manejables.</p>
+                        <p>La "fórmula de las seis P" es un mantra poderoso: "Planificación Previa Pertinente Previene Pobre Productividad". La inversión de 10-12 minutos en planificar su día le ahorrará hasta dos horas de tiempo perdido y esfuerzo desenfocado. Es el retorno de inversión más alto que puede obtener.</p>
+                        <h5>El Sistema de Listas Múltiples</h5>
+                        <p>Trabajar siempre con una lista es fundamental. Cuando surge algo nuevo, añádalo a la lista antes de hacerlo. Esto le mantiene en control. Tracy recomienda un sistema de listas jerárquico:</p>
+                        <ul>
+                            <li><strong>Lista Maestra:</strong> Aquí anota todas las ideas, metas a largo plazo y tareas que se le ocurran para el futuro. Es su gran contenedor de posibilidades.</li>
+                            <li><strong>Lista Mensual:</strong> A final de cada mes, planifique el siguiente. Traslade elementos de su lista maestra que sean relevantes para ese mes.</li>
+                            <li><strong>Lista Semanal:</strong> Dedique un par de horas el fin de semana para planificar la semana siguiente. Este hábito por sí solo puede transformar su productividad. Vaya construyendo esta lista a medida que avanza la semana.</li>
+                            <li><strong>Lista Diaria:</strong> Esta es su lista de batalla. La noche anterior, transfiera las tareas de sus listas mensual y semanal a la lista del día siguiente. Esto es crucial: al hacerlo por la noche, su subconsciente trabaja en las soluciones mientras duerme. A menudo se despertará con ideas y una claridad que no tenía antes.</li>
+                        </ul>
+                        <p>A medida que completa tareas durante el día, márquelas. Este simple acto le da una retroalimentación visual de logro, lo que genera una sensación de éxito y libera endorfinas, motivándole a seguir adelante.</p>
+                        <h5>Ejemplo Práctico Detallado</h5>
+                        <p>Carlos es un jefe de obra que gestiona varios proyectos a la vez. Se siente constantemente abrumado y reactivo, apagando fuegos todo el día.</p>
+                        <p>Decide aplicar la planificación. El domingo por la tarde, revisa su <strong>Lista Maestra</strong> (que incluye "Obtener certificación PMP" y "Mejorar la relación con el proveedor X"). De ahí, crea su <strong>Lista Semanal</strong>: "Lunes: Visitar obra A y reunión con cliente. Martes: Revisar presupuestos obra B. Miércoles: Entrevistar a nuevo capataz. Jueves: Formación de seguridad. Viernes: Papeleo y planificación semana siguiente."</p>
+                        <p>El lunes por la noche, prepara su <strong>Lista Diaria</strong> para el martes:
+                            <ol class='list-decimal ml-5'>
+                                <li>Revisar y aprobar presupuesto de fontanería (Obra B).</li>
+                                <li>Llamar al proveedor de acero para confirmar entrega.</li>
+                                <li>Revisar planos eléctricos con el ingeniero.</li>
+                                <li>Responder a los 5 emails más urgentes.</li>
+                                <li>Comprar botas de seguridad nuevas.</li>
+                            </ol>
+                        </p>
+                        <p>El martes, en lugar de llegar a la oficina y reaccionar a lo primero que ve, Carlos ya sabe exactamente qué hacer. Empieza por la tarea más importante (el presupuesto). Al tener un plan, puede agrupar tareas, delegar mejor y mantener el control. Su estrés disminuye y su eficacia se dispara, porque ya no es una víctima de las circunstancias, sino el arquitecto de su día.</p>
+                    `
+                },
+                { 
+                    id: 3, 
+                    title: 'Aplique a todo la regla del 80/20', 
+                    text: 'El 20% de sus actividades producirá el 80% de sus resultados. Concéntrese en ese 20% vital y resista la tentación de empezar por el 80% trivial.', 
+                    viz: 'chart_8020',
+                    long_description: `
+                        <h5>El Secreto de los "Pocos Vitales"</h5>
+                        <p>El Principio de Pareto, o la regla del 80/20, es uno de los conceptos de gestión del tiempo más poderosos que existen. Afirma que en cualquier grupo de elementos, una pequeña minoría es responsable de la mayoría de los resultados. Por ejemplo, el 20% de sus clientes probablemente generan el 80% de sus ingresos; el 20% de sus productos, el 80% de sus beneficios; y, lo más importante, el 20% de sus tareas diarias producirán el 80% del valor de su trabajo.</p>
+                        <p>Esto significa que si tiene una lista de diez tareas, dos de ellas serán mucho más valiosas que las otras ocho juntas. Esas dos tareas son sus "sapos". La tragedia es que la mayoría de la gente procrastina precisamente en ese 20% de tareas de alto valor. ¿Por qué? Porque suelen ser las más difíciles, complejas y las que conllevan mayor responsabilidad. En su lugar, se ocupan del 80% de tareas triviales, las que contribuyen poco a los resultados pero que dan una falsa sensación de estar "ocupado".</p>
+                        <h5>Resista la Tiranía de lo Trivial</h5>
+                        <p>La clave para aplicar esta regla es resistir la tentación de empezar por lo pequeño. Es fácil y gratificante tachar rápidamente tareas menores de la lista, pero este es un hábito peligroso. Le entrena para enfocarse en actividades de bajo valor. Debe disciplinarse para preguntarse antes de empezar cualquier tarea: "¿Está esta tarea en el 20% superior de mis actividades o en el 80% inferior?". Niéguese a trabajar en el 80% inferior mientras tenga tareas del 20% superior pendientes.</p>
+                        <p>Recuerde que el tiempo necesario para completar una tarea importante suele ser similar al de una sin importancia. La diferencia radical está en la recompensa. Completar una tarea de alto valor le llena de energía y satisfacción. Completar una de bajo valor, en el mejor de los casos, le proporciona un alivio momentáneo.</p>
+                        <h5>Ejemplo Práctico Detallado</h5>
+                        <p>María es dueña de una pequeña cafetería. Su lista de tareas para la semana incluye:
+                            <ul>
+                                <li>1. Rediseñar el menú para destacar los productos más rentables.</li>
+                                <li>2. Entrenar a un nuevo barista en el uso de la máquina de café.</li>
+                                <li>3. Negociar un mejor precio con su proveedor de granos de café.</li>
+                                <li>4. Organizar el almacén.</li>
+                                <li>5. Responder a las reseñas de Google.</li>
+                                <li>6. Limpiar a fondo la máquina de hielo.</li>
+                                <li>7. Planificar la publicación de la semana en Instagram.</li>
+                                <li>8. Pagar las facturas.</li>
+                                <li>9. Investigar nuevos tipos de tazas.</li>
+                                <li>10. Llamar al técnico para una pequeña reparación.</li>
+                            </ul>
+                        </p>
+                        <p>Aplicando la regla del 80/20, María analiza qué tareas tendrán el mayor impacto en sus beneficios y en la satisfacción del cliente. Se da cuenta de que rediseñar el menú (1) para aumentar las ventas de productos de alto margen y negociar con el proveedor (3) para reducir costes son, con diferencia, las tareas más importantes. Estas son su 20% vital, sus sapos. Entrenar al barista (2) también es importante, pero podría ser una tarea secundaria de alto valor. Las demás, como organizar el almacén o responder reseñas, son el 80% trivial. Son necesarias, pero no mueven la aguja del negocio de la misma manera.</p>
+                        <p>En lugar de empezar por lo fácil (Instagram o limpiar), María bloquea tiempo el lunes por la mañana para el rediseño del menú. El martes, se enfoca en preparar la negociación con el proveedor. Al concentrar su energía en los "pocos vitales", asegura el crecimiento y la salud de su negocio, en lugar de simplemente mantenerse "ocupada".</p>
+                    `
+                },
+                { 
+                    id: 4, 
+                    title: 'Estudie las consecuencias', 
+                    text: 'Las tareas importantes tienen grandes consecuencias potenciales, positivas o negativas. El pensamiento a largo plazo mejora las decisiones a corto plazo. Priorice lo que tendrá mayor impacto en su futuro.', 
+                    viz: 'text',
+                    long_description: `
+                        <h5>El Poder de la Perspectiva a Largo Plazo</h5>
+                        <p>La capacidad de predecir con precisión las consecuencias de sus acciones es una característica fundamental de las personas de alto rendimiento. Las tareas y actividades más importantes son aquellas que tienen el potencial de impactar significativamente su vida y su carrera a largo plazo. Por el contrario, las tareas sin importancia tienen pocas o ninguna consecuencia a largo plazo.</p>
+                        <p>El Dr. Edward Banfield de Harvard descubrió que la "perspectiva a largo plazo" es el indicador más fiable de éxito y movilidad social. Las personas que piensan a cinco, diez o veinte años vista toman decisiones diarias mucho mejores sobre cómo emplean su tiempo. El futuro influye en el presente. Cuanto más clara sea su visión del futuro que desea, más fácil le resultará evaluar si sus acciones actuales le están acercando o alejando de él.</p>
+                        <h5>Ganadores vs. Perdedores</h5>
+                        <p>La gente de éxito está dispuesta a hacer sacrificios a corto plazo para disfrutar de recompensas mucho mayores a largo plazo. Retrasan la gratificación. La gente que no tiene éxito, por otro lado, tiende a priorizar el placer inmediato y la gratificación instantánea, con poca consideración por el futuro. Como dice el conferenciante Dennis Waitley: "Los perdedores hacen lo que alivia tensiones, mientras que los ganadores hacen lo que logra objetivos".</p>
+                        <p>Antes de empezar cualquier tarea, hágase la pregunta clave: "¿Cuáles son las consecuencias potenciales de hacer o no hacer esta tarea?". Si una tarea puede tener grandes consecuencias positivas, debe ser una alta prioridad. Si no hacer una tarea puede tener graves consecuencias negativas, también debe ser una alta prioridad. Ese es su sapo.</p>
+                        <h5>Ejemplo Práctico Detallado</h5>
+                        <p>Javier, un joven programador, tiene dos opciones un martes por la tarde:</p>
+                        <ul>
+                            <li><strong>Opción 1:</strong> Dedicar dos horas a estudiar y practicar con un nuevo framework de programación (como React o Vue) que está ganando mucha popularidad en su sector. Es una tarea que no es urgente y requiere esfuerzo mental.</li>
+                            <li><strong>Opción 2:</strong> Pasar esas dos horas jugando a un videojuego online con sus amigos. Es divertido, relajante y proporciona una gratificación inmediata.</li>
+                        </ul>
+                        <p>Analicemos las consecuencias a largo plazo:</p>
+                        <p><strong>Consecuencias de la Opción 1 (Estudiar):</strong> A corto plazo, es un sacrificio. Es menos divertido que jugar. Pero a largo plazo, las consecuencias positivas son enormes. Adquirir esa nueva habilidad puede llevarle a un mejor puesto, un salario más alto, la capacidad de trabajar en proyectos más interesantes y una mayor seguridad laboral. Si lo hace de forma consistente, en un año podría ser un experto.</p>
+                        <p><strong>Consecuencias de la Opción 2 (Jugar):</strong> A corto plazo, es placentero y alivia el estrés del día. A largo plazo, las consecuencias son nulas o incluso negativas. No aprende nada nuevo, no mejora sus perspectivas de carrera y, si se convierte en un hábito, puede llevar al estancamiento profesional y la frustración.</p>
+                        <p>Javier, al pensar en las consecuencias, se da cuenta de que estudiar el framework es su "sapo". Es la tarea que, aunque no sea urgente, tendrá el mayor impacto positivo en su futuro. Decide "tragarse el sapo" y dedicar tiempo a estudiar, posponiendo la gratificación inmediata del videojuego para más tarde o para el fin de semana. Esta simple decisión, repetida en el tiempo, es lo que diferencia una carrera exitosa de una mediocre.</p>
+                    `
+                },
+                { 
+                    id: 5, 
+                    title: 'Practique el método ABCDE', 
+                    text: 'Una técnica de priorización simple y poderosa. Organice sus tareas por valor e importancia antes de empezar, asegurándose de trabajar siempre en su tarea "A-1".', 
+                    viz: 'interactive_abcde',
+                    long_description: `
+                        <h5>Un Sistema de Priorización Infalible</h5>
+                        <p>El método ABCDE es una herramienta de toma de decisiones que le obliga a pensar en las verdaderas prioridades antes de actuar. Es una técnica simple pero increíblemente eficaz para vencer la procrastinación y asegurarse de que está invirtiendo su tiempo en lo que realmente importa. El poder de este método reside en su simplicidad y en la disciplina que requiere para seguirlo.</p>
+                        <p>El proceso comienza con su lista de tareas del día. Antes de empezar a trabajar en la primera, tómese unos minutos para revisar la lista completa y asignar una letra a cada tarea según su importancia y urgencia.</p>
+                        <h5>Definición de las Categorías:</h5>
+                        <ul>
+                            <li><strong>A - Tareas "A" (Sapos):</strong> Son las tareas más importantes. Son los "sapos". Se definen como algo que <strong>debe</strong> hacer. Tienen consecuencias significativas, ya sean positivas por hacerlas o negativas por no hacerlas. Ejemplos: terminar un informe para su jefe, visitar a un cliente clave, preparar una presentación importante. Si tiene varias tareas "A", debe priorizarlas aún más como A-1, A-2, A-3, etc. Su tarea A-1 es su sapo más grande y feo, y es por donde debe empezar el día, sin excepción.</li>
+                            <li><strong>B - Tareas "B" (Renacuajos):</strong> Son tareas que <strong>debería</strong> hacer. Tienen consecuencias leves. Alguien podría molestarse o tener un inconveniente si no las hace, pero no son cruciales. Ejemplos: devolver una llamada no urgente, revisar el correo electrónico, leer un artículo del sector. La regla de oro es: <strong>Nunca haga una tarea B si hay una tarea A pendiente.</strong></li>
+                            <li><strong>C - Tareas "C":</strong> Son tareas que sería <strong>agradable</strong> hacer, pero que no tienen consecuencias reales en su vida laboral. Ejemplos: tomar un café con un colega, llamar a un amigo, hacer recados personales en horario de trabajo. Estas actividades deben realizarse solo cuando haya completado todas sus tareas A y B.</li>
+                            <li><strong>D - Tareas "D":</strong> Son tareas que puede <strong>delegar</strong>. La regla es delegar todo lo posible para liberar su tiempo para las tareas "A" que solo usted puede hacer. Pregúntese: "¿Puede otra persona hacer esto?". Si la respuesta es sí, delegue.</li>
+                            <li><strong>E - Tareas "E":</strong> Son tareas que puede <strong>eliminar</strong>. Son actividades que ya no son relevantes o necesarias. A menudo las hacemos por costumbre. Revise sus tareas recurrentes y elimine sin piedad las que ya no aportan valor.</li>
+                        </ul>
+                        <h5>Ejemplo Práctico Detallado</h5>
+                        <p>Laura, gerente de marketing, llega a la oficina y hace su lista de tareas para el día:</p>
+                        <ul>
+                            <li>Finalizar la presentación de la campaña trimestral para la reunión de la tarde con la dirección.</li>
+                            <li>Responder a 20 correos electrónicos en su bandeja de entrada.</li>
+                            <li>Llamar a la imprenta para comprobar el estado de los nuevos folletos.</li>
+                            <li>Pedir a su asistente que recopile los datos de redes sociales de la semana pasada.</li>
+                            <li>Organizar su escritorio.</li>
+                            <li>Almorzar con un antiguo compañero de trabajo.</li>
+                            <li>Revisar el informe de un competidor que le llegó ayer.</li>
+                        </ul>
+                        <p>Ahora, Laura aplica el método ABCDE:</p>
+                        <ul>
+                            <li>La presentación es claramente una tarea <strong>A-1</strong>. Tiene consecuencias muy serias; el éxito de la reunión depende de ello.</li>
+                            <li>Revisar el informe del competidor es una tarea <strong>B-1</strong>. Debería hacerlo para estar informada, pero no es tan crítico como la presentación.</li>
+                            <li>Responder a los correos es una tarea <strong>B-2</strong>. Es algo que debería hacer, pero puede esperar a después de la A-1.</li>
+                            <li>Llamar a la imprenta es una tarea <strong>B-3</strong>.</li>
+                            <li>Pedir los datos a su asistente es una tarea <strong>D-1</strong>. Lo delega inmediatamente.</li>
+                            <li>Almorzar con su compañero es una tarea <strong>C-1</strong>. Es agradable, pero no esencial para su trabajo.</li>
+                            <li>Organizar su escritorio es una tarea <strong>E-1</strong>. Puede que alguna vez fuera importante, pero ahora mismo no aporta valor y puede eliminarla de la lista de hoy.</li>
+                        </ul>
+                        <p>Con esta claridad, Laura ignora su bandeja de entrada y la tentación de hacer las tareas más rápidas. Se enfoca al 100% en su tarea A-1, la presentación. Al disciplinarse para "tragarse ese sapo" primero, no solo asegura un trabajo de alta calidad, sino que también se siente con energía y en control durante el resto del día.</p>
+                    `
+                },
+                { 
+                    id: 7, 
+                    title: 'Obedezca la ley de eficiencia obligada', 
+                    text: 'Nunca hay tiempo para todo, pero siempre hay tiempo para lo más importante. Pregúntese continuamente: ¿Cuál es el uso más valioso de mi tiempo ahora mismo?', 
+                    viz: 'text',
+                    long_description: `
+                        <h5>La Realidad Ineludible del Tiempo</h5>
+                        <p>La Ley de la Eficiencia Obligada se basa en una verdad simple y a la vez profunda: nunca se pondrá al día. Siempre habrá más que hacer de lo que puede abarcar. La persona promedio trabaja al 110-130% de su capacidad, y las tareas y responsabilidades siguen acumulándose. Aceptar esta realidad es liberador. Le quita la presión de intentar hacerlo todo y le obliga a tomar decisiones difíciles pero necesarias sobre en qué enfocarse.</p>
+                        <p>Cuando se enfrenta a una fecha límite inminente con graves consecuencias, de alguna manera siempre encuentra el tiempo para terminar el trabajo. Se concentra, elimina distracciones y se obliga a sí mismo a completar la tarea. Esta ley le enseña a aplicar esa misma presión y enfoque de forma proactiva, sin esperar a que la crisis le obligue a actuar.</p>
+                        <h5>Las Tres Preguntas Mágicas para el Enfoque</h5>
+                        <p>Para mantenerse centrado en lo verdaderamente importante, debe hacerse constantemente tres preguntas. Estas preguntas actúan como un filtro, ayudándole a identificar su "sapo" en cualquier momento del día.</p>
+                        <ul>
+                            <li><strong>1. ¿Cuáles son mis actividades de mayor valor?</strong> Esta pregunta le obliga a pensar en el panorama general. ¿Qué tareas aportan la mayor contribución a su empresa, a su carrera, a su vida? Debe tener una claridad absoluta sobre la respuesta. Si no está seguro, pregunte a su jefe, a sus colegas, a su familia.</li>
+                            <li><strong>2. ¿Qué puedo hacer yo, y solo yo, que si lo hago bien, marcará una verdadera diferencia?</strong> Esta es la pregunta de Peter Drucker para identificar su punto de apalancamiento único. Se refiere a una tarea que solo usted, por su posición, habilidades o autoridad, puede realizar. Si usted no la hace, no se hará o se hará mal. Hacer bien esta tarea tiene un impacto multiplicador.</li>
+                            <li><strong>3. ¿Cuál es el uso más valioso de mi tiempo en este momento?</strong> Esta es la pregunta definitiva para la gestión del tiempo. La respuesta a esta pregunta cambia a lo largo del día. Su trabajo es preguntársela una y otra vez y actuar siempre en consecuencia. La respuesta a esta pregunta es siempre su "sapo" del momento.</li>
+                        </ul>
+                        <h5>Ejemplo Práctico Detallado</h5>
+                        <p>Ricardo es el fundador de una pequeña empresa de software. Es un día ajetreado y su lista de tareas es interminable: revisar el código de un desarrollador junior, responder a tickets de soporte de clientes, preparar la nómina, escribir una entrada para el blog de la empresa y llamar a un inversor potencial que ha mostrado interés en una reunión.</p>
+                        <p>Se siente tentado a empezar por los tickets de soporte porque son rápidos y dan una sensación de logro. Pero decide aplicar las tres preguntas:</p>
+                        <p><strong>1. ¿Actividades de mayor valor?</strong> Sin duda, conseguir financiación para la empresa es lo que más valor aporta en este momento para asegurar el crecimiento y la supervivencia.</p>
+                        <p><strong>2. ¿Qué puedo hacer solo yo?</strong> Ricardo es el único que puede hablar con el inversor. Podría delegar la revisión de código o los tickets de soporte, pero la llamada al inversor es intransferible.</p>
+                        <p><strong>3. ¿Uso más valioso de mi tiempo ahora?</strong> La respuesta es clara: preparar y realizar la llamada al inversor. Todo lo demás, aunque parezca urgente, es secundario en comparación.</p>
+                        <p>Al obedecer la Ley de la Eficiencia Obligada, Ricardo ignora las tareas de menor valor que claman por su atención. Se enfoca en preparar la llamada, investigando al inversor y perfilando su discurso. Se "traga ese sapo" primero. Esa única actividad, realizada con excelencia, puede valer más que todas las demás tareas de la semana juntas. Eso es trabajar de forma inteligente, no solo dura.</p>
+                    `
+                },
+                { 
+                    id: 8, 
+                    title: 'Prepárese concienzudamente', 
+                    text: 'Tener todo lo necesario a mano antes de empezar reduce la fricción inicial. Un espacio de trabajo limpio y ordenado le prepara mentalmente para el alto rendimiento.', 
+                    viz: 'text',
+                    long_description: `
+                        <h5>El Ritual de la Preparación</h5>
+                        <p>Una de las formas más efectivas de superar la procrastinación es eliminar la fricción que existe entre la decisión de hacer una tarea y el acto de empezarla. La preparación concienzuda es la clave para ello. Cuando está completamente preparado, es como un atleta en la línea de salida: concentrado, con todo su equipo listo, esperando solo el pistoletazo de salida. El impulso mental necesario para empezar se reduce drásticamente.</p>
+                        <p>Piense en ello como un chef que practica la "mise en place": antes de empezar a cocinar, corta todas las verduras, mide todas las especias y organiza todos los utensilios. Cuando empieza a cocinar, el proceso es fluido y eficiente, sin interrupciones para buscar un ingrediente o un cuchillo. Usted debe hacer lo mismo con su trabajo.</p>
+                        <h5>Crear un Entorno de Alto Rendimiento</h5>
+                        <p>Su entorno físico tiene un impacto directo en su estado mental y su productividad. Un escritorio desordenado y caótico crea una sensación de agobio y distracción. Un espacio de trabajo limpio, ordenado y atractivo le invita a trabajar y le ayuda a concentrarse.</p>
+                        <ul>
+                            <li><strong>Despeje su espacio:</strong> Antes de empezar una tarea importante, limpie su escritorio físico y digital. Cierre todas las pestañas y programas innecesarios. Deje a la vista únicamente lo relacionado con la tarea que va a realizar.</li>
+                            <li><strong>Reúna todos sus materiales:</strong> Tenga a mano toda la información, informes, datos, archivos, códigos de acceso, números de teléfono o cualquier otro recurso que necesite. El objetivo es poder trabajar de forma ininterrumpida sin tener que levantarse o buscar cosas.</li>
+                            <li><strong>Asegure la comodidad:</strong> Una buena silla, una iluminación adecuada y una temperatura confortable son importantes. Si su cuerpo está incómodo, su mente se distraerá.</li>
+                        </ul>
+                        <p>Una vez que todo está preparado, asuma el lenguaje corporal del éxito: siéntese erguido, inclínese ligeramente hacia adelante y sumérjase en la tarea. La preparación previa le da el impulso necesario para empezar y continuar hasta el final.</p>
+                        <h5>Ejemplo Práctico Detallado</h5>
+                        <p>Elena quiere escribir el primer borrador de un importante artículo para su blog. Sabe que es su "sapo" del día y que tiende a posponerlo navegando por internet.</p>
+                        <p>La noche anterior, en lugar de dejarlo para el día siguiente, Elena se prepara concienzudamente:</p>
+                        <ol>
+                            <li><strong>Prepara su espacio físico:</strong> Limpia su escritorio. Deja solo su portátil, una libreta para notas y un vaso de agua.</li>
+                            <li><strong>Prepara su espacio digital:</strong> Abre un documento de Word en blanco. En otra ventana, tiene abiertos los 3 enlaces a las fuentes de investigación que necesita. Cierra su programa de correo, el chat del equipo y el navegador de internet, excepto esas 3 pestañas.</li>
+                            <li><strong>Reúne sus materiales:</strong> En su libreta, ya tiene un esquema con los puntos principales que quiere tratar en el artículo.</li>
+                            <li><strong>Elimina distracciones futuras:</strong> Pone su teléfono en modo silencioso y lo deja en otra habitación.</li>
+                        </ol>
+                        <p>A la mañana siguiente, cuando se sienta a su escritorio, no hay barreras para empezar. No tiene que buscar archivos, ni decidir por dónde empezar, ni luchar contra la tentación del correo electrónico. Su entorno está perfectamente preparado para una única cosa: escribir. La fricción es mínima. Se siente tranquila, en control y lista para "tragarse el sapo". Como resultado, escribe el borrador en una sesión de 90 minutos de trabajo profundo y enfocado, algo que antes le habría llevado todo el día entre interrupciones y procrastinación.</p>
+                    `
+                },
             ]
         },
         {
@@ -213,14 +390,219 @@ document.addEventListener('DOMContentLoaded', function() {
             title: 'Fase 2: Ejecución y Enfoque',
             description: 'Una vez que el plan está claro, el siguiente paso es la acción disciplinada. Estas estrategias se centran en cómo abordar el trabajo, superar los obstáculos y mantener una concentración inquebrantable para llevar las tareas importantes hasta su finalización.',
             strategies: [
-                { id: 11, title: 'Identifique sus obstáculos clave', text: 'Siempre hay un factor limitante (cuello de botella) que determina su velocidad. El 80% de estos obstáculos son internos. Identifíquelos y concéntrese en aliviarlos.', viz: 'bottleneck', long_description: '...' },
-                { id: 12, title: 'Ponga un ladrillo después de otro', text: 'Un gran viaje empieza con un solo paso. Puede acometer la tarea más grande si la divide y se enfoca en completar una parte a la vez, paso a paso.', viz: 'text', long_description: '...' },
-                { id: 13, title: 'Presiónese a sí mismo', text: 'No espere a que otros le motiven. Imagine que tiene que irse un mes y debe terminar lo crucial antes de partir. Esta urgencia autoimpuesta aumenta el enfoque.', viz: 'text', long_description: '...' },
-                { id: 16, title: 'Practique la postergación creativa', text: 'No puede hacerlo todo, así que debe postergar de forma inteligente. Decida conscientemente no hacer tareas de bajo valor para liberar tiempo para lo que realmente importa.', viz: 'text', long_description: '...' },
-                { id: 17, title: 'Haga primero la tarea más difícil', text: 'La esencia del libro: empiece su día con su tarea A-1, su sapo. Al completarla, el resto del día se siente más fácil y su energía y confianza se disparan.', viz: 'text', long_description: '...' },
-                { id: 18, title: 'Divida la tarea', text: 'Use los métodos "lonchas de jamón" (dividir en partes) o "queso suizo" (trabajar en pequeños lapsos de tiempo) para abordar tareas abrumadoras y generar impulso.', viz: 'task_division', long_description: '...' },
-                { id: 19, 'title': 'Cree lapsos amplios de tiempo', text: 'Los trabajos importantes requieren tiempo ininterrumpido. Agende bloques de 60-90 minutos en su calendario y protéjalos de distracciones como si fueran sus reuniones más importantes.', viz: 'text', long_description: '...' },
-                { id: 21, 'title': 'Concéntrese resueltamente', text: 'Una vez que empiece una tarea importante, trabaje en ella sin distracción hasta completarla al 100%. Empezar y parar puede multiplicar por 5 el tiempo necesario.', viz: 'text', long_description: '...' },
+                { 
+                    id: 11, 
+                    title: 'Identifique sus obstáculos clave', 
+                    text: 'Siempre hay un factor limitante (cuello de botella) que determina su velocidad. El 80% de estos obstáculos son internos. Identifíquelos y concéntrese en aliviarlos.', 
+                    viz: 'bottleneck',
+                    long_description: `
+                        <h5>El Freno de su Potencial</h5>
+                        <p>En cualquier proceso, desde fabricar un coche hasta alcanzar una meta personal, siempre hay un factor limitante o "cuello de botella" que determina la velocidad y la eficacia de todo el sistema. Su capacidad para identificar con precisión este obstáculo y centrar sus energías en resolverlo es una de las palancas más poderosas para acelerar su progreso.</p>
+                        <p>La regla del 80/20 se aplica aquí de forma contundente: el 80% de los factores que le frenan son <strong>internos</strong>. No son sus competidores, ni el mercado, ni su jefe. Son sus propias cualidades personales, la falta de una habilidad específica, un mal hábito, una disciplina débil o un miedo paralizante. Solo el 20% de los obstáculos son externos. Las personas de éxito asumen la responsabilidad y siempre empiezan por preguntarse: "¿Qué hay en mí que me está frenando?".</p>
+                        <h5>El Proceso de Identificación y Eliminación</h5>
+                        <p>Para encontrar su obstáculo clave, debe analizar el proceso para alcanzar su meta paso a paso. Pregúntese: "¿Por qué no he alcanzado ya este objetivo? ¿Qué me detiene?".</p>
+                        <ul>
+                            <li><strong>Defina su objetivo con claridad:</strong> No puede encontrar el obstáculo si no sabe a dónde va.</li>
+                            <li><strong>Analice el proceso:</strong> Desglose todos los pasos necesarios para llegar a su objetivo.</li>
+                            <li><strong>Identifique el punto más débil:</strong> ¿En qué paso se atasca? ¿Qué habilidad le falta? ¿Qué recurso necesita? ¿Qué decisión le da miedo tomar?</li>
+                            <li><strong>Concentre sus energías:</strong> Una vez identificado el obstáculo, convierta su eliminación en su tarea A-1. Dirija toda su atención y recursos a ese único punto. Aliviar un cuello de botella clave puede producir un salto cuántico en sus resultados.</li>
+                        </ul>
+                        <p>Una vez que elimina un obstáculo, aparecerá otro. El progreso es un proceso continuo de identificar y eliminar cuellos de botella, cada vez a un nivel superior.</p>
+                        <h5>Ejemplo Práctico Detallado</h5>
+                        <p>Un equipo de desarrollo de software tiene el objetivo de lanzar una nueva aplicación en tres meses. Sin embargo, a mitad del plazo, van con mucho retraso. El director del proyecto reúne al equipo para identificar el obstáculo clave.</p>
+                        <p>Inicialmente, las excusas son externas: "Las especificaciones del cliente no estaban claras", "El otro departamento no nos entregó los diseños a tiempo".</p>
+                        <p>El director les pide que miren hacia dentro. Tras un análisis honesto, identifican el verdadero cuello de botella: la falta de pruebas automatizadas. El equipo escribe código rápidamente, pero luego pasan semanas enteras corrigiendo errores (bugs) que surgen una y otra vez, porque cada nuevo cambio rompe algo antiguo. La falta de una habilidad y disciplina interna (implementar un buen sistema de testing) es lo que está frenando todo el proyecto.</p>
+                        <p>En lugar de seguir escribiendo nuevas funcionalidades, el director toma una decisión radical. Declara que la nueva tarea <strong>A-1</strong> para todo el equipo durante la próxima semana es construir una sólida suite de pruebas automatizadas. Es una inversión de tiempo que parece que les va a retrasar aún más a corto plazo.</p>
+                        <p>Sin embargo, una vez que el sistema de pruebas está en marcha, la velocidad de desarrollo se dispara. Los nuevos cambios se pueden implementar con confianza, los errores se detectan al instante y el tiempo dedicado a la corrección de bugs se reduce en un 80%. Al identificar y eliminar el verdadero obstáculo interno, el equipo no solo recupera el tiempo perdido, sino que termina el proyecto antes de la fecha límite y con una calidad mucho mayor.</p>
+                    `
+                },
+                { 
+                    id: 12, 
+                    title: 'Ponga un ladrillo después de otro', 
+                    text: 'Un gran viaje empieza con un solo paso. Puede acometer la tarea más grande si la divide y se enfoca en completar una parte a la vez, paso a paso.', 
+                    viz: 'text',
+                    long_description: `
+                        <h5>La Conquista de lo Abrumador</h5>
+                        <p>Una de las razones más comunes por las que procrastinamos ante una tarea grande es porque nos sentimos abrumados por su magnitud. La tarea parece un "sapo" tan enorme que no sabemos ni por dónde empezar a morder. La estrategia de "poner un ladrillo después de otro" es la solución psicológica a este problema. Consiste en apartar deliberadamente de la mente la totalidad del proyecto y centrarse única y exclusivamente en el siguiente paso, por pequeño que sea.</p>
+                        <p>Brian Tracy utiliza la maravillosa analogía de cruzar el desierto del Sahara. En un tramo de 800 kilómetros completamente llano y sin referencias, los franceses colocaron bidones de petróleo cada 5 kilómetros, justo la distancia al horizonte. Para cruzar, no necesitaban ver el final del desierto; solo necesitaban concentrarse en llegar al siguiente bidón. Una vez allí, el siguiente bidón se hacía visible. De la misma manera, usted puede lograr la tarea más monumental de su vida si se disciplina para dar un solo paso a la vez.</p>
+                        <h5>El Poder de la Fe en el Proceso</h5>
+                        <p>Este método requiere tener fe en que, una vez que complete el paso actual, el siguiente paso se revelará. No necesita ver toda la escalera para dar el primer paso. Este enfoque reduce la ansiedad y transforma una tarea intimidante en una serie de acciones manejables y concretas. Una gran carrera, una gran fortuna o una gran vida no se construyen de golpe, sino realizando una tarea a la vez, poniendo un ladrillo tras otro, de forma consistente y a lo largo del tiempo.</p>
+                        <h5>Ejemplo Práctico Detallado</h5>
+                        <p>Marta quiere cambiar de carrera y convertirse en científica de datos, pero no tiene experiencia previa. El objetivo le parece gigantesco y paralizante: aprender a programar, estadística, machine learning, crear un portafolio, hacer networking, conseguir un trabajo...</p>
+                        <p>En lugar de quedarse paralizada por la enormidad de la tarea, decide aplicar el método del "siguiente bidón":</p>
+                        <ol>
+                            <li><strong>Su tarea global:</strong> "Conseguir un trabajo como Científica de Datos Junior en 18 meses".</li>
+                            <li><strong>Su primer "bidón":</strong> "Completar un curso de introducción a Python para principiantes". No piensa en nada más. Se enfoca únicamente en terminar ese curso.</li>
+                            <li><strong>Una vez alcanzado el primer bidón, aparece el segundo:</strong> "Ahora que sé lo básico de Python, mi siguiente bidón es completar un curso sobre la librería Pandas para manipulación de datos".</li>
+                            <li><strong>Tercer bidón:</strong> "Aprender los fundamentos de la estadística descriptiva e inferencial".</li>
+                            <li><strong>Cuarto bidón:</strong> "Realizar mi primer proyecto de análisis de datos de principio a fin con un dataset público".</li>
+                        </ol>
+                        <p>Marta no se preocupa por cómo conseguirá el trabajo o si aprenderá machine learning. Cada día, su único objetivo es avanzar en el "bidón" actual. Pone un ladrillo. Al cabo de 18 meses, al mirar atrás, se da cuenta de que ha construido un edificio entero. Ha completado docenas de "bidones", ha construido un portafolio sólido y tiene las habilidades necesarias para empezar a aplicar a trabajos. Logró una meta que parecía imposible al centrarse siempre, y únicamente, en el siguiente paso visible en el horizonte.</p>
+                    `
+                },
+                { 
+                    id: 13, 
+                    title: 'Presiónese a sí mismo', 
+                    text: 'No espere a que otros le motiven. Imagine que tiene que irse un mes y debe terminar lo crucial antes de partir. Esta urgencia autoimpuesta aumenta el enfoque.', 
+                    viz: 'text',
+                    long_description: `
+                        <h5>El Motor Interno del Liderazgo</h5>
+                        <p>En el mundo laboral y en la vida, hay dos tipos de personas: las que necesitan ser empujadas y supervisadas, y las que se empujan a sí mismas. La gran mayoría pertenece al primer grupo, esperando que un jefe, un cliente o una circunstancia externa les obligue a actuar. Solo un pequeño porcentaje, alrededor del 2%, tiene la capacidad de trabajar sin supervisión, de ser su propio motor. A estas personas las llamamos líderes. Esta estrategia consiste en cultivar deliberadamente el hábito de pertenecer a ese 2%.</p>
+                        <p>Su trabajo es desarrollar la autodisciplina para presionarse a sí mismo. Debe establecer sus propios estándares y que estos sean más altos que los que cualquier otra persona podría establecer para usted. Acostúmbrese a empezar un poco antes, trabajar un poco más duro y quedarse un poco más tarde. Busque siempre la manera de "hacer un kilómetro extra", de entregar más de lo que se espera de usted. Este hábito no solo le hará más valioso, sino que también construirá su autoestima y su reputación personal.</p>
+                        <h5>La Técnica del "Viaje Inesperado"</h5>
+                        <p>Una de las herramientas mentales más poderosas para auto-presionarse es crear una sensación de urgencia artificial. Tracy propone un ejercicio de visualización muy efectivo:</p>
+                        <p><strong>Imagine que hoy le comunican que mañana debe marcharse de la ciudad durante un mes entero, sin posibilidad de trabajar.</strong></p>
+                        <p>¿Qué tareas se volverían absolutamente críticas e ineludibles? ¿Qué tendría que terminar sí o sí antes de irse para evitar consecuencias graves en su trabajo o su vida personal? Haga una lista de esas tareas. Esa lista contiene sus verdaderas prioridades, sus "sapos" más importantes. Ahora, en lugar de esperar a un viaje imaginario, póngase a trabajar en esa lista inmediatamente.</p>
+                        <p>Esta técnica mental le obliga a diferenciar entre lo que es verdaderamente importante y lo que simplemente parece urgente. Le fuerza a concentrarse en las tareas de alto impacto y a dejar de lado las trivialidades.</p>
+                        <h5>Ejemplo Práctico Detallado</h5>
+                        <p>David es un consultor que trabaja desde casa. Tiene varios proyectos en marcha, pero al no tener un jefe mirando por encima de su hombro, a veces le cuesta mantener un ritmo alto y tiende a procrastinar en las tareas más estratégicas.</p>
+                        <p>Un lunes por la mañana, se siente un poco desmotivado. Decide aplicar la técnica del "viaje inesperado". Se dice a sí mismo: "Imagina que este viernes te vas a unas vacaciones sorpresa de un mes sin acceso a internet. ¿Qué tendría que estar terminado para el jueves por la noche?".</p>
+                        <p>De repente, su perspectiva cambia. Su lista de tareas se reorganiza en su mente:</p>
+                        <ul>
+                            <li><strong>Absolutamente Crítico (A-1):</strong> Enviar la propuesta final al Cliente A, cuyo plazo vence la próxima semana. Si no la envía, perderá el proyecto.</li>
+                            <li><strong>Muy Importante (A-2):</strong> Completar el informe de análisis para el Cliente B, para que puedan avanzar durante su ausencia.</li>
+                            <li><strong>Importante (B-1):</strong> Dejar programados los pagos a sus proveedores.</li>
+                            <li><strong>Trivial (puede esperar):</strong> Reorganizar sus archivos en la nube, investigar un nuevo software de gestión, etc.</li>
+                        </ul>
+                        <p>Con esta nueva claridad y urgencia autoimpuesta, David ignora las tareas de bajo valor. Se enfoca con la intensidad de un láser en la propuesta para el Cliente A. Trabaja con una concentración que no había tenido en semanas. Para el martes, la propuesta está enviada. El miércoles, se enfoca en el informe del Cliente B. Al presionarse a sí mismo, no solo completa sus tareas más importantes mucho antes de lo previsto, sino que también se siente con más energía y control sobre su trabajo. Ha desarrollado el hábito de los líderes.</p>
+                    `
+                },
+                { 
+                    id: 16, 
+                    title: 'Practique la postergación creativa', 
+                    text: 'No puede hacerlo todo, así que debe postergar de forma inteligente. Decida conscientemente no hacer tareas de bajo valor para liberar tiempo para lo que realmente importa.', 
+                    viz: 'text',
+                    long_description: `
+                        <h5>El Arte de Decir "No"</h5>
+                        <p>La postergación creativa es una de las estrategias más liberadoras y de mayor impacto en la productividad personal. Se basa en una aceptación radical: <strong>no puede hacerlo todo</strong>. Dado que inevitablemente tendrá que posponer algunas cosas, la clave es elegir deliberadamente qué posponer. La diferencia entre las personas de alto y bajo rendimiento a menudo radica en lo que eligen no hacer.</p>
+                        <p>La mayoría de la gente practica la postergación de forma inconsciente. Sin pensar, posponen sus tareas más grandes, importantes y valiosas (sus "sapos") porque son difíciles o intimidantes. En su lugar, se ocupan de tareas de bajo valor. La postergación creativa invierte este proceso. Consiste en tomar la decisión consciente y deliberada de posponer, delegar o eliminar las tareas de bajo valor (los "renacuajos") para poder dedicar su tiempo y energía a las pocas actividades que realmente marcan la diferencia.</p>
+                        <h5>Establecer "Posterioridades"</h5>
+                        <p>Para establecer prioridades, también debe establecer "posterioridades". Una posterioridad es algo que decide hacer menos, más tarde, o nunca. Esto requiere aprender a usar la palabra más poderosa en la gestión del tiempo: "No". Diga "no" con amabilidad pero con firmeza a cualquier solicitud o actividad que no represente un uso de alto valor de su tiempo y que no contribuya a sus metas más importantes. Recuerde: para empezar a hacer algo nuevo e importante, a menudo debe dejar de hacer algo antiguo y menos importante.</p>
+                        <p>Practique el "pensamiento de base cero": pregúntese continuamente sobre sus compromisos actuales: "Sabiendo lo que sé ahora, ¿volvería a asumir esta tarea o proyecto hoy?". Si la respuesta es no, es un candidato perfecto para la postergación creativa, la delegación o la eliminación.</p>
+                        <h5>Ejemplo Práctico Detallado</h5>
+                        <p>Sara es una ejecutiva de nivel medio en una gran empresa. Su agenda está siempre llena de reuniones y su lista de tareas es interminable. Se siente abrumada y siente que no avanza en los proyectos estratégicos que realmente podrían impulsar su carrera.</p>
+                        <p>Decide analizar su semana con la lente de la postergación creativa:</p>
+                        <ul>
+                            <li><strong>Identifica tareas de bajo valor:</strong> Se da cuenta de que asiste a tres reuniones semanales en las que su presencia es opcional y rara vez aporta algo significativo. También dedica una hora al día a crear un informe de actividad detallado que nadie parece leer con atención.</li>
+                            <li><strong>Practica el "No":</strong> Habla con su jefe y le explica que, para centrarse en el proyecto estratégico X, dejará de asistir a las dos reuniones menos importantes y propondrá que el informe de actividad pase de ser diario a semanal y mucho más resumido. Su jefe, al ver que lo hace para enfocarse en una prioridad mayor, está de acuerdo.</li>
+                            <li><strong>Delega:</strong> Se da cuenta de que dedica mucho tiempo a filtrar y organizar las solicitudes de información de otros departamentos. Entrena a un miembro más joven de su equipo para que se encargue de esta tarea, dándole a él una nueva responsabilidad y liberando su propio tiempo.</li>
+                            <li><strong>Elimina:</strong> Tenía en su lista de tareas "Investigar 5 nuevas herramientas de software de marketing". Aplicando el pensamiento de base cero, se da cuenta de que el equipo ya está contento con las herramientas actuales y que esta tarea no resuelve ningún problema real. La elimina por completo.</li>
+                        </ul>
+                        <p>Al practicar la postergación creativa, Sara ha liberado de 5 a 7 horas a la semana. Ahora tiene grandes bloques de tiempo ininterrumpido para dedicarse a su proyecto estratégico (su "sapo"). Ha dejado de ser una víctima de la actividad constante y se ha convertido en una estratega de su propio tiempo, enfocándose en el valor y no en el volumen de trabajo.</p>
+                    `
+                },
+                { 
+                    id: 17, 
+                    title: 'Haga primero la tarea más difícil', 
+                    text: 'La esencia del libro: empiece su día con su tarea A-1, su sapo. Al completarla, el resto del día se siente más fácil y su energía y confianza se disparan.', 
+                    viz: 'text',
+                    long_description: `
+                        <h5>El Hábito Clave del Éxito</h5>
+                        <p>Esta estrategia es el corazón del libro y una de las disciplinas más transformadoras que puede adoptar. "Tragarse el sapo" significa empezar el día abordando su tarea más importante y difícil, su "A-1", antes que cualquier otra cosa. Es lo contrario de lo que hace la mayoría de la gente, que tiende a empezar con tareas fáciles y a posponer lo más complicado para más tarde, cuando la energía y la fuerza de voluntad han disminuido.</p>
+                        <p>El acto de completar su tarea más significativa a primera hora de la mañana tiene profundos efectos psicológicos. Le proporciona una inyección de energía, confianza y una sensación de poder personal que le acompaña durante el resto del día. Se siente como un ganador desde el principio. Después de haberse "tragado el sapo", todo lo demás parece más fácil en comparación. Este hábito por sí solo puede eliminar la procrastinación de raíz y duplicar su productividad.</p>
+                        <h5>El Proceso para Forjar el Hábito</h5>
+                        <p>Desarrollar este hábito requiere un proceso disciplinado, que debe repetir diariamente hasta que se vuelva automático (generalmente en unos 21 días):</p>
+                        <ol>
+                            <li><strong>Al final del día, planifique el siguiente:</strong> Revise su lista de tareas y utilice el método ABCDE para identificar con claridad su tarea A-1, su "sapo" para mañana.</li>
+                            <li><strong>Prepárese concienzudamente:</strong> Reúna todo lo que necesita para esa tarea (archivos, información, herramientas) y déjelo listo.</li>
+                            <li><strong>Deje la mesa puesta:</strong> Despeje su espacio de trabajo para que, al empezar la jornada, su "sapo" sea lo único que tenga delante, esperándole.</li>
+                            <li><strong>Empiece sin pensar:</strong> La clave es la acción inmediata. Al día siguiente, levántese y, antes de revisar el correo, las redes sociales o hacer cualquier otra cosa, láncese directamente a su tarea A-1. No se dé tiempo para dudar o negociar consigo mismo.</li>
+                            <li><strong>Persevere hasta el final:</strong> Trabaje en esa tarea de forma ininterrumpida hasta que esté 100% completa.</li>
+                        </ol>
+                        <h5>Ejemplo Práctico Detallado</h5>
+                        <p>Tomás es un comercial y su tarea más importante y que más detesta es hacer "llamadas en frío" para conseguir nuevos clientes. Es su "sapo" diario. Normalmente, pasa la mañana respondiendo correos, organizando su CRM, hablando con colegas... y deja las llamadas para la tarde, momento en el que ya está cansado y encuentra cualquier excusa para no hacerlas.</p>
+                        <p>Decide aplicar esta estrategia de forma radical. La tarde anterior, prepara una lista de 20 prospectos a los que va a llamar, con sus números de teléfono y notas relevantes. Deja la lista sobre su teclado.</p>
+                        <p>A la mañana siguiente, en lugar de su rutina habitual, hace lo siguiente: llega a la oficina, se sirve un café, se sienta y, sin abrir el correo, coge el teléfono y empieza a hacer la primera llamada de la lista. Se ha comprometido a no hacer nada más hasta haber completado las 20 llamadas.</p>
+                        <p>Las primeras llamadas son duras, pero a medida que avanza, coge ritmo y confianza. Para las 10:30 de la mañana, ha terminado. Se ha "tragado el sapo".</p>
+                        <p>El resultado es transformador. No solo ha completado su tarea más importante del día, consiguiendo dos reuniones, sino que se siente increíblemente productivo y con energía. El resto del día, las demás tareas le parecen sencillas. La pesada nube de tener que hacer las llamadas ya no se cierne sobre él. Al repetir este proceso cada día, Tomás no solo se convierte en el mejor vendedor de su equipo, sino que elimina la ansiedad y la procrastinación que antes dominaban sus mañanas.</p>
+                    `
+                },
+                { 
+                    id: 18, 
+                    title: 'Divida la tarea', 
+                    text: 'Use los métodos "lonchas de jamón" (dividir en partes) o "queso suizo" (trabajar en pequeños lapsos de tiempo) para abordar tareas abrumadoras y generar impulso.', 
+                    viz: 'task_division',
+                    long_description: `
+                        <h5>Cómo Comerse un Elefante (o un Sapo Gigante)</h5>
+                        <p>La sensación de agobio es una de las principales causas de la procrastinación. Cuando una tarea parece demasiado grande, compleja y multifacética, nuestra reacción natural es evitarla. Esta estrategia proporciona dos técnicas muy efectivas para desmantelar esa sensación de agobio y hacer que cualquier "sapo" gigante parezca comestible.</p>
+                        <p>La psicología detrás de esto es que nuestro cerebro está programado para buscar la finalización. Sentimos una pequeña recompensa (una dosis de endorfinas) cada vez que completamos una tarea, por pequeña que sea. Al dividir un gran proyecto en partes más pequeñas, creamos múltiples oportunidades para experimentar esta sensación de logro, lo que genera un impulso positivo que nos motiva a seguir adelante.</p>
+                        <h5>Dos Técnicas para Desglosar el Trabajo</h5>
+                        <ul>
+                            <li><strong>El método de las "lonchas de jamón" (o "Salami Slice"):</strong> Esta técnica consiste en visualizar la tarea completa y luego "cortarla" en lonchas finas y manejables. En lugar de enfrentarse a todo el proyecto, se concentra en completar solo una "loncha" a la vez. Una vez que ha terminado una, se siente motivado para empezar la siguiente. Es un enfoque secuencial y ordenado.</li>
+                            <li><strong>El método del "queso suizo":</strong> Esta técnica es ideal para cuando se siente tan bloqueado que ni siquiera puede empezar. Consiste en "hacer un agujero" en la tarea, como los de un queso suizo. Se compromete a trabajar en ella solo durante un período de tiempo muy corto y específico, por ejemplo, 5, 10 o 15 minutos. Después de ese tiempo, es libre de parar. El poder de este método es que supera la inercia inicial. Empezar es la parte más difícil, y una vez que ha trabajado durante 10 minutos, es muy probable que el impulso le lleve a continuar un poco más.</li>
+                        </ul>
+                        <h5>Ejemplo Práctico Detallado</h5>
+                        <p>Clara tiene que crear un curso online completo sobre finanzas personales. El proyecto es enorme: planificar el temario, escribir los guiones de 50 vídeos, grabarlos, editarlos, crear materiales descargables y configurar la plataforma de venta. Se siente totalmente paralizada.</p>
+                        <p>Decide combinar ambas técnicas:</p>
+                        <p><strong>1. Aplicando las "lonchas de jamón":</strong> Primero, desglosa todo el proyecto en grandes fases (lonchas):</p>
+                        <ol>
+                            <li>Fase 1: Planificación del temario.</li>
+                            <li>Fase 2: Escritura de guiones.</li>
+                            <li>Fase 3: Grabación de vídeos.</li>
+                            <li>Fase 4: Edición y postproducción.</li>
+                            <li>Fase 5: Creación de materiales.</li>
+                            <li>Fase 6: Configuración de la plataforma.</li>
+                        </ol>
+                        <p>Ahora el proyecto parece más manejable. Se enfoca solo en la Fase 1.</p>
+                        <p><strong>2. Aplicando el "queso suizo":</strong> La Fase 1, "Planificación del temario", todavía le parece grande. Así que aplica el queso suizo. Se dice a sí misma: "Voy a poner un temporizador de 25 minutos y solo voy a hacer una lluvia de ideas de los posibles módulos del curso".</p>
+                        <p>Empieza a trabajar. A los 25 minutos, suena la alarma, pero ya está metida en faena y se siente inspirada. Decide continuar otros 25 minutos para organizar esas ideas en una estructura lógica. En menos de una hora, ha hecho un "agujero" significativo en la tarea y ha completado un borrador del temario.</p>
+                        <p>Al día siguiente, para la Fase 2 ("Escritura de guiones"), vuelve a usar las lonchas: decide escribir solo el guion del primer vídeo. Y si se siente bloqueada, usa el queso suizo: "Escribiré solo durante 15 minutos". Al combinar estas técnicas, Clara transforma un proyecto paralizante en una serie de pequeños pasos alcanzables, manteniendo la motivación y el progreso constante.</p>
+                    `
+                },
+                { 
+                    id: 19, 
+                    title: 'Cree lapsos amplios de tiempo', 
+                    text: 'Los trabajos importantes requieren tiempo ininterrumpido. Agende bloques de 60-90 minutos en su calendario y protéjalos de distracciones como si fueran sus reuniones más importantes.', 
+                    viz: 'text',
+                    long_description: `
+                        <h5>La Moneda del Trabajo de Calidad</h5>
+                        <p>En la economía del conocimiento, la capacidad para realizar "trabajo profundo" (deep work) es una de las habilidades más valiosas. El trabajo profundo es aquel que requiere una alta concentración, sin distracciones, durante un período de tiempo sostenido. La mayoría de las tareas verdaderamente importantes, aquellas que crean un valor real y duradero, no se pueden hacer en ráfagas de 5 o 10 minutos entre interrupciones. Requieren bloques de tiempo amplios y protegidos.</p>
+                        <p>Esta estrategia consiste en organizar su día de forma proactiva en torno a estos bloques de tiempo. En lugar de dejar que su día sea una sucesión de interrupciones (correos, llamadas, reuniones), usted toma el control y agenda citas consigo mismo para trabajar en sus prioridades más importantes. Un bloque de 90 minutos de trabajo enfocado puede producir más resultados de calidad que un día entero de trabajo fragmentado.</p>
+                        <h5>Técnicas para Crear y Proteger su Tiempo</h5>
+                        <ul>
+                            <li><strong>Planificación de la agenda:</strong> Utilice un calendario o agenda y bloquee físicamente tramos de 60, 90 o 120 minutos para sus tareas A-1. Trate estas citas consigo mismo con la misma seriedad que una reunión con su cliente más importante. No las cancele ni permita que se las interrumpan salvo por una emergencia real.</li>
+                            <li><strong>Trabajo matutino en casa:</strong> Una de las mejores tácticas es levantarse temprano y trabajar en casa durante una o dos horas antes de ir a la oficina. Ese tiempo, libre de las interrupciones típicas del entorno laboral, puede ser el más productivo del día.</li>
+                            <li><strong>La oficina en el aire:</strong> Aproveche los "regalos de tiempo", como los viajes en avión o en tren. Planifique de antemano el trabajo que va a realizar y utilice ese tiempo de viaje ininterrumpido para avanzar en tareas importantes.</li>
+                            <li><strong>Haga que cada minuto cuente:</strong> Incluso los pequeños fragmentos de tiempo, como 15 minutos esperando una reunión, se pueden utilizar para completar pequeñas partes de una tarea mayor (por ejemplo, responder a un correo importante, revisar un párrafo de un informe).</li>
+                        </ul>
+                        <h5>Ejemplo Práctico Detallado</h5>
+                        <p>Roberto es un arquitecto que necesita diseñar el concepto inicial para un nuevo edificio. Esta es una tarea A-1 que requiere creatividad y concentración intensa. Sabe que si intenta hacerlo en la oficina, será constantemente interrumpido por llamadas, colegas y correos electrónicos.</p>
+                        <p>Decide aplicar la estrategia de crear lapsos de tiempo:</p>
+                        <ol>
+                            <li><strong>Bloqueo en la agenda:</strong> Mira su agenda de la semana y bloquea dos tramos de 3 horas cada uno: el martes de 9:00 a 12:00 y el jueves de 9:00 a 12:00. Los etiqueta como "Diseño Proyecto X - NO MOLESTAR".</li>
+                            <li><strong>Comunica sus límites:</strong> Informa a su equipo de que durante esos bloques de tiempo no estará disponible, excepto para una emergencia real, y que no responderá al correo ni al teléfono.</li>
+                            <li><strong>Crea su "búnker":</strong> Durante esos bloques, no va a su escritorio habitual. Se instala en una sala de reuniones vacía, solo con su portátil, sus cuadernos de bocetos y un café. Pone su teléfono en modo avión.</li>
+                            <li><strong>Se sumerge en el trabajo:</strong> Al eliminar todas las posibles distracciones, puede sumergirse por completo en el problema de diseño. Su mente entra en un estado de flujo y las ideas empiezan a surgir.</li>
+                        </ol>
+                        <p>Al final de la semana, Roberto ha completado un concepto de diseño sólido y bien pensado. Ha logrado en 6 horas de trabajo profundo y enfocado lo que le habría costado semanas de trabajo fragmentado e interrumpido. Ha tomado el control de su tiempo para crear el espacio necesario para el trabajo de alta calidad, que es lo que realmente define su valor como profesional.</p>
+                    `
+                },
+                { 
+                    id: 21, 
+                    title: 'Concéntrese resueltamente', 
+                    text: 'Una vez que empiece una tarea importante, trabaje en ella sin distracción hasta completarla al 100%. Empezar y parar puede multiplicar por 5 el tiempo necesario.', 
+                    viz: 'text',
+                    long_description: `
+                        <h5>El Súper Poder de la Monotarea</h5>
+                        <p>Esta estrategia es la culminación de todas las demás. Toda la planificación, priorización y organización no sirve de nada si, en el momento de la verdad, no es capaz de concentrarse en una sola tarea hasta completarla. La capacidad de seleccionar su tarea más importante, empezarla y luego enfocarse en ella resueltamente, sin distracciones, hasta que esté 100% terminada, es la clave definitiva para el alto rendimiento.</p>
+                        <p>La multitarea es un mito. Lo que realmente hacemos es "cambiar de tarea" (task switching), y este cambio tiene un coste mental enorme. Cada vez que interrumpe una tarea para mirar un correo o responder un mensaje, su cerebro tiene que desconectarse del contexto original y cargarse en el nuevo. Al volver, tiene que hacer el proceso inverso. Se estima que esta tendencia a empezar y parar puede aumentar el tiempo necesario para completar una tarea ¡hasta en un 500%!</p>
+                        <h5>La Curva de Eficiencia</h5>
+                        <p>Cuando trabaja de forma continua en una sola tarea, entra en un estado de flujo y avanza por la "curva de eficiencia". Cada vez es más rápido y eficaz a medida que se sumerge en el trabajo. Cada interrupción le saca de la curva y le obliga a empezar de nuevo desde la parte más difícil. La disciplina, por tanto, se define como la capacidad de obligarse a hacer lo que debe hacer, cuando debe hacerlo, tenga o no ganas, y seguir haciéndolo sin desviarse.</p>
+                        <p>Una vez que ha decidido cuál es su tarea A-1, cualquier otra cosa que haga es, por definición, una pérdida de tiempo relativa. La perseverancia en esa única tarea no solo es una cuestión de productividad, sino una prueba de su carácter y su fuerza de voluntad.</p>
+                        <h5>Ejemplo Práctico Detallado</h5>
+                        <p>Sandra es una abogada que tiene que preparar el escrito de defensa para un caso importante. Es su "sapo" de la semana. Es una tarea que requiere analizar cientos de páginas de documentos y construir un argumento legal complejo.</p>
+                        <p>El miércoles por la mañana, bloquea 4 horas para esta tarea. Pero no basta con bloquear el tiempo; debe concentrarse resueltamente.</p>
+                        <p><strong>El enfoque de baja concentración (el error común):</strong> Sandra se sienta con los documentos, pero deja el correo abierto en una pantalla y el teléfono sobre la mesa. Empieza a leer, pero a los 15 minutos, una notificación de correo le llama la atención. Lo abre. Es de un cliente sobre otro caso. Responde. Vuelve al escrito, pero ha perdido el hilo. Le cuesta 10 minutos volver a encontrar el punto donde estaba. Poco después, vibra el teléfono. Es un mensaje de un amigo. Lo lee y responde. Otra interrupción. Al final de las 4 horas, ha avanzado muy poco y se siente frustrada y agotada mentalmente.</p>
+                        <p><strong>El enfoque de alta concentración (la estrategia correcta):</strong> El jueves, decide hacerlo bien. Bloquea otras 4 horas. Pero esta vez:</p>
+                        <ol>
+                            <li>Cierra completamente su programa de correo electrónico.</li>
+                            <li>Pone su teléfono en modo avión y lo guarda en un cajón.</li>
+                            <li>Cierra la puerta de su despacho y pone un cartel de "No molestar hasta las 13:00".</li>
+                            <li>Se dice a sí misma: "Durante las próximas 4 horas, solo existe este caso. Nada más".</li>
+                        </ol>
+                        <p>Empieza a trabajar. Al principio cuesta un poco, pero al no tener interrupciones, su cerebro se sumerge por completo en la tarea. Entra en un estado de flujo. Las conexiones entre los documentos se vuelven claras. Los argumentos fluyen. Cuando mira el reloj, han pasado 3 horas y media y ha completado el 80% del escrito, un trabajo de una calidad muy superior al del día anterior. Al concentrarse resueltamente, no solo ha sido infinitamente más productiva, sino que ha moldeado su carácter y reforzado su capacidad de perseverancia.</p>
+                    `
+                },
             ]
         },
         {
@@ -228,31 +610,172 @@ document.addEventListener('DOMContentLoaded', function() {
             title: 'Fase 3: Optimización y Energía',
             description: 'La productividad no se trata solo de gestionar el tiempo, sino de gestionar su energía y su mente. Estas estrategias son el motor que le mantiene en movimiento, mejorando sus habilidades, manteniendo una actitud positiva y desarrollando un ritmo imparable.',
             strategies: [
-                { id: 6, title: 'Céntrese en áreas clave de resultados', text: 'Identifique los 5-7 resultados críticos que debe producir en su trabajo. Su área más débil determinará su éxito general. Califíquese y haga un plan para mejorar.', viz: 'text', long_description: '...' },
-                { id: 9, title: 'Haga sus deberes', text: 'El aprendizaje continuo es el requisito mínimo para el éxito. Cuanto mejor sea en sus tareas clave, más motivado estará para realizarlas. Dedique tiempo a mejorar sus habilidades.', viz: 'text', long_description: '...' },
-                { id: 10, title: 'Refuerce sus talentos especiales', text: 'Identifique qué hace excepcionalmente bien y disfrute haciéndolo. Dedique su corazón y alma a esas pocas áreas donde puede hacer una contribución única y valiosa.', viz: 'text', long_description: '...' },
-                { id: 14, title: 'Optimice sus poderes personales', text: 'Su energía es su recurso más preciado. Identifique sus horas de máxima energía y úselas para sus tareas más difíciles. Duerma bien, coma sano y descanse.', viz: 'energy_chart', long_description: '...' },
-                { id: 15, title: 'Motívese para la acción', text: 'Sea su propio animador. Controle su diálogo interno. Sea un optimista: busque el lado bueno, la lección valiosa y la solución en cada situación.', viz: 'text', long_description: '...' },
-                { id: 20, title: 'Desarrolle un sentido de urgencia', text: 'Adquiera el hábito de moverse rápido en sus tareas clave. Esto crea un "principio de impulso" que le da más energía y le permite entrar en un estado de "flujo" de alto rendimiento.', viz: 'momentum', long_description: '...' },
+                { 
+                    id: 6, 
+                    title: 'Céntrese en áreas clave de resultados', 
+                    text: 'Identifique los 5-7 resultados críticos que debe producir en su trabajo. Su área más débil determinará su éxito general. Califíquese y haga un plan para mejorar.', 
+                    viz: 'text',
+                    long_description: `
+                        <h5>¿Por Qué le Pagan Realmente?</h5>
+                        <p>Una de las preguntas más importantes que puede hacerse para enfocar su carrera es: "¿Por qué estoy en nómina?". La respuesta no es "para trabajar de 9 a 5" o "para hacer tareas". Le pagan para obtener <strong>resultados específicos</strong>. Cada puesto de trabajo, sin importar el sector, se puede desglosar en un número limitado (normalmente de 5 a 7) de Áreas Clave de Resultados (ACR). Estas son las funciones críticas que debe desempeñar excelentemente para tener éxito en su trabajo.</p>
+                        <p>Una ACR es un área de su total responsabilidad. Si usted no obtiene el resultado, nadie lo hará por usted. Es como las funciones vitales del cuerpo (ritmo cardíaco, respiración, etc.). Si una de ellas falla, todo el sistema se colapsa. De la misma manera, un rendimiento pobre en una sola ACR puede hacerle fracasar en su trabajo, sin importar lo bueno que sea en las demás.</p>
+                        <h5>La Tiranía del Eslabón más Débil</h5>
+                        <p>La regla más importante sobre las ACR es que su eslabón más débil determina la altura de su éxito. Puede ser excelente en 6 de sus 7 ACR, pero si es pobre en la séptima, esa debilidad actuará como un ancla, frenando todo su potencial. La gente tiende a procrastinar precisamente en las áreas donde se siente débil o incompetente, lo que agrava aún más el problema.</p>
+                        <p>El proceso para usar esta estrategia es:</p>
+                        <ol>
+                            <li><strong>Identifique sus ACR:</strong> Haga una lista de los 5-7 resultados más importantes que debe lograr. Discútala con su jefe para asegurarse de que están alineados.</li>
+                            <li><strong>Califíquese:</strong> Sea honesto y califíquese del 1 al 10 en cada ACR. ¿Dónde es fuerte y dónde es débil?</li>
+                            <li><strong>Fortalezca su eslabón más débil:</strong> Identifique su ACR con la puntuación más baja. Esa habilidad se convierte en su "sapo" de desarrollo personal. Haga un plan para mejorarla a través de la lectura, cursos, práctica y mentoría.</li>
+                        </ol>
+                        <h5>Ejemplo Práctico Detallado</h5>
+                        <p>Miguel es un excelente programador y ha sido ascendido a jefe de equipo. Es brillante técnicamente, pero está teniendo dificultades en su nuevo rol.</p>
+                        <p>Decide analizar sus Áreas Clave de Resultados como mánager:</p>
+                        <ol>
+                            <li><strong>Planificación de proyectos:</strong> 8/10 (es bueno organizando tareas).</li>
+                            <li><strong>Calidad técnica del código del equipo:</strong> 9/10 (su experiencia le ayuda a guiarles).</li>
+                            <li><strong>Gestión del equipo y motivación:</strong> 7/10 (se lleva bien con la gente).</li>
+                            <li><strong>Comunicación con otros departamentos:</strong> 6/10 (le cuesta un poco).</li>
+                            <li><strong>Delegación eficaz de tareas:</strong> 3/10 (¡su eslabón más débil!).</li>
+                        </ol>
+                        <p>Miguel se da cuenta de que su incapacidad para delegar es su principal obstáculo. Como no confía plenamente en que los demás hagan el trabajo tan bien como él, tiende a acaparar las tareas más difíciles. Esto tiene dos consecuencias desastrosas: él está sobrecargado y se convierte en un cuello de botella, y su equipo se siente desmotivado y no tiene oportunidades para crecer.</p>
+                        <p>Su pobre rendimiento en esta única ACR está saboteando su éxito en las demás. En lugar de ignorarlo, Miguel decide que "aprender a delegar" es su tarea A-1 de desarrollo. Se compra un libro sobre delegación, pide consejo a su propio jefe, y empieza a practicar de forma consciente. Comienza delegando tareas pequeñas y bien definidas, proporcionando instrucciones claras y estableciendo puntos de control. Aunque al principio le cuesta, poco a poco va mejorando. Al fortalecer su eslabón más débil, no solo reduce su propio estrés, sino que potencia a su equipo y se convierte en un líder mucho más eficaz.</p>
+                    `
+                },
+                { 
+                    id: 9, 
+                    title: 'Haga sus deberes', 
+                    text: 'El aprendizaje continuo es el requisito mínimo para el éxito. Cuanto mejor sea en sus tareas clave, más motivado estará para realizarlas. Dedique tiempo a mejorar sus habilidades.', 
+                    viz: 'text',
+                    long_description: `
+                        <h5>La Competencia como Antídoto a la Procrastinación</h5>
+                        <p>Una de las razones más profundas y a menudo no reconocidas de la procrastinación es la sensación de ineptitud. Cuando nos enfrentamos a una tarea en la que no nos sentimos competentes o seguros, nuestro cerebro busca cualquier excusa para evitarla. El miedo al fracaso, a cometer errores o a parecer incompetente es un poderoso paralizante. Por lo tanto, una de las formas más efectivas de vencer la procrastinación es hacer los deberes: convertirse en un experto en sus tareas clave.</p>
+                        <p>El aprendizaje continuo no es un lujo, es el requisito mínimo para el éxito en cualquier campo en el siglo XXI. Sus conocimientos y habilidades se vuelven obsoletos a un ritmo cada vez más rápido. Como dice el entrenador Pat Riley, "si no estás mejorando, estás empeorando". Invertir tiempo en mejorar sus habilidades clave es una de las actividades que mayor retorno de la inversión le proporcionará. Cuanto mejor sea en algo, más disfrutará haciéndolo, más motivado se sentirá y más rápido lo completará.</p>
+                        <h5>Conviértase en un Estudiante de por Vida</h5>
+                        <p>Todas las habilidades de negocio se pueden aprender. Si otra persona es excelente en un área, es la prueba de que usted también puede serlo. Adopte la mentalidad de ser un "proyecto de hágalo usted mismo".</p>
+                        <ul>
+                            <li><strong>Lea sobre su campo una hora al día:</strong> Levántese un poco antes y dedique 60 minutos a leer libros y artículos que le hagan mejor en su trabajo. Este hábito por sí solo puede convertirle en una de las personas más conocedoras de su sector.</li>
+                            <li><strong>Asista a cursos y seminarios:</strong> Invierta en su desarrollo asistiendo a formaciones sobre sus habilidades clave. Participe activamente, tome notas y aplique lo que aprenda.</li>
+                            <li><strong>Convierta su coche en una universidad:</strong> Utilice el tiempo de desplazamiento para escuchar audiolibros y podcasts educativos. Puede obtener el equivalente a un título universitario en pocos años solo con este hábito.</li>
+                        </ul>
+                        <p>Pregúntese constantemente: "¿Qué habilidad, si la desarrollo y la aplico de manera excelente, tendría el mayor impacto positivo en mi carrera?". Esa es su prioridad de aprendizaje.</p>
+                        <h5>Ejemplo Práctico Detallado</h5>
+                        <p>Sofía es una agente inmobiliaria. Es muy buena en el trato con la gente y mostrando propiedades, pero se siente muy insegura en la parte de negociación de precios y cierre de contratos. Como resultado, tiende a posponer las llamadas de seguimiento en las que sabe que tendrá que negociar, lo que le hace perder ventas.</p>
+                        <p>Su falta de habilidad en la negociación es la causa de su procrastinación en esa área clave.</p>
+                        <p>Sofía decide "hacer sus deberes". Se compromete a convertirse en una negociadora experta. Su plan de acción es el siguiente:</p>
+                        <ol>
+                            <li><strong>Lectura:</strong> Durante el próximo mes, leerá tres libros clásicos sobre negociación, como "Rompe la barrera del no" de Chris Voss. Dedica 45 minutos cada mañana a esta lectura.</li>
+                            <li><strong>Formación:</strong> Se inscribe en un seminario online de dos días sobre técnicas de negociación avanzadas.</li>
+                            <li><strong>Práctica y Mentoría:</strong> Le pide al agente más experimentado de su oficina si puede acompañarle como oyente en algunas de sus negociaciones. Después, le pide feedback sobre sus propias llamadas.</li>
+                            <li><strong>Role-playing:</strong> Practica diferentes escenarios de negociación con un colega para ganar fluidez y confianza.</li>
+                        </ol>
+                        <p>A medida que Sofía adquiere más conocimientos y técnicas, su confianza se dispara. Ya no teme las llamadas de negociación; al contrario, las ve como una oportunidad para aplicar sus nuevas habilidades. La sensación de ineptitud ha desaparecido y, con ella, la procrastinación. Como resultado, su tasa de cierre de ventas aumenta un 30% en los siguientes seis meses.</p>
+                    `
+                },
+                { 
+                    id: 10, 
+                    title: 'Refuerce sus talentos especiales', 
+                    text: 'Identifique qué hace excepcionalmente bien y disfrute haciéndolo. Dedique su corazón y alma a esas pocas áreas donde puede hacer una contribución única y valiosa.', 
+                    viz: 'text',
+                    long_description: `
+                        <h5>Su Zona de Genialidad Única</h5>
+                        <p>Cada persona tiene una combinación única de talentos, habilidades y pasiones. Hay ciertas cosas que usted puede hacer, o aprender a hacer, que le resultan más fáciles y gratificantes que a la mayoría de la gente. Esta es su "zona de genialidad". Uno de los secretos de las personas de gran éxito es que han identificado con precisión esta zona y han estructurado su carrera y su vida para pasar el mayor tiempo posible operando desde ella.</p>
+                        <p>Su activo más valioso no es su casa ni su coche, sino su "capacidad de ganar dinero": su habilidad para obtener resultados que otros valoran. Esta capacidad está directamente ligada a sus talentos especiales. Cuando trabaja en áreas donde tiene un talento natural, no solo produce resultados de mayor calidad, sino que también siente más energía, entusiasmo y motivación. El trabajo deja de ser una carga y se convierte en una forma de autoexpresión.</p>
+                        <h5>Cómo Identificar sus Talentos Especiales</h5>
+                        <p>Para descubrir su zona de genialidad, hágase una serie de preguntas introspectivas:</p>
+                        <ul>
+                            <li><strong>¿Qué hago realmente bien?</strong> ¿Qué tareas o actividades se me dan bien con naturalidad, a menudo con menos esfuerzo que a otros?</li>
+                            <li><strong>¿Qué disfruto más haciendo?</strong> ¿Qué partes de su trabajo le llenan de energía y le hacen perder la noción del tiempo? El disfrute suele ser una señal de talento subyacente.</li>
+                            <li><strong>¿Qué ha sido la clave de mis éxitos pasados?</strong> Revise su carrera y su vida. ¿Qué logros le enorgullecen más? ¿Qué habilidades utilizó para conseguirlos?</li>
+                            <li><strong>Si pudiera hacer cualquier trabajo, sin preocuparme por el dinero, ¿cuál sería?</strong> La respuesta a esta pregunta a menudo apunta a sus pasiones y talentos más profundos.</li>
+                        </ul>
+                        <p>Una vez que identifique estas áreas, su objetivo debe ser convertirse en el mejor en ellas. No puede ser excelente en todo, pero puede ser absolutamente excepcional en esas pocas cosas que se alinean con sus talentos únicos.</p>
+                        <h5>Ejemplo Práctico Detallado</h5>
+                        <p>Daniel trabaja en una agencia de marketing digital. Sus responsabilidades incluyen la gestión de campañas de anuncios (SEM), la optimización para motores de búsqueda (SEO), la redacción de contenidos y el análisis de datos. Realiza todas estas tareas de forma competente.</p>
+                        <p>Sin embargo, al reflexionar, se da cuenta de algo. Mientras que la gestión diaria de campañas le parece repetitiva y el SEO le resulta un poco abstracto, se ilumina cuando se sumerge en Google Analytics y los datos. Le encanta encontrar patrones, crear informes visuales y traducir los números en información estratégica para los clientes. Disfruta explicando por qué una campaña funcionó o no, basándose en la evidencia de los datos. Sus clientes y su jefe a menudo elogian la claridad y la perspicacia de sus informes analíticos. Este es su talento especial.</p>
+                        <p>En lugar de seguir siendo un "generalista de marketing" competente, Daniel decide reforzar su talento especial. Habla con su jefa y le propone un cambio en su rol. Quiere especializarse en "Análisis y Estrategia de Datos". Se ofrece a asumir la responsabilidad de analizar el rendimiento de todas las campañas de la agencia y a formar a sus compañeros en la interpretación de los datos.</p>
+                        <p>Para ello, "hace sus deberes" (Estrategia 9) y se inscribe en cursos avanzados de visualización de datos y Google Analytics. Empieza a dedicar la mayor parte de su tiempo a lo que mejor se le da y más disfruta. Como resultado, no solo se convierte en un miembro indispensable del equipo, sino que su satisfacción laboral se dispara. La agencia empieza a vender sus servicios de "Análisis Estratégico" como un producto premium, y Daniel se convierte en el líder de esa nueva área. Ha construido su carrera en torno a su talento único, en lugar de intentar ser bueno en todo.</p>
+                    `
+                },
+                { 
+                    id: 14, 
+                    title: 'Optimice sus poderes personales', 
+                    text: 'Su energía es su recurso más preciado. Identifique sus horas de máxima energía y úselas para sus tareas más difíciles. Duerma bien, coma sano y descanse.', 
+                    viz: 'energy_chart',
+                    long_description: `
+                        <h5>La Gestión de la Energía, no solo del Tiempo</h5>
+                        <p>La productividad no es solo una cuestión de gestionar las 24 horas del día. Es, fundamentalmente, una cuestión de gestionar su energía. Puede tener todo el tiempo del mundo, pero si está física y mentalmente agotado, su rendimiento será pobre, cometerá errores y procrastinará. Su energía es la materia prima del alto rendimiento. Protegerla y cultivarla es una de sus responsabilidades más importantes.</p>
+                        <p>Una de las principales causas de la procrastinación es simplemente la fatiga. Intentar abordar una tarea compleja (un "sapo") cuando sus niveles de energía están bajos es como intentar arrancar un coche con la batería agotada. No funcionará. Las personas más productivas no necesariamente trabajan más horas; trabajan de forma más inteligente, alineando sus tareas más exigentes con sus picos de energía.</p>
+                        <h5>Las Claves para Optimizar su Energía</h5>
+                        <ul>
+                            <li><strong>Identifique sus ritmos circadianos:</strong> Preste atención a sus niveles de energía a lo largo del día. ¿Es una persona de mañanas, con la mente más despejada al despertar? ¿O tiene un pico de creatividad por la tarde? Conozca sus horas de máximo rendimiento y programe sus "sapos" más importantes para esos momentos. Reserve las tareas de bajo esfuerzo (como responder correos) para sus períodos de baja energía.</li>
+                            <li><strong>Duerma lo suficiente:</strong> El sueño no es un lujo, es una necesidad biológica para la consolidación de la memoria, la reparación celular y la restauración de la energía mental. La mayoría de los adultos necesitan entre 7 y 9 horas de sueño de calidad. Acostarse una hora antes puede tener un impacto revolucionario en su productividad del día siguiente.</li>
+                            <li><strong>Aliméntese como un atleta:</strong> La comida es su combustible. Comience el día con un desayuno rico en proteínas y bajo en azúcares para mantener niveles de energía estables. Evite los carbohidratos refinados y los azúcares simples que provocan picos de energía seguidos de caídas bruscas. Coma de forma ligera y saludable durante el día.</li>
+                            <li><strong>Tome descansos regulares:</strong> El cerebro no está diseñado para mantener una concentración intensa durante horas sin parar. Trabaje en sprints (como en la técnica Pomodoro, de 25-50 minutos) seguidos de breves descansos para recargar. Además, asegúrese de tomarse al menos un día libre completo a la semana y vacaciones regulares para evitar el agotamiento (burnout).</li>
+                        </ul>
+                        <h5>Ejemplo Práctico Detallado</h5>
+                        <p>Isabel es una escritora que trabaja con plazos de entrega muy ajustados. Durante mucho tiempo, intentó forzarse a escribir durante 8 horas seguidas, a menudo trabajando hasta altas horas de la noche para cumplir con los plazos. El resultado era que se sentía constantemente agotada, su escritura perdía calidad y procrastinaba cada vez más para empezar cada día.</p>
+                        <p>Decide hacer un cambio radical y enfocarse en la gestión de su energía:</p>
+                        <ol>
+                            <li><strong>Análisis de energía:</strong> Durante una semana, anota sus niveles de energía cada hora. Descubre que su pico de creatividad y concentración máxima es entre las 9:00 y las 12:00. Por la tarde, su energía decae, pero tiene un pequeño repunte sobre las 16:00.</li>
+                            <li><strong>Nuevo horario de trabajo:</strong> Reestructura su día. De 9:00 a 12:00, se dedica exclusivamente a su tarea más difícil: la escritura creativa del manuscrito principal. Es su bloque de "sapo". De 12:00 a 14:00, descansa, come y da un paseo. Por la tarde, de 14:00 a 16:00, realiza tareas de menor demanda cognitiva, como investigar, responder correos o editar trabajos anteriores. A las 16:00, aprovecha su pequeño repunte de energía para planificar el trabajo del día siguiente.</li>
+                            <li><strong>Cambios de estilo de vida:</strong> Se obliga a apagar todos los dispositivos electrónicos a las 22:00 y a leer un libro de ficción para relajarse, asegurándose de dormir al menos 7.5 horas. Cambia su desayuno de tostadas con mermelada por huevos y aguacate.</li>
+                        </ol>
+                        <p>En pocas semanas, la transformación es asombrosa. Isabel produce el doble de trabajo de alta calidad en menos horas. Se siente con más energía, más creativa y ha eliminado por completo la procrastinación matutina. Ha aprendido que gestionar su energía es mucho más efectivo que simplemente gestionar su tiempo.</p>
+                    `
+                },
+                { 
+                    id: 15, 
+                    title: 'Motívese para la acción', 
+                    text: 'Sea su propio animador. Controle su diálogo interno. Sea un optimista: busque el lado bueno, la lección valiosa y la solución en cada situación.', 
+                    viz: 'text',
+                    long_description: `
+                        <h5>El Poder del Diálogo Interno</h5>
+                        <p>Para rendir al máximo de forma sostenida, debe convertirse en su propio entrenador personal, en su mayor fan. El 95% de sus emociones, tanto positivas como negativas, están determinadas por la forma en que se habla a sí mismo, su diálogo interno. No son los eventos externos los que determinan sus sentimientos, sino su interpretación de esos eventos. Si controla su diálogo interno, puede controlar sus emociones y, por tanto, su nivel de motivación.</p>
+                        <p>La base de una motivación duradera es una alta autoestima: cuánto se gusta y se respeta a sí mismo. Puede aumentar activamente su autoestima hablándose de forma positiva y constructiva. Repita afirmaciones como "¡Me gusto!", "¡Puedo hacerlo!", "Soy el mejor en lo que hago". Al principio puede parecer forzado, pero con la repetición, su subconsciente empieza a aceptarlo como una realidad, y su comportamiento externo comenzará a alinearse con esa nueva creencia.</p>
+                        <h5>Las Tres Disciplinas del Optimista</h5>
+                        <p>El optimismo no es una cualidad innata, es una disciplina que se puede aprender. Las personas optimistas practican tres comportamientos clave ante la adversidad:</p>
+                        <ol>
+                            <li><strong>Buscan el lado bueno:</strong> En cualquier situación, por negativa que sea, buscan activamente algo bueno o beneficioso. Siempre hay una oportunidad o una ventaja oculta si se busca con la intención correcta.</li>
+                            <li><strong>Buscan la lección valiosa:</strong> Creen que las dificultades no llegan para obstruir, sino para instruir. Cada revés, cada fracaso, contiene una lección valiosa que puede ayudarles a crecer. Su trabajo es encontrar esa lección.</li>
+                            <li><strong>Buscan la solución:</strong> En lugar de quejarse, culpar a otros o regodearse en el problema, los optimistas se orientan inmediatamente a la acción. Se preguntan: "¿Cuál es la solución? ¿Qué podemos hacer ahora? ¿Cuál es el siguiente paso?".</li>
+                        </ol>
+                        <p>Además, los optimistas se centran en sus metas. Piensan y hablan constantemente sobre a dónde se dirigen, no de dónde vienen. Miran hacia el futuro, no hacia el pasado.</p>
+                        <h5>Ejemplo Práctico Detallado</h5>
+                        <p>Un equipo de ventas liderado por Elena no ha conseguido alcanzar su objetivo trimestral. La moral está baja.</p>
+                        <p><strong>El enfoque pesimista (y común):</strong> El equipo se reúne y la conversación se centra en la culpa. "La economía está mal", "El nuevo producto tiene fallos", "Marketing no nos da buenos leads". El diálogo interno de cada vendedor es "Soy un mal vendedor", "Nunca lo conseguiremos". El resultado es la desmotivación y la parálisis.</p>
+                        <p><strong>El enfoque optimista y motivador de Elena:</strong> Elena reúne al equipo y dirige la conversación aplicando las tres disciplinas:</p>
+                        <ol>
+                            <li><strong>Buscar el lado bueno:</strong> "Equipo, es cierto que no hemos llegado al objetivo, y eso es duro. Pero veamos el lado bueno: hemos cerrado un 10% más de clientes pequeños que el trimestre pasado, lo que significa que nuestra estrategia de entrada está funcionando. Y hemos conseguido una reunión con esa gran cuenta que llevábamos un año persiguiendo."</li>
+                            <li><strong>Buscar la lección valiosa:</strong> "¿Qué hemos aprendido? Hemos aprendido que nuestro ciclo de venta para clientes grandes es más largo de lo que pensábamos, y que necesitamos más material de apoyo para las fases finales. Esta es una información de oro que nos hará más fuertes."</li>
+                            <li><strong>Buscar la solución:</strong> "Así que, en lugar de lamentarnos, vamos a actuar. ¿Cuál es la solución? Propongo dos cosas: primero, vamos a crear un nuevo argumentario de ventas enfocado en ciclos largos. Segundo, vamos a colaborar con marketing para crear dos casos de estudio detallados. ¿Cuál es el primer paso? Que cada uno de nosotros escriba tres puntos clave que cree que deberían estar en el nuevo argumentario. ¡Manos a la obra!"</li>
+                        </ol>
+                        <p>Al controlar el diálogo y enfocarlo de forma optimista y constructiva, Elena transforma una situación de fracaso en una oportunidad de aprendizaje y acción. El equipo sale de la reunión no desmoralizado, sino con energía y un plan claro. Se han convertido en sus propios animadores.</p>
+                    `
+                },
+                { 
+                    id: 20, 
+                    title: 'Desarrolle un sentido de urgencia', 
+                    text: 'Adquiera el hábito de moverse rápido en sus tareas clave. Esto crea un "principio de impulso" que le da más energía y le permite entrar en un estado de "flujo" de alto rendimiento.', 
+                    viz: 'momentum',
+                    long_description: `
+                        <h5>El Hábito de la Acción Rápida</h5>
+                        <p>Una de las características más visibles de las personas de alto rendimiento es un rasgo que se puede describir como "orientación a la acción". No se quedan atascados en la planificación o el análisis excesivo. Piensan, planifican, priorizan y luego se lanzan con rapidez y decisión hacia sus metas. Desarrollar un "sentido de urgencia" es cultivar un impulso interno, una impaciencia constructiva que le empuja a empezar y a seguir avanzando.</p>
+                        <p>Este sentido de urgencia no significa trabajar de forma precipitada o descuidada. Significa trabajar con un ritmo rápido y constante en las tareas importantes. Cuando actúa con rapidez, activa el "Principio del Impulso del Éxito". Ponerse en marcha desde la inercia requiere mucha energía, pero una vez que está en movimiento, se necesita mucha menos energía para seguir avanzando. De hecho, ocurre lo contrario: cuanto más rápido se mueve, más energía genera.</p>
+                        <h5>El Estado de "Flujo"</h5>
+                        <p>Trabajar con un ritmo rápido y continuo en tareas de alto valor puede inducir un estado mental óptimo conocido como "flujo". En este estado, se siente completamente inmerso en la actividad. El tiempo parece volar, el trabajo se siente sin esfuerzo y su rendimiento se dispara. Se siente eufórico, claro y creativo. Las personas de éxito son aquellas que han aprendido a entrar en este estado de flujo con más frecuencia que la persona promedio, y desarrollar un sentido de urgencia es una de las claves para lograrlo.</p>
+                        <p>Para cultivar este hábito, repítase continuamente el mantra: "¡Hazlo ahora! ¡Hazlo ahora!". Cuando se sienta tentado a disminuir el ritmo o a distraerse, dígase a sí mismo: "¡Vuelve al trabajo! ¡Vuelve al trabajo!".</p>
+                        <h5>Ejemplo Práctico Detallado</h5>
+                        <p>Una pequeña agencia de diseño recibe una solicitud de propuesta de un cliente potencial muy atractivo. El plazo de entrega es de dos semanas. </p>
+                        <p><strong>El enfoque estándar (sin sentido de urgencia):</strong> El equipo se reúne, discute algunas ideas y decide que "empezarán a trabajar en ello la próxima semana". Pasan los días, se ocupan de otras tareas menos importantes y, de repente, se dan cuenta de que solo quedan tres días para la fecha límite. Entran en pánico. Trabajan noches y fines de semana, el resultado es apresurado, estresante y de calidad mediocre. Pierden el proyecto.</p>
+                        <p><strong>El enfoque con sentido de urgencia:</strong> El líder del equipo, Pablo, entiende el poder de la acción rápida. En cuanto llega la solicitud, reúne al equipo y dice: "Este es nuestro 'sapo' de la semana. Nuestro objetivo es tener un primer borrador completo para el final del día de mañana".</p>
+                        <p>Esta declaración crea un sentido de urgencia inmediato. El equipo cancela reuniones no esenciales y se enfoca por completo en la propuesta. Hacen una lluvia de ideas intensa, dividen el trabajo y empiezan a ejecutar de inmediato. Al moverse rápido, generan energía y creatividad. Las ideas fluyen. Al final del día siguiente, tienen un borrador sólido.</p>
+                        <p>Esto les deja más de una semana para refinar, pulir y añadir detalles creativos que les diferencien de la competencia. Presentan la propuesta dos días antes de la fecha límite, sintiéndose seguros y orgullosos de su trabajo. Ganan el proyecto.</p>
+                        <p>La diferencia no fue el tiempo disponible, sino la mentalidad. Al desarrollar un sentido de urgencia, el equipo de Pablo comprimió el esfuerzo inicial, lo que les dio tiempo de sobra para la excelencia, mientras que el otro enfoque condujo al estrés y la mediocridad. Ganarse la reputación de ser alguien que hace las cosas bien y rápido es uno de los mayores activos profesionales que puede construir.</p>
+                    `
+                },
             ]
         }
     ];
-
-    // Placeholder for all long descriptions. In a real app, these would be filled out.
-    sectionsData.forEach(section => {
-        section.strategies.forEach(strategy => {
-            if (strategy.long_description === '...') {
-                strategy.long_description = `
-                    <h5>Exploración Profunda de "${strategy.title}"</h5>
-                    <p>Este es un espacio reservado para una descripción detallada de la estrategia número ${strategy.id}. En una implementación completa, este texto se expandiría para cubrir los matices del principio, proporcionando un análisis exhaustivo y múltiples ejemplos para una comprensión total.</p>
-                    <p>El objetivo sería desglosar el concepto en sus componentes fundamentales, explicar la psicología detrás de por qué funciona y ofrecer una guía paso a paso para integrarlo en su rutina diaria. Se discutirían los errores comunes a evitar y se mostraría cómo la aplicación constante de este principio puede generar un impacto compuesto en su productividad y éxito a largo plazo.</p>
-                    <h5>Ejemplo Práctico Conceptual</h5>
-                    <p>Para ilustrar, imagine a un gerente de proyectos aplicando esta estrategia. Se enfrentaría a un desafío complejo, pero al utilizar el principio de "${strategy.title}", podría estructurar su enfoque, motivar a su equipo y navegar los obstáculos de manera más efectiva. El ejemplo detallaría sus pensamientos, acciones y los resultados positivos derivados de la aplicación disciplinada de esta técnica, demostrando su valor en un escenario del mundo real.</p>
-                `;
-            }
-        });
-    });
-
 
     const sectionsContainer = document.getElementById('sections-container');
     const navMenu = document.getElementById('nav-menu');
