@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Infografía Interactiva: 21 Estrategias para Vencer la Procrastinación con IA</title>
+    <title>Infografía Interactiva: 21 Estrategias para Vencer la Procrastinación</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
@@ -39,6 +39,8 @@
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             border: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
         }
         .strategy-card:hover {
             transform: translateY(-5px);
@@ -63,20 +65,10 @@
             margin-bottom: 2rem;
             text-align: center;
         }
-        .loader {
-            width: 48px;
-            height: 48px;
-            border: 5px solid #FFF;
-            border-bottom-color: #FF3D00;
-            border-radius: 50%;
-            display: inline-block;
-            box-sizing: border-box;
-            animation: rotation 1s linear infinite;
-            margin: 20px auto;
-        }
-        @keyframes rotation {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        .example-box {
+            margin-top: auto;
+            padding-top: 1rem;
+            border-top: 1px solid #f1f5f9;
         }
     </style>
 </head>
@@ -86,9 +78,9 @@
 
         <header class="text-center my-12 md:my-16">
             <h1 class="text-4xl md:text-6xl font-black tracking-tight text-slate-900 leading-tight">Domina tu Día: Las 21 Leyes</h1>
-            <h2 class="text-4xl md:text-6xl font-black tracking-tight gradient-text">Anti-Procrastinación con IA</h2>
+            <h2 class="text-4xl md:text-6xl font-black tracking-tight gradient-text">Anti-Procrastinación</h2>
             <p class="mt-6 max-w-3xl mx-auto text-lg text-slate-600">
-                Una guía interactiva inspirada en "¡Tráguese ese sapo!" de Brian Tracy. Descubre cómo afrontar tus tareas más difíciles y multiplicar tu productividad con ayuda de la IA.
+                Una guía interactiva inspirada en "¡Tráguese ese sapo!" de Brian Tracy. Descubre cómo afrontar tus tareas más difíciles y multiplicar tu productividad.
             </p>
         </header>
 
@@ -100,21 +92,17 @@
                      <p class="mt-2 text-sky-200">Antes de actuar, debes pensar. La claridad, la planificación y la priorización son los cimientos de la productividad.</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="strategy-card lg:col-span-2">
+                    <div class="strategy-card">
                         <div class="flex items-start gap-4">
                             <div class="number-badge">1</div>
                             <div>
                                 <h3 class="text-xl font-bold mb-2">Ponga la mesa</h3>
-                                <p class="mb-4 text-slate-600">La confusión es el enemigo nº 1. Define tus metas con el método de 7 pasos. Y ahora, ¡deja que la IA te ayude a crear el plan!</p>
+                                <p class="mb-4 text-slate-600">La confusión es el enemigo nº 1. La claridad es poder. Define tus metas con el método de 7 pasos para saber exactamente cuál es tu "sapo".</p>
                             </div>
                         </div>
-                        <div class="mt-4 pt-4 border-t border-slate-200">
-                            <label for="goalInput" class="block text-md font-semibold text-slate-700 mb-2">Introduce tu gran objetivo:</label>
-                            <input type="text" id="goalInput" class="w-full p-2 border border-slate-300 rounded-md" placeholder="Ej: Lanzar mi podcast este trimestre">
-                            <button id="generatePlanBtn" class="mt-3 w-full bg-sky-600 text-white font-bold py-2 px-4 rounded-md hover:bg-sky-700 transition-colors">
-                                ✨ Generar Plan de Acción
-                            </button>
-                            <div id="planResult" class="mt-4 p-4 bg-slate-50 rounded-md hidden"></div>
+                        <div class="example-box">
+                            <p class="text-sm font-semibold text-sky-800">Ejemplo de uso:</p>
+                            <p class="text-sm text-slate-600 italic">En lugar de "mejorar mi físico", define: "Perder 5 kilos en 3 meses haciendo ejercicio 3 veces por semana y siguiendo un plan de nutrición".</p>
                         </div>
                     </div>
 
@@ -126,9 +114,9 @@
                             </div>
                         </div>
                         <p class="mb-4 text-slate-600">La fórmula 10/90 es clave: 10% del tiempo planificando ahorra 90% en ejecución. Haz tu lista la noche anterior.</p>
-                        <div class="bg-sky-100 text-sky-900 p-4 rounded-lg text-center">
-                            <div class="text-5xl font-black">10 min</div>
-                            <div class="text-lg font-semibold mt-1">→ Ahorran hasta 2 horas</div>
+                        <div class="example-box">
+                            <p class="text-sm font-semibold text-sky-800">Ejemplo de uso:</p>
+                            <p class="text-sm text-slate-600 italic">Cada noche, antes de dormir, dedica 10 minutos a listar en una libreta las tareas del día siguiente. Te levantarás con un mapa claro.</p>
                         </div>
                     </div>
                     
@@ -143,6 +131,10 @@
                         <div class="chart-container h-48 max-h-48">
                             <canvas id="paretoChart"></canvas>
                         </div>
+                         <div class="example-box">
+                            <p class="text-sm font-semibold text-sky-800">Ejemplo de uso:</p>
+                            <p class="text-sm text-slate-600 italic">Un vendedor debe centrarse en llamar a los 5 clientes potenciales más grandes (20%) en lugar de organizar su CRM (80%).</p>
+                        </div>
                     </div>
 
                     <div class="strategy-card">
@@ -152,6 +144,10 @@
                                 <h3 class="text-xl font-bold">Estudie las consecuencias</h3>
                                 <p class="text-slate-600 mt-2">Tu "sapo" es la tarea con las mayores consecuencias potenciales a largo plazo. Piensa en el futuro para tomar mejores decisiones hoy.</p>
                             </div>
+                        </div>
+                        <div class="example-box">
+                            <p class="text-sm font-semibold text-sky-800">Ejemplo de uso:</p>
+                            <p class="text-sm text-slate-600 italic">No preparar la presentación para la junta tiene consecuencias graves (pérdida de confianza). Responder emails de baja prioridad tiene consecuencias leves.</p>
                         </div>
                     </div>
                     
@@ -163,24 +159,9 @@
                                 <p class="text-slate-600 mt-2">Prioriza tu lista: **A** (Vital), **B** (Debería), **C** (Agradable), **D** (Delegar), **E** (Eliminar). Tu misión: empezar por la tarea A-1 y no parar.</p>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="sapo-finder">
-                <div class="strategy-card bg-gradient-to-br from-amber-400 to-orange-500 text-white lg:col-span-3">
-                    <h3 class="text-3xl font-black text-center mb-4">✨ ¡Encuentra tu Sapo del Día!</h3>
-                    <p class="text-center text-amber-100 mb-6">¿No estás seguro de cuál es tu tarea más importante? Lista tus pendientes y deja que la IA te ayude a identificar tu "sapo".</p>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-                        <div>
-                            <label for="taskList" class="block text-md font-semibold mb-2">Escribe tus tareas del día (una por línea):</label>
-                            <textarea id="taskList" rows="5" class="w-full p-2 border border-amber-300 rounded-md bg-white/20 text-white placeholder-amber-200"></textarea>
-                            <button id="findSapoBtn" class="mt-3 w-full bg-white text-orange-600 font-bold py-2 px-4 rounded-md hover:bg-amber-50 transition-colors">
-                                ¡Encontrar mi Sapo!
-                            </button>
-                        </div>
-                        <div id="sapoResult" class="p-4 bg-white/20 rounded-md min-h-[180px] flex items-center justify-center">
-                            <p class="text-amber-100">Aquí aparecerá tu resultado...</p>
+                        <div class="example-box">
+                            <p class="text-sm font-semibold text-sky-800">Ejemplo de uso:</p>
+                            <p class="text-sm text-slate-600 italic">A-1: Terminar informe para el jefe. B-1: Devolver llamada a un proveedor. C-1: Mirar redes sociales. Empieza siempre por el A-1.</p>
                         </div>
                     </div>
                 </div>
@@ -203,6 +184,10 @@
                         <div class="chart-container h-64 max-h-64">
                             <canvas id="radarChart"></canvas>
                         </div>
+                         <div class="example-box">
+                            <p class="text-sm font-semibold text-teal-800">Ejemplo de uso:</p>
+                            <p class="text-sm text-slate-600 italic">Un desarrollador: 'Codificar', 'Corregir bugs', 'Revisar código'. Si 'Revisar código' es tu punto débil (un 4/10), esa área está frenando tu progreso general.</p>
+                        </div>
                     </div>
 
                     <div class="strategy-card">
@@ -216,6 +201,10 @@
                         <div class="chart-container h-64 max-h-64">
                             <canvas id="learningChart"></canvas>
                         </div>
+                        <div class="example-box">
+                            <p class="text-sm font-semibold text-teal-800">Ejemplo de uso:</p>
+                            <p class="text-sm text-slate-600 italic">Si te sientes inseguro al hacer presentaciones, inscríbete en un curso de oratoria. La nueva confianza eliminará la procrastinación en esa área.</p>
+                        </div>
                     </div>
                     
                     <div class="strategy-card">
@@ -224,6 +213,10 @@
                             <h3 class="text-xl font-bold">Obedezca la eficiencia obligada</h3>
                         </div>
                         <p class="mt-4 text-slate-600">Nunca habrá tiempo para todo. Acepta que solo puedes estar al día en lo más importante. Pregúntate: ¿Cuál es el uso más valioso de mi tiempo ahora mismo?</p>
+                        <div class="example-box">
+                            <p class="text-sm font-semibold text-teal-800">Ejemplo de uso:</p>
+                            <p class="text-sm text-slate-600 italic">De tus 10 tareas, solo hay tiempo para 3. ¿Son "preparar la reunión con el cliente", "llamar a un prospecto clave" y "finalizar la propuesta"? Esas son tus prioridades.</p>
+                        </div>
                     </div>
 
                     <div class="strategy-card">
@@ -232,6 +225,10 @@
                             <h3 class="text-xl font-bold">Prepárese concienzudamente</h3>
                         </div>
                         <p class="mt-4 text-slate-600">Afila el hacha antes de cortar. Ten todo a mano (información, herramientas, un espacio limpio) para que empezar sea un acto reflejo.</p>
+                         <div class="example-box">
+                            <p class="text-sm font-semibold text-teal-800">Ejemplo de uso:</p>
+                            <p class="text-sm text-slate-600 italic">Para escribir un informe, ten abiertos los documentos, datos y plantillas antes de empezar. Cierra todo lo demás.</p>
+                        </div>
                     </div>
 
                     <div class="strategy-card">
@@ -240,15 +237,23 @@
                             <h3 class="text-xl font-bold">Refuerce sus talentos</h3>
                         </div>
                         <p class="mt-4 text-slate-600">Identifica aquello que haces excepcionalmente bien y con lo que disfrutas. Dedica tu corazón a esas tareas. Ahí reside tu máximo valor.</p>
+                         <div class="example-box">
+                            <p class="text-sm font-semibold text-teal-800">Ejemplo de uso:</p>
+                            <p class="text-sm text-slate-600 italic">Si eres un diseñador visual increíble pero lento en la gestión, enfócate en diseñar y delega o automatiza la organización.</p>
+                        </div>
                     </div>
 
-                    <div class="strategy-card lg:col-span-3">
+                    <div class="strategy-card">
                          <div class="flex items-start gap-4">
                             <div class="number-badge">11</div>
                             <div>
                                 <h3 class="text-xl font-bold">Identifique sus obstáculos clave</h3>
-                                <p class="mt-2 text-slate-600">Siempre hay un cuello de botella que limita tu progreso. El 80% de las veces, ese obstáculo es interno (una habilidad, un hábito). Identifícalo y centra toda tu energía en eliminarlo. Su eliminación puede ser tu sapo más importante del día.</p>
+                                <p class="mt-2 text-slate-600">Siempre hay un cuello de botella que limita tu progreso. El 80% de las veces, ese obstáculo es interno (una habilidad, un hábito).</p>
                             </div>
+                        </div>
+                        <div class="example-box">
+                            <p class="text-sm font-semibold text-teal-800">Ejemplo de uso:</p>
+                            <p class="text-sm text-slate-600 italic">"Quiero hacer más ejercicio, pero mi obstáculo es la pereza matutina". Solución: Dejar la ropa lista la noche anterior.</p>
                         </div>
                     </div>
                  </div>
@@ -266,6 +271,10 @@
                             <h3 class="text-xl font-bold">Ponga un ladrillo a la vez</h3>
                         </div>
                         <p class="mt-4 text-slate-600">Un viaje de mil leguas empieza con un solo paso. Ante una tarea abrumadora, olvida el final del camino y céntrate solo en el siguiente paso.</p>
+                        <div class="example-box">
+                            <p class="text-sm font-semibold text-indigo-800">Ejemplo de uso:</p>
+                            <p class="text-sm text-slate-600 italic">Para limpiar toda la casa, empieza solo por ordenar una habitación. Luego la siguiente.</p>
+                        </div>
                     </div>
 
                     <div class="strategy-card">
@@ -274,6 +283,10 @@
                             <h3 class="text-xl font-bold">Presiónese a sí mismo</h3>
                         </div>
                         <p class="mt-4 text-slate-600">Imagina que te vas de viaje un mes y tienes que terminar tus tareas clave hoy. ¡Esa es la urgencia que necesitas!</p>
+                        <div class="example-box">
+                            <p class="text-sm font-semibold text-indigo-800">Ejemplo de uso:</p>
+                            <p class="text-sm text-slate-600 italic">Finge que te vas de vacaciones el viernes. ¿Qué terminarías sí o sí antes de irte? Hazlo ahora.</p>
+                        </div>
                     </div>
 
                     <div class="strategy-card">
@@ -285,6 +298,10 @@
                         <div class="chart-container h-48 max-h-48">
                             <canvas id="energyChart"></canvas>
                         </div>
+                        <div class="example-box">
+                            <p class="text-sm font-semibold text-indigo-800">Ejemplo de uso:</p>
+                            <p class="text-sm text-slate-600 italic">Si eres más creativo por la mañana, agenda tus tareas de diseño de 9 a 12. Deja los correos para la tarde.</p>
+                        </div>
                     </div>
 
                     <div class="strategy-card">
@@ -293,6 +310,10 @@
                             <h3 class="text-xl font-bold">Motívese para la acción</h3>
                         </div>
                         <p class="mt-4 text-slate-600">Conviértete en un optimista incurable. Controla tu diálogo interno. Repítete "¡Puedo hacerlo!" y busca siempre la solución.</p>
+                        <div class="example-box">
+                            <p class="text-sm font-semibold text-indigo-800">Ejemplo de uso:</p>
+                            <p class="text-sm text-slate-600 italic">En lugar de pensar 'qué rollo esta tarea', di 'cuando termine esto, me sentiré genial y habré avanzado mucho'.</p>
+                        </div>
                     </div>
 
                     <div class="strategy-card">
@@ -301,6 +322,10 @@
                             <h3 class="text-xl font-bold">Postergación creativa</h3>
                         </div>
                         <p class="mt-4 text-slate-600">No puedes hacerlo todo. Aprende a decir "No" conscientemente a las tareas de bajo valor para tener tiempo para las que sí importan.</p>
+                        <div class="example-box">
+                            <p class="text-sm font-semibold text-indigo-800">Ejemplo de uso:</p>
+                            <p class="text-sm text-slate-600 italic">Decide conscientemente NO revisar el email cada 5 minutos (tarea de bajo valor) para poder terminar ese proyecto importante.</p>
+                        </div>
                     </div>
 
                     <div class="strategy-card">
@@ -309,6 +334,10 @@
                             <h3 class="text-xl font-bold">Haga lo más difícil primero</h3>
                         </div>
                         <p class="mt-4 text-slate-600">La esencia del libro: empieza tu día con tu tarea A-1. Generarás un impulso de logro para el resto del día.</p>
+                        <div class="example-box">
+                            <p class="text-sm font-semibold text-indigo-800">Ejemplo de uso:</p>
+                            <p class="text-sm text-slate-600 italic">Tu primera tarea del día es esa llamada difícil a un cliente insatisfecho, no leer las noticias.</p>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -325,6 +354,10 @@
                             <h3 class="text-xl font-bold">Divida la tarea</h3>
                         </div>
                         <p class="mt-4 text-slate-600">Usa el método de las "lonchas de jamón" (dividir en pasos) o el "queso suizo" (trabajar solo 5-10 min) para empezar tareas enormes.</p>
+                        <div class="example-box">
+                            <p class="text-sm font-semibold text-rose-800">Ejemplo de uso:</p>
+                            <p class="text-sm text-slate-600 italic">"Escribir un ensayo de 5000 palabras" se convierte en "Hoy solo escribo la introducción (una loncha de jamón)".</p>
+                        </div>
                     </div>
 
                     <div class="strategy-card">
@@ -333,6 +366,10 @@
                             <h3 class="text-xl font-bold">Cree lapsos de tiempo</h3>
                         </div>
                         <p class="mt-4 text-slate-600">Programa citas contigo mismo. Bloquea periodos de 30, 60 o 90 minutos de trabajo ininterrumpido y de enfoque profundo.</p>
+                        <div class="example-box">
+                            <p class="text-sm font-semibold text-rose-800">Ejemplo de uso:</p>
+                            <p class="text-sm text-slate-600 italic">Bloquea en tu calendario de 10:00 a 11:30 "Trabajo profundo: Proyecto X". Sin interrupciones.</p>
+                        </div>
                     </div>
 
                     <div class="strategy-card">
@@ -341,6 +378,10 @@
                             <h3 class="text-xl font-bold">Desarrolle urgencia</h3>
                         </div>
                         <p class="mt-4 text-slate-600">Gánate la reputación de ser alguien que actúa rápido. Repítete: "¡Hazlo ahora!". El ritmo rápido atrae el éxito.</p>
+                        <div class="example-box">
+                            <p class="text-sm font-semibold text-rose-800">Ejemplo de uso:</p>
+                            <p class="text-sm text-slate-600 italic">Cuando te asignen algo, empieza a trabajar en ello en los primeros 5 minutos, en lugar de dejarlo en la bandeja de entrada.</p>
+                        </div>
                     </div>
 
                     <div class="strategy-card lg:col-span-3">
@@ -357,6 +398,10 @@
                                     <canvas id="focusChart"></canvas>
                                 </div>
                             </div>
+                        </div>
+                         <div class="example-box">
+                            <p class="text-sm font-semibold text-rose-800">Ejemplo de uso:</p>
+                            <p class="text-sm text-slate-600 italic">Al escribir un correo importante, cierra las otras 20 pestañas del navegador y pon el móvil en silencio hasta que termines.</p>
                         </div>
                     </div>
                  </div>
@@ -484,114 +529,8 @@
                 },
                 options: { ...sharedChartOptions, plugins: { ...sharedChartOptions.plugins, legend: { display: false }, tooltip: { enabled: false }}}
             });
-
-            // Gemini API Integration
-            const generatePlanBtn = document.getElementById('generatePlanBtn');
-            const goalInput = document.getElementById('goalInput');
-            const planResult = document.getElementById('planResult');
-
-            const findSapoBtn = document.getElementById('findSapoBtn');
-            const taskList = document.getElementById('taskList');
-            const sapoResult = document.getElementById('sapoResult');
-
-            const apiKey = ""; 
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-
-            const showLoader = (element) => {
-                element.innerHTML = '<div class="loader" style="border-bottom-color: #118AB2;"></div>';
-                element.classList.remove('hidden');
-            };
-
-            const displayError = (element, message) => {
-                element.innerHTML = `<p class="text-red-500 font-semibold">${message}</p>`;
-            };
-
-            generatePlanBtn.addEventListener('click', async () => {
-                const goal = goalInput.value.trim();
-                if (!goal) {
-                    displayError(planResult, 'Por favor, introduce un objetivo.');
-                    planResult.classList.remove('hidden');
-                    return;
-                }
-                
-                showLoader(planResult);
-
-                const prompt = `Actúa como un coach de productividad experto. Un usuario quiere lograr el siguiente objetivo: "${goal}". Desglosa este objetivo en un plan de acción claro con pasos secuenciales y fases. Presenta el resultado en formato HTML simple usando encabezados h4 para las fases y una lista desordenada (ul/li) para los pasos.`;
-
-                try {
-                    const payload = { contents: [{ parts: [{ text: prompt }] }] };
-                    const response = await fetch(apiUrl, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
-                    });
-
-                    if (!response.ok) {
-                        throw new Error(`API error: ${response.statusText}`);
-                    }
-
-                    const result = await response.json();
-                    if (result.candidates && result.candidates.length > 0) {
-                        const text = result.candidates[0].content.parts[0].text;
-                        planResult.innerHTML = text;
-                    } else {
-                        throw new Error('No se recibió un plan válido.');
-                    }
-                } catch (error) {
-                    console.error('Error generating plan:', error);
-                    displayError(planResult, 'Hubo un error al generar el plan. Inténtalo de nuevo.');
-                }
-            });
-
-            findSapoBtn.addEventListener('click', async () => {
-                const tasks = taskList.value.trim();
-                if (!tasks) {
-                    sapoResult.innerHTML = `<p class="text-amber-100 font-semibold">Por favor, introduce al menos una tarea.</p>`;
-                    return;
-                }
-
-                sapoResult.innerHTML = '<div class="loader"></div>';
-
-                const prompt = `Actúa como un experto en productividad siguiendo la metodología 'Tráguese ese sapo' de Brian Tracy. Un usuario tiene la siguiente lista de tareas para el día:\n\n${tasks}\n\nAnaliza estas tareas e identifica la única tarea más importante (el 'sapo'), que es la que tendrá el mayor impacto positivo en sus objetivos a largo plazo o resolverá el mayor problema. Devuelve un objeto JSON con la clave "sapo" para el nombre de la tarea y "justificacion" para una breve explicación de 2-3 frases de por qué es la más crítica.`;
-                
-                const payload = {
-                    contents: [{ parts: [{ text: prompt }] }],
-                    generationConfig: {
-                        responseMimeType: "application/json",
-                    }
-                };
-
-                try {
-                    const response = await fetch(apiUrl, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
-                    });
-
-                    if (!response.ok) {
-                        throw new Error(`API error: ${response.statusText}`);
-                    }
-
-                    const result = await response.json();
-                    if (result.candidates && result.candidates.length > 0) {
-                        const jsonText = result.candidates[0].content.parts[0].text;
-                        const parsedJson = JSON.parse(jsonText);
-                        sapoResult.innerHTML = `
-                            <div class="text-center">
-                                <p class="text-md text-amber-100 mb-1">Tu Sapo es:</p>
-                                <h4 class="text-2xl font-black text-white mb-3">${parsedJson.sapo}</h4>
-                                <p class="text-amber-100">${parsedJson.justificacion}</p>
-                            </div>
-                        `;
-                    } else {
-                        throw new Error('No se recibió una respuesta válida.');
-                    }
-                } catch (error) {
-                    console.error('Error finding sapo:', error);
-                    sapoResult.innerHTML = `<p class="text-red-300 font-semibold">Hubo un error al identificar tu sapo. Inténtalo de nuevo.</p>`;
-                }
-            });
         });
     </script>
 </body>
-</html> 
+</html>
+
