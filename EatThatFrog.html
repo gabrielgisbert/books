@@ -219,8 +219,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 { id: 16, title: 'Practique la postergación creativa', text: 'No puede hacerlo todo, así que debe postergar de forma inteligente. Decida conscientemente no hacer tareas de bajo valor para liberar tiempo para lo que realmente importa.', viz: 'text', long_description: '...' },
                 { id: 17, title: 'Haga primero la tarea más difícil', text: 'La esencia del libro: empiece su día con su tarea A-1, su sapo. Al completarla, el resto del día se siente más fácil y su energía y confianza se disparan.', viz: 'text', long_description: '...' },
                 { id: 18, title: 'Divida la tarea', text: 'Use los métodos "lonchas de jamón" (dividir en partes) o "queso suizo" (trabajar en pequeños lapsos de tiempo) para abordar tareas abrumadoras y generar impulso.', viz: 'task_division', long_description: '...' },
-                { id: 19, title: 'Cree lapsos amplios de tiempo', text: 'Los trabajos importantes requieren tiempo ininterrumpido. Agende bloques de 60-90 minutos en su calendario y protéjalos de distracciones como si fueran sus reuniones más importantes.', viz: 'text', long_description: '...' },
-                { id: 21, title: 'Concéntrese resueltamente', text: 'Una vez que empiece una tarea importante, trabaje en ella sin distracción hasta completarla al 100%. Empezar y parar puede multiplicar por 5 el tiempo necesario.', viz: 'text', long_description: '...' },
+                { id: 19, 'title': 'Cree lapsos amplios de tiempo', text: 'Los trabajos importantes requieren tiempo ininterrumpido. Agende bloques de 60-90 minutos en su calendario y protéjalos de distracciones como si fueran sus reuniones más importantes.', viz: 'text', long_description: '...' },
+                { id: 21, 'title': 'Concéntrese resueltamente', text: 'Una vez que empiece una tarea importante, trabaje en ella sin distracción hasta completarla al 100%. Empezar y parar puede multiplicar por 5 el tiempo necesario.', viz: 'text', long_description: '...' },
             ]
         },
         {
@@ -380,10 +380,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 <h3 class="text-3xl font-bold text-slate-900">${section.title}</h3>
                 <p class="mt-3 max-w-2xl mx-auto text-md text-slate-500">${section.description}</p>
             </div>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-start">
                 ${section.strategies.map(strategy => `
-                    <div class="strategy-card rounded-xl p-6 flex flex-col">
-                        <div class="flex-grow">
+                    <div class="strategy-card rounded-xl p-6">
+                        <div>
                             <h4 class="text-xl font-bold text-slate-900">${strategy.id}. ${strategy.title}</h4>
                             <p class="mt-2 text-slate-600">${strategy.text}</p>
                             <div class="mt-4">
