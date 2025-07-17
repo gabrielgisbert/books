@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía Interactiva de Neuroventas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Harmony -->
+    <!-- Application Structure Plan: He rediseñado la aplicación a una sola página de scroll vertical. Esta estructura elimina clics innecesarios y presenta toda la información de forma fluida, ideal para una lectura continua. Las secciones están claramente separadas para facilitar la digestión del contenido. La interactividad se mantiene en el diagrama del cerebro para enfocar la atención, mientras que el resto del contenido es directo, con ejemplos prácticos integrados para mejorar la comprensión y aplicación inmediata. -->
+    <!-- Visualization & Content Choices: 
+        - [Principio Fundamental] -> Goal: Informar -> Viz: Gráfico de Donut con Chart.js -> Interaction: Hover. Justification: Mantiene el impacto visual inicial.
+        - [Cerebro Trino] -> Goal: Organizar/Comparar -> Viz: Diagrama interactivo con HTML/CSS -> Interaction: Clic para mostrar info. Justification: Fomenta la exploración activa de un concepto central.
+        - [Motores de Compra] -> Goal: Organizar -> Viz: Tarjetas de contenido con ejemplos integrados. Justification: Clarifica cada motivador con un caso de uso real.
+        - [Arsenal del Vendedor] -> Goal: Organizar/Explorar -> Viz: Rejilla de tarjetas con descripción y ejemplo directos. Justification: Se elimina el modal para un acceso más rápido a la información, haciendo el contenido más escaneable y útil como guía de referencia rápida.
+        - [Citas Clave] -> Goal: Reforzar -> Viz: Bloques de cita estilizados. Justification: Siguen siendo un cierre potente y memorable.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f7f4;
+            color: #3d3b38;
+        }
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .brain-part {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .brain-part.active {
+            transform: scale(1.05);
+            border-width: 3px;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="container mx-auto p-4 sm:p-6 md:p-10">
+        <!-- Header -->
+        <header class="text-center my-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#3d3b38]">Guía Interactiva de Neuroventas</h1>
+            <p class="text-lg text-gray-500 mt-2">Véndele a la Mente, no a la Gente</p>
+        </header>
+
+        <!-- Main Content -->
+        <main>
+            <!-- Section: Inicio -->
+            <section id="inicio" class="my-16 md:my-24">
+                <h2 class="text-3xl font-bold mb-4 text-center">La Venta es 85% Subconsciente</h2>
+                <p class="text-lg text-gray-600 mb-8 max-w-3xl mx-auto text-center">La tesis central de las neuroventas es revolucionaria: la gran mayoría de las decisiones de compra no son lógicas, sino instintivas y emocionales. Para vender eficazmente, debemos comunicarnos con la mente primitiva del cliente.</p>
+                <div class="bg-white rounded-xl shadow-sm p-6 max-w-4xl mx-auto">
+                    <h3 class="text-xl font-semibold text-center mb-4">Distribución de la Decisión de Compra</h3>
+                    <div class="chart-container relative w-full max-w-md mx-auto h-64 md:h-80">
+                        <canvas id="decisionChart"></canvas>
+                    </div>
+                     <p class="text-center text-gray-500 mt-4">La razón no decide, solo justifica lo que la emoción y el instinto ya eligieron.</p>
+                     <div class="mt-6 pt-4 border-t border-gray-200/80">
+                        <p class="text-sm text-center"><strong class="text-[#c89b7b]">Ejemplo:</strong> Alguien compra un reloj de lujo. La justificación racional (Neocórtex) es "es una buena inversión y da la hora con precisión". La razón real (Límbico/Reptil) es la sensación de estatus, poder y pertenencia a un grupo exclusivo.</p>
+                     </div>
+                </div>
+            </section>
+
+            <!-- Section: Cerebro Trino -->
+            <section id="cerebro" class="my-16 md:my-24">
+                <h2 class="text-3xl font-bold mb-4 text-center">Conoce a tu Verdadero Cliente: El Cerebro Trino</h2>
+                <p class="text-lg text-gray-600 mb-12 max-w-3xl mx-auto text-center">La clave es entender que no le vendes a una persona, sino a tres cerebros en uno. Cada uno tiene un rol distinto, pero solo uno toma la decisión final. Haz clic en cada cerebro para descubrir cómo hablarle.</p>
+                <div class="flex flex-col lg:flex-row gap-8 items-center">
+                    <!-- Brain Diagram -->
+                    <div class="lg:w-1/2 flex flex-col items-center justify-center space-y-4">
+                        <div id="brain-neocortex" data-brain="neocortex" class="brain-part border-2 border-[#8ab0ab] bg-[#8ab0ab]/20 rounded-full w-80 h-80 flex items-center justify-center text-center p-4">
+                             <div id="brain-limbico" data-brain="limbico" class="brain-part border-2 border-[#f2c7a3] bg-[#f2c7a3]/20 rounded-full w-60 h-60 flex items-center justify-center text-center p-4">
+                                 <div id="brain-reptil" data-brain="reptil" class="brain-part active border-2 border-[#c89b7b] bg-[#c89b7b]/20 rounded-full w-40 h-40 flex items-center justify-center text-center p-4">
+                                     <span class="font-bold text-xl">Reptil</span>
+                                 </div>
+                             </div>
+                        </div>
+                        <div class="flex space-x-4">
+                             <div data-brain="limbico" class="brain-part-label brain-part border-2 border-[#f2c7a3] bg-[#f2c7a3]/20 rounded-lg p-4 font-bold">Límbico</div>
+                             <div data-brain="neocortex" class="brain-part-label brain-part border-2 border-[#8ab0ab] bg-[#8ab0ab]/20 rounded-lg p-4 font-bold">Neocórtex</div>
+                        </div>
+                    </div>
+                    <!-- Brain Info -->
+                    <div id="brain-info" class="lg:w-1/2 bg-white rounded-xl shadow-sm p-8 min-h-[300px]">
+                        <!-- Content updated by JS -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section: Motores -->
+            <section id="motores" class="my-16 md:my-24">
+                <h2 class="text-3xl font-bold mb-4 text-center">Los 3 Motores de la Compra</h2>
+                <p class="text-lg text-gray-600 mb-12 max-w-3xl mx-auto text-center">Toda compra, sin importar el producto, se reduce a satisfacer una de estas tres motivaciones reptilianas fundamentales. Tu oferta debe ser la respuesta directa a una de ellas.</p>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="card bg-white rounded-xl shadow-sm p-6 flex flex-col">
+                        <h3 class="text-2xl font-bold mb-3">🛡️ Reducir el Miedo</h3>
+                        <p class="text-gray-600">Es el motor más potente. Compramos para calmar miedos: a la incertidumbre, al fracaso, al dolor, al rechazo. Tu producto debe ser el héroe que ofrece seguridad y protección.</p>
+                        <p class="text-sm mt-auto pt-3 border-t border-gray-200/80"><strong class="text-[#c89b7b]">Ejemplo:</strong> Una empresa de ciberseguridad no vende "software antivirus", vende "tranquilidad y protección contra el robo de datos que podría arruinar tu negocio".</p>
+                    </div>
+                    <div class="card bg-white rounded-xl shadow-sm p-6 flex flex-col">
+                        <h3 class="text-2xl font-bold mb-3">⚡ Ahorrar Energía</h3>
+                        <p class="text-gray-600">El cerebro ama la simplicidad y la conveniencia. Un producto fácil de entender, comprar y usar siempre tendrá ventaja porque reduce el esfuerzo mental y físico.</p>
+                        <p class="text-sm mt-auto pt-3 border-t border-gray-200/80"><strong class="text-[#c89b7b]">Ejemplo:</strong> Amazon no vende "un marketplace online", vende "la forma más fácil y rápida de comprar cualquier cosa sin moverte de casa con su compra en 1-Clic".</p>
+                    </div>
+                    <div class="card bg-white rounded-xl shadow-sm p-6 flex flex-col">
+                        <h3 class="text-2xl font-bold mb-3">😊 Aumentar el Placer</h3>
+                        <p class="text-gray-600">Buscamos experiencias que nos generen bienestar, confort y nos alejen del dolor. Esto incluye desde el placer físico hasta la satisfacción emocional de pertenecer a un grupo.</p>
+                        <p class="text-sm mt-auto pt-3 border-t border-gray-200/80"><strong class="text-[#c89b7b]">Ejemplo:</strong> Starbucks no vende café, vende "tu tercer lugar" (después de casa y el trabajo). Vende el placer de un momento para ti, con tu nombre en el vaso y un ambiente acogedor.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section: Arsenal -->
+            <section id="arsenal" class="my-16 md:my-24">
+                <h2 class="text-3xl font-bold mb-4 text-center">El Arsenal del Neurovendedor</h2>
+                <p class="text-lg text-gray-600 mb-12 max-w-3xl mx-auto text-center">A continuación, se presentan las tácticas y principios prácticos más efectivos para aplicar en tu día a día, con ejemplos directos para que puedas usarlos hoy mismo.</p>
+                <div id="arsenal-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Cards populated by JS -->
+                </div>
+            </section>
+            
+            <!-- Section: Citas Clave -->
+            <section id="citas" class="my-16 md:my-24">
+                <h2 class="text-3xl font-bold mb-12 text-center">Citas Clave para Recordar</h2>
+                 <div class="space-y-8 max-w-3xl mx-auto">
+                    <blockquote class="card bg-white rounded-xl shadow-sm p-8 border-l-4 border-[#c89b7b]">
+                        <p class="text-xl italic text-gray-700">“La gente no compra productos, compra significados.”</p>
+                        <footer class="mt-4 text-gray-600">— Tu verdadero trabajo es descubrir qué representa tu producto (libertad, estatus, seguridad) y vender esa idea.</footer>
+                    </blockquote>
+                     <blockquote class="card bg-white rounded-xl shadow-sm p-8 border-l-4 border-[#8ab0ab]">
+                        <p class="text-xl italic text-gray-700">“Si no generas emoción, no hay decisión.”</p>
+                        <footer class="mt-4 text-gray-600">— Una comunicación puramente racional es invisible. Debes emocionar para captar la atención y abrir la puerta a la decisión.</footer>
+                    </blockquote>
+                     <blockquote class="card bg-white rounded-xl shadow-sm p-8 border-l-4 border-[#f2c7a3]">
+                        <p class="text-xl italic text-gray-700">“Vender sin vender es la nueva forma de vender.”</p>
+                        <footer class="mt-4 text-gray-600">— Conviértete en un asesor de confianza que ayuda a resolver miedos. El cliente te comprará de forma natural, sin sentirse presionado.</footer>
+                    </blockquote>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- DATA ---
+            const brainData = {
+                reptil: {
+                    title: '🧠 Cerebro Reptil (El Decisor)',
+                    description: 'Es la parte más antigua y poderosa. No piensa ni siente; solo actúa. Su objetivo es la <strong>supervivencia</strong>: dominar, reproducirse, protegerse y ahorrar energía. <br><br><strong>Rol en la Venta:</strong> TOMA LA DECISIÓN FINAL. Para venderle, debes ser visual y demostrar un beneficio tangible y egoísta.',
+                    example: '<strong>Ejemplo de discurso:</strong> "Con este sistema, tu familia estará 100% segura" o "Esta inversión te dará el mayor retorno". Apela directamente a la seguridad y la ganancia.',
+                    color: '#c89b7b'
+                },
+                limbico: {
+                    title: '❤️ Cerebro Límbico (El Emocional)',
+                    description: 'Es el centro de las emociones (miedo, alegría, culpa) y la memoria a largo plazo. Conecta profundamente con <strong>historias, música y experiencias sensoriales</strong>.<br><br><strong>Rol en la Venta:</strong> ABRE LA PUERTA A LA VENTA. Generar una conexión emocional positiva es crucial.',
+                    example: '<strong>Ejemplo de discurso:</strong> "Imagina la cara de tus hijos cuando llegues a casa con este regalo" o "Recuerdo a un cliente que se sentía igual de frustrado que tú, hasta que probó esto...".',
+                    color: '#f2c7a3'
+                },
+                neocortex: {
+                    title: '🤖 Neocórtex (El Justificador)',
+                    description: 'Es la parte racional y lógica. Procesa datos, lenguaje y análisis. Es la que habla y busca argumentos para <strong>validar las decisiones</strong> que los otros dos cerebros ya tomaron.<br><br><strong>Rol en la Venta:</strong> JUSTIFICA LA COMPRA. Debes darle datos, pero solo al final.',
+                    example: '<strong>Ejemplo de discurso:</strong> "Además de hacerte sentir genial, este coche tiene un consumo de 5L/100km y 5 años de garantía". Son los datos que cierran el trato lógicamente.',
+                    color: '#8ab0ab'
+                }
+            };
+            const arsenalData = [
+                { title: 'Usa Historias', text: 'El cerebro está diseñado para recordar historias, no datos. Activan el cerebro límbico, generan empatía y hacen que tu mensaje sea memorable.', example: 'En lugar de "nuestro colchón mejora el sueño", di: "Una clienta sufría de insomnio por estrés. Tras una semana con nuestro colchón, nos dijo que por fin volvía a soñar".' },
+                { title: 'Sé Visual', text: 'El nervio óptico es el más rápido. El 80-85% de la información que procesamos es visual. Muestra, no cuentes. Usa imágenes y contrastes.', example: 'Al vender una casa, no listes las medidas. Muestra un plano 3D interactivo o un video tour que permita al cliente "caminar" por el espacio y sentirlo como suyo.' },
+                { title: 'Simplifica', text: 'El cerebro reptil ama lo simple y rechaza lo complejo. Usa frases cortas, verbos de acción y conceptos básicos como "Gana tú", "Más seguro", "Ahorra tiempo".', example: 'En vez de "Nuestro software integra múltiples APIs para optimizar flujos de trabajo", di: "Conecta todo tu trabajo en un solo clic. Ahorra 5 horas a la semana".' },
+                { title: 'Principio y Final', text: 'La mente presta máxima atención al inicio y al final de una interacción. Asegúrate de que tu mensaje más potente esté en esos dos momentos clave.', example: 'Empieza tu presentación con una pregunta impactante: "¿Sabías que el 50% de las empresas como la tuya fracasan por este error?". Y ciérrala resumiendo el beneficio principal.' },
+                { title: 'Activa los Sentidos', text: 'Involucra el tacto, el olfato y el oído. Dejar que un cliente toque el producto crea un sentimiento de posesión psicológica y aumenta su valor percibido.', example: 'Una panadería que hornea pan todo el día no solo vende producto, vende el irresistible aroma a hogar y frescura que atrae a los clientes desde la calle.' },
+                { title: 'Adapta el Discurso', text: 'Aunque es una generalización, sirve como guía. Hombres: Suelen buscar poder y soluciones rápidas. Mujeres: Suelen valorar más la seguridad y la conexión.', example: 'Al vender un coche, a él podrías decirle: "Siente la potencia del motor V8". A ella: "Nota lo seguro y espacioso que es para llevar a los niños al colegio".' },
+                { title: 'Genera Escasez', text: 'El cerebro reptil odia perder una oportunidad. Frases como "edición limitada" o "solo por hoy" activan el instinto de actuar ahora para evitar el dolor de la pérdida.', example: 'Booking.com es un maestro en esto: "¡Solo queda 1 habitación a este precio!" o "25 personas están viendo este hotel ahora mismo".' },
+                { title: 'Usa la Reciprocidad', text: 'El principio de "dar antes de recibir" es muy poderoso. Ofrece valor, una muestra o un consejo útil sin pedir nada a cambio. Esto crea una deuda psicológica positiva.', example: 'Una consultora de marketing ofrece un diagnóstico gratuito de 30 minutos de tu web. Tras recibir tanto valor, es mucho más probable que contrates sus servicios.' },
+                { title: 'Validación Social', text: 'Los testimonios, casos de éxito y reseñas refuerzan la decisión, ya que el cerebro busca la seguridad del grupo. Si otros lo compraron, debe ser seguro.', example: 'En una tienda online, mostrar "Juan de Madrid acaba de comprar este producto" o destacar las reseñas de 5 estrellas con fotos de clientes felices.' }
+            ];
+
+            // --- CHART.JS ---
+            const ctx = document.getElementById('decisionChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Subconsciente (Instinto y Emoción)', 'Consciente (Racional)'],
+                    datasets: [{
+                        label: 'Decisión de Compra',
+                        data: [85, 15],
+                        backgroundColor: ['#c89b7b', '#8ab0ab'],
+                        borderColor: '#f8f7f4',
+                        borderWidth: 4,
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '70%',
+                    plugins: {
+                        legend: { position: 'bottom', labels: { padding: 20, font: { size: 14 }}},
+                        tooltip: { callbacks: { label: (c) => `${c.label}: ${c.raw}%` }}
+                    }
+                }
+            });
+
+            // --- BRAIN INTERACTIVITY ---
+            const brainParts = document.querySelectorAll('.brain-part, .brain-part-label');
+            const brainInfoContainer = document.getElementById('brain-info');
+            
+            function updateBrainInfo(brainKey) {
+                const data = brainData[brainKey];
+                brainInfoContainer.innerHTML = `
+                    <h3 class="text-2xl font-bold mb-4" style="color: ${data.color};">${data.title}</h3>
+                    <p class="text-gray-600 leading-relaxed mb-4">${data.description}</p>
+                    <p class="text-sm mt-auto pt-4 border-t border-gray-200/80">${data.example}</p>
+                `;
+                document.querySelectorAll('.brain-part').forEach(p => p.classList.remove('active'));
+                document.querySelectorAll(`[data-brain='${brainKey}']`).forEach(el => el.classList.add('active'));
+            }
+            
+            brainParts.forEach(part => {
+                part.addEventListener('click', () => {
+                    const brainKey = part.dataset.brain;
+                    updateBrainInfo(brainKey);
+                });
+            });
+            updateBrainInfo('reptil');
+
+            // --- ARSENAL CARDS ---
+            const arsenalGrid = document.getElementById('arsenal-grid');
+            arsenalData.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'card bg-white rounded-xl shadow-sm p-6 flex flex-col';
+                card.innerHTML = `
+                    <h3 class="text-xl font-bold mb-2">${item.title}</h3>
+                    <p class="text-gray-600 text-sm mb-3">${item.text}</p>
+                    <p class="text-sm mt-auto pt-3 border-t border-gray-200/80"><strong class="text-[#c89b7b]">Ejemplo:</strong> ${item.example}</p>
+                `;
+                arsenalGrid.appendChild(card);
+            });
+        });
+    </script>
+</body>
+</html>
