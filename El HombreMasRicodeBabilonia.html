@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Sabiduría de Babilonia: Guía Interactiva</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Babylonian Sands (Warm neutrals, terracotta, muted gold, deep blue accent) -->
+    <!-- Application Structure Plan: La aplicación está diseñada como un panel de control interactivo en lugar de un resumen lineal. Utiliza una navegación por pestañas para dividir la sabiduría del libro en módulos temáticos y accionables: "Los 7 Remedios", "Las 5 Leyes del Oro", "El Plan de Babilonia" y "Aplicación". Esta estructura permite al usuario explorar los conceptos a su propio ritmo y de forma no lineal. El elemento central es "El Plan de Babilonia", una calculadora interactiva que personaliza el plan 10/70/20 para el usuario, transformando un principio clave en una herramienta práctica. Este enfoque prioriza la usabilidad y la aplicación personal sobre la simple recitación del contenido del libro. -->
+    <!-- Visualization & Content Choices: 
+        - Report Info: "Las siete maneras de llenar una bolsa vacía" -> Goal: Organize/Inform -> Viz/Presentation: Interactive cards -> Interaction: Click to expand details -> Justification: More engaging and less overwhelming than a long text list. -> Library/Method: HTML/CSS/JS.
+        - Report Info: "Las cinco leyes del oro" -> Goal: Organize/Inform -> Viz/Presentation: Vertical accordion -> Interaction: Click to reveal law description -> Justification: Breaks down complex principles into digestible parts. -> Library/Method: HTML/CSS/JS.
+        - Report Info: The 10/70/20 Debt/Savings Plan -> Goal: Inform/Interact/Personalize -> Viz/Presentation: Interactive Donut Chart + Input Field -> Interaction: User enters monthly income; chart and text update instantly -> Justification: Provides immediate, personalized application of a core concept, enhancing learning and utility. -> Library/Method: Chart.js.
+        - Report Info: Application advice -> Goal: Inform -> Viz/Presentation: Structured text sections -> Interaction: Static text -> Justification: Clear and direct presentation of actionable advice. -> Library/Method: HTML/CSS.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDF6E3; /* Warm parchment */
+        }
+        h1, h2, h3, .font-display {
+            font-family: 'Cormorant Garamond', serif;
+        }
+        .nav-button {
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-button.active {
+            border-bottom-color: #D3A95C; /* Muted Gold */
+            color: #583c27;
+        }
+        .nav-button:hover {
+            border-bottom-color: #D3A95C;
+            color: #583c27;
+        }
+        .content-section {
+            display: none;
+        }
+        .content-section.active {
+            display: block;
+        }
+        .remedy-card {
+            background-color: #FFFBF0;
+            border: 1px solid #EAE0C7;
+            transition: all 0.3s ease;
+        }
+        .remedy-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .accordion-item-header {
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .accordion-item-header:hover {
+            background-color: #F9F2E6;
+        }
+        .accordion-item-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
+        }
+        .accordion-item.open .accordion-item-body {
+            max-height: 1000px; /* Large enough for content */
+            transition: max-height 1s ease-in-out;
+        }
+        .accordion-icon {
+            transition: transform 0.3s ease;
+        }
+        .accordion-item.open .accordion-icon {
+            transform: rotate(180deg);
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 400px;
+            max-height: 60vh;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+
+        <header class="text-center mb-12">
+            <h1 class="text-5xl md:text-7xl font-bold text-[#583c27]">El Hombre Más Rico de Babilonia</h1>
+            <p class="text-xl text-[#8C6D54] mt-2 font-display">Una Guía Interactiva para la Prosperidad (Valoración: 9.5/10)</p>
+        </header>
+
+        <main class="bg-white/50 backdrop-blur-sm rounded-2xl shadow-lg p-6 md:p-10">
+            
+            <section id="intro" class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-[#583c27] mb-4 font-display">El Legado de la Riqueza</h2>
+                <p class="text-lg max-w-3xl mx-auto text-gray-700">
+                    Este libro no es solo sobre dinero; es sobre la sabiduría atemporal que gobierna la riqueza. Aborda el problema universal de por qué, a pesar de trabajar duro, muchos luchan financieramente. A través de parábolas sencillas, desvela los principios para generar prosperidad, salir de deudas y asegurar un futuro estable. Esta guía interactiva está diseñada para que puedas explorar, entender y aplicar estas poderosas lecciones en tu vida.
+                </p>
+            </section>
+
+            <nav class="flex justify-center border-b border-gray-300 mb-8 flex-wrap">
+                <button class="nav-button active py-4 px-6 text-lg text-gray-600 font-semibold" data-target="remedios">Los 7 Remedios</button>
+                <button class="nav-button py-4 px-6 text-lg text-gray-600 font-semibold" data-target="leyes">Las 5 Leyes del Oro</button>
+                <button class="nav-button py-4 px-6 text-lg text-gray-600 font-semibold" data-target="plan">El Plan de Babilonia</button>
+                <button class="nav-button py-4 px-6 text-lg text-gray-600 font-semibold" data-target="aplicacion">Aplicación Práctica</button>
+            </nav>
+
+            <div id="content-container">
+
+                <section id="remedios" class="content-section active">
+                    <div class="text-center mb-8">
+                        <h2 class="text-4xl font-bold text-[#583c27] mb-2 font-display">Los 7 Remedios para una Bolsa Vacía</h2>
+                        <p class="text-md text-gray-600 max-w-2xl mx-auto">Estas son las siete reglas fundamentales que Arkad enseñó para transformar una bolsa vacía en una fortuna floreciente. Son el cimiento sobre el cual se construye toda riqueza duradera. Explora cada remedio para descubrir su poder.</p>
+                    </div>
+                    <div id="remedies-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    </div>
+                </section>
+
+                <section id="leyes" class="content-section">
+                    <div class="text-center mb-8">
+                        <h2 class="text-4xl font-bold text-[#583c27] mb-2 font-display">Las 5 Leyes del Oro</h2>
+                        <p class="text-md text-gray-600 max-w-2xl mx-auto">El oro se rige por leyes tan inmutables como las de la gravedad. Comprender y obedecer estas cinco leyes es la clave no solo para adquirir riqueza, sino para conservarla y multiplicarla. Estas son las reglas que dictan el flujo de la prosperidad.</p>
+                    </div>
+                    <div id="laws-accordion" class="max-w-3xl mx-auto space-y-4">
+                    </div>
+                </section>
+                
+                <section id="plan" class="content-section">
+                    <div class="text-center mb-8">
+                        <h2 class="text-4xl font-bold text-[#583c27] mb-2 font-display">El Plan de Babilonia: 10-70-20</h2>
+                        <p class="text-md text-gray-600 max-w-2xl mx-auto">Esta es la herramienta más práctica del libro para quienes enfrentan deudas. Permite no solo pagar a los acreedores, sino también construir riqueza simultáneamente. Introduce tus ingresos mensuales para ver cómo este poderoso plan puede funcionar para ti.</p>
+                    </div>
+                    <div class="flex flex-col lg:flex-row items-center justify-center gap-8">
+                        <div class="w-full lg:w-1/2">
+                            <div class="bg-[#FFFBF0] p-6 rounded-lg border border-gray-200 shadow-sm">
+                                <label for="income" class="block text-lg font-semibold text-gray-700 mb-2">Introduce tus Ingresos Mensuales (€):</label>
+                                <input type="number" id="income" placeholder="Ej: 2000" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#D3A95C] focus:border-[#D3A95C] transition">
+                                <div id="plan-results" class="mt-6 space-y-4">
+                                    <div class="flex justify-between items-center p-3 bg-green-50 rounded-lg">
+                                        <span class="font-bold text-green-800">1. Págate a ti primero (10%):</span>
+                                        <span id="savings" class="font-bold text-green-800 text-xl">€0.00</span>
+                                    </div>
+                                    <div class="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
+                                        <span class="font-bold text-blue-800">2. Para vivir y disfrutar (70%):</span>
+                                        <span id="living" class="font-bold text-blue-800 text-xl">€0.00</span>
+                                    </div>
+                                    <div class="flex justify-between items-center p-3 bg-red-50 rounded-lg">
+                                        <span class="font-bold text-red-800">3. Para pagar tus deudas (20%):</span>
+                                        <span id="debts" class="font-bold text-red-800 text-xl">€0.00</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-full lg:w-1/2 flex justify-center">
+                           <div class="chart-container">
+                                <canvas id="babylonianPlanChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="aplicacion" class="content-section">
+                    <div class="text-center mb-8">
+                        <h2 class="text-4xl font-bold text-[#583c27] mb-2 font-display">Aplicación Práctica</h2>
+                        <p class="text-md text-gray-600 max-w-2xl mx-auto">La sabiduría solo tiene valor cuando se aplica. Aquí encontrarás sugerencias concretas sobre cómo integrar los principios de Babilonia en tu vida diaria para lograr un cambio real y duradero.</p>
+                    </div>
+                    <div class="max-w-4xl mx-auto space-y-8 bg-[#FFFBF0] p-8 rounded-lg border border-gray-200">
+                        <div>
+                            <h3 class="text-2xl font-bold text-[#583c27] mb-3 font-display">En tu Vida Personal</h3>
+                            <ul class="list-disc list-inside space-y-2 text-gray-700">
+                                <li><strong>Toma el control:</strong> Aplica inmediatamente el plan 10/70/20. Automatiza el 10% de ahorro y crea un presupuesto para vivir con el 70%.</li>
+                                <li><strong>Seguridad familiar:</strong> Considera comprar tu propia casa y contrata los seguros necesarios (vida, salud) para proteger a tu familia como las "murallas de Babilonia".</li>
+                                <li><strong>Decisiones conscientes:</strong> Ante cada compra importante, pregúntate: "¿Es una necesidad o un deseo? ¿Se ajusta a mi presupuesto?".</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-[#583c27] mb-3 font-display">En tu Vida Profesional</h3>
+                            <ul class="list-disc list-inside space-y-2 text-gray-700">
+                                <li><strong>Aumenta tu valor:</strong> Conviértete en el mejor en tu campo. Invierte en tu formación, sé proactivo y busca formas de aportar más valor. Esto inevitablemente conducirá a mayores ingresos.</li>
+                                <li><strong>Mentalidad de "trabajo como amigo":</strong> Aborda tus tareas con entusiasmo y ve los desafíos como oportunidades. Esta actitud te hará destacar.</li>
+                                <li><strong>Emprendimiento prudente:</strong> Si quieres emprender, empieza pequeño, invierte con sabiduría, busca el consejo de mentores y no arriesgues todo tu capital.</li>
+                            </ul>
+                        </div>
+                         <div>
+                            <h3 class="text-2xl font-bold text-[#583c27] mb-3 font-display">Técnicas de Aprendizaje Activo</h3>
+                            <ul class="list-disc list-inside space-y-2 text-gray-700">
+                                <li><strong>El "Tarro de las Monedas" Digital:</strong> Cada vez que recibas ingresos, transfiere el 10% a una cuenta de ahorro separada e intocable. Verla crecer refuerza el hábito.</li>
+                                <li><strong>Revisión Semanal:</strong> Dedica 15 minutos cada domingo a revisar tus gastos y planificar la semana. Esto te mantiene en control.</li>
+                                <li><strong>Enseñar para Aprender:</strong> Explícale los conceptos del libro a un amigo. La necesidad de simplificar las ideas para otro es una forma poderosa de interiorizarlas.</li>
+                                <li><strong>Crea tu "Tablilla de Barro":</strong> Usa una hoja de cálculo para registrar tu plan, tus deudas y tu progreso, como hizo Dabasir. Ver tu deuda disminuir y tu patrimonio crecer es increíblemente motivador.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <footer class="text-center mt-12 text-gray-500">
+            <p>&copy; 2025 Guía Interactiva basada en "El Hombre Más Rico de Babilonia". Creado para el aprendizaje y la prosperidad.</p>
+        </footer>
+    </div>
+
+    <script>
+        const data = {
+            remedies: [
+                { id: 1, title: 'Empieza a llenar tu bolsa', icon: '💰', description: 'La base de toda riqueza. Guarda sistemáticamente al menos el 10% de todos tus ingresos. Este es el primer paso innegociable.' },
+                { id: 2, title: 'Controla tus gastos', icon: '📝', description: 'Diferencia entre gastos necesarios y deseos. Crea un presupuesto para vivir con el 90% restante, evitando que tus gastos crezcan al mismo ritmo que tus ganancias.' },
+                { id: 3, title: 'Haz que tu oro fructifique', icon: '📈', description: 'El dinero ahorrado debe trabajar para ti. Invierte tus ahorros para generar un flujo de ingresos que, a su vez, produzca más ganancias.' },
+                { id: 4, title: 'Protege tus tesoros', icon: '🛡️', description: 'El primer principio de la inversión es la seguridad del capital. Invierte solo donde tu dinero esté seguro y busca el consejo de personas expertas.' },
+                { id: 5, title: 'Posee tu propia casa', icon: '🏠', description: 'Convierte un gasto importante (el alquiler) en una inversión. Reduce el coste de vida y te da un activo que te proporciona estabilidad y orgullo.' },
+                { id: 6, title: 'Asegura ingresos futuros', icon: '⏳', description: 'Planifica para tu vejez y para la protección de tu familia. Crea inversiones a largo plazo o seguros que te proporcionen ingresos cuando ya no puedas trabajar.' },
+                { id: 7, title: 'Aumenta tu habilidad para ganar', icon: '🧠', description: 'Cultiva tus propias habilidades y conocimientos. Cuanto más sabio y hábil te vuelvas en tu campo, más valioso serás y más ganarás.' }
+            ],
+            laws: [
+                { id: 1, title: 'Ley I', description: 'El oro acude fácilmente, en cantidades siempre más importantes, al hombre que reserva no menos de una décima parte de sus ganancias para crear un bien en previsión de su futuro y del de su familia.' },
+                { id: 2, title: 'Ley II', description: 'El oro trabaja con diligencia y de forma rentable para el poseedor sabio que le encuentra un uso provechoso, multiplicándose incluso como los rebaños en los campos.' },
+                { id: 3, title: 'Ley III', description: 'El oro permanece bajo la protección del poseedor prudente que lo invierte según los consejos de hombres sabios.' },
+                { id: 4, title: 'Ley IV', description: 'El oro escapa al hombre que invierte sin fin alguno en empresas que no le son familiares o que no son aprobadas por aquellos que conocen la forma de utilizar el oro.' },
+                { id: 5, title: 'Ley V', description: 'El oro huye del hombre que lo fuerza en ganancias imposibles, que sigue el seductor consejo de defraudadores y estafadores o que se fía de su propia inexperiencia y de sus románticas intenciones de inversión.' }
+            ]
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const navButtons = document.querySelectorAll('.nav-button');
+            const contentSections = document.querySelectorAll('.content-section');
+            const remediesGrid = document.getElementById('remedies-grid');
+            const lawsAccordion = document.getElementById('laws-accordion');
+            const incomeInput = document.getElementById('income');
+            
+            function initRemedies() {
+                remediesGrid.innerHTML = data.remedies.map(remedy => `
+                    <div class="remedy-card rounded-xl p-6 text-center shadow-md">
+                        <div class="text-5xl mb-4">${remedy.icon}</div>
+                        <h3 class="text-xl font-bold font-display text-[#583c27] mb-2">${remedy.id}. ${remedy.title}</h3>
+                        <p class="text-gray-600">${remedy.description}</p>
+                    </div>
+                `).join('');
+            }
+
+            function initLaws() {
+                lawsAccordion.innerHTML = data.laws.map(law => `
+                    <div class="accordion-item bg-[#FFFBF0] border border-gray-200 rounded-lg">
+                        <div class="accordion-item-header flex justify-between items-center p-5">
+                            <h3 class="text-xl font-bold text-[#583c27] font-display">${law.title}</h3>
+                            <span class="accordion-icon text-2xl text-[#D3A95C]">▾</span>
+                        </div>
+                        <div class="accordion-item-body">
+                            <p class="p-5 pt-0 text-gray-700">${law.description}</p>
+                        </div>
+                    </div>
+                `).join('');
+                
+                document.querySelectorAll('.accordion-item-header').forEach(header => {
+                    header.addEventListener('click', () => {
+                        const accordionItem = header.parentElement;
+                        accordionItem.classList.toggle('open');
+                    });
+                });
+            }
+
+            navButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const targetId = button.dataset.target;
+
+                    navButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+
+                    contentSections.forEach(section => {
+                        if (section.id === targetId) {
+                            section.classList.add('active');
+                        } else {
+                            section.classList.remove('active');
+                        }
+                    });
+                });
+            });
+            
+            let babylonianChart;
+            function initChart() {
+                const ctx = document.getElementById('babylonianPlanChart').getContext('2d');
+                babylonianChart = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Ahorro (10%)', 'Gastos (70%)', 'Deudas (20%)'],
+                        datasets: [{
+                            label: 'Distribución de Ingresos',
+                            data: [0, 0, 0],
+                            backgroundColor: [
+                                'rgba(74, 222, 128, 0.7)',
+                                'rgba(59, 130, 246, 0.7)',
+                                'rgba(239, 68, 68, 0.7)'
+                            ],
+                            borderColor: [
+                                'rgba(34, 197, 94, 1)',
+                                'rgba(37, 99, 235, 1)',
+                                'rgba(220, 38, 38, 1)'
+                            ],
+                            borderWidth: 2,
+                            hoverOffset: 10
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                                labels: {
+                                    font: {
+                                        size: 14,
+                                        family: "'Inter', sans-serif"
+                                    }
+                                }
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        let label = context.label || '';
+                                        if (label) {
+                                            label += ': ';
+                                        }
+                                        if (context.parsed !== null) {
+                                            label += new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(context.parsed);
+                                        }
+                                        return label;
+                                    }
+                                }
+                            }
+                        },
+                        cutout: '50%'
+                    }
+                });
+            }
+
+            function updatePlan() {
+                const income = parseFloat(incomeInput.value) || 0;
+                const savings = income * 0.10;
+                const living = income * 0.70;
+                const debts = income * 0.20;
+
+                document.getElementById('savings').textContent = `€${savings.toFixed(2)}`;
+                document.getElementById('living').textContent = `€${living.toFixed(2)}`;
+                document.getElementById('debts').textContent = `€${debts.toFixed(2)}`;
+
+                babylonianChart.data.datasets[0].data = [savings, living, debts];
+                babylonianChart.update();
+            }
+
+            incomeInput.addEventListener('input', updatePlan);
+
+            initRemedies();
+            initLaws();
+            initChart();
+            updatePlan(); 
+        });
+    </script>
+</body>
+</html>
