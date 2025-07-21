@@ -33,7 +33,7 @@
             transition: max-height 0.5s ease-out;
         }
         .accordion-content.open {
-            max-height: 1000px;
+            max-height: 2000px; /* Increased max-height */
             transition: max-height 0.7s ease-in;
         }
         .idea-card {
@@ -97,6 +97,7 @@
         <main id="tab-content">
             <section id="contexto" class="tab-pane active-pane bg-white p-6 rounded-lg shadow-md">
                 <h2 class="text-2xl font-bold text-[#A98467] mb-4">1. Contexto General del Libro</h2>
+                 <p class="mb-6 text-gray-600">Bienvenido al núcleo del pensamiento de Tony Robbins. Esta sección establece el propósito fundamental del libro, identificando el problema central que busca resolver y resumiendo su temática en unas pocas palabras clave. Es el punto de partida esencial para comprender el "porqué" detrás de todas las estrategias que se presentarán.</p>
                 <div class="space-y-4">
                     <div>
                         <h3 class="text-xl font-semibold text-[#6C584C]">1.1 - ¿Qué problema o necesidad busca resolver?</h3>
@@ -118,7 +119,7 @@
             <section id="capitulos" class="tab-pane hidden">
                 <div class="bg-white p-6 rounded-lg shadow-md">
                     <h2 class="text-2xl font-bold text-[#A98467] mb-4">2. Resumen por Capítulos</h2>
-                    <p class="mb-6 text-gray-600">Esta sección desglosa las ideas fundamentales de los primeros capítulos del libro. Haz clic en el título de cada capítulo para expandir y explorar sus ideas clave, ejemplos y conclusiones. Este formato te permite digerir la información a tu propio ritmo.</p>
+                    <p class="mb-6 text-gray-600">Esta sección desglosa las ideas fundamentales de cada capítulo del libro. Haz clic en el título de cada capítulo para expandir y explorar sus ideas clave, ejemplos y conclusiones. Este formato interactivo te permite digerir la información a tu propio ritmo, enfocándote en las áreas que más te interesan sin sentirte abrumado.</p>
                     <div id="accordion-container" class="space-y-2">
                         <!-- Accordion items will be injected here by JavaScript -->
                     </div>
@@ -128,13 +129,13 @@
             <section id="ideas" class="tab-pane hidden">
                 <div class="bg-white p-6 rounded-lg shadow-md">
                     <h2 class="text-2xl font-bold text-[#A98467] mb-4">3. Grandes Ideas del Libro</h2>
-                     <p class="mb-6 text-gray-600">Esta sección destila la esencia del libro en sus conceptos más transformadores. Cada 'gran idea' es una herramienta poderosa para el cambio. Haz clic en cada una para explorar qué es, por qué es crucial y cómo puedes aplicarla en tu vida diaria para lograr resultados extraordinarios.</p>
+                     <p class="mb-6 text-gray-600">Esta sección destila la esencia del libro en sus conceptos más transformadores. Cada 'gran idea' es una herramienta poderosa para el cambio. Haz clic en cada una para explorar qué es, por qué es crucial y cómo puedes aplicarla en tu vida diaria. El gráfico de barras visualiza el impacto relativo de cada concepto, ayudándote a priorizar tu aprendizaje.</p>
                     <div id="ideas-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                        <!-- Idea cards will be injected here by JavaScript -->
                     </div>
                     <div class="mt-8">
-                        <h3 class="text-xl font-semibold text-center text-[#6C584C] mb-4">Poder Relativo de las Grandes Ideas</h3>
-                        <div class="chart-container relative w-full h-96 max-h-[400px] max-w-3xl mx-auto">
+                        <h3 class="text-xl font-semibold text-center text-[#6C584C] mb-4">Impacto Relativo de las Grandes Ideas</h3>
+                        <div class="chart-container relative w-full h-[600px] max-h-[600px] max-w-3xl mx-auto">
                             <canvas id="ideasChart"></canvas>
                         </div>
                     </div>
@@ -143,21 +144,22 @@
 
             <section id="aplicacion" class="tab-pane hidden bg-white p-6 rounded-lg shadow-md">
                  <h2 class="text-2xl font-bold text-[#A98467] mb-4">4. Aplicación Práctica del Conocimiento</h2>
-                 <p class="mb-6 text-gray-600">El conocimiento solo es poder en potencia; la acción lo convierte en poder real. Esta sección te ofrece un puente directo entre la teoría del libro y tu vida cotidiana, con sugerencias concretas para aplicar estos principios y lograr cambios tangibles.</p>
+                 <p class="mb-6 text-gray-600">El conocimiento solo es poder en potencia; la acción lo convierte en poder real. Esta sección te ofrece un puente directo entre la teoría del libro y tu vida cotidiana, con sugerencias concretas para aplicar estos principios y lograr cambios tangibles y duraderos. Utiliza estas técnicas para empezar a ver resultados hoy mismo.</p>
                  <div class="space-y-6">
                     <div>
                         <h3 class="text-xl font-semibold text-[#6C584C]">4.1 - ¿Cómo usar este conocimiento?</h3>
                         <ul class="mt-2 list-disc list-inside space-y-2 text-[#38332E]">
-                            <li><strong>Vida Personal:</strong> Toma el control de tus estados emocionales. En lugar de reaccionar con enfado ante tu pareja o hijos, interrumpe tu patrón, hazte una pregunta mejor ("¿Qué es lo que realmente importa aquí?") y elige una respuesta más constructiva. Define tus valores personales para tomar decisiones alineadas con quien realmente quieres ser.</li>
-                            <li><strong>Vida Profesional:</strong> Utiliza el principio de CANI! para mejorar constantemente tus habilidades y añadir más valor que nadie en tu campo. En una negociación, entiende los valores (lo que es importante) de la otra parte para encontrar una solución ganar-ganar. Supera la procrastinación asociando dolor a la inacción y placer a la tarea completada.</li>
-                            <li><strong>Como Orador:</strong> Para conectar con tu audiencia, entiende que tu objetivo es cambiar su estado emocional. Usa tu fisiología (energía, movimiento), tu lenguaje (metáforas, vocabulario transformacional) y preguntas poderosas para llevarlos de un estado de pasividad o escepticismo a uno de inspiración y acción.</li>
+                            <li><strong>Vida Personal:</strong> Rediseña tus reglas para la felicidad y el amor para que sean más fáciles de cumplir y dependan de ti, no de otros. Mejora tus relaciones al entender los valores y reglas de tu pareja y comunicar los tuyos. Usa el CNA para superar miedos o malos hábitos.</li>
+                            <li><strong>Vida Profesional:</strong> Expande tu identidad de "empleado" a "líder" o "el recurso más valioso de la empresa" para cambiar tu comportamiento y resultados. Usa el principio de CANI! para mejorar constantemente tus habilidades y añadir más valor. En negociaciones, enfócate en entender los valores de la otra parte.</li>
+                            <li><strong>Como Orador:</strong> Para impactar a tu audiencia, no solo transmitas información, cambia su estado. Usa tu fisiología, preguntas retóricas, metáforas poderosas y un vocabulario que inspire. Entiende que tu objetivo es cambiar sus creencias y empoderarlos para la acción.</li>
                         </ul>
                     </div>
                     <div>
                         <h3 class="text-xl font-semibold text-[#6C584C]">4.2 - Sugerencias de implementación diaria</h3>
                         <ul class="mt-2 list-disc list-inside space-y-2 text-[#38332E]">
-                           <li><strong>Las Preguntas de Poder de la Mañana:</strong> Comienza cada día haciéndote preguntas que te pongan en un estado de gratitud, felicidad y empoderamiento. Por ejemplo: "¿De qué me siento feliz ahora en mi vida? ¿De qué me siento orgulloso? ¿Con qué estoy comprometido?".</li>
-                           <li><strong>El Desafío Mental de Diez Días:</strong> Comprométete a pasar 10 días consecutivos sin albergar un solo pensamiento o emoción negativa. Cada vez que aparezca uno, usa las técnicas del libro para transformarlo inmediatamente. Si te quedas en un estado negativo por más de 2 minutos, empiezas la cuenta de 10 días de nuevo. Esto condicionará tu mente para buscar soluciones y estados positivos de forma automática.</li>
+                           <li><strong>Las Preguntas de Poder de la Mañana y de la Noche:</strong> Comienza cada día con preguntas que te pongan en un estado de gratitud y poder (ej. "¿De qué me siento feliz ahora?"). Termina cada día con preguntas de reflexión y crecimiento (ej. "¿Qué he aprendido hoy? ¿Qué he dado hoy?").</li>
+                           <li><strong>El Desafío Mental de Diez Días:</strong> Comprométete a pasar 10 días consecutivos sin albergar un solo pensamiento o emoción negativa. Cada vez que aparezca uno, usa las técnicas del libro para transformarlo inmediatamente. Es un entrenamiento intensivo para dominar tu enfoque.</li>
+                           <li><strong>El Plan de 7 Días para Configurar tu Vida:</strong> Dedica una semana a aplicar activamente los principios del libro en las áreas clave de tu vida (emociones, físico, relaciones, finanzas, etc.), un día a la vez. Esto crea un impulso masivo y convierte la teoría en resultados tangibles.</li>
                         </ul>
                     </div>
                  </div>
@@ -165,51 +167,63 @@
 
             <section id="framework" class="tab-pane hidden bg-white p-6 rounded-lg shadow-md">
                 <h2 class="text-2xl font-bold text-[#A98467] mb-4">5. Framework Mental del Libro</h2>
-                <p class="mb-6 text-gray-600">Este es el esqueleto lógico del libro, desglosado en su estructura fundamental: los conceptos abstractos que dan lugar a principios operativos, los cuales a su vez dictan acciones prácticas. Visualizar este mapa mental te ayuda a integrar la filosofía de Robbins de una manera coherente y jerárquica.</p>
+                <p class="mb-6 text-gray-600">Este es el esqueleto lógico del libro, desglosado en su estructura fundamental: los conceptos abstractos que dan lugar a principios operativos, los cuales a su vez dictan acciones prácticas. Visualizar este mapa mental te ayuda a integrar la filosofía de Robbins de una manera coherente y jerárquica, viendo cómo cada pieza encaja en el gran puzle del poder personal.</p>
                 <div class="framework-container text-[#38332E]">
                     <ul>
-                        <li><span class="font-bold text-[#A98467]">🔹 Concepto: Tienes el poder de cambiar tu vida AHORA.</span>
+                        <li><span class="font-bold text-[#A98467]">🔹 Concepto Central: Tienes el Poder para Diseñar tu Destino.</span>
                             <ul>
-                                <li><span class="font-semibold">Principio:</span> Tu destino se crea en tus momentos de decisión.
+                                <li><span class="font-semibold">Principio Clave:</span> El cambio es posible y puede ser inmediato.
                                     <ul>
-                                        <li><span class="text-sm">Acción:</span> Toma una decisión real y comprometida sobre un área clave de tu vida y emprende una acción inmediata.</li>
+                                        <li><span class="text-sm">Acción Fundamental:</span> Tomar una <strong>Decisión</strong> real y comprometida.</li>
                                     </ul>
                                 </li>
                             </ul>
                         </li>
-                        <li><span class="font-bold text-[#A98467]">🔹 Concepto: Tus emociones y comportamientos están bajo tu control.</span>
+                        <li><span class="font-bold text-[#A98467]">🔹 Concepto: El Mecanismo del Cambio (Cómo funciona nuestra mente).</span>
                              <ul>
-                                <li><span class="font-semibold">Principio:</span> Todo lo que haces es para evitar el dolor o ganar placer.
+                                <li><span class="font-semibold">Principio 1:</span> La fuerza del <strong>Dolor y el Placer</strong> dirige todas nuestras acciones.
                                      <ul>
-                                        <li><span class="text-sm">Acción:</span> Utiliza el CNA: Asocia dolor masivo al comportamiento que quieres eliminar y placer intenso al que quieres adoptar.</li>
+                                        <li><span class="text-sm">Acción:</span> Usar el <strong>Condicionamiento Neuroasociativo (CNA)</strong> para reconfigurar nuestras asociaciones de dolor y placer.</li>
                                     </ul>
                                 </li>
-                                <li><span class="font-semibold">Principio:</span> Tu estado emocional depende de tu fisiología y tu enfoque mental.
+                                <li><span class="font-semibold">Principio 2:</span> Nuestro <strong>Estado</strong> (Fisiología + Enfoque) controla cómo nos sentimos y actuamos.
                                     <ul>
-                                        <li><span class="text-sm">Acción:</span> Para cambiar cómo te sientes, cambia radicalmente tu postura, respiración y movimiento, o hazte una pregunta que cambie tu enfoque.</li>
+                                        <li><span class="text-sm">Acción:</span> Cambiar deliberadamente nuestro cuerpo y las <strong>Preguntas</strong> que nos hacemos.</li>
+                                    </ul>
+                                </li>
+                                <li><span class="font-semibold">Principio 3:</span> Nuestra experiencia es una interpretación moldeada por el lenguaje.
+                                    <ul>
+                                        <li><span class="text-sm">Acción:</span> Elegir conscientemente nuestro <strong>Vocabulario Transformacional</strong> y nuestras <strong>Metáforas</strong>.</li>
                                     </ul>
                                 </li>
                             </ul>
                         </li>
-                        <li><span class="font-bold text-[#A98467]">🔹 Concepto: Tu realidad es una interpretación, no es la verdad absoluta.</span>
+                         <li><span class="font-bold text-[#A98467]">🔹 Concepto: El Sistema Operativo de la Vida (El "Software" que dirige las decisiones).</span>
                             <ul>
-                                <li><span class="font-semibold">Principio:</span> Tus creencias, vocabulario y metáforas filtran y crean tu experiencia del mundo.
+                                <li><span class="font-semibold">Principio:</span> Nuestro <strong>Sistema Maestro</strong> (Estado, Preguntas, Valores, Creencias, Referencias) filtra toda nuestra realidad.
                                     <ul>
-                                        <li><span class="text-sm">Acción:</span> Cuestiona tus creencias limitantes. Cambia conscientemente las palabras que usas (ej: "frustrado" por "fascinado"). Elige metáforas que te den poder (ej: "la vida es un juego" en lugar de "una batalla").</li>
+                                        <li><span class="text-sm">Acción:</span> Analizar y rediseñar conscientemente los componentes de nuestro Sistema Maestro.
+                                            <ul>
+                                                 <li><span class="text-xs">Sub-Acción 1:</span> Clarificar y realinear nuestra jerarquía de <strong>Valores</strong>.</li>
+                                                 <li><span class="text-xs">Sub-Acción 2:</span> Reescribir nuestras <strong>Reglas</strong> para que sea fácil ser feliz y difícil sufrir.</li>
+                                                 <li><span class="text-xs">Sub-Acción 3:</span> Expandir activamente nuestras <strong>Referencias</strong> vitales.</li>
+                                                 <li><span class="text-xs">Sub-Acción 4:</span> Expandir nuestra <strong>Identidad</strong> para convertirnos en la persona que deseamos ser.</li>
+                                            </ul>
+                                        </li>
                                     </ul>
                                 </li>
                             </ul>
                         </li>
-                        <li><span class="font-bold text-[#A98467]">🔹 Concepto: La felicidad y el éxito duraderos provienen de la congruencia y el crecimiento.</span>
+                        <li><span class="font-bold text-[#A98467]">🔹 Concepto: La Aplicación y el Propósito Final.</span>
                              <ul>
-                                <li><span class="font-semibold">Principio:</span> Debes conocer tus valores y vivir en congruencia con ellos.
+                                <li><span class="font-semibold">Principio:</span> El progreso constante (CANI!) y la creación de un <strong>Futuro Convincente</strong> generan la motivación.
                                      <ul>
-                                        <li><span class="text-sm">Acción:</span> Clarifica tu jerarquía de valores (qué es lo más importante para ti) y diseña reglas que te permitan sentirte exitoso y feliz fácilmente.</li>
+                                        <li><span class="text-sm">Acción:</span> Establecer objetivos inspiradores y comprometerse con la mejora diaria.</li>
                                     </ul>
                                 </li>
-                                <li><span class="font-semibold">Principio:</span> El progreso equivale a la felicidad.
+                                <li><span class="font-semibold">Principio:</span> La máxima realización proviene de la <strong>Contribución</strong>.
                                     <ul>
-                                        <li><span class="text-sm">Acción:</span> Adopta el compromiso de CANI! (Mejora Constante e Ilimitada). Busca mejorar un poco cada día.</li>
+                                        <li><span class="text-sm">Acción:</span> Usar nuestro poder personal para servir a algo más grande que nosotros mismos.</li>
                                     </ul>
                                 </li>
                             </ul>
@@ -253,59 +267,31 @@
             });
         });
 
-        // Data for dynamic content
         const chapterData = [
-            {
-                title: "Capítulo 1: Sueños de destino",
-                keyIdeas: [
-                    { idea: "Todos poseemos un poder ilimitado:", text: "Dentro de cada persona yace un 'gigante dormido', una capacidad inmensa para cambiar cualquier aspecto de la vida.", example: "Una persona que siempre ha querido aprender a pintar pero nunca empieza porque cree que 'no tiene talento'. Despertar a su gigante sería tomar la decisión de inscribirse en una clase y empezar." },
-                    { idea: "La concentración de poder es la clave del cambio:", text: "La mayoría fracasa porque dispersa su energía. Enfocar todos los recursos en un solo aspecto permite lograr resultados extraordinarios.", example: "Un emprendedor que enfoca el 100% de su energía durante un mes en una sola cosa: conseguir cinco nuevos clientes." },
-                    { idea: "El cambio duradero requiere tres pasos:", text: "Se logra mediante 1) Elevar los estándares, 2) Cambiar las creencias limitantes, y 3) Cambiar tu estrategia.", example: "Alguien que quiere dejar de fumar: 1) Eleva estándar ('No envenenaré mi cuerpo'), 2) Cambia creencia ('Soy una persona sana'), 3) Cambia estrategia (busca ayuda, usa parches)." }
-                ],
-                conclusion: "Este capítulo es una llamada a la acción. Nos recuerda que nuestro destino no está predeterminado, sino que se forja con nuestra capacidad para despertar y utilizar nuestro poder interior para transformar los sueños en realidad."
-            },
-             {
-                title: "Capítulo 2: Decisiones: el camino hacia el poder",
-                keyIdeas: [
-                    { idea: "Las decisiones moldean nuestro destino:", text: "No son las condiciones, sino lo que decidimos hacer al respecto. No tomar una decisión es una decisión en sí misma.", example: "Dos personas pierden su empleo. Una lo ve como una catástrofe; la otra, como una oportunidad para reinventarse." },
-                    { idea: "El poder de una decisión real y comprometida:", text: "Una verdadera decisión implica cortar cualquier otra posibilidad. No es una preferencia ('me gustaría...'), sino un compromiso total ('voy a...').", example: "La diferencia entre 'me gustaría ponerme en forma' y 'he decidido ser una persona atlética y sana'." }
-                ],
-                conclusion: "La herramienta más poderosa que poseemos es la capacidad de decidir. Tomar decisiones conscientes y comprometidas es el primer paso para pasar de ser espectador a ser el director de nuestra propia vida."
-            },
-            {
-                title: "Capítulo 3: La fuerza que configura su vida",
-                keyIdeas: [
-                    { idea: "Todo comportamiento está impulsado por el dolor y el placer:", text: "Hacemos todo para evitar el dolor o ganar placer. Es la fuerza gemela que dirige nuestras acciones.", example: "La procrastinación ocurre porque se asocia más dolor al esfuerzo inmediato que a las consecuencias futuras." },
-                    { idea: "Para cambiar, debemos reasociar el dolor y el placer:", text: "El cambio duradero requiere hacer que el viejo comportamiento sea neurológicamente doloroso y el nuevo, placentero.", example: "Para dejar la comida basura, asocia un dolor intenso (imaginarte enfermo) al comerla y un placer inmenso (visualizarte enérgico) al comer sano." }
-                ],
-                conclusion: "Este capítulo desvela el mecanismo que nos gobierna. Entender la dinámica dolor-placer nos da el manual de nuestra propia mente para redirigir cualquier comportamiento y tomar el control definitivo."
-            },
-             {
-                title: "Capítulo 4: Sistemas de creencias, el poder de crear y destruir",
-                keyIdeas: [
-                    { idea: "Las creencias son sentimientos de certeza:", text: "No son solo ideas, sino ideas con una certeza absoluta que actúan como órdenes para nuestro sistema nervioso.", example: "La idea 'puedo hablar en público' se vuelve creencia cuando la apoyamos con referencias, dándonos acceso a los recursos para hacerlo con confianza." },
-                    { idea: "Las creencias se apoyan en 'patas de referencia':", text: "Una creencia se sostiene por las experiencias (reales o imaginadas) que la confirman. Para cambiarla, hay que cuestionar esas referencias.", example: "La creencia 'no soy bueno para las ventas' se apoya en rechazos pasados. Cuestionar si un rechazo te define debilita la creencia." },
-                     { idea: "Las creencias tienen el poder de crear y destruir:", text: "Una creencia potenciadora puede hacer que alguien supere lo imposible, mientras que una limitante puede hacer que se rinda.", example: "Un estudiante que cree 'soy un genio' persistirá, mientras que uno que cree 'soy lento' abandonará ante la primera dificultad." }
-                ],
-                conclusion: "Las creencias no son la realidad, sino el filtro con el que la interpretamos. Podemos elegir nuestras creencias, desmantelar las que nos limitan y construir activamente las que nos impulsan."
-            },
-             {
-                title: "Capítulo 5: ¿Puede producirse el cambio en un instante?",
-                keyIdeas: [
-                    { idea: "El cambio es instantáneo, la preparación puede tomar tiempo:", text: "El momento del cambio real es siempre un instante: cuando se toma una verdadera decisión.", example: "Alguien 'intenta' dejar de fumar por años, pero el cambio real ocurre en el instante en que un diagnóstico médico hace la decisión irrevocable." },
-                    { idea: "La responsabilidad del cambio es 100% nuestra:", text: "El cambio duradero solo ocurre cuando creemos tres cosas: 'Algo TIENE que cambiar', 'YO tengo que cambiarlo', y 'YO PUEDO cambiarlo'.", example: "Un fumador que culpa al terapeuta por una recaída no ha asumido la responsabilidad. El cambio es duradero cuando dice: 'Mi salud depende de mí'." }
-                ],
-                conclusion: "Este capítulo desafía la idea de que el cambio debe ser lento. Con la palanca emocional adecuada y responsabilidad total, podemos transformar nuestra vida en un momento, en lugar de esperar una motivación externa."
-            },
-             {
-                title: "Capítulo 6: La ciencia del Condicionamiento Neuroasociativo (CNA)",
-                keyIdeas: [
-                    { idea: "El CNA es un sistema de 6 pasos para el cambio duradero:", text: "Es un método para recondicionar nuestro sistema nervioso, vinculando dolor al viejo hábito y placer al nuevo.", example: "Para superar el miedo a hablar en público: 1) Definir objetivo, 2) Usar palanca, 3) Interrumpir patrón, 4) Crear alternativa, 5) Anclarla, 6) Probarla." },
-                    { idea: "La palanca emocional es crucial:", text: "Para cambiar, el dolor de no cambiar debe ser mayor que el dolor de cambiar. Se necesita un 'umbral de dolor' donde decimos '¡Basta ya!'.", example: "Alguien con sobrepeso alcanza su umbral de dolor no cuando el médico se lo dice, sino cuando se ve en una foto y siente una vergüenza insoportable." },
-                    { idea: "Interrumpir el patrón es esencial:", text: "No se puede instalar un nuevo comportamiento si el patrón antiguo sigue activo. Hay que 'rayar el disco' con algo inesperado.", example: "Cada vez que sientas ansiedad, salta o grita una palabra absurda para romper el estado." }
-                ],
-                conclusion: "El CNA es el 'cómo' práctico del libro. Proporciona una metodología clara para tomar control de nuestras neuroasociaciones, dependiendo del recondicionamiento deliberado en lugar de la fuerza de voluntad."
-            }
+            // PARTE I
+            { part: "PARTE I: LIBERE SU PODER", title: "Capítulo 1: Sueños de destino", keyIdeas: [{ idea: "Todos poseemos un poder ilimitado", text: "Dentro de cada persona yace un 'gigante dormido', una capacidad inmensa para cambiar cualquier aspecto de la vida.", example: "Una persona que siempre ha querido aprender a pintar pero nunca empieza. Despertar a su gigante sería tomar la decisión de inscribirse en una clase y empezar." }, { idea: "La concentración de poder es la clave", text: "La mayoría fracasa porque dispersa su energía. Enfocar todos los recursos en un solo aspecto permite lograr resultados extraordinarios.", example: "Un emprendedor que enfoca el 100% de su energía durante un mes en una sola cosa: conseguir cinco nuevos clientes." }, { idea: "El cambio duradero requiere tres pasos", text: "1) Elevar los estándares, 2) Cambiar las creencias limitantes, y 3) Cambiar tu estrategia.", example: "Alguien que quiere dejar de fumar: 1) Eleva estándar ('No envenenaré mi cuerpo'), 2) Cambia creencia ('Soy una persona sana'), 3) Cambia estrategia (busca ayuda, usa parches)." }], conclusion: "Este capítulo es una llamada a la acción, recordándonos que nuestro destino se forja con nuestra capacidad para despertar y utilizar nuestro poder interior para transformar los sueños en realidad." },
+            { part: "PARTE I: LIBERE SU PODER", title: "Capítulo 2: Decisiones: el camino hacia el poder", keyIdeas: [{ idea: "Las decisiones moldean nuestro destino", text: "No son las condiciones, sino lo que decidimos hacer al respecto. No tomar una decisión es una decisión en sí misma.", example: "Dos personas pierden su empleo. Una lo ve como una catástrofe; la otra, como una oportunidad para reinventarse." }, { idea: "El poder de una decisión real", text: "Una verdadera decisión implica cortar cualquier otra posibilidad. No es una preferencia ('me gustaría...'), sino un compromiso total ('voy a...').", example: "La diferencia entre 'me gustaría ponerme en forma' y 'he decidido ser una persona atlética y sana'." }], conclusion: "La herramienta más poderosa que poseemos es la capacidad de decidir. Tomar decisiones conscientes y comprometidas es el primer paso para ser el director de nuestra propia vida." },
+            { part: "PARTE I: LIBERE SU PODER", title: "Capítulo 3: La fuerza que configura su vida", keyIdeas: [{ idea: "Impulsados por el dolor y el placer", text: "Hacemos todo para evitar el dolor o ganar placer. Es la fuerza gemela que dirige nuestras acciones.", example: "La procrastinación ocurre porque se asocia más dolor al esfuerzo inmediato que a las consecuencias futuras." }, { idea: "Reasociar el dolor y el placer", text: "El cambio duradero requiere hacer que el viejo comportamiento sea neurológicamente doloroso y el nuevo, placentero.", example: "Para dejar la comida basura, asocia un dolor intenso (imaginarte enfermo) al comerla y un placer inmenso (visualizarte enérgico) al comer sano." }], conclusion: "Este capítulo desvela el mecanismo que nos gobierna. Entender la dinámica dolor-placer nos da el manual de nuestra propia mente para redirigir cualquier comportamiento." },
+            { part: "PARTE I: LIBERE SU PODER", title: "Capítulo 4: Sistemas de creencias", keyIdeas: [{ idea: "Las creencias son sentimientos de certeza", text: "No son solo ideas, sino ideas con certeza absoluta que actúan como órdenes para nuestro sistema nervioso.", example: "La idea 'puedo hablar en público' se vuelve creencia cuando la apoyamos con referencias, dándonos acceso a los recursos para hacerlo con confianza." }, { idea: "Se apoyan en 'patas de referencia'", text: "Una creencia se sostiene por las experiencias (reales o imaginadas) que la confirman. Para cambiarla, hay que cuestionar esas referencias.", example: "La creencia 'no soy bueno para las ventas' se apoya en rechazos pasados. Cuestionar si un rechazo te define debilita la creencia." }, { idea: "Tienen el poder de crear y destruir", text: "Una creencia potenciadora puede hacer que alguien supere lo imposible, mientras que una limitante puede hacer que se rinda.", example: "Un estudiante que cree 'soy un genio' persistirá, mientras que uno que cree 'soy lento' abandonará ante la primera dificultad." }], conclusion: "Las creencias no son la realidad, sino el filtro con el que la interpretamos. Podemos elegirlas, desmantelar las que nos limitan y construir activamente las que nos impulsan." },
+            { part: "PARTE I: LIBERE SU PODER", title: "Capítulo 5: ¿Puede producirse el cambio en un instante?", keyIdeas: [{ idea: "El cambio es instantáneo", text: "El momento del cambio real es siempre un instante: cuando se toma una verdadera decisión.", example: "Alguien 'intenta' dejar de fumar por años, pero el cambio real ocurre en el instante en que un diagnóstico médico hace la decisión irrevocable." }, { idea: "La responsabilidad del cambio es 100% nuestra", text: "El cambio duradero solo ocurre cuando creemos: 'Algo TIENE que cambiar', 'YO tengo que cambiarlo', y 'YO PUEDO cambiarlo'.", example: "Un fumador que culpa al terapeuta por una recaída no ha asumido la responsabilidad. El cambio es duradero cuando dice: 'Mi salud depende de mí'." }], conclusion: "Este capítulo desafía la idea de que el cambio debe ser lento. Con la palanca emocional adecuada y responsabilidad total, podemos transformar nuestra vida en un momento." },
+            { part: "PARTE I: LIBERE SU PODER", title: "Capítulo 6: La ciencia del CNA", keyIdeas: [{ idea: "El CNA es un sistema de 6 pasos", text: "Es un método para recondicionar nuestro sistema nervioso, vinculando dolor al viejo hábito y placer al nuevo.", example: "Para superar el miedo a hablar en público: 1) Definir objetivo, 2) Usar palanca, 3) Interrumpir patrón, 4) Crear alternativa, 5) Anclarla, 6) Probarla." }, { idea: "La palanca emocional es crucial", text: "Para cambiar, el dolor de no cambiar debe ser mayor que el dolor de cambiar. Se necesita un 'umbral de dolor' donde decimos '¡Basta ya!'.", example: "Alguien con sobrepeso alcanza su umbral de dolor no cuando el médico se lo dice, sino cuando se ve en una foto y siente una vergüenza insoportable." }, { idea: "Interrumpir el patrón es esencial", text: "Hay que 'rayar el disco' con algo inesperado para romper el estado emocional limitante.", example: "Cada vez que sientas ansiedad, salta o grita una palabra absurda para romper el estado." }], conclusion: "El CNA es el 'cómo' práctico del libro. Proporciona una metodología clara para tomar control de nuestras neuroasociaciones, dependiendo del recondicionamiento en lugar de la fuerza de voluntad." },
+            { part: "PARTE I: LIBERE SU PODER", title: "Capítulo 7: Cómo conseguir lo que desea realmente", keyIdeas: [{ idea: "El objetivo final es cambiar el estado emocional", text: "No queremos las cosas en sí, sino los sentimientos que creemos que nos darán.", example: "No deseas el ascenso por el título, sino por los sentimientos de éxito y reconocimiento." }, { idea: "Cambiamos el estado con Fisiología y Enfoque", text: "Nuestro estado emocional depende de cómo usamos nuestro cuerpo y en qué enfocamos la mente.", example: "Para salir del desánimo, cambia tu postura radicalmente y enfócate en algo por lo que te sientas agradecido." }], conclusion: "La felicidad no se persigue, se crea. Tenemos el poder de generar cualquier estado emocional que deseemos en cualquier momento, controlando nuestra fisiología y enfoque." },
+            { part: "PARTE I: LIBERE SU PODER", title: "Capítulo 8: Las preguntas son la respuesta", keyIdeas: [{ idea: "Pensar es hacer y responder preguntas", text: "Las preguntas que te haces de forma consistente dirigen tu enfoque mental. La calidad de tus preguntas determina la calidad de tu vida.", example: "Preguntar '¿Por qué a mí?' lleva al victimismo. Preguntar '¿Qué puedo aprender?' lleva al crecimiento." }, { idea: "Las preguntas cambian nuestros recursos", text: "Una pregunta puede darnos acceso instantáneo a recursos antes bloqueados.", example: "Un empresario en quiebra que pregunta '¿Cómo sobrevivo?' obtendrá respuestas limitadas. Si pregunta '¿Cómo reinvento mi negocio?', accederá a una creatividad totalmente diferente." }], conclusion: "Las preguntas son el timón de la mente. Cambiar las preguntas habituales es una de las herramientas más simples y poderosas para dirigir nuestro enfoque y encontrar soluciones." },
+            { part: "PARTE I: LIBERE SU PODER", title: "Capítulo 9: El vocabulario para el éxito definitivo", keyIdeas: [{ idea: "Las palabras moldean la experiencia emocional", text: "La etiqueta que le ponemos a una emoción se convierte en la emoción que sentimos.", example: "Describir una situación como 'un desastre' crea más intensidad que llamarla 'un desafío'." }, { idea: "Vocabulario Transformacional", text: "Podemos elegir palabras que bajen la intensidad de las emociones negativas y suban la de las positivas.", example: "En lugar de 'estoy furioso', decir 'estoy un poco molesto'. En lugar de 'estoy bien', decir 'estoy espectacular'." }], conclusion: "Nuestro lenguaje es un termostato, no un termómetro: regula nuestra temperatura emocional. Controlar nuestro vocabulario transforma nuestra calidad de vida emocional." },
+            { part: "PARTE I: LIBERE SU PODER", title: "Capítulo 10: El poder de las metáforas", keyIdeas: [{ idea: "Las metáforas dan forma a las percepciones", text: "Cuando decimos que algo 'es como' otra cosa, adoptamos un conjunto de creencias y reglas implícitas.", example: "Si una relación es 'un campo de batalla', la vivirás con conflicto. Si es 'un baile en equipo', la vivirás con cooperación." }, { idea: "Las metáforas globales definen la vida", text: "Las metáforas para conceptos como la vida o el trabajo (ej. 'la vida es una lucha' vs 'un juego') tienen un impacto masivo.", example: "Ver 'el trabajo como una cárcel' genera agobio. Verlo como 'una aventura' genera motivación." }], conclusion: "Las metáforas son el software de nuestra mente. Al elegir deliberadamente metáforas que nos empoderen, podemos cambiar nuestra perspectiva y realidad de forma instantánea." },
+            { part: "PARTE I: LIBERE SU PODER", title: "Capítulo 11: Las diez emociones de poder", keyIdeas: [{ idea: "Las emociones 'negativas' son Señales de Acción", text: "No son enemigas, sino mensajes de nuestro sistema nervioso que nos indican que necesitamos cambiar algo.", example: "La frustración no es una señal para rendirse, sino para probar una nueva estrategia." }, { idea: "Podemos cultivar emociones potenciadoras", text: "En lugar de esperar a que la felicidad o la pasión 'sucedan', podemos cultivarlas deliberadamente cada día.", example: "Empezar el día preguntándonos: '¿De qué me siento agradecido ahora?'." }], conclusion: "Este capítulo nos enseña a ser maestros de nuestro paisaje emocional, interpretando las emociones como guías y cultivando activamente los estados que nos sirven." },
+            { part: "PARTE I: LIBERE SU PODER", title: "Capítulo 12: La magnífica obsesión, crear un futuro convincente", keyIdeas: [{ idea: "Los objetivos son el combustible de la motivación", text: "La gente no es perezosa, simplemente tiene objetivos impotentes. Una visión que te inspire es lo que libera tu energía.", example: "El objetivo de 'pagar las facturas' genera poca energía. El de 'crear libertad financiera para viajar' crea una inmensa motivación." }, { idea: "El propósito de un objetivo es en quién te conviertes", text: "El verdadero valor está en el crecimiento y el carácter que desarrollas en el proceso, no en la meta en sí.", example: "Alguien que entrena para una maratón se convierte en una persona disciplinada y resiliente." }], conclusion: "Tener una visión clara y emocionante del futuro es una necesidad, no un lujo. Es el imán que nos guía a través de las dificultades y da propósito a nuestras acciones." },
+            { part: "PARTE I: LIBERE SU PODER", title: "Capítulo 13: El Desafío mental de Diez Días", keyIdeas: [{ idea: "Un ejercicio práctico para condicionar la mente", text: "Consiste en pasar 10 días consecutivos sin permitirse albergar pensamientos o emociones negativas. Si fallas, empiezas de nuevo.", example: "Si sientes frustración por el tráfico, debes usar las herramientas del libro para salir de ese estado inmediatamente." }, { idea: "Crear un hábito de control mental", text: "Entrena al cerebro para que, en lugar de quedarse atascado en el problema, se enfoque inmediatamente en la solución.", example: "En lugar de pensar 'esto es terrible', el cerebro condicionado pregunta '¿qué hay de bueno en esto?'." }], conclusion: "Es un 'gimnasio mental' para romper viejos patrones de pensamiento negativo y construir nuevos hábitos de enfoque positivo y orientado a soluciones." },
+            // PARTE II
+            { part: "PARTE II: TOMAR EL CONTROL: EL SISTEMA MAESTRO", title: "Capítulo 14: La influencia definitiva, su sistema maestro", keyIdeas: [{ idea: "El Sistema Maestro evalúa la vida", text: "Es el 'software' que determina qué significan las cosas y qué debemos hacer.", example: "Ante un despido, el sistema de uno lo evalúa como 'fracaso', el de otro como 'oportunidad'." }, { idea: "Consta de 5 componentes", text: "1) Estado emocional, 2) Preguntas, 3) Jerarquía de valores, 4) Creencias y reglas, y 5) Referencias.", example: "La decisión de aceptar un trabajo se filtra a través de estos 5 elementos." }], conclusion: "Al entender los cinco componentes de nuestro Sistema Maestro, podemos dejar de ser un efecto de nuestra programación pasada y empezar a ser la causa de nuestro futuro." },
+            { part: "PARTE II: TOMAR EL CONTROL: EL SISTEMA MAESTRO", title: "Capítulo 15: Los valores de la vida: su brújula personal", keyIdeas: [{ idea: "Los valores son estados emocionales", text: "Son los estados que más deseamos experimentar (placer) o evitar (dolor). Son nuestra brújula interna.", example: "Una persona cuyo valor principal es la 'aventura' tomará decisiones muy diferentes a alguien cuyo valor principal es la 'seguridad'." }, { idea: "La jerarquía de valores determina prioridades", text: "El orden en que los priorizamos es la causa de muchas de nuestras decisiones y conflictos internos.", example: "Si el 'éxito' está por encima del 'amor' en tu jerarquía, es probable que sacrifiques tiempo con tu familia para avanzar en tu carrera." }], conclusion: "Al clarificar y, si es necesario, reordenar conscientemente nuestra jerarquía de valores, podemos tomar decisiones más congruentes y crear una vida que nos llene de verdad." },
+            { part: "PARTE II: TOMAR EL CONTROL: EL SISTEMA MAESTRO", title: "Capítulo 16: Reglas: Si no es feliz, ¡he aquí por qué!", keyIdeas: [{ idea: "Las reglas determinan cuándo sentir los valores", text: "Son el 'manual de instrucciones' de nuestra felicidad. Nos dicen qué tiene que pasar para sentirnos exitosos, amados, etc.", example: "Regla: 'Para sentirme exitoso, tengo que ganar un millón de dólares'. Esto hace casi imposible sentirse exitoso." }, { idea: "Reglas disfuncionales", text: "A menudo, nuestras reglas para sentir placer son complejas y están fuera de nuestro control, mientras que las de sentir dolor son simples.", example: "Dolor: 'Me siento rechazado si no me devuelves la llamada'. Placer: 'Me siento amado si adivinas lo que quiero'." }], conclusion: "Si no eres feliz, no es por tu vida, es por tus reglas. Podemos rediseñar nuestras reglas para que estén bajo nuestro control y hagan fácil experimentar placer." },
+            { part: "PARTE II: TOMAR EL CONTROL: EL SISTEMA MAESTRO", title: "Capítulo 17: Referencias: El tejido de la vida", keyIdeas: [{ idea: "Las referencias son la materia prima de las creencias", text: "Son todas las experiencias (personales, leídas, imaginadas) que hemos almacenado en nuestro cerebro.", example: "La creencia 'puedo superar cualquier desafío' se construye a partir de referencias de haber superado dificultades en el pasado." }, { idea: "Podemos expandir nuestras referencias", text: "No estamos limitados a nuestro pasado. Podemos buscar activamente nuevas experiencias para cambiar lo que creemos posible.", example: "Si crees que no puedes iniciar un negocio, busca referencias de emprendedores que empezaron con menos que tú." }], conclusion: "Nuestras vidas están limitadas por nuestras referencias. Este capítulo nos anima a ser 'coleccionistas de experiencias' para tener una visión más amplia y empoderadora." },
+            { part: "PARTE II: TOMAR EL CONTROL: EL SISTEMA MAESTRO", title: "Capítulo 18: Identidad: La clave para la expansión", keyIdeas: [{ idea: "La identidad es la creencia más poderosa", text: "Es nuestra creencia sobre 'quiénes somos'. Actuamos de manera consistente con nuestra identidad.", example: "Una persona que se identifica como 'tímida' evitará situaciones sociales. El cambio real es cambiar la identidad a 'soy una persona segura'." }, { idea: "Expandir la identidad expande la vida", text: "Tu capacidad es constante, pero la cantidad que utilizas depende de tu identidad adoptada.", example: "Un 'empleado' tiene un rendimiento limitado. Un 'líder e innovador' produce resultados extraordinarios." }], conclusion: "La identidad es una decisión, no algo fijo. Al definir y comprometernos con una identidad más grande, todos nuestros comportamientos se realinean automáticamente." },
+            // PARTE III
+            { part: "PARTE III: LOS SIETE DÍAS PARA CONFIGURAR SU VIDA", title: "Capítulos 19-25: Los Siete Días", keyIdeas: [{ idea: "Un plan de acción de 7 días", text: "Cada día se enfoca en un 'destino' específico: Emocional, Físico, de Relaciones, Financiero, de Conducta, de Tiempo, y de Descanso y Juego.", example: "El Día 1 te pide que uses las técnicas del libro para cambiar conscientemente tus estados emocionales. El Día 4 te guía para aplicar los 5 fundamentos de la riqueza." }], conclusion: "Esta sección transforma la teoría en práctica. Es un programa intensivo para integrar los conceptos, creando nuevos hábitos y resultados tangibles en solo una semana." },
+             // PARTE IV
+            { part: "PARTE IV: UNA LECCIÓN SOBRE EL DESTINO", title: "Capítulo 26: El desafío definitivo: Lo que puede hacer una persona", keyIdeas: [{ idea: "El poder de la contribución individual", text: "La historia está llena de ejemplos de individuos que, con una decisión comprometida, han cambiado el mundo.", example: "La historia de Sam LaBudde, que con una cámara de vídeo expuso la matanza de delfines y forzó un cambio en la industria atunera." }, { idea: "El secreto de la vida es dar", text: "La verdadera y más profunda realización no proviene de lo que obtenemos, sino de lo que damos.", example: "Personas que, tras superar una tragedia personal, dedican su vida a ayudar a otros en la misma situación." }], conclusion: "Este capítulo final es una llamada a usar nuestro poder personal no solo para mejorar nuestras vidas, sino para dejar un legado positivo y contribuir a algo más grande." }
         ];
         
         const bigIdeasData = [
@@ -321,11 +307,21 @@
             { id: 10, title: "Valores y Reglas", power: 8.7, content: { que: "Entender tu jerarquía de valores (lo que es importante para ti) y tus reglas (cómo sabes que se cumplen) es clave para la felicidad.", por_que: "Mucho sufrimiento proviene de tener reglas que hacen muy difícil sentirse bien y muy fácil sentirse mal.", como: "Clarifica tus 5 valores más importantes y diseña reglas fáciles de cumplir que estén bajo tu control para sentir que los vives."}},
             { id: 11, title: "Identidad: La Clave de la Expansión", power: 9.3, content: { que: "Actuamos de forma consistente con quién creemos que somos. Expandir tu identidad expande tu vida.", por_que: "Es la creencia más fundamental. Cambiar tu identidad de 'fumador' a 'atleta' cambia miles de comportamientos automáticamente.", como: "Define conscientemente quién quieres ser y empieza a actuar consistentemente con esa nueva identidad."}},
             { id: 12, title: "Señales de Acción (Emociones)", power: 8.6, content: { que: "Las emociones 'negativas' no son malas, son mensajes que te llaman a la acción para cambiar algo.", por_que: "Si entiendes el mensaje, puedes usar la emoción como una guía en lugar de sufrirla.", como: "Cuando sientas una emoción negativa, pregúntate: '¿Qué me está tratando de decir esta emoción? ¿Qué necesito cambiar en mi percepción o en mis acciones?'."}},
+            { id: 13, title: "Crear un Futuro Convincente", power: 8.9, content: { que: "Tener metas y objetivos que te inspiran y te entusiasman.", por_que: "Es el combustible de la motivación. La gente no es perezosa, solo tiene objetivos poco inspiradores.", como: "Dedica tiempo a soñar sin límites. Define qué quieres lograr, ser y tener, y, lo más importante, define por qué lo quieres con pasión." }},
+            { id: 14, title: "El Poder de la Contribución", power: 9.1, content: { que: "La idea de que la realización más profunda proviene de dar y servir a algo más grande que uno mismo.", por_que: "Añade un significado y propósito duraderos a la vida, más allá de los logros personales.", como: "Busca activamente formas de ayudar a otros, ya sea en tu comunidad, tu familia o a nivel global. Incluso los pequeños actos cuentan." }},
         ];
 
-
         // Populate Accordion
-        chapterData.forEach((item, index) => {
+        let currentPart = "";
+        chapterData.forEach((item) => {
+            if (item.part !== currentPart) {
+                currentPart = item.part;
+                const partHeader = document.createElement('h3');
+                partHeader.className = 'text-xl font-bold text-white bg-[#A98467] p-3 rounded-md my-4';
+                partHeader.textContent = currentPart;
+                accordionContainer.appendChild(partHeader);
+            }
+
             const accordionItem = document.createElement('div');
             accordionItem.className = 'border border-[#E9EDC9] rounded-lg';
             accordionItem.innerHTML = `
@@ -339,7 +335,7 @@
                         <ul class="list-disc list-inside space-y-3 mb-4">
                             ${item.keyIdeas.map(idea => `
                                 <li>
-                                    <strong class="text-[#38332E]">${idea.idea}</strong> ${idea.text}
+                                    <strong class="text-[#38332E]">${idea.idea}:</strong> ${idea.text}
                                     <p class="text-sm text-gray-500 pl-6 mt-1"><strong>Ejemplo:</strong> ${idea.example}</p>
                                 </li>
                             `).join('')}
@@ -364,9 +360,9 @@
         });
 
         // Populate Big Ideas
-        bigIdeasData.sort((a,b) => a.id - b.id).forEach(idea => {
+        bigIdeasData.sort((a,b) => b.power - a.power).forEach(idea => {
             const card = document.createElement('div');
-            card.className = 'idea-card bg-[#FAEDCD] p-4 rounded-lg cursor-pointer text-center';
+            card.className = 'idea-card bg-[#FAEDCD] p-4 rounded-lg cursor-pointer text-center flex flex-col justify-center';
             card.dataset.ideaId = idea.id;
             card.innerHTML = `<h4 class="text-lg font-semibold text-[#6C584C]">${idea.title}</h4>`;
             ideasGrid.appendChild(card);
@@ -381,10 +377,10 @@
 
             modalTitle.textContent = idea.title;
             modalBody.innerHTML = `
-                <div class="space-y-2">
-                    <p><strong>Qué es:</strong> ${idea.content.que}</p>
-                    <p><strong>Por qué importa:</strong> ${idea.content.por_que}</p>
-                    <p><strong>Cómo aplicarlo:</strong> ${idea.content.como}</p>
+                <div class="space-y-2 text-[#38332E]">
+                    <p><strong><span class="text-[#A98467]">Qué es:</span></strong> ${idea.content.que}</p>
+                    <p><strong><span class="text-[#A98467]">Por qué importa:</span></strong> ${idea.content.por_que}</p>
+                    <p><strong><span class="text-[#A98467]">Cómo aplicarlo:</span></strong> ${idea.content.como}</p>
                 </div>
             `;
             modal.classList.remove('hidden');
@@ -409,15 +405,16 @@
         
         // Chart.js implementation
         const ctx = document.getElementById('ideasChart').getContext('2d');
-        const chartLabels = bigIdeasData.map(idea => idea.title);
-        const chartPower = bigIdeasData.map(idea => idea.power);
+        const sortedIdeas = [...bigIdeasData].sort((a, b) => a.power - b.power);
+        const chartLabels = sortedIdeas.map(idea => idea.title);
+        const chartPower = sortedIdeas.map(idea => idea.power);
 
         new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: chartLabels,
+                labels: chartLabels.map(label => label.length > 25 ? label.substring(0, 22) + '...' : label),
                 datasets: [{
-                    label: 'Poder del Concepto (Escala 0-10)',
+                    label: 'Impacto del Concepto (0-10)',
                     data: chartPower,
                     backgroundColor: 'rgba(212, 163, 115, 0.6)',
                     borderColor: 'rgba(169, 132, 103, 1)',
@@ -434,12 +431,14 @@
                         max: 10,
                         grid: {
                             color: 'rgba(108, 88, 76, 0.1)'
-                        }
+                        },
+                         ticks: { color: '#6C584C' }
                     },
                     y: {
                          grid: {
                             display: false
-                        }
+                        },
+                         ticks: { color: '#38332E' }
                     }
                 },
                 plugins: {
@@ -448,6 +447,10 @@
                     },
                     tooltip: {
                          callbacks: {
+                            title: function(tooltipItems) {
+                                const index = tooltipItems[0].dataIndex;
+                                return sortedIdeas[index].title;
+                            },
                             label: function(context) {
                                 let label = context.dataset.label || '';
                                 if (label) {
@@ -468,3 +471,4 @@
 
 </body>
 </html>
+
