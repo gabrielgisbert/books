@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Inversor Inteligente - Resumen Interactivo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Calm Wisdom (Warm Beige, Charcoal, Muted Blue) -->
+    <!-- Application Structure Plan: A single-page, scrollable application with a sticky navigation bar. The structure is thematic, starting with core principles (cards), investor profiles (comparison), an interactive accordion for big ideas, a dynamic chart for market psychology, practical applications, and a final mental framework. This non-linear, thematic approach allows users to explore key concepts at their own pace, which is more effective for learning than a rigid chapter-by-chapter summary. -->
+    <!-- Visualization & Content Choices: Core Concepts: Cards (HTML/Tailwind) -> Goal: Inform -> Simple, digestible chunks of foundational info. Big Ideas: Accordion (HTML/JS) -> Goal: Organize/Explore -> Allows focused learning of 15 concepts without overwhelming the user. Mr. Market Cycle: Line Chart (Chart.js/Canvas) -> Goal: Change/Relationships -> Visually demonstrates the emotional cycle of markets, linking euphoria to high risk and panic to high opportunity. Justified as it's the most powerful visual metaphor in the book. Mental Framework: Nested Lists (HTML/Tailwind) -> Goal: Organize -> Clearly shows the book's logical hierarchy from abstract concepts to concrete actions. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F5F5DC; /* Warm Beige */
+        }
+        .text-charcoal { color: #36454F; }
+        .bg-charcoal { background-color: #36454F; }
+        .bg-muted-blue { background-color: #6495ED; } /* Cornflower Blue */
+        .text-muted-blue { color: #6495ED; }
+        .border-muted-blue { border-color: #6495ED; }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body class="text-charcoal antialiased">
+
+    <!-- Header & Navigation -->
+    <header class="bg-charcoal text-white p-4 shadow-md sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-xl md:text-2xl font-bold">El Inversor Inteligente</h1>
+            <nav class="hidden md:flex space-x-4">
+                <a href="#principios" class="hover:text-muted-blue transition-colors">Principios</a>
+                <a href="#perfiles" class="hover:text-muted-blue transition-colors">Perfiles</a>
+                <a href="#ideas" class="hover:text-muted-blue transition-colors">Grandes Ideas</a>
+                <a href="#aplicacion" class="hover:text-muted-blue transition-colors">Aplicación</a>
+                <a href="#framework" class="hover:text-muted-blue transition-colors">Framework</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <!-- Intro Section -->
+        <section class="text-center mb-12">
+            <h2 class="text-4xl font-bold mb-2">Una Guía Interactiva a la Sabiduría de Benjamin Graham</h2>
+            <p class="text-lg text-gray-700 max-w-3xl mx-auto">Esta aplicación traduce los principios atemporales de "El Inversor Inteligente" en una experiencia de aprendizaje. Explora los conceptos clave que han formado a los inversores más exitosos del mundo.</p>
+             <div class="mt-4 text-2xl font-bold text-amber-500">Valoración del Libro: 10 / 10</div>
+        </section>
+
+        <!-- Core Principles Section -->
+        <section id="principios" class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-8">Principios Fundamentales</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1: Inversion vs Especulacion -->
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-bold mb-3 text-muted-blue">Inversión vs. Especulación</h3>
+                    <p class="mb-4"><strong>Invertir</strong> es comprar tras un análisis exhaustivo, buscando seguridad del capital y un rendimiento adecuado. <strong>Especular</strong> es apostar a los movimientos de precios sin un análisis de valor.</p>
+                    <p class="text-sm text-gray-600">Confundir ambos es el error más costoso que un participante del mercado puede cometer.</p>
+                </div>
+                <!-- Card 2: Mr. Market -->
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-bold mb-3 text-muted-blue">El Sr. Mercado</h3>
+                    <p class="mb-4">El mercado es un socio de negocios maníaco-depresivo. A veces te ofrece precios eufóricos, otras veces precios de pánico. Tu trabajo es aprovechar su locura, no participar en ella.</p>
+                    <p class="text-sm text-gray-600">Las caídas son oportunidades de compra; las euforias, de venta. El resto del tiempo, ignóralo.</p>
+                </div>
+                <!-- Card 3: Margin of Safety -->
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-bold mb-3 text-muted-blue">Margen de Seguridad</h3>
+                    <p class="mb-4">Es la diferencia entre el valor intrínseco de una acción y el precio que pagas. Es el concepto central de la inversión y tu única protección real contra errores y la mala suerte.</p>
+                    <p class="text-sm text-gray-600">"Si crees que una acción vale 1€, cómprala solo si cuesta 60 céntimos o menos."</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Investor Profiles Section -->
+        <section id="perfiles" class="mb-16 bg-white p-8 rounded-lg shadow-lg">
+            <h2 class="text-3xl font-bold text-center mb-8">¿Qué Tipo de Inversor Eres?</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">El Inversor Defensivo</h3>
+                    <p class="mb-4">Busca la seguridad y la simplicidad. Su objetivo principal es evitar errores graves y no dedicar un esfuerzo excesivo a la gestión de su cartera.</p>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>Prefiere la diversificación amplia (ej. fondos indexados).</li>
+                        <li>Utiliza una asignación de activos simple (ej. 50% acciones, 50% bonos).</li>
+                        <li>Aplica la disciplina del "Promedio de Coste Monetario".</li>
+                        <li>Su éxito se basa en la paciencia y la disciplina, no en la brillantez.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">El Inversor Emprendedor</h3>
+                    <p class="mb-4">Está dispuesto a dedicar tiempo y esfuerzo a la investigación para encontrar oportunidades de valor superiores a la media del mercado.</p>
+                     <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>Busca activamente acciones infravaloradas.</li>
+                        <li>Analiza informes financieros y la salud de los negocios.</li>
+                        <li>Compra empresas grandes pero temporalmente impopulares.</li>
+                        <li>Requiere un profundo conocimiento y un temperamento firme.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Market Psychology Chart -->
+        <section id="psicologia" class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-8">La Psicología del Ciclo del Mercado del Sr. Mercado</h2>
+            <div class="bg-white p-4 md:p-8 rounded-lg shadow-lg">
+                <div class="chart-container">
+                    <canvas id="marketCycleChart"></canvas>
+                </div>
+                <p class="text-center mt-4 text-gray-600">El inversor inteligente compra en el punto de "Máxima Oportunidad" (pesimismo) y vende en el de "Máximo Riesgo" (euforia).</p>
+            </div>
+        </section>
+
+
+        <!-- Big Ideas Section -->
+        <section id="ideas" class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-8">Las 15 Grandes Ideas a Memorizar</h2>
+            <div id="accordion" class="space-y-2">
+                <!-- Accordion items will be generated by JS -->
+            </div>
+        </section>
+
+        <!-- Practical Application Section -->
+        <section id="aplicacion" class="mb-16 bg-white p-8 rounded-lg shadow-lg">
+            <h2 class="text-3xl font-bold text-center mb-8">Aplicación Práctica del Conocimiento</h2>
+            <div class="grid md:grid-cols-2 gap-8 mb-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">¿Cómo Usar Este Conocimiento?</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <span class="text-muted-blue font-bold mr-3">➔</span>
+                            <span><strong>Vida Personal:</strong> Aplica el "Margen de Seguridad" a grandes compras. Usa el "Promedio de Coste" para el ahorro a largo plazo.</span>
+                        </li>
+                        <li class="flex items-start">
+                           <span class="text-muted-blue font-bold mr-3">➔</span>
+                           <span><strong>Vida Profesional:</strong> Enfócate en el valor fundamental de los proyectos, no en las modas. Lidera con calma y razón en tiempos de crisis.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-muted-blue font-bold mr-3">➔</span>
+                            <span><strong>Como Orador:</strong> Usa la alegoría del "Sr. Mercado" para explicar la psicología de masas y la oportunidad en cualquier campo.</span>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">Implementación y Aprendizaje</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <span class="text-muted-blue font-bold mr-3">✓</span>
+                            <span><strong>Crea una "Cartera de Papel":</strong> Simula inversiones durante 6 meses para aprender sin arriesgar dinero real.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-muted-blue font-bold mr-3">✓</span>
+                            <span><strong>Usa un Checklist de Inversión:</strong> Antes de comprar, verifica el margen de seguridad, la solidez financiera y tu comprensión del negocio.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-muted-blue font-bold mr-3">✓</span>
+                            <span><strong>Lleva un Diario de Inversiones:</strong> Anota tus decisiones y, sobre todo, tus emociones. Te ayudará a controlar los impulsos.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mental Framework Section -->
+        <section id="framework" class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-8">Framework Mental del Libro</h2>
+            <div class="bg-white p-8 rounded-lg shadow-lg">
+                <ul class="space-y-4 text-lg">
+                    <li>
+                        <strong class="text-xl">🔹 Conceptos Fundamentales (La Realidad del Mercado)</strong>
+                        <ul class="list-disc list-inside ml-6 mt-2 space-y-1 text-gray-700">
+                            <li><strong>Valor:</strong> El valor intrínseco y a largo plazo de un negocio.</li>
+                            <li><strong>Precio:</strong> La cotización diaria y a menudo irracional del mercado.</li>
+                            <li><strong>Riesgo:</strong> La probabilidad de pérdida permanente de capital, no la volatilidad.</li>
+                            <li><strong>Mercado:</strong> Un sistema dual, a veces eficiente, a veces maníaco-depresivo.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong class="text-xl">└── Principios Clave (La Filosofía del Inversor Inteligente)</strong>
+                        <ul class="list-disc list-inside ml-6 mt-2 space-y-1 text-gray-700">
+                             <li><strong>Principio 1: El Margen de Seguridad.</strong> Compra siempre valor por menos de lo que cuesta. Es tu única protección real.</li>
+                             <li><strong>Principio 2: El Mercado es tu Sirviente.</strong> Usa las fluctuaciones del Sr. Mercado a tu favor; no dejes que te controlen.</li>
+                             <li><strong>Principio 3: Conócete a ti mismo.</strong> Tu temperamento y disciplina son más importantes que tu coeficiente intelectual.</li>
+                             <li><strong>Principio 4: La Diversificación es una necesidad.</strong> No puedes predecir el futuro, así que no apuestes todo a una carta.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong class="text-xl">└── Acciones Prácticas (El Método de Inversión)</strong>
+                         <ul class="list-disc list-inside ml-6 mt-2 space-y-1 text-gray-700">
+                             <li><strong>Defensivo:</strong> Asignación simple, fondos indexados, promedio de costes, reequilibrio.</li>
+                             <li><strong>Emprendedor:</strong> Análisis financiero, buscar impopularidad, criterios cuantitativos.</li>
+                             <li><strong>Para Todos:</strong> Aprender siempre, controlar emociones, pensar a largo plazo.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </main>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const bigIdeasList = [
+            { title: "Inversión vs. Especulación", content: "<strong>Qué es:</strong> Invertir es comprar una parte de un negocio basándose en un análisis riguroso para asegurar el capital y obtener un rendimiento adecuado. Especular es apostar a que el precio de un activo subirá sin un análisis de su valor real.<br><strong>Por qué importa:</strong> Confundirlos te lleva a asumir riesgos mortales creyendo que estás siendo prudente.<br><strong>Cómo aplicarlo:</strong> Antes de comprar, pregúntate: '¿Estoy comprando un negocio o un boleto de lotería?'." },
+            { title: "El Sr. Mercado", content: "<strong>Qué es:</strong> Una metáfora que representa al mercado como un socio de negocios bipolar que cada día te ofrece precios absurdos (altos o bajos) por tus acciones.<br><strong>Por qué importa:</strong> Te ayuda a distanciarte emocionalmente de las fluctuaciones diarias y a verlas como oportunidades.<br><strong>Cómo aplicarlo:</strong> Cuando el mercado caiga, piensa que el Sr. Mercado está deprimido y te ofrece gangas. Cuando suba, te ofrece la oportunidad de venderle a un loco." },
+            { title: "Margen de Seguridad", content: "<strong>Qué es:</strong> La diferencia entre el valor intrínseco de una acción y el precio que pagas por ella. Es el colchón que te protege de errores de cálculo o de la mala suerte.<br><strong>Por qué importa:</strong> Es la clave para minimizar el riesgo de pérdidas permanentes.<br><strong>Cómo aplicarlo:</strong> Compra siempre una acción por un precio significativamente inferior a lo que crees que realmente vale. Si crees que vale 100€, cómprala a 60€ o menos." },
+            { title: "Inversor Defensivo vs. Emprendedor", content: "<strong>Qué es:</strong> El defensivo busca simplicidad y seguridad (fondos indexados, diversificación). El emprendedor dedica tiempo y esfuerzo a encontrar oportunidades infravaloradas.<br><strong>Por qué importa:</strong> Ser honesto sobre tu tiempo, interés y temperamento te ayudará a elegir la estrategia correcta.<br><strong>Cómo aplicarlo:</strong> Evalúa de forma realista cuánto trabajo estás dispuesto a hacer. Si es poco, elige la vía defensiva." },
+            { title: "Precio vs. Valor", content: "<strong>Qué es:</strong> El precio es lo que el mercado dice que vale hoy. El valor es lo que realmente vale el negocio subyacente a largo plazo.<br><strong>Por qué importa:</strong> El mercado a menudo se equivoca. Tu trabajo como inversor es explotar esa diferencia.<br><strong>Cómo aplicarlo:</strong> Nunca compres una acción solo porque 'está subiendo'. Analiza el negocio para determinar su valor real." },
+            { title: "El principal enemigo del inversor eres tú mismo", content: "<strong>Qué es:</strong> El control emocional es más importante que el análisis técnico. La euforia y el pánico son los mayores destructores de riqueza.<br><strong>Por qué importa:</strong> Tus decisiones impulsivas te costarán más dinero que cualquier mala acción.<br><strong>Cómo aplicarlo:</strong> Crea un plan de inversión y síguelo con disciplina, sin importar las noticias o los movimientos del mercado." },
+            { title: "Diversificación", content: "<strong>Qué es:</strong> No poner todos los huevos en la misma cesta. Repartir tus inversiones en diferentes activos y empresas.<br><strong>Por qué importa:</strong> Te protege de la catástrofe si una de tus inversiones fracasa. Es admitir que no puedes predecir el futuro.<br><strong>Cómo aplicarlo:</strong> Ten una mezcla de acciones y bonos, y dentro de las acciones, invierte en varias empresas de diferentes sectores." },
+            { title: "Asignación de Activos", content: "<strong>Qué es:</strong> La decisión de cómo dividir tu cartera entre diferentes tipos de activos, principalmente acciones y bonos.<br><strong>Por qué importa:</strong> Es la decisión más importante que tomarás, determinando la mayor parte de tus resultados y tu nivel de riesgo.<br><strong>Cómo aplicarlo:</strong> Empieza con una regla simple como 50/50 y ajústala según tu tolerancia al riesgo y tu edad." },
+            { title: "Promedio del Coste Monetario", content: "<strong>Qué es:</strong> Invertir una cantidad fija de dinero a intervalos regulares (ej. mensualmente), independientemente del nivel del mercado.<br><strong>Por qué importa:</strong> Impone disciplina, te obliga a comprar más cuando los precios son bajos y te protege de la tentación de intentar 'adivinar' el mejor momento para invertir.<br><strong>Cómo aplicarlo:</strong> Automatiza una transferencia mensual de tu cuenta bancaria a tu cuenta de inversión." },
+            { title: "Círculo de Competencia", content: "<strong>Qué es:</strong> El área de negocios que entiendes profundamente. Debes invertir únicamente dentro de este círculo.<br><strong>Por qué importa:</strong> Te impide cometer errores costosos al invertir en industrias o empresas que no comprendes.<br><strong>Cómo aplicarlo:</strong> Sé honesto sobre lo que no sabes. Si no puedes explicar el negocio a un niño de 10 años, no inviertas en él." },
+            { title: "Análisis Fundamental", content: "<strong>Qué es:</strong> El estudio de la salud financiera y la posición competitiva de una empresa para determinar su valor.<br><strong>Por qué importa:</strong> Es la única base sólida para la inversión. Ignorarlo es especular.<br><strong>Cómo aplicarlo:</strong> Aprende a leer un balance y una cuenta de resultados. Compara una empresa con sus competidores." },
+            { title: "Crítica al Crecimiento por el Crecimiento", content: "<strong>Qué es:</strong> La idea de que las empresas que crecen rápido no son automáticamente buenas inversiones, porque su alto precio ya descuenta ese crecimiento.<br><strong>Por qué importa:</strong> Pagar de más por el crecimiento es una de las trampas más comunes y peligrosas.<br><strong>Cómo aplicarlo:</strong> Exige un margen de seguridad incluso en las empresas de crecimiento. Valora el crecimiento, pero no pagues cualquier precio por él." },
+            { title: "El Inversor como Propietario de un Negocio", content: "<strong>Qué es:</strong> Pensar en las acciones no como símbolos en una pantalla, sino como participaciones en un negocio real.<br><strong>Por qué importa:</strong> Cambia tu perspectiva de corto a largo plazo. Te preocuparás por la salud del negocio, no por el próximo movimiento del precio.<br><strong>Cómo aplicarlo:</strong> Antes de comprar, pregúntate: '¿Me gustaría ser dueño de todo este negocio para siempre?'." },
+            { title: "La Historia Importa", content: "<strong>Qué es:</strong> El mercado tiene una fuerte tendencia a repetir los mismos patrones de euforia y pánico. La historia ofrece lecciones valiosas.<br><strong>Por qué importa:</strong> Los que no recuerdan el pasado (las burbujas y los crashes) están condenados a repetirlo.<br><strong>Cómo aplicarlo:</strong> Lee sobre la historia financiera. Entiende que 'esta vez es diferente' son las cuatro palabras más caras en inversión." },
+            { title: "Simplicidad ante todo", content: "<strong>Qué es:</strong> Las estrategias de inversión más efectivas suelen ser las más simples. La complejidad a menudo oculta el riesgo.<br><strong>Por qué importa:</strong> Te protege de productos financieros exóticos y de estrategias que solo benefician a quien te las vende.<br><strong>Cómo aplicarlo:</strong> Si no lo entiendes, no lo compres. Una cartera simple de fondos indexados es más que suficiente para la mayoría." },
+        ];
+        
+        const accordionContainer = document.getElementById('accordion');
+        bigIdeasList.forEach((item, index) => {
+            const accordionItem = document.createElement('div');
+            accordionItem.className = 'bg-white rounded-lg shadow-md';
+            
+            const button = document.createElement('button');
+            button.className = 'w-full text-left p-4 font-semibold text-lg flex justify-between items-center hover:bg-gray-50 focus:outline-none';
+            button.innerHTML = `<span>${index + 1}. ${item.title}</span><span class="transform transition-transform duration-300 ">▼</span>`;
+            
+            const content = document.createElement('div');
+            content.className = 'accordion-content px-4 pb-4 text-gray-700';
+            content.innerHTML = `<p>${item.content}</p>`;
+            
+            accordionItem.appendChild(button);
+            accordionItem.appendChild(content);
+            accordionContainer.appendChild(accordionItem);
+            
+            button.addEventListener('click', () => {
+                const isExpanded = content.style.maxHeight && content.style.maxHeight !== '0px';
+                // Close all other accordions
+                document.querySelectorAll('.accordion-content').forEach(el => el.style.maxHeight = '0px');
+                document.querySelectorAll('#accordion button span:last-child').forEach(el => el.classList.remove('rotate-180'));
+
+                if (!isExpanded) {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                    button.querySelector('span:last-child').classList.add('rotate-180');
+                }
+            });
+        });
+
+        // Chart.js implementation
+        const ctx = document.getElementById('marketCycleChart').getContext('2d');
+        const marketCycleChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Optimismo', 'Excitación', 'Emoción', 'Euforia', 'Ansiedad', 'Negación', 'Miedo', 'Desesperación', 'Pánico', 'Capitulación', 'Abatimiento', 'Depresión', 'Esperanza', 'Alivio'],
+                datasets: [{
+                    label: 'Ciclo Emocional del Mercado',
+                    data: [2, 4, 7, 10, 8, 6, 3, 1, 0, 1, 1.5, 1.2, 1.8, 2],
+                    borderColor: '#6495ED',
+                    backgroundColor: 'rgba(100, 149, 237, 0.1)',
+                    tension: 0.4,
+                    fill: true,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed.y !== null) {
+                                    if(context.label === 'Euforia') label += 'Máximo Riesgo Financiero';
+                                    else if (context.label === 'Pánico' || context.label === 'Depresión') label += 'Máxima Oportunidad';
+                                    else label = context.label;
+                                }
+                                return label;
+                            }
+                        }
+                    },
+                     annotation: {
+                        annotations: {
+                            point1: {
+                                type: 'point',
+                                xValue: 'Euforia',
+                                yValue: 10,
+                                backgroundColor: 'rgba(255, 99, 132, 0.8)',
+                                radius: 5,
+                            },
+                             point2: {
+                                type: 'point',
+                                xValue: 'Depresión',
+                                yValue: 1.2,
+                                backgroundColor: 'rgba(75, 192, 192, 0.8)',
+                                radius: 5,
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        display: false,
+                        min: -1,
+                        max: 11
+                    },
+                    x: {
+                         ticks: {
+                             font: {
+                                 size: 10
+                             }
+                         }
+                    }
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>
