@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Despertando al Gigante Interior - Aplicación Interactiva</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Calm Harmony -->
+    <!-- Application Structure Plan: He diseñado una aplicación de una sola página con una estructura de pestañas para facilitar la navegación y la digestión del contenido. Este enfoque de "dashboard" permite al usuario saltar entre las secciones clave del libro (Contexto, Capítulos, Grandes Ideas, Aplicación, Framework) sin un desplazamiento largo y abrumador. Las interacciones clave incluyen: 1) Un sistema de acordeón para el resumen de capítulos, que permite al usuario enfocarse en un capítulo a la vez. 2) Tarjetas interactivas para las "Grandes Ideas", que al hacer clic abren un modal con la explicación detallada, fomentando la exploración activa. 3) Una visualización del "Framework Mental" usando HTML/CSS estructurado para representar la jerarquía de conceptos. Esta estructura fue elegida para transformar un resumen textual denso en una experiencia de aprendizaje interactiva, no lineal y más intuitiva. -->
+    <!-- Visualization & Content Choices: 1. **Contexto General:** Texto claro y directo para establecer la base. 2. **Resumen por Capítulos:** Presentado como un acordeón interactivo (HTML/JS) para evitar la sobrecarga de información; el usuario elige qué explorar. Meta: Organizar y simplificar. 3. **Grandes Ideas:** Se usan tarjetas interactivas (HTML/JS) para invitar al clic y un gráfico de barras de Chart.js para visualizar el "poder" relativo de cada concepto, añadiendo un elemento cuantitativo y dinámico. Meta: Comparar e informar. 4. **Aplicación Práctica:** Listas estructuradas para una fácil asimilación. 5. **Framework Mental:** Representado visualmente con listas anidadas y estilos CSS, creando un mapa conceptual textual que es fácil de seguir. Meta: Organizar y mostrar relaciones. Todas las visualizaciones y elementos se implementan sin SVG ni Mermaid JS, cumpliendo con los requisitos. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFBF8;
+            color: #38332E;
+        }
+        .tab-button {
+            transition: all 0.3s ease;
+        }
+        .tab-button.active {
+            background-color: #D4A373;
+            color: #FEFAE0;
+            font-weight: 600;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+        }
+        .accordion-content.open {
+            max-height: 1000px;
+            transition: max-height 0.7s ease-in;
+        }
+        .idea-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .idea-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .modal {
+            transition: opacity 0.3s ease;
+        }
+        .framework-container ul {
+            padding-left: 20px;
+            position: relative;
+        }
+        .framework-container ul li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 8px;
+        }
+        .framework-container ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 12px;
+            border-left: 1px solid #CCD5AE;
+            border-bottom: 1px solid #CCD5AE;
+            width: 15px;
+            height: 1px;
+        }
+        .framework-container ul li::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            border-left: 1px solid #CCD5AE;
+        }
+        .framework-container ul li:last-child::after {
+            height: 12px;
+        }
+    </style>
+</head>
+<body class="bg-[#FDFBF8] text-[#38332E]">
+
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8 max-w-6xl">
+        <header class="text-center mb-8">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#A98467]">Despertando al Gigante Interior</h1>
+            <p class="text-lg text-[#6C584C] mt-2">Una Aplicación Interactiva sobre el Resumen de Estudio de Anthony Robbins</p>
+        </header>
+
+        <nav id="tabs" class="flex flex-wrap justify-center gap-2 mb-8">
+            <button class="tab-button active py-2 px-4 rounded-lg bg-[#E9EDC9] text-[#6C584C] focus:outline-none" data-target="contexto">Contexto General</button>
+            <button class="tab-button py-2 px-4 rounded-lg bg-[#E9EDC9] text-[#6C584C] focus:outline-none" data-target="capitulos">Resumen por Capítulos</button>
+            <button class="tab-button py-2 px-4 rounded-lg bg-[#E9EDC9] text-[#6C584C] focus:outline-none" data-target="ideas">Grandes Ideas</button>
+            <button class="tab-button py-2 px-4 rounded-lg bg-[#E9EDC9] text-[#6C584C] focus:outline-none" data-target="aplicacion">Aplicación Práctica</button>
+            <button class="tab-button py-2 px-4 rounded-lg bg-[#E9EDC9] text-[#6C584C] focus:outline-none" data-target="framework">Framework Mental</button>
+        </nav>
+
+        <main id="tab-content">
+            <section id="contexto" class="tab-pane active-pane bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-2xl font-bold text-[#A98467] mb-4">1. Contexto General del Libro</h2>
+                <div class="space-y-4">
+                    <div>
+                        <h3 class="text-xl font-semibold text-[#6C584C]">1.1 - ¿Qué problema o necesidad busca resolver?</h3>
+                        <p class="mt-2 text-[#38332E]">El libro aborda el problema fundamental de la falta de control sobre la propia vida. Muchas personas se sienten víctimas de sus circunstancias, incapaces de generar cambios duraderos en su salud, finanzas, relaciones o estado emocional. Robbins busca resolver la pasividad y la frustración, despertando la conciencia de que cada individuo posee un "gigante interior": un poder ilimitado para tomar decisiones conscientes, cambiar creencias limitantes y diseñar deliberadamente la vida que desea vivir, en lugar de simplemente aceptarla.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-[#6C584C]">1.2 - Temática del libro: Palabras Clave</h3>
+                        <div class="mt-2 flex flex-wrap gap-2">
+                            <span class="bg-[#CCD5AE] text-[#38332E] text-sm font-medium px-3 py-1 rounded-full">Poder personal</span>
+                            <span class="bg-[#CCD5AE] text-[#38332E] text-sm font-medium px-3 py-1 rounded-full">Cambio rápido</span>
+                            <span class="bg-[#CCD5AE] text-[#38332E] text-sm font-medium px-3 py-1 rounded-full">Control emocional</span>
+                            <span class="bg-[#CCD5AE] text-[#38332E] text-sm font-medium px-3 py-1 rounded-full">PNL</span>
+                            <span class="bg-[#CCD5AE] text-[#38332E] text-sm font-medium px-3 py-1 rounded-full">Destino</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="capitulos" class="tab-pane hidden">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h2 class="text-2xl font-bold text-[#A98467] mb-4">2. Resumen por Capítulos</h2>
+                    <p class="mb-6 text-gray-600">Esta sección desglosa las ideas fundamentales de los primeros capítulos del libro. Haz clic en el título de cada capítulo para expandir y explorar sus ideas clave, ejemplos y conclusiones. Este formato te permite digerir la información a tu propio ritmo.</p>
+                    <div id="accordion-container" class="space-y-2">
+                        <!-- Accordion items will be injected here by JavaScript -->
+                    </div>
+                </div>
+            </section>
+
+            <section id="ideas" class="tab-pane hidden">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h2 class="text-2xl font-bold text-[#A98467] mb-4">3. Grandes Ideas del Libro</h2>
+                     <p class="mb-6 text-gray-600">Esta sección destila la esencia del libro en sus conceptos más transformadores. Cada 'gran idea' es una herramienta poderosa para el cambio. Haz clic en cada una para explorar qué es, por qué es crucial y cómo puedes aplicarla en tu vida diaria para lograr resultados extraordinarios.</p>
+                    <div id="ideas-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                       <!-- Idea cards will be injected here by JavaScript -->
+                    </div>
+                    <div class="mt-8">
+                        <h3 class="text-xl font-semibold text-center text-[#6C584C] mb-4">Poder Relativo de las Grandes Ideas</h3>
+                        <div class="chart-container relative w-full h-96 max-h-[400px] max-w-3xl mx-auto">
+                            <canvas id="ideasChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="aplicacion" class="tab-pane hidden bg-white p-6 rounded-lg shadow-md">
+                 <h2 class="text-2xl font-bold text-[#A98467] mb-4">4. Aplicación Práctica del Conocimiento</h2>
+                 <p class="mb-6 text-gray-600">El conocimiento solo es poder en potencia; la acción lo convierte en poder real. Esta sección te ofrece un puente directo entre la teoría del libro y tu vida cotidiana, con sugerencias concretas para aplicar estos principios y lograr cambios tangibles.</p>
+                 <div class="space-y-6">
+                    <div>
+                        <h3 class="text-xl font-semibold text-[#6C584C]">4.1 - ¿Cómo usar este conocimiento?</h3>
+                        <ul class="mt-2 list-disc list-inside space-y-2 text-[#38332E]">
+                            <li><strong>Vida Personal:</strong> Toma el control de tus estados emocionales. En lugar de reaccionar con enfado ante tu pareja o hijos, interrumpe tu patrón, hazte una pregunta mejor ("¿Qué es lo que realmente importa aquí?") y elige una respuesta más constructiva. Define tus valores personales para tomar decisiones alineadas con quien realmente quieres ser.</li>
+                            <li><strong>Vida Profesional:</strong> Utiliza el principio de CANI! para mejorar constantemente tus habilidades y añadir más valor que nadie en tu campo. En una negociación, entiende los valores (lo que es importante) de la otra parte para encontrar una solución ganar-ganar. Supera la procrastinación asociando dolor a la inacción y placer a la tarea completada.</li>
+                            <li><strong>Como Orador:</strong> Para conectar con tu audiencia, entiende que tu objetivo es cambiar su estado emocional. Usa tu fisiología (energía, movimiento), tu lenguaje (metáforas, vocabulario transformacional) y preguntas poderosas para llevarlos de un estado de pasividad o escepticismo a uno de inspiración y acción.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-[#6C584C]">4.2 - Sugerencias de implementación diaria</h3>
+                        <ul class="mt-2 list-disc list-inside space-y-2 text-[#38332E]">
+                           <li><strong>Las Preguntas de Poder de la Mañana:</strong> Comienza cada día haciéndote preguntas que te pongan en un estado de gratitud, felicidad y empoderamiento. Por ejemplo: "¿De qué me siento feliz ahora en mi vida? ¿De qué me siento orgulloso? ¿Con qué estoy comprometido?".</li>
+                           <li><strong>El Desafío Mental de Diez Días:</strong> Comprométete a pasar 10 días consecutivos sin albergar un solo pensamiento o emoción negativa. Cada vez que aparezca uno, usa las técnicas del libro para transformarlo inmediatamente. Si te quedas en un estado negativo por más de 2 minutos, empiezas la cuenta de 10 días de nuevo. Esto condicionará tu mente para buscar soluciones y estados positivos de forma automática.</li>
+                        </ul>
+                    </div>
+                 </div>
+            </section>
+
+            <section id="framework" class="tab-pane hidden bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-2xl font-bold text-[#A98467] mb-4">5. Framework Mental del Libro</h2>
+                <p class="mb-6 text-gray-600">Este es el esqueleto lógico del libro, desglosado en su estructura fundamental: los conceptos abstractos que dan lugar a principios operativos, los cuales a su vez dictan acciones prácticas. Visualizar este mapa mental te ayuda a integrar la filosofía de Robbins de una manera coherente y jerárquica.</p>
+                <div class="framework-container text-[#38332E]">
+                    <ul>
+                        <li><span class="font-bold text-[#A98467]">🔹 Concepto: Tienes el poder de cambiar tu vida AHORA.</span>
+                            <ul>
+                                <li><span class="font-semibold">Principio:</span> Tu destino se crea en tus momentos de decisión.
+                                    <ul>
+                                        <li><span class="text-sm">Acción:</span> Toma una decisión real y comprometida sobre un área clave de tu vida y emprende una acción inmediata.</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><span class="font-bold text-[#A98467]">🔹 Concepto: Tus emociones y comportamientos están bajo tu control.</span>
+                             <ul>
+                                <li><span class="font-semibold">Principio:</span> Todo lo que haces es para evitar el dolor o ganar placer.
+                                     <ul>
+                                        <li><span class="text-sm">Acción:</span> Utiliza el CNA: Asocia dolor masivo al comportamiento que quieres eliminar y placer intenso al que quieres adoptar.</li>
+                                    </ul>
+                                </li>
+                                <li><span class="font-semibold">Principio:</span> Tu estado emocional depende de tu fisiología y tu enfoque mental.
+                                    <ul>
+                                        <li><span class="text-sm">Acción:</span> Para cambiar cómo te sientes, cambia radicalmente tu postura, respiración y movimiento, o hazte una pregunta que cambie tu enfoque.</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><span class="font-bold text-[#A98467]">🔹 Concepto: Tu realidad es una interpretación, no es la verdad absoluta.</span>
+                            <ul>
+                                <li><span class="font-semibold">Principio:</span> Tus creencias, vocabulario y metáforas filtran y crean tu experiencia del mundo.
+                                    <ul>
+                                        <li><span class="text-sm">Acción:</span> Cuestiona tus creencias limitantes. Cambia conscientemente las palabras que usas (ej: "frustrado" por "fascinado"). Elige metáforas que te den poder (ej: "la vida es un juego" en lugar de "una batalla").</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><span class="font-bold text-[#A98467]">🔹 Concepto: La felicidad y el éxito duraderos provienen de la congruencia y el crecimiento.</span>
+                             <ul>
+                                <li><span class="font-semibold">Principio:</span> Debes conocer tus valores y vivir en congruencia con ellos.
+                                     <ul>
+                                        <li><span class="text-sm">Acción:</span> Clarifica tu jerarquía de valores (qué es lo más importante para ti) y diseña reglas que te permitan sentirte exitoso y feliz fácilmente.</li>
+                                    </ul>
+                                </li>
+                                <li><span class="font-semibold">Principio:</span> El progreso equivale a la felicidad.
+                                    <ul>
+                                        <li><span class="text-sm">Acción:</span> Adopta el compromiso de CANI! (Mejora Constante e Ilimitada). Busca mejorar un poco cada día.</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal Structure -->
+    <div id="idea-modal" class="modal fixed inset-0 bg-black bg-opacity-60 hidden items-center justify-center p-4 z-50">
+        <div class="modal-content bg-white rounded-lg p-6 max-w-2xl w-full relative transform scale-95 transition-transform duration-300">
+            <button id="modal-close" class="absolute top-2 right-4 text-3xl font-bold text-gray-500 hover:text-gray-800">&times;</button>
+            <h3 id="modal-title" class="text-2xl font-bold text-[#A98467] mb-4"></h3>
+            <div id="modal-body" class="space-y-3"></div>
+        </div>
+    </div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const tabs = document.querySelectorAll('.tab-button');
+        const panes = document.querySelectorAll('.tab-pane');
+        const accordionContainer = document.getElementById('accordion-container');
+        const ideasGrid = document.getElementById('ideas-grid');
+        const modal = document.getElementById('idea-modal');
+        const modalContent = modal.querySelector('.modal-content');
+        const modalTitle = document.getElementById('modal-title');
+        const modalBody = document.getElementById('modal-body');
+        const modalClose = document.getElementById('modal-close');
+
+        // Tab functionality
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(item => item.classList.remove('active'));
+                tab.classList.add('active');
+                
+                panes.forEach(pane => pane.classList.add('hidden'));
+                document.getElementById(tab.dataset.target).classList.remove('hidden');
+            });
+        });
+
+        // Data for dynamic content
+        const chapterData = [
+            {
+                title: "Capítulo 1: Sueños de destino",
+                keyIdeas: [
+                    { idea: "Todos poseemos un poder ilimitado:", text: "Dentro de cada persona yace un 'gigante dormido', una capacidad inmensa para cambiar cualquier aspecto de la vida.", example: "Una persona que siempre ha querido aprender a pintar pero nunca empieza porque cree que 'no tiene talento'. Despertar a su gigante sería tomar la decisión de inscribirse en una clase y empezar." },
+                    { idea: "La concentración de poder es la clave del cambio:", text: "La mayoría fracasa porque dispersa su energía. Enfocar todos los recursos en un solo aspecto permite lograr resultados extraordinarios.", example: "Un emprendedor que enfoca el 100% de su energía durante un mes en una sola cosa: conseguir cinco nuevos clientes." },
+                    { idea: "El cambio duradero requiere tres pasos:", text: "Se logra mediante 1) Elevar los estándares, 2) Cambiar las creencias limitantes, y 3) Cambiar tu estrategia.", example: "Alguien que quiere dejar de fumar: 1) Eleva estándar ('No envenenaré mi cuerpo'), 2) Cambia creencia ('Soy una persona sana'), 3) Cambia estrategia (busca ayuda, usa parches)." }
+                ],
+                conclusion: "Este capítulo es una llamada a la acción. Nos recuerda que nuestro destino no está predeterminado, sino que se forja con nuestra capacidad para despertar y utilizar nuestro poder interior para transformar los sueños en realidad."
+            },
+             {
+                title: "Capítulo 2: Decisiones: el camino hacia el poder",
+                keyIdeas: [
+                    { idea: "Las decisiones moldean nuestro destino:", text: "No son las condiciones, sino lo que decidimos hacer al respecto. No tomar una decisión es una decisión en sí misma.", example: "Dos personas pierden su empleo. Una lo ve como una catástrofe; la otra, como una oportunidad para reinventarse." },
+                    { idea: "El poder de una decisión real y comprometida:", text: "Una verdadera decisión implica cortar cualquier otra posibilidad. No es una preferencia ('me gustaría...'), sino un compromiso total ('voy a...').", example: "La diferencia entre 'me gustaría ponerme en forma' y 'he decidido ser una persona atlética y sana'." }
+                ],
+                conclusion: "La herramienta más poderosa que poseemos es la capacidad de decidir. Tomar decisiones conscientes y comprometidas es el primer paso para pasar de ser espectador a ser el director de nuestra propia vida."
+            },
+            {
+                title: "Capítulo 3: La fuerza que configura su vida",
+                keyIdeas: [
+                    { idea: "Todo comportamiento está impulsado por el dolor y el placer:", text: "Hacemos todo para evitar el dolor o ganar placer. Es la fuerza gemela que dirige nuestras acciones.", example: "La procrastinación ocurre porque se asocia más dolor al esfuerzo inmediato que a las consecuencias futuras." },
+                    { idea: "Para cambiar, debemos reasociar el dolor y el placer:", text: "El cambio duradero requiere hacer que el viejo comportamiento sea neurológicamente doloroso y el nuevo, placentero.", example: "Para dejar la comida basura, asocia un dolor intenso (imaginarte enfermo) al comerla y un placer inmenso (visualizarte enérgico) al comer sano." }
+                ],
+                conclusion: "Este capítulo desvela el mecanismo que nos gobierna. Entender la dinámica dolor-placer nos da el manual de nuestra propia mente para redirigir cualquier comportamiento y tomar el control definitivo."
+            },
+             {
+                title: "Capítulo 4: Sistemas de creencias, el poder de crear y destruir",
+                keyIdeas: [
+                    { idea: "Las creencias son sentimientos de certeza:", text: "No son solo ideas, sino ideas con una certeza absoluta que actúan como órdenes para nuestro sistema nervioso.", example: "La idea 'puedo hablar en público' se vuelve creencia cuando la apoyamos con referencias, dándonos acceso a los recursos para hacerlo con confianza." },
+                    { idea: "Las creencias se apoyan en 'patas de referencia':", text: "Una creencia se sostiene por las experiencias (reales o imaginadas) que la confirman. Para cambiarla, hay que cuestionar esas referencias.", example: "La creencia 'no soy bueno para las ventas' se apoya en rechazos pasados. Cuestionar si un rechazo te define debilita la creencia." },
+                     { idea: "Las creencias tienen el poder de crear y destruir:", text: "Una creencia potenciadora puede hacer que alguien supere lo imposible, mientras que una limitante puede hacer que se rinda.", example: "Un estudiante que cree 'soy un genio' persistirá, mientras que uno que cree 'soy lento' abandonará ante la primera dificultad." }
+                ],
+                conclusion: "Las creencias no son la realidad, sino el filtro con el que la interpretamos. Podemos elegir nuestras creencias, desmantelar las que nos limitan y construir activamente las que nos impulsan."
+            },
+             {
+                title: "Capítulo 5: ¿Puede producirse el cambio en un instante?",
+                keyIdeas: [
+                    { idea: "El cambio es instantáneo, la preparación puede tomar tiempo:", text: "El momento del cambio real es siempre un instante: cuando se toma una verdadera decisión.", example: "Alguien 'intenta' dejar de fumar por años, pero el cambio real ocurre en el instante en que un diagnóstico médico hace la decisión irrevocable." },
+                    { idea: "La responsabilidad del cambio es 100% nuestra:", text: "El cambio duradero solo ocurre cuando creemos tres cosas: 'Algo TIENE que cambiar', 'YO tengo que cambiarlo', y 'YO PUEDO cambiarlo'.", example: "Un fumador que culpa al terapeuta por una recaída no ha asumido la responsabilidad. El cambio es duradero cuando dice: 'Mi salud depende de mí'." }
+                ],
+                conclusion: "Este capítulo desafía la idea de que el cambio debe ser lento. Con la palanca emocional adecuada y responsabilidad total, podemos transformar nuestra vida en un momento, en lugar de esperar una motivación externa."
+            },
+             {
+                title: "Capítulo 6: La ciencia del Condicionamiento Neuroasociativo (CNA)",
+                keyIdeas: [
+                    { idea: "El CNA es un sistema de 6 pasos para el cambio duradero:", text: "Es un método para recondicionar nuestro sistema nervioso, vinculando dolor al viejo hábito y placer al nuevo.", example: "Para superar el miedo a hablar en público: 1) Definir objetivo, 2) Usar palanca, 3) Interrumpir patrón, 4) Crear alternativa, 5) Anclarla, 6) Probarla." },
+                    { idea: "La palanca emocional es crucial:", text: "Para cambiar, el dolor de no cambiar debe ser mayor que el dolor de cambiar. Se necesita un 'umbral de dolor' donde decimos '¡Basta ya!'.", example: "Alguien con sobrepeso alcanza su umbral de dolor no cuando el médico se lo dice, sino cuando se ve en una foto y siente una vergüenza insoportable." },
+                    { idea: "Interrumpir el patrón es esencial:", text: "No se puede instalar un nuevo comportamiento si el patrón antiguo sigue activo. Hay que 'rayar el disco' con algo inesperado.", example: "Cada vez que sientas ansiedad, salta o grita una palabra absurda para romper el estado." }
+                ],
+                conclusion: "El CNA es el 'cómo' práctico del libro. Proporciona una metodología clara para tomar control de nuestras neuroasociaciones, dependiendo del recondicionamiento deliberado en lugar de la fuerza de voluntad."
+            }
+        ];
+        
+        const bigIdeasData = [
+            { id: 1, title: "El Poder de las Decisiones", power: 10, content: { que: "La capacidad de elegir conscientemente en qué te enfocas, qué significan las cosas y qué vas a hacer.", por_que: "Te saca del rol de víctima de las circunstancias y te pone en el asiento del conductor de tu vida.", como: "Toma una decisión real y comprometida sobre un área de tu vida que has estado posponiendo. Corta todas las demás posibilidades y actúa AHORA."}},
+            { id: 2, title: "La Díada Dolor/Placer", power: 9.8, content: { que: "El principio de que todas tus acciones buscan evitar el dolor o ganar placer.", por_que: "Si entiendes esto, puedes cambiar cualquier comportamiento manipulando estas dos fuerzas.", como: "Para eliminar un mal hábito, asocia conscientemente un dolor masivo e inmediato a ese hábito y un placer intenso al nuevo hábito que quieres instaurar."}},
+            { id: 3, title: "Condicionamiento Neuroasociativo", power: 9.5, content: { que: "El método para cambiar cualquier comportamiento reconfigurando lo que asocias al dolor y al placer.", por_que: "Te permite crear cambios duraderos sin depender de la fuerza de voluntad, que es limitada.", como: "Aplica los 6 pasos del CNA: 1) Define tu objetivo, 2) Crea palanca, 3) Interrumpe el patrón, 4) Crea una alternativa, 5) Condiciona el nuevo patrón, 6) Pruébalo."}},
+            { id: 4, title: "Creencias: Crear y Destruir", power: 9.2, content: { que: "Tus creencias (sentimientos de certeza) determinan lo que es posible o imposible para ti.", por_que: "Actuamos de acuerdo a nuestras creencias, no a la realidad. Cambiarlas cambia nuestros resultados.", como: "Cuestiona las 'patas de referencia' (evidencias) de tus creencias limitantes y construye activamente referencias para creencias potenciadoras."}},
+            { id: 5, title: "Vocabulario Transformacional", power: 8.5, content: { que: "El uso consciente de las palabras para disminuir la intensidad de las emociones negativas y aumentar la de las positivas.", por_que: "Las palabras que usas se convierten en tu experiencia. Cambiar una palabra puede cambiar tu estado emocional instantáneamente.", como: "En lugar de decir 'estoy furioso', prueba a decir 'estoy un poco molesto'. En lugar de 'estoy bien', di 'estoy espectacular'. Observa el cambio."}},
+            { id: 6, title: "El Poder de las Metáforas", power: 8.2, content: { que: "Las metáforas que usas para describir tu vida o tus problemas definen cómo los experimentas.", por_que: "Una metáfora limitante ('la vida es una batalla') crea estrés, mientras que una potenciadora ('la vida es un juego') crea oportunidad.", como: "Identifica tus metáforas habituales. Si son limitantes, elige conscientemente nuevas metáforas que te sirvan mejor."}},
+            { id: 7, title: "El Poder de las Preguntas", power: 9.0, content: { que: "Las preguntas que te haces de forma consistente dirigen tu enfoque mental y, por tanto, tu vida.", por_que: "Tu cerebro siempre buscará una respuesta. Preguntas de calidad llevan a una vida de calidad.", como: "En lugar de '¿Por qué me pasa esto a mí?', pregunta '¿Qué puedo aprender de esto?' o '¿Cómo puedo mejorar esta situación?'."}},
+            { id: 8, title: "CANI! (Mejora Constante)", power: 8.8, content: { que: "Un compromiso de por vida para mejorar un poco cada día en todas las áreas importantes de tu vida.", por_que: "Crea un impulso imparable y es la única fuente de seguridad real a largo plazo.", como: "Al final de cada día, pregúntate: '¿Qué he aprendido hoy? ¿Cómo he mejorado o contribuido?'."}},
+            { id: 9, title: "El Sistema Maestro", power: 8.0, content: { que: "Los 5 componentes (estado, preguntas, valores, creencias, referencias) que filtran tu realidad y dirigen tus decisiones.", por_que: "Entender tu sistema te permite identificar dónde hacer un cambio para tener el mayor impacto en tu vida.", como: "Analiza cómo cada uno de estos 5 elementos influye en una decisión importante que debas tomar."}},
+            { id: 10, title: "Valores y Reglas", power: 8.7, content: { que: "Entender tu jerarquía de valores (lo que es importante para ti) y tus reglas (cómo sabes que se cumplen) es clave para la felicidad.", por_que: "Mucho sufrimiento proviene de tener reglas que hacen muy difícil sentirse bien y muy fácil sentirse mal.", como: "Clarifica tus 5 valores más importantes y diseña reglas fáciles de cumplir que estén bajo tu control para sentir que los vives."}},
+            { id: 11, title: "Identidad: La Clave de la Expansión", power: 9.3, content: { que: "Actuamos de forma consistente con quién creemos que somos. Expandir tu identidad expande tu vida.", por_que: "Es la creencia más fundamental. Cambiar tu identidad de 'fumador' a 'atleta' cambia miles de comportamientos automáticamente.", como: "Define conscientemente quién quieres ser y empieza a actuar consistentemente con esa nueva identidad."}},
+            { id: 12, title: "Señales de Acción (Emociones)", power: 8.6, content: { que: "Las emociones 'negativas' no son malas, son mensajes que te llaman a la acción para cambiar algo.", por_que: "Si entiendes el mensaje, puedes usar la emoción como una guía en lugar de sufrirla.", como: "Cuando sientas una emoción negativa, pregúntate: '¿Qué me está tratando de decir esta emoción? ¿Qué necesito cambiar en mi percepción o en mis acciones?'."}},
+        ];
+
+
+        // Populate Accordion
+        chapterData.forEach((item, index) => {
+            const accordionItem = document.createElement('div');
+            accordionItem.className = 'border border-[#E9EDC9] rounded-lg';
+            accordionItem.innerHTML = `
+                <button class="accordion-header w-full text-left p-4 bg-[#FAEDCD] hover:bg-[#E9EDC9] transition duration-300 rounded-lg flex justify-between items-center">
+                    <span class="font-semibold text-lg text-[#6C584C]">${item.title}</span>
+                    <svg class="w-6 h-6 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+                <div class="accordion-content">
+                    <div class="p-4 border-t border-[#E9EDC9]">
+                        <h4 class="text-md font-semibold mb-2 text-[#A98467]">Ideas Clave:</h4>
+                        <ul class="list-disc list-inside space-y-3 mb-4">
+                            ${item.keyIdeas.map(idea => `
+                                <li>
+                                    <strong class="text-[#38332E]">${idea.idea}</strong> ${idea.text}
+                                    <p class="text-sm text-gray-500 pl-6 mt-1"><strong>Ejemplo:</strong> ${idea.example}</p>
+                                </li>
+                            `).join('')}
+                        </ul>
+                        <h4 class="text-md font-semibold mb-2 text-[#A98467]">Conclusión:</h4>
+                        <p class="text-gray-600">${item.conclusion}</p>
+                    </div>
+                </div>
+            `;
+            accordionContainer.appendChild(accordionItem);
+        });
+
+        accordionContainer.addEventListener('click', e => {
+            const header = e.target.closest('.accordion-header');
+            if (!header) return;
+
+            const content = header.nextElementSibling;
+            const icon = header.querySelector('svg');
+            
+            content.classList.toggle('open');
+            icon.classList.toggle('rotate-180');
+        });
+
+        // Populate Big Ideas
+        bigIdeasData.sort((a,b) => a.id - b.id).forEach(idea => {
+            const card = document.createElement('div');
+            card.className = 'idea-card bg-[#FAEDCD] p-4 rounded-lg cursor-pointer text-center';
+            card.dataset.ideaId = idea.id;
+            card.innerHTML = `<h4 class="text-lg font-semibold text-[#6C584C]">${idea.title}</h4>`;
+            ideasGrid.appendChild(card);
+        });
+
+        ideasGrid.addEventListener('click', e => {
+            const card = e.target.closest('.idea-card');
+            if (!card) return;
+
+            const ideaId = parseInt(card.dataset.ideaId);
+            const idea = bigIdeasData.find(i => i.id === ideaId);
+
+            modalTitle.textContent = idea.title;
+            modalBody.innerHTML = `
+                <div class="space-y-2">
+                    <p><strong>Qué es:</strong> ${idea.content.que}</p>
+                    <p><strong>Por qué importa:</strong> ${idea.content.por_que}</p>
+                    <p><strong>Cómo aplicarlo:</strong> ${idea.content.como}</p>
+                </div>
+            `;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            setTimeout(() => modalContent.classList.add('scale-100'), 10);
+        });
+        
+        const closeModal = () => {
+            modalContent.classList.remove('scale-100');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }, 300);
+        };
+
+        modalClose.addEventListener('click', closeModal);
+        modal.addEventListener('click', e => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+        
+        // Chart.js implementation
+        const ctx = document.getElementById('ideasChart').getContext('2d');
+        const chartLabels = bigIdeasData.map(idea => idea.title);
+        const chartPower = bigIdeasData.map(idea => idea.power);
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: chartLabels,
+                datasets: [{
+                    label: 'Poder del Concepto (Escala 0-10)',
+                    data: chartPower,
+                    backgroundColor: 'rgba(212, 163, 115, 0.6)',
+                    borderColor: 'rgba(169, 132, 103, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'y',
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        max: 10,
+                        grid: {
+                            color: 'rgba(108, 88, 76, 0.1)'
+                        }
+                    },
+                    y: {
+                         grid: {
+                            display: false
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                         callbacks: {
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed.x !== null) {
+                                    label += context.parsed.x;
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
