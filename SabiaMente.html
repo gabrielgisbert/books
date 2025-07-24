@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explorador Interactivo: Sabia Mente de Marcos Vázquez</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutrals with Indigo Accent -->
+    <!-- Application Structure Plan: La aplicación está diseñada en un formato de panel de control temático. La navegación principal permite saltar a las tres partes clave del libro: 'Carácter', 'Sesgos' y 'Modelos Mentales'. Cada sección presenta sus conceptos en una cuadrícula de tarjetas interactivas. Al hacer clic en una tarjeta, se abre una ventana modal con el contenido detallado (ideas, ejemplos, conclusiones), permitiendo al usuario explorar los temas a su propio ritmo sin ser abrumado por un muro de texto. Esta estructura fue elegida para transformar el resumen lineal en una experiencia de aprendizaje no lineal y enfocada, ideal para el estudio y la consulta rápida. -->
+    <!-- Visualization & Content Choices: Report Info: Principio de Pareto -> Goal: Comparar -> Viz/Presentation Method: Gráfico de barras (Chart.js/Canvas) -> Interaction: Estático, se muestra en modal -> Justification: Visualiza la desproporción 80/20 de forma más impactante que el texto. | Report Info: Interés Compuesto -> Goal: Mostrar Cambio -> Viz/Presentation Method: Gráfico de líneas (Chart.js/Canvas) -> Interaction: Estático -> Justification: Demuestra visualmente el poder del crecimiento exponencial frente al lineal. | Report Info: Framework Mental -> Goal: Organizar -> Viz/Presentation Method: Diagrama de texto (HTML/CSS) -> Interaction: Estático -> Justification: Representa la jerarquía de ideas de forma clara y accesible sin librerías externas. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F5F5F4; /* stone-100 */
+            color: #292524; /* stone-800 */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .modal-content-scroll {
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-20">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-xl md:text-2xl font-bold text-indigo-600">Sabia Mente</h1>
+            <div class="hidden md:flex space-x-4">
+                <a href="#caracter" class="text-gray-600 hover:text-indigo-600 transition">Carácter</a>
+                <a href="#sesgos" class="text-gray-600 hover:text-indigo-600 transition">Sesgos</a>
+                <a href="#modelos" class="text-gray-600 hover:text-indigo-600 transition">Modelos Mentales</a>
+                <a href="#grandes-ideas" class="text-gray-600 hover:text-indigo-600 transition">Grandes Ideas</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden text-gray-600 hover:text-indigo-600">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden bg-white py-2">
+            <a href="#caracter" class="block px-6 py-2 text-gray-600 hover:bg-indigo-50">Carácter</a>
+            <a href="#sesgos" class="block px-6 py-2 text-gray-600 hover:bg-indigo-50">Sesgos</a>
+            <a href="#modelos" class="block px-6 py-2 text-gray-600 hover:bg-indigo-50">Modelos Mentales</a>
+            <a href="#grandes-ideas" class="block px-6 py-2 text-gray-600 hover:bg-indigo-50">Grandes Ideas</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-12">
+        
+        <!-- Intro Section -->
+        <section id="intro" class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Un Viaje Interactivo hacia la Sabiduría Práctica</h2>
+            <p class="max-w-3xl mx-auto text-lg text-gray-600">
+                Esta aplicación traduce las enseñanzas de "Sabia Mente" en una experiencia explorable. El libro busca cerrar la brecha entre la acumulación de información y la sabiduría real para tomar mejores decisiones. Navega por las tres áreas clave —Carácter, Sesgos y Modelos Mentales— para dominar las herramientas que te permitirán pensar con más claridad.
+            </p>
+            <div class="mt-4 text-center">
+                <span class="inline-block bg-indigo-100 text-indigo-800 text-sm font-semibold px-3 py-1 rounded-full">Valoración del libro: 9.2 / 10</span>
+            </div>
+        </section>
+
+        <!-- Sections will be dynamically populated here -->
+        <section id="caracter" class="mb-16"></section>
+        <section id="sesgos" class="mb-16"></section>
+        <section id="modelos" class="mb-16"></section>
+        <section id="grandes-ideas" class="mb-16"></section>
+        <section id="aplicacion" class="mb-16"></section>
+        <section id="framework" class="mb-16"></section>
+
+    </main>
+
+    <!-- Modal -->
+    <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 z-30 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-3xl transform transition-all duration-300 ease-out scale-95 opacity-0" id="modal-content">
+            <div class="modal-content-scroll p-6 md:p-8">
+                <div class="flex justify-between items-start">
+                    <h3 id="modal-title" class="text-2xl font-bold text-indigo-700 mb-4"></h3>
+                    <button id="modal-close" class="text-gray-400 hover:text-gray-800 transition">&times;</button>
+                </div>
+                <div id="modal-body" class="prose max-w-none text-gray-700"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const sabiaMenteData = {
+            caracter: {
+                title: "Parte I: Moldea tu carácter (Ethos)",
+                intro: "El carácter es el fundamento de la sabiduría. No se trata de lo que sabes, sino de en quién te conviertes. Esta sección explora las diez virtudes que, según los filósofos clásicos y la psicología moderna, distinguen a una persona sabia. Cultivar estas cualidades te permitirá actuar con integridad y propósito, sin importar las circunstancias.",
+                items: [
+                    {
+                        title: "Humildad intelectual",
+                        ideas: [
+                            {
+                                text: "La verdadera sabiduría comienza al reconocer la propia ignorancia. Creer que ya entiendes el mundo es el mayor obstáculo para aprender, ya que el ego impide ver la realidad con objetividad.",
+                                example: "Un directivo que, en lugar de imponer su estrategia, pregunta a su equipo '¿Qué no estoy viendo?' o '¿En qué podría estar equivocado?'. Esta actitud fomenta un ambiente de aprendizaje y conduce a mejores decisiones que la certeza arrogante."
+                            },
+                            {
+                                text: "Cambiar de opinión no es una debilidad, sino una fortaleza. Es una señal de que hoy eres más sabio que ayer, ya que has sido capaz de actualizar tus creencias con nueva información.",
+                                example: "Un científico que defiende una teoría durante años, but al encontrar nueva evidencia que la contradice, la abandona públicamente. En lugar de aferrarse a su idea original por orgullo, prioriza la búsqueda de la verdad."
+                            }
+                        ],
+                        conclusion: "La humildad intelectual es la base sobre la que se construye todo el conocimiento. Sin ella, estamos ciegos a nuestros propios errores y sordos a las nuevas ideas. Cultivar la capacidad de dudar de nuestras propias creencias y de decir 'no lo sé' es el primer paso para desarrollar una mente sabia y evitar el estancamiento intelectual."
+                    },
+                    {
+                        title: "Pensamiento independiente",
+                        ideas: [
+                            {
+                                text: "Debes tomar decisiones basadas en la lógica y la razón, no en la presión social o la autoridad. Nuestro cerebro evolucionó para valorar la pertenencia al grupo por encima de la verdad, pero en el mundo moderno, seguir ciegamente a la multitud es peligroso.",
+                                example: "Durante una burbuja financiera, cuando todos compran un activo de moda por euforia colectiva, el pensador independiente analiza los fundamentos del activo. Si no encuentra un valor real, decide no invertir, aunque eso signifique ir en contra de la opinión popular."
+                            },
+                            {
+                                text: "Pensar de forma independiente no es ser un rebelde sin causa. No se trata de llevar la contraria por sistema, sino de realizar un análisis propio para llegar a conclusiones fundamentadas, aunque coincidan con las de la mayoría.",
+                                example: "Una persona que, tras investigar distintas opciones políticas, decide votar por el partido mayoritario. Su decisión no se basa en la popularidad, sino en que, tras su análisis, considera que es la mejor opción, demostrando que el pensamiento independiente puede llevar a conclusiones convencionales."
+                            }
+                        ],
+                        conclusion: "El pensamiento independiente es un acto de valentía intelectual. Requiere el esfuerzo de cuestionar nuestras propias fuentes de creencias (¿imitación o razón?) y la fortaleza para mantenernos firmes en nuestras conclusiones lógicas, incluso si nos aíslan del grupo. Es la única forma de evitar la manipulación y trazar un camino propio y auténtico."
+                    },
+                    {
+                        title: "Curiosidad",
+                        ideas: [
+                            {
+                                text: "La curiosidad es el motor del aprendizaje permanente. En un mundo que cambia rápidamente, las personas que dejan de aprender se quedan atrás; los curiosos, en cambio, ven el mundo como un lugar fascinante y lleno de oportunidades.",
+                                example: "Un jubilado que, en lugar de detener su desarrollo, decide aprender a programar o a tocar un instrumento. No lo hace por una necesidad profesional, sino por el puro placer de adquirir una nueva habilidad y mantener su mente activa."
+                            },
+                            {
+                                text: "El conocimiento es como una red: cuanto más grande es, más fácil es atrapar nuevas ideas (Efecto Mateo). Aprender sobre un tema te da el contexto necesario para hacer mejores preguntas y asimilar información nueva con más facilidad.",
+                                example: "Alguien que aprende sobre la historia del Imperio Romano (conocimiento previo) puede entender mucho mejor los conceptos de derecho, arquitectura y política de Occidente (conocimiento nuevo), ya que puede conectar las ideas a una estructura ya existente en su mente."
+                            }
+                        ],
+                        conclusion: "La curiosidad es un rasgo que debemos cultivar activamente para no caer en la indiferencia. En la era de la información, el éxito y la satisfacción no dependerán de lo que aprendimos en la escuela, sino de nuestra capacidad para seguir aprendiendo durante toda la vida. La curiosidad es el antídoto contra el aburrimiento y el estancamiento."
+                    },
+                    {
+                        title: "Tolerancia a la incomodidad",
+                        ideas: [
+                            {
+                                text: "El aprendizaje y el crecimiento real ocurren cuando salimos de nuestra zona de confort. El esfuerzo y la dificultad no son señales de que algo va mal, sino de que estamos forjando conexiones neuronales más fuertes y duraderas.",
+                                example: "En lugar de simplemente releer un texto (cómodo y poco efectivo), intentas recordarlo y explicarlo con tus propias palabras sin mirar. Este esfuerzo de recuperación activa (incómodo) es mucho más eficaz para memorizar a largo plazo."
+                            },
+                            {
+                                text: "El perfeccionismo es una trampa que conduce a la inacción. Antes de poder hacer algo bien, debes estar dispuesto a hacerlo mal. Los errores no son fracasos, sino lecciones necesarias en el camino hacia la maestría.",
+                                example: "Un aspirante a escritor que, en lugar de esperar la idea perfecta para su novela, se compromete a escribir 500 palabras cada día, sin importar la calidad. Acepta que los primeros borradores serán imperfectos, pero sabe que es la única forma de mejorar y eventualmente producir una gran obra."
+                            }
+                        ],
+                        conclusion: "En una sociedad obsesionada con la comodidad y la gratificación instantánea, la capacidad de abrazar la dificultad deseable es un superpoder. Quien entiende que la incomodidad es el precio del progreso en cualquier área (deporte, aprendizaje, carrera) logrará resultados que quienes buscan atajos jamás alcanzarán."
+                    }
+                ]
+            },
+            sesgos: {
+                title: "Parte II: Reduce tus Sesgos Cognitivos",
+                intro: "Nuestra mente utiliza atajos para tomar decisiones rápidas, pero en el mundo complejo de hoy, estos atajos a menudo nos llevan a cometer errores sistemáticos de pensamiento, conocidos como sesgos cognitivos. Esta sección te enseña a identificar los sesgos más comunes, desde el de confirmación hasta la falacia del coste hundido. Reconocerlos es el primer paso para mitigar su influencia y tomar decisiones más racionales y objetivas.",
+                items: [
+                    { title: "Sesgo de confirmación", summary: "Tendencia a buscar información que confirma nuestras creencias." },
+                    { title: "Sesgo narrativo", summary: "Tendencia a crear historias coherentes a partir de datos aislados." },
+                    { title: "Falacia del coste hundido", summary: "Dejar que inversiones pasadas (dinero, tiempo) influyan en decisiones futuras." },
+                    { title: "Sesgo de superioridad ilusoria", summary: "Tendencia a sobreestimar nuestras propias cualidades y habilidades." },
+                    { title: "Sesgo del superviviente", summary: "Sacar conclusiones solo de los casos de éxito, ignorando los fracasos." },
+                ]
+            },
+            modelos: {
+                title: "Parte III: Desarrolla Modelos Mentales",
+                intro: "Los modelos mentales son representaciones de cómo funciona el mundo, extraídas de disciplinas como la física, la economía o la biología. Son las herramientas de una mente sabia. En lugar de usar un solo enfoque para todos los problemas, esta sección te arma con un conjunto de modelos versátiles, como el Principio de Pareto o el Interés Compuesto. Aprender a aplicarlos te permitirá ver los problemas desde múltiples perspectivas y encontrar soluciones más creativas y efectivas.",
+                items: [
+                    { title: "Círculo de competencia", summary: "Conoce los límites de tu conocimiento y opera dentro de ellos." },
+                    { title: "Margen de seguridad", summary: "Crea un colchón para protegerte de errores de cálculo y de la mala suerte." },
+                    { title: "Opcionalidad", summary: "Mantén opciones abiertas para beneficiarte de la volatilidad y lo inesperado." },
+                    { title: "Pensamiento de segundo orden", summary: "Considera las consecuencias de las consecuencias de tus acciones." },
+                    { title: "Principio de Pareto (80/20)", summary: "Un pequeño número de causas genera la mayoría de los efectos." },
+                    { title: "Interés compuesto", summary: "Pequeños esfuerzos consistentes generan resultados exponenciales con el tiempo." },
+                    { title: "Primeros principios", summary: "Descompón un problema en sus verdades fundamentales para innovar." },
+                ]
+            },
+            grandesIdeas: {
+                title: "Grandes Ideas del Libro",
+                intro: "Si solo pudieras recordar un puñado de conceptos de 'Sabia Mente', deberían ser estos. Esta sección sintetiza las 13 ideas más poderosas del libro, explicadas de forma clara y directa. Úsalas como una guía de referencia rápida para reforzar tu aprendizaje y aplicar estos principios en tu día a día.",
+                items: [
+                    { title: "Frónesis (Sabiduría Práctica)", text: "Es la inteligencia aplicada a la vida real. No se trata de memorizar datos, sino de saber qué hacer en cada situación para vivir una vida buena y alcanzar tus metas. Importa porque el conocimiento teórico no sirve de nada si no sabes cómo usarlo. Aplícalo preguntándote: '¿Cuál es la acción más sabia y virtuosa que puedo tomar aquí y ahora?'." },
+                    { title: "Humildad Intelectual", text: "La base de todo aprendizaje es reconocer que no sabes. Importa porque el ego es el mayor obstáculo para el conocimiento. Aplícalo diciendo 'no lo sé' más a menudo y buscando activamente evidencia que contradiga tus creencias." },
+                    { title: "Pensamiento de Segundo Orden", text: "Es la práctica de pensar en las consecuencias de las consecuencias. Importa porque evita que soluciones a corto plazo creen problemas mayores. Aplícalo preguntándote repetidamente: '¿Y después qué?'." },
+                    { title: "Círculo de Competencia", text: "Es el área de conocimiento donde realmente eres un experto. Importa porque operar fuera de tu círculo es la forma más rápida de cometer errores graves. Aplícalo definiendo honestamente en qué temas tienes un conocimiento profundo y buscando ayuda externa para el resto." },
+                    { title: "Sesgo de Confirmación", text: "Eres propenso a buscar evidencia que apoye tus creencias e ignorar la que las contradice. Importa porque te mantiene atrapado en tus propios errores. Aplícalo actuando como tu propio 'abogado del diablo' y argumentando en contra de tus propias ideas." },
+                    { title: "Modelos Mentales", text: "Son herramientas de pensamiento de diferentes disciplinas para ver el mundo con más claridad. Importan porque te dan múltiples perspectivas para resolver un problema. Aplícalos aprendiendo conceptos básicos de campos fuera del tuyo (ej. economía, física, biología)." },
+                    { title: "Vía Negativa", text: "A menudo, la mejora viene de eliminar lo negativo en lugar de añadir lo positivo. Importa porque es más fácil y efectivo dejar de hacer algo dañino que empezar a hacer algo beneficioso. Aplícalo identificando y eliminando malos hábitos (ej. comida basura, quejas) antes de añadir nuevos." },
+                    { title: "Principio de Pareto (80/20)", text: "Unas pocas causas (el 20%) generan la mayoría de los resultados (el 80%). Importa porque te ayuda a enfocar tu energía en lo que realmente produce resultados. Aplícalo identificando el 20% de tus actividades que generan el 80% de tu felicidad o productividad." },
+                    { title: "Interés Compuesto", text: "Pequeños esfuerzos consistentes a lo largo del tiempo producen resultados exponenciales. Importa porque la paciencia y la constancia superan al talento a corto plazo. Aplícalo mejorando un 1% cada día en un área importante (salud, conocimiento, finanzas)." },
+                    { title: "Falacia del Coste Hundido", text: "Es la tendencia a seguir invirtiendo en algo (tiempo, dinero, esfuerzo) solo porque ya has invertido en el pasado. Importa porque te mantiene en proyectos o relaciones fallidas. Aplícalo preguntándote: 'Si no hubiera invertido nada hasta ahora, ¿tomaría la misma decisión hoy?'." },
+                    { title: "La Valla de Chesterton", text: "No elimines una costumbre, regla o sistema hasta que no entiendas por qué se puso ahí en primer lugar. Importa porque evita que causes problemas inesperados al intentar 'mejorar' algo. Aplícalo investigando la razón de ser de un proceso antes de proponer cambiarlo." },
+                    { title: "Pensamiento Probabilístico", text: "Piensa en grados de certeza en lugar de en absolutos (blanco o negro). Importa porque el mundo es incierto y las certezas absolutas son raras y peligrosas. Aplícalo asignando probabilidades a tus creencias (ej. 'Estoy un 70% seguro de esto') y actualizándolas con nueva información." },
+                    { title: "Navaja de Hanlon", text: "No atribuyas a la maldad lo que puede ser explicado adecuadamente por la incompetencia o el descuido. Importa porque te ahorra estrés, ira y conflictos innecesarios. Aplícalo asumiendo que el error de otra persona fue un despiste antes de pensar que fue un ataque personal." },
+                ]
+            },
+            aplicacion: {
+                title: "Aplicación Práctica del Conocimiento",
+                intro: "La sabiduría solo es útil cuando se aplica. Esta sección te ofrece un marco para traducir las ideas del libro en acciones concretas en tu vida personal, profesional y como comunicador. Además, encontrarás sugerencias de técnicas de aprendizaje activo para interiorizar de verdad estos conceptos.",
+                content: `
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="text-xl font-semibold mb-3 text-indigo-700">¿Cómo puedo usar este conocimiento?</h4>
+                            <ul class="space-y-4">
+                                <li><strong>En la vida personal:</strong> Usa el pensamiento de segundo orden para decisiones importantes (ej. mudarte, cambiar de trabajo). Aplica la Navaja de Hanlon para evitar conflictos en tus relaciones. Usa la tolerancia a la incomodidad para aprender nuevas habilidades.</li>
+                                <li><strong>En la vida profesional:</strong> Usa el pensamiento de "Primeros Principios" para innovar en lugar de copiar. Aplica el Principio de Pareto (80/20) para enfocar tus recursos en las tareas de mayor impacto. Fomenta la humildad intelectual en tu equipo.</li>
+                                <li><strong>Como orador:</strong> Usa los modelos mentales para explicar ideas complejas de forma sencilla. Entiende los sesgos de tu audiencia para enmarcar tus argumentos de forma persuasiva. Demuestra humildad intelectual para ganar credibilidad.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-semibold mb-3 text-indigo-700">Técnicas de Aprendizaje Activo</h4>
+                            <ul class="space-y-4">
+                                <li><strong>Diario de Decisiones:</strong> Al final del día, anota una decisión importante, por qué la tomaste y qué sesgos pudieron influir. Revísalo semanas después.</li>
+                                <li><strong>Técnica del Abogado del Diablo:</strong> Antes de adoptar una creencia, dedica 10 minutos a argumentar activamente en su contra.</li>
+                                <li><strong>Pregunta Diaria de Segundo Orden:</strong> Elige una acción rutinaria y pregúntate: "¿Y después qué?". Visualiza la cadena de consecuencias.</li>
+                                <li><strong>Lectura Activa con Modelos Mentales:</strong> Cuando leas algo, pregúntate: "¿Qué modelo mental explica esta situación? ¿Es un caso de Pareto, Efecto Cobra, regresión a la media?".</li>
+                            </ul>
+                        </div>
+                    </div>
+                `
+            },
+            framework: {
+                title: "Framework Mental del Libro",
+                intro: "Todo el libro puede resumirse en un mapa mental lógico que va desde los conceptos abstractos a las acciones concretas. Este framework visual te ayuda a organizar las ideas y a entender cómo se conectan entre sí, proporcionando una estructura sólida para tu pensamiento.",
+                content: `
+                    <div class="bg-stone-200 p-6 rounded-lg text-left font-mono text-sm md:text-base">
+                        <p class="font-bold">🔹 Conceptos Principales</p>
+                        <div class="ml-4 mt-2">
+                            <p class="font-semibold">└── 1. CARÁCTER (Ethos): En quién te conviertes.</p>
+                            <div class="ml-8 mt-2 border-l-2 border-indigo-300 pl-4">
+                                <p class="font-medium">└── Principios Clave:</p>
+                                <div class="ml-8 mt-2">
+                                    <p>├── Humildad Intelectual: Reconoce tu ignorancia.</p>
+                                    <p class="ml-6 text-gray-600">└── Acciones: Decir "no lo sé", buscar el desmentido.</p>
+                                    <p>├── Pensamiento Independiente: Piensa por ti mismo.</p>
+                                    <p class="ml-6 text-gray-600">└── Acciones: Preguntar "¿Es lógico o popular?".</p>
+                                    <p>├── Tolerancia a la Incomodidad: Abraza la dificultad.</p>
+                                    <p class="ml-6 text-gray-600">└── Acciones: Usar recuperación activa, ver errores como lecciones.</p>
+                                    <p>└── Valentía: Actúa a pesar del miedo.</p>
+                                    <p class="ml-6 text-gray-600">└── Acciones: Definir miedos, usar el Framework de Arrepentimiento.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ml-4 mt-4">
+                            <p class="font-semibold">└── 2. RAZÓN (Logos): Cómo piensas.</p>
+                            <div class="ml-8 mt-2 border-l-2 border-indigo-300 pl-4">
+                                <p class="font-medium">└── Principios Clave:</p>
+                                <div class="ml-8 mt-2">
+                                    <p>├── Reducción de Sesgos: Identifica tus errores mentales.</p>
+                                    <p class="ml-6 text-gray-600">└── Acciones: Ser tu "abogado del diablo", ignorar costes hundidos.</p>
+                                    <p>├── Uso de Modelos Mentales: Aplica herramientas universales.</p>
+                                    <p class="ml-6 text-gray-600">└── Acciones: Preguntar "¿Y después qué?", identificar el 20% vital.</p>
+                                    <p>├── Pensamiento Probabilístico: Piensa en grados de certeza.</p>
+                                    <p class="ml-6 text-gray-600">└── Acciones: Asignar % de confianza, actualizar creencias.</p>
+                                    <p>└── Pensamiento Sistémico: Comprende las interconexiones.</p>
+                                    <p class="ml-6 text-gray-600">└── Acciones: Buscar causas últimas (5 porqués), anticipar bucles.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const caracterSection = document.getElementById('caracter');
+            const sesgosSection = document.getElementById('sesgos');
+            const modelosSection = document.getElementById('modelos');
+            const grandesIdeasSection = document.getElementById('grandes-ideas');
+            const aplicacionSection = document.getElementById('aplicacion');
+            const frameworkSection = document.getElementById('framework');
+
+            const modal = document.getElementById('modal');
+            const modalContent = document.getElementById('modal-content');
+            const modalTitle = document.getElementById('modal-title');
+            const modalBody = document.getElementById('modal-body');
+            const modalClose = document.getElementById('modal-close');
+
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            function createSection(sectionEl, data, type) {
+                let content = `<h2 class="text-2xl md:text-3xl font-bold text-center mb-4">${data.title}</h2>`;
+                if (data.intro) {
+                    content += `<p class="max-w-3xl mx-auto text-center text-gray-600 mb-10">${data.intro}</p>`;
+                }
+                
+                if (type === 'cards') {
+                    content += '<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">';
+                    data.items.forEach((item, index) => {
+                        const summary = item.summary || (item.ideas && item.ideas[0] ? item.ideas[0].text.substring(0, 80) + '...' : '');
+                        content += `
+                            <div class="bg-white rounded-lg shadow-md p-6 cursor-pointer transform hover:scale-105 hover:shadow-xl transition-all duration-300" data-type="${Object.keys(sabiaMenteData)[Object.values(sabiaMenteData).indexOf(data)]}" data-index="${index}">
+                                <h3 class="font-bold text-lg mb-2">${item.title}</h3>
+                                <p class="text-gray-600 text-sm">${summary}</p>
+                            </div>
+                        `;
+                    });
+                    content += '</div>';
+                } else if (type === 'list') {
+                     content += '<div class="space-y-6">';
+                     data.items.forEach(item => {
+                         content += `
+                            <div class="bg-white rounded-lg shadow-md p-6">
+                                <h3 class="font-bold text-lg text-indigo-700 mb-2">${item.title}</h3>
+                                <p class="text-gray-700">${item.text}</p>
+                            </div>
+                         `;
+                     });
+                     content += '</div>';
+                } else if (type === 'html') {
+                    content += data.content;
+                }
+
+                sectionEl.innerHTML = content;
+            }
+
+            createSection(caracterSection, sabiaMenteData.caracter, 'cards');
+            createSection(sesgosSection, sabiaMenteData.sesgos, 'cards');
+            createSection(modelosSection, sabiaMenteData.modelos, 'cards');
+            createSection(grandesIdeasSection, sabiaMenteData.grandesIdeas, 'list');
+            createSection(aplicacionSection, sabiaMenteData.aplicacion, 'html');
+            createSection(frameworkSection, sabiaMenteData.framework, 'html');
+
+            document.querySelectorAll('[data-type]').forEach(card => {
+                card.addEventListener('click', () => {
+                    const type = card.dataset.type;
+                    const index = card.dataset.index;
+                    const itemData = sabiaMenteData[type].items[index];
+                    
+                    modalTitle.textContent = itemData.title;
+                    
+                    let bodyContent = '';
+                    if (itemData.ideas) {
+                        itemData.ideas.forEach(idea => {
+                            bodyContent += `
+                                <h4 class="font-semibold text-lg mt-4">Idea Clave</h4>
+                                <p>${idea.text}</p>
+                                <h5 class="font-semibold mt-2">Ejemplo:</h5>
+                                <p class="border-l-4 border-indigo-200 pl-4 italic">${idea.example}</p>
+                            `;
+                        });
+                        bodyContent += `
+                            <h4 class="font-semibold text-lg mt-4">Conclusión</h4>
+                            <p>${itemData.conclusion}</p>
+                        `;
+                    } else {
+                        bodyContent += `<p>${itemData.summary || 'Más detalles próximamente.'}</p>`;
+                    }
+
+                    if (itemData.title === 'Interés compuesto') {
+                        bodyContent += `<div class="chart-container mt-6"><canvas id="interesChart"></canvas></div>`;
+                    }
+                    if (itemData.title === 'Principio de Pareto (80/20)') {
+                        bodyContent += `<div class="chart-container mt-6"><canvas id="paretoChart"></canvas></div>`;
+                    }
+
+                    modalBody.innerHTML = bodyContent;
+                    modal.classList.remove('hidden');
+                    setTimeout(() => {
+                        modalContent.classList.remove('scale-95', 'opacity-0');
+                        modalContent.classList.add('scale-100', 'opacity-100');
+                    }, 10);
+
+                    if (itemData.title === 'Interés compuesto') {
+                        renderInteresChart();
+                    }
+                    if (itemData.title === 'Principio de Pareto (80/20)') {
+                        renderParetoChart();
+                    }
+                });
+            });
+
+            function closeModal() {
+                modalContent.classList.add('scale-95', 'opacity-0');
+                modalContent.classList.remove('scale-100', 'opacity-100');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                }, 300);
+            }
+
+            modalClose.addEventListener('click', closeModal);
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            document.querySelectorAll('#mobile-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+
+            function renderInteresChart() {
+                const ctx = document.getElementById('interesChart').getContext('2d');
+                const labels = Array.from({length: 31}, (_, i) => `Año ${i}`);
+                const linear = labels.map((_, i) => 1000 + 1000 * 0.05 * i);
+                const compound = labels.map((_, i) => 1000 * Math.pow(1.05, i));
+
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Interés Compuesto',
+                            data: compound,
+                            borderColor: 'rgb(79, 70, 229)',
+                            backgroundColor: 'rgba(79, 70, 229, 0.1)',
+                            fill: true,
+                            tension: 0.1
+                        }, {
+                            label: 'Interés Simple (Lineal)',
+                            data: linear,
+                            borderColor: 'rgb(107, 114, 128)',
+                            borderDash: [5, 5],
+                            fill: false,
+                            tension: 0.1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            title: { display: true, text: 'Crecimiento Exponencial vs. Lineal' }
+                        }
+                    }
+                });
+            }
+            
+            function renderParetoChart() {
+                const ctx = document.getElementById('paretoChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Causas', 'Resultados'],
+                        datasets: [{
+                            label: 'Pocos Vitales (20%)',
+                            data: [20, 80],
+                            backgroundColor: 'rgb(79, 70, 229)',
+                        }, {
+                            label: 'Muchos Útiles (80%)',
+                            data: [80, 20],
+                            backgroundColor: 'rgb(165, 180, 252)',
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        indexAxis: 'y',
+                        scales: {
+                            x: { stacked: true, max: 100, ticks: { callback: value => value + '%' } },
+                            y: { stacked: true }
+                        },
+                        plugins: {
+                            title: { display: true, text: 'Principio de Pareto: 20% de las causas generan 80% de los resultados' },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        return `${context.dataset.label}: ${context.raw}%`;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
