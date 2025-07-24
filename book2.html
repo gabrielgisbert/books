@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía de Estudio: Hábitos Atómicos de James Clear</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@400;500&display=swap');
+
+        :root {
+            --color-bg: #1e272e;
+            --color-surface: #2c3a47;
+            --color-primary: #00a8ff;
+            --color-secondary: #eccc68;
+            --color-text: #dcdde1;
+            --color-text-muted: #8395a7;
+            --border-radius: 8px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+
+        header {
+            background-color: var(--color-surface);
+            padding: 40px 0;
+            text-align: center;
+            border-bottom: 3px solid var(--color-primary);
+        }
+
+        header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.8rem;
+            color: var(--color-text);
+            margin-bottom: 10px;
+        }
+
+        header .subtitle {
+            font-size: 1.2rem;
+            color: var(--color-text-muted);
+            margin-bottom: 15px;
+        }
+
+        header .rating {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-secondary);
+            background-color: rgba(236, 204, 104, 0.1);
+            padding: 5px 15px;
+            border-radius: 50px;
+            display: inline-block;
+        }
+        
+        main section {
+            padding: 60px 0;
+            border-bottom: 1px solid var(--color-surface);
+        }
+
+        h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.2rem;
+            color: var(--color-primary);
+            margin-bottom: 30px;
+            text-align: center;
+            border-bottom: 2px solid var(--color-primary);
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.6rem;
+            color: var(--color-secondary);
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background-color: var(--color-surface);
+            padding: 25px;
+            border-radius: var(--border-radius);
+            margin-bottom: 25px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .card-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: var(--color-text);
+            margin-bottom: 15px;
+        }
+        
+        .card-conclusion {
+            background: rgba(0, 168, 255, 0.1);
+            border-left: 4px solid var(--color-primary);
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+
+        .card-conclusion h4 {
+            color: var(--color-primary);
+            margin-bottom: 10px;
+        }
+
+        .modal-trigger {
+            background-color: var(--color-primary);
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .modal-trigger:hover {
+            background-color: #0799e0;
+            transform: scale(1.05);
+        }
+
+        /* Modal Styles */
+        .modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            background-color: var(--color-surface);
+            border-radius: var(--border-radius);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            z-index: 1001;
+            width: 90%;
+            max-width: 750px;
+            max-height: 90vh;
+            overflow-y: auto;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .modal.active {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .modal-header {
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--color-bg);
+        }
+
+        .modal-header .title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.4rem;
+            color: var(--color-primary);
+        }
+
+        .modal-header .close-button {
+            cursor: pointer;
+            border: none;
+            outline: none;
+            background: none;
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--color-text-muted);
+            transition: color 0.3s ease;
+        }
+        .modal-header .close-button:hover {
+            color: var(--color-text);
+        }
+        .modal-body {
+            padding: 30px;
+        }
+        .modal-body .example {
+            margin-top: 20px;
+            padding: 15px;
+            background: var(--color-bg);
+            border-left: 3px solid var(--color-secondary);
+            border-radius: 4px;
+        }
+        .modal-body .example strong {
+            color: var(--color-secondary);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        #overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        /* Keyword and List styles */
+        .keywords {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .keyword {
+            display: inline-block;
+            background-color: var(--color-secondary);
+            color: var(--color-bg);
+            padding: 8px 15px;
+            margin: 5px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .concept-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .concept-card {
+            background: var(--color-surface);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            text-align: center;
+        }
+        .concept-card .concept-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2rem;
+            color: var(--color-text);
+            margin-bottom: 15px;
+        }
+
+        /* Mind Map Framework */
+        .mindmap {
+            list-style: none;
+            padding: 0;
+            position: relative;
+        }
+        .mindmap ul {
+            list-style: none;
+            padding-left: 40px;
+        }
+        .mindmap li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 15px;
+        }
+        .mindmap li::before, .mindmap li::after {
+            content: '';
+            position: absolute;
+            left: 0;
+        }
+        .mindmap li::before {
+            border-top: 2px solid var(--color-text-muted);
+            top: 15px;
+            width: 20px;
+            height: 0;
+        }
+        .mindmap li::after {
+            border-left: 2px solid var(--color-text-muted);
+            height: 100%;
+            width: 0px;
+            top: 0;
+        }
+        .mindmap > li:first-child::after {
+            top: 15px;
+            height: calc(100% - 15px);
+        }
+        .mindmap li:last-child::after {
+            height: 15px;
+        }
+        .mindmap-item strong {
+            color: var(--color-primary);
+        }
+        .mindmap-item span {
+            display: block;
+            color: var(--color-text-muted);
+        }
+        .mindmap > li::before, .mindmap > li::after {
+            display: none; /* No lines for top-level items */
+        }
+        .mindmap-item.central {
+            background: var(--color-primary);
+            color: var(--color-bg);
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .mindmap-item.central strong {
+            color: var(--color-bg);
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 40px;
+            background-color: var(--color-surface);
+            color: var(--color-text-muted);
+        }
+        
+        @media (max-width: 768px) {
+            header h1 { font-size: 2.2rem; }
+            h2 { font-size: 1.8rem; }
+            h3 { font-size: 1.4rem; }
+            .container { width: 95%; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1>Guía de Estudio: Hábitos Atómicos</h1>
+            <p class="subtitle">Un análisis profundo por James Clear, destilado para su dominio.</p>
+            <span class="rating">Valoración: 9.5 / 10</span>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <section id="contexto">
+            <div class="section-header">
+                <h2>Contexto General del Libro</h2>
+            </div>
+            <div class="card">
+                <h3>1.1 - ¿Qué problema o necesidad busca resolver?</h3>
+                <p>El libro aborda una frustración universal: la brecha entre quiénes queremos ser y lo que hacemos cada día. Resuelve el problema de por qué nos cuesta tanto crear buenos hábitos y eliminar los malos, a pesar de nuestras mejores intenciones. Proporciona un sistema práctico y basado en la ciencia para dejar de depender de la fuerza de voluntad y, en su lugar, diseñar un sistema de vida que haga que los buenos hábitos sean inevitables y los malos, imposibles.</p>
+            </div>
+            <div class="card">
+                <h3>1.2 - Temática del libro: Palabras Clave</h3>
+                <div class="keywords">
+                    <span class="keyword">Sistemas</span>
+                    <span class="keyword">Identidad</span>
+                    <span class="keyword">Pequeñas Mejoras</span>
+                    <span class="keyword">Consistencia</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="fundamentos">
+            <div class="section-header">
+                <h2>Sección 1: Los Fundamentos</h2>
+                <p style="color: var(--color-text-muted);">El sorprendente poder de los hábitos atómicos</p>
+            </div>
+            <div class="card">
+                <p class="card-title">Idea: La mejora del 1% diario (Interés Compuesto del Hábito).</p>
+                <button class="modal-trigger" data-modal-target="#modal-fundamentos-1">Ver detalles y ejemplo</button>
+            </div>
+            <div class="card">
+                <p class="card-title">Idea: Olvida las metas, céntrate en los sistemas.</p>
+                <button class="modal-trigger" data-modal-target="#modal-fundamentos-2">Ver detalles y ejemplo</button>
+            </div>
+            <div class="card">
+                <p class="card-title">Idea: Los hábitos moldean tu identidad.</p>
+                <button class="modal-trigger" data-modal-target="#modal-fundamentos-3">Ver detalles y ejemplo</button>
+            </div>
+            <div class="card-conclusion">
+                <h4>Conclusión de la Sección</h4>
+                <p>La base del cambio duradero no reside en la ambición desmedida, sino en la comprensión de que cada pequeña acción es una pieza fundamental. El verdadero objetivo no es alcanzar una meta aislada, sino convertirnos en el tipo de persona capaz de alcanzar esas metas de forma natural. Para ello, debemos enfocarnos en construir sistemas fiables que refuercen nuestra identidad deseada, un 1% cada día.</p>
+            </div>
+        </section>
+
+        <section id="ley1">
+            <div class="section-header">
+                <h2>Sección 2: La 1ª Ley - Hacerlo Obvio</h2>
+            </div>
+            <div class="card">
+                <p class="card-title">Idea: El cerebro automatiza respuestas a señales (triggers).</p>
+                <button class="modal-trigger" data-modal-target="#modal-ley1-1">Ver detalles y ejemplo</button>
+            </div>
+            <div class="card">
+                <p class="card-title">Idea: El Apilamiento de Hábitos (Habit Stacking).</p>
+                <button class="modal-trigger" data-modal-target="#modal-ley1-2">Ver detalles y ejemplo</button>
+            </div>
+            <div class="card">
+                <p class="card-title">Idea: El diseño del entorno es clave.</p>
+                <button class="modal-trigger" data-modal-target="#modal-ley1-3">Ver detalles y ejemplo</button>
+            </div>
+            <div class="card-conclusion">
+                <h4>Conclusión de la Sección</h4>
+                <p>No somos víctimas de nuestros impulsos, sino de nuestras señales. La primera ley consiste en tomar el control de los detonantes que nos rodean. En lugar de esperar inspiración, debemos diseñar proactivamente nuestro entorno para que nos empuje en la dirección correcta. Hacer un hábito "obvio" es el primer y más crucial paso para que se vuelva automático.</p>
+            </div>
+        </section>
+
+        <section id="ley2">
+            <div class="section-header">
+                <h2>Sección 3: La 2ª Ley - Hacerlo Atractivo</h2>
+            </div>
+            <div class="card">
+                <p class="card-title">Idea: La anticipación de la recompensa impulsa la acción.</p>
+                <button class="modal-trigger" data-modal-target="#modal-ley2-1">Ver detalles y ejemplo</button>
+            </div>
+            <div class="card">
+                <p class="card-title">Idea: La Agrupación de Tentaciones (Temptation Bundling).</p>
+                <button class="modal-trigger" data-modal-target="#modal-ley2-2">Ver detalles y ejemplo</button>
+            </div>
+            <div class="card">
+                <p class="card-title">Idea: La influencia del grupo social.</p>
+                <button class="modal-trigger" data-modal-target="#modal-ley2-3">Ver detalles y ejemplo</button>
+            </div>
+            <div class="card-conclusion">
+                <h4>Conclusión de la Sección</h4>
+                <p>La motivación no es algo que se tiene o no; se fabrica. Al hacer nuestros hábitos deseados más atractivos, hackeamos el sistema de recompensa del cerebro para que trabaje a nuestro favor. Asociar los hábitos con placer, ya sea a través de la agrupación de tentaciones o la influencia social, transforma una obligación en un deseo.</p>
+            </div>
+        </section>
+
+        <section id="ley3">
+            <div class="section-header">
+                <h2>Sección 4: La 3ª Ley - Hacerlo Sencillo</h2>
+            </div>
+            <div class="card">
+                <p class="card-title">Idea: La ley del mínimo esfuerzo.</p>
+                <button class="modal-trigger" data-modal-target="#modal-ley3-1">Ver detalles y ejemplo</button>
+            </div>
+            <div class="card">
+                <p class="card-title">Idea: La Regla de los 2 Minutos.</p>
+                <button class="modal-trigger" data-modal-target="#modal-ley3-2">Ver detalles y ejemplo</button>
+            </div>
+            <div class="card">
+                <p class="card-title">Idea: Automatizar decisiones y usar la tecnología.</p>
+                <button class="modal-trigger" data-modal-target="#modal-ley3-3">Ver detalles y ejemplo</button>
+            </div>
+            <div class="card-conclusion">
+                <h4>Conclusión de la Sección</h4>
+                <p>La clave para la consistencia no es la intensidad, sino la facilidad. Dejamos de hacer cosas no porque no queramos, sino porque parecen demasiado complicadas. Simplificando radicalmente el primer paso, eliminando obstáculos y automatizando, convertimos la inercia en nuestra mayor aliada.</p>
+            </div>
+        </section>
+
+        <section id="ley4">
+            <div class="section-header">
+                <h2>Sección 5: La 4ª Ley - Hacerlo Satisfactorio</h2>
+            </div>
+            <div class="card">
+                <p class="card-title">Idea: La regla cardinal del comportamiento.</p>
+                <button class="modal-trigger" data-modal-target="#modal-ley4-1">Ver detalles y ejemplo</button>
+            </div>
+            <div class="card">
+                <p class="card-title">Idea: Añadir una recompensa inmediata a los hábitos de largo plazo.</p>
+                <button class="modal-trigger" data-modal-target="#modal-ley4-2">Ver detalles y ejemplo</button>
+            </div>
+            <div class="card">
+                <p class="card-title">Idea: El Seguimiento de Hábitos (Habit Tracking).</p>
+                <button class="modal-trigger" data-modal-target="#modal-ley4-3">Ver detalles y ejemplo</button>
+            </div>
+            <div class="card">
+                <p class="card-title">Idea: La regla de "Nunca fallar dos veces".</p>
+                <button class="modal-trigger" data-modal-target="#modal-ley4-4">Ver detalles y ejemplo</button>
+            </div>
+            <div class="card-conclusion">
+                <h4>Conclusión de la Sección</h4>
+                <p>Un hábito debe sentirse exitoso para que queramos repetirlo. La cuarta ley cierra el ciclo asegurando que el cerebro reciba una señal de "éxito" justo después de la acción. Al añadir satisfacción inmediata, visualizar el progreso y tener un plan de contingencia, garantizamos que el comportamiento se consolide a largo plazo.</p>
+            </div>
+        </section>
+        
+        <section id="grandes-ideas">
+            <div class="section-header">
+                <h2>Grandes Ideas del Libro (Síntesis Global)</h2>
+                <p style="color: var(--color-text-muted);">Los 10 conceptos que debes memorizar para dominar el cambio de comportamiento.</p>
+            </div>
+            <div class="concept-list">
+                <div class="concept-card">
+                    <p class="concept-title">1. Mejora del 1% (Efecto Compuesto)</p>
+                    <button class="modal-trigger" data-modal-target="#modal-idea-1">Ver Explicación</button>
+                </div>
+                <div class="concept-card">
+                    <p class="concept-title">2. Sistemas > Metas</p>
+                    <button class="modal-trigger" data-modal-target="#modal-idea-2">Ver Explicación</button>
+                </div>
+                <div class="concept-card">
+                    <p class="concept-title">3. Hábitos Basados en Identidad</p>
+                    <button class="modal-trigger" data-modal-target="#modal-idea-3">Ver Explicación</button>
+                </div>
+                <div class="concept-card">
+                    <p class="concept-title">4. Las 4 Leyes del Cambio</p>
+                    <button class="modal-trigger" data-modal-target="#modal-idea-4">Ver Explicación</button>
+                </div>
+                <div class="concept-card">
+                    <p class="concept-title">5. Apilamiento de Hábitos</p>
+                    <button class="modal-trigger" data-modal-target="#modal-idea-5">Ver Explicación</button>
+                </div>
+                <div class="concept-card">
+                    <p class="concept-title">6. Diseño del Entorno</p>
+                    <button class="modal-trigger" data-modal-target="#modal-idea-6">Ver Explicación</button>
+                </div>
+                <div class="concept-card">
+                    <p class="concept-title">7. La Regla de los 2 Minutos</p>
+                    <button class="modal-trigger" data-modal-target="#modal-idea-7">Ver Explicación</button>
+                </div>
+                <div class="concept-card">
+                    <p class="concept-title">8. Agrupación de Tentaciones</p>
+                    <button class="modal-trigger" data-modal-target="#modal-idea-8">Ver Explicación</button>
+                </div>
+                <div class="concept-card">
+                    <p class="concept-title">9. Seguimiento de Hábitos</p>
+                    <button class="modal-trigger" data-modal-target="#modal-idea-9">Ver Explicación</button>
+                </div>
+                <div class="concept-card">
+                    <p class="concept-title">10. Nunca Fallar Dos Veces</p>
+                    <button class="modal-trigger" data-modal-target="#modal-idea-10">Ver Explicación</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="aplicacion">
+            <div class="section-header">
+                <h2>Aplicación Práctica del Conocimiento</h2>
+            </div>
+            <div class="card">
+                <h3>4.1 - ¿Cómo puedo usar este conocimiento?</h3>
+                <h4>En la vida personal:</h4>
+                <ul>
+                    <li><strong>Salud:</strong> Usa la Regla de los 2 Minutos para empezar a hacer ejercicio ("solo ponte la ropa de deporte"). Diseña tu entorno poniendo la comida sana a la vista.</li>
+                    <li><strong>Finanzas:</strong> Automatiza tus ahorros (Hacerlo Sencillo). Añade una recompensa inmediata (Satisfactorio) al transferir el dinero que no gastaste a una cuenta de "caprichos".</li>
+                    <li><strong>Aprendizaje:</strong> Apila hábitos ("Después del café, leeré 10 páginas de un libro"). Hazlo atractivo uniéndote a un grupo que comparta tus intereses.</li>
+                </ul>
+                 <h4>En la vida profesional:</h4>
+                <ul>
+                    <li><strong>Productividad:</strong> Vence la procrastinación con la Regla de los 2 Minutos ("solo abriré el documento"). Diseña tu entorno digital cerrando pestañas irrelevantes.</li>
+                    <li><strong>Desarrollo de habilidades:</strong> Adopta una identidad ("Soy un líder que apoya a su equipo"). Usa sistemas en lugar de metas ("Cada viernes dedicaré 30 minutos a dar feedback").</li>
+                    <li><strong>Networking:</strong> Apila hábitos ("Después de mi última reunión del día, enviaré un email de contacto").</li>
+                </ul>
+                <h4>Como orador o comunicador:</h4>
+                 <ul>
+                    <li><strong>Estructura de charlas:</strong> Usa la estructura del libro (Fundamentos -> 4 Leyes -> Tácticas) para tus presentaciones.</li>
+                    <li><strong>Contenido memorable:</strong> Usa los conceptos del libro como analogías poderosas. "La mejora del 1% aplica a cómo mejoramos nuestra comunicación".</li>
+                    <li><strong>Conectar con la audiencia:</strong> Usa historias y ejemplos humanos como los del libro para ilustrar tus puntos.</li>
+                </ul>
+            </div>
+             <div class="card">
+                <h3>4.2 - Sugerencias de implementación y aprendizaje activo</h3>
+                <ol>
+                    <li><strong>Auditoría de Hábitos de Hoy:</strong> Al final del día, anota tus hábitos (buenos y malos) y la señal que los detonó. Esto te hará consciente.</li>
+                    <li><strong>Elige UN Hábito Atómico:</strong> No intentes cambiar todo a la vez. Elige un solo hábito pequeño y enfócate en él durante 30 días.</li>
+                    <li><strong>Aplica las 4 Leyes a ese hábito:</strong> Hazlo obvio hoy, atractivo mañana, sencillo pasado mañana, y satisfactorio todos los días con un tracker.</li>
+                    <li><strong>Enseña a alguien:</strong> La mejor forma de dominar un concepto es explicarlo. Elige una idea y explícasela a un amigo.</li>
+                </ol>
+            </div>
+        </section>
+        
+        <section id="framework">
+            <div class="section-header">
+                <h2>Framework Mental del Libro</h2>
+                <p style="color: var(--color-text-muted);">Conceptos → Principios → Acciones</p>
+            </div>
+            <div class="card">
+                 <ul class="mindmap">
+                    <li>
+                        <div class="mindmap-item central">
+                            <strong>Concepto Central: Los Hábitos Atómicos son el sistema para la mejora continua (1% mejor cada día).</strong>
+                        </div>
+                        <ul>
+                            <li>
+                                <div class="mindmap-item">
+                                    <strong>Principio de Identidad:</strong> El objetivo no es tener algo, sino convertirte en alguien.
+                                    <span><strong>Acción Práctica:</strong> Define la persona que quieres ser y usa cada hábito como un "voto" para esa identidad.</span>
+                                </div>
+                            </li>
+                             <li>
+                                <div class="mindmap-item">
+                                    <strong>Principio de los Sistemas vs. Metas:</strong> Enfócate en el proceso, no solo en el resultado.
+                                    <span><strong>Acción Práctica:</strong> Diseña una rutina diaria/semanal que te acerque a tus objetivos y céntrate en ejecutarla.</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                         <div class="mindmap-item central" style="background-color: var(--color-secondary);">
+                            <strong>Concepto de Marco de Acción: Las 4 Leyes del Cambio de Comportamiento.</strong>
+                        </div>
+                        <ul>
+                            <li>
+                                <div class="mindmap-item">
+                                    <strong>1ª Ley: HACERLO OBVIO (La Señal)</strong>
+                                    <span><strong>Acciones:</strong> Usar un registro de hábitos, Apilamiento de Hábitos, Diseñar tu entorno.</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="mindmap-item">
+                                    <strong>2ª Ley: HACERLO ATRACTIVO (El Anhelo)</strong>
+                                    <span><strong>Acciones:</strong> Usar Agrupación de Tentaciones, Unirte a una cultura, Crear un ritual.</span>
+                                </div>
+                            </li>
+                             <li>
+                                <div class="mindmap-item">
+                                    <strong>3ª Ley: HACERLO SENCILLO (La Respuesta)</strong>
+                                    <span><strong>Acciones:</strong> Reducir la fricción, Aplicar la Regla de los 2 Minutos, Automatizar hábitos.</span>
+                                </div>
+                            </li>
+                             <li>
+                                <div class="mindmap-item">
+                                    <strong>4ª Ley: HACERLO SATISFACTORIO (La Recompensa)</strong>
+                                    <span><strong>Acciones:</strong> Recompensa inmediata, Usar un Seguidor de Hábitos, Nunca Fallar Dos Veces.</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                 </ul>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Guía de estudio creada para una asimilación rápida y efectiva de "Hábitos Atómicos".</p>
+        <p>El conocimiento solo es poder potencial. La acción es el poder real.</p>
+    </footer>
+
+    <!-- Modals Content -->
+    <div id="overlay"></div>
+
+    <!-- Modals for Section 1 -->
+    <div class="modal" id="modal-fundamentos-1">
+        <div class="modal-header">
+            <div class="title">La mejora del 1% diario</div>
+            <button data-close-button class="close-button">&times;</button>
+        </div>
+        <div class="modal-body">
+            <p>Pequeñas mejoras diarias, aparentemente insignificantes, se componen con el tiempo generando resultados extraordinarios. No se trata de una transformación radical de la noche a la mañana, sino de una evolución constante.</p>
+            <div class="example">
+                <strong>Ejemplo:</strong>
+                <p>Aprender una sola palabra nueva en un idioma cada día no parece mucho. Pero en un año son 365 palabras, suficiente para mantener una conversación básica. Intentar aprender 50 palabras en un día te llevará al agotamiento y al abandono.</p>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="modal-fundamentos-2">
+        <div class="modal-header">
+            <div class="title">Olvida las metas, céntrate en los sistemas</div>
+            <button data-close-button class="close-button">&times;</button>
+        </div>
+        <div class="modal-body">
+            <p>Las metas te dan una dirección, pero los sistemas son los que te aseguran el progreso. Los ganadores y los perdedores suelen tener las mismas metas; la diferencia radica en sus sistemas.</p>
+            <div class="example">
+                <strong>Ejemplo:</strong>
+                <p>Tu meta puede ser "correr una maratón". Tu sistema es "ponerse las zapatillas y correr 3 veces por semana, aumentando la distancia un 10% cada dos semanas". El sistema es lo que te lleva a la meta.</p>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="modal-fundamentos-3">
+        <div class="modal-header">
+            <div class="title">Los hábitos moldean tu identidad</div>
+            <button data-close-button class="close-button">&times;</button>
+        </div>
+        <div class="modal-body">
+            <p>El cambio de comportamiento más sostenible no es el que se basa en lo que quieres *lograr* (basado en resultados), sino en quién te quieres *convertir* (basado en la identidad). Cada acción que tomas es un "voto" por el tipo de persona que deseas ser.</p>
+            <div class="example">
+                <strong>Ejemplo:</strong>
+                <p>En lugar de decir "quiero dejar de fumar" (objetivo), una persona adopta la identidad "no soy fumador". Cuando le ofrecen un cigarrillo, la respuesta no es "estoy intentando dejarlo", sino "gracias, no fumo". La acción se alinea con la nueva identidad.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals for Section 2: Law 1 -->
+    <div class="modal" id="modal-ley1-1">
+        <div class="modal-header"><div class="title">Respuestas a señales (triggers)</div><button data-close-button class="close-button">&times;</button></div>
+        <div class="modal-body">
+            <p>Nuestros hábitos son respuestas automáticas a señales en nuestro entorno. Para crear un buen hábito, la señal debe ser explícita y visible. Para eliminar uno malo, la señal debe ser invisible.</p>
+            <div class="example"><strong>Ejemplo:</strong><p>Quieres leer más. La señal es "ver un libro". <strong>Acción:</strong> Deja un libro sobre la almohada. Quieres comer menos galletas. La señal es "ver el paquete de galletas". <strong>Acción:</strong> Guarda las galletas en un armario alto y opaco.</p></div>
+        </div>
+    </div>
+    <div class="modal" id="modal-ley1-2">
+        <div class="modal-header"><div class="title">Apilamiento de Hábitos (Habit Stacking)</div><button data-close-button class="close-button">&times;</button></div>
+        <div class="modal-body">
+            <p>Es una estrategia para vincular un nuevo hábito a uno ya existente y consolidado. La fórmula es: "Después de [HÁBITO ACTUAL], haré [HÁBITO NUEVO]".</p>
+            <div class="example"><strong>Ejemplo:</strong><p>Quieres meditar un minuto al día. Tu hábito actual es tomar un café por la mañana. <strong>Apilamiento:</strong> "Después de servirme mi taza de café por la mañana, meditaré durante un minuto".</p></div>
+        </div>
+    </div>
+    <div class="modal" id="modal-ley1-3">
+        <div class="modal-header"><div class="title">El diseño del entorno</div><button data-close-button class="close-button">&times;</button></div>
+        <div class="modal-body">
+            <p>Eres más un producto de tu entorno que de tu motivación. Modifica tu espacio físico y digital para que las señales de los buenos hábitos sean omnipresentes y las de los malos, inexistentes.</p>
+            <div class="example"><strong>Ejemplo:</strong><p>Para fomentar una alimentación saludable, pon un frutero en el centro de la cocina y prepara snacks saludables a la vista. Esconde o tira la comida basura.</p></div>
+        </div>
+    </div>
+    
+    <!-- Modals for Section 3: Law 2 -->
+    <div class="modal" id="modal-ley2-1">
+        <div class="modal-header"><div class="title">La anticipación de la recompensa</div><button data-close-button class="close-button">&times;</button></div>
+        <div class="modal-body">
+            <p>Lo que nos mueve no es la ejecución del hábito en sí, sino la dopamina que genera la anticipación de su recompensa. Para que un hábito sea atractivo, debemos asociarlo con una sensación positiva.</p>
+            <div class="example"><strong>Ejemplo:</strong><p>El placer de fumar no viene solo del acto, sino de la anticipación del alivio del estrés. Para un hábito positivo, como hacer ejercicio, visualiza la sensación de energía y satisfacción que tendrás después.</p></div>
+        </div>
+    </div>
+    <div class="modal" id="modal-ley2-2">
+        <div class="modal-header"><div class="title">Agrupación de Tentaciones (Temptation Bundling)</div><button data-close-button class="close-button">&times;</button></div>
+        <div class="modal-body">
+            <p>Consiste en vincular una acción que *quieres* hacer con una acción que *necesitas* hacer.</p>
+            <div class="example"><strong>Ejemplo:</strong><p>"Solo me permitiré ver mi serie favorita de Netflix [lo que quieres] mientras estoy en la cinta de correr [lo que necesitas]".</p></div>
+        </div>
+    </div>
+    <div class="modal" id="modal-ley2-3">
+        <div class="modal-header"><div class="title">La influencia del grupo social</div><button data-close-button class="close-button">&times;</button></div>
+        <div class="modal-body">
+            <p>Nos sentimos atraídos por los comportamientos que nuestro círculo social considera normales. Unirse a una cultura donde tu hábito deseado es la norma es una de las formas más efectivas de mantenerlo.</p>
+            <div class="example"><strong>Ejemplo:</strong><p>Si quieres ser un lector constante, únete a un club de lectura. La presión social positiva y las conversaciones sobre libros harán que leer sea mucho más atractivo.</p></div>
+        </div>
+    </div>
+
+    <!-- Modals for Section 4: Law 3 -->
+    <div class="modal" id="modal-ley3-1">
+        <div class="modal-header"><div class="title">La ley del mínimo esfuerzo</div><button data-close-button class="close-button">&times;</button></div>
+        <div class="modal-body">
+            <p>Los seres humanos estamos programados para conservar energía y gravitamos hacia las opciones que requieren menos esfuerzo. Para construir un buen hábito, debes reducir la fricción asociada a él.</p>
+            <div class="example"><strong>Ejemplo:</strong><p>Quieres ir al gimnasio por la mañana. <strong>Acción:</strong> Prepara tu ropa de deporte, la botella de agua y la mochila la noche anterior y déjala junto a la puerta. Eliminas las pequeñas decisiones y esfuerzos matutinos que podrían hacerte desistir.</p></div>
+        </div>
+    </div>
+    <div class="modal" id="modal-ley3-2">
+        <div class="modal-header"><div class="title">La Regla de los 2 Minutos</div><button data-close-button class="close-button">&times;</button></div>
+        <div class="modal-body">
+            <p>Al empezar un nuevo hábito, debe tomar menos de dos minutos en realizarse. El objetivo no es el resultado inicial, sino convertirte en el tipo de persona que "siempre empieza".</p>
+            <div class="example"><strong>Ejemplo:</strong><p>"Leer todas las noches" se convierte en "Leer una página". "Hacer 30 minutos de yoga" se convierte en "Sacar la esterilla de yoga". Una vez que has empezado, es mucho más fácil continuar.</p></div>
+        </div>
+    </div>
+    <div class="modal" id="modal-ley3-3">
+        <div class="modal-header"><div class="title">Automatizar decisiones y usar la tecnología</div><button data-close-button class="close-button">&times;</button></div>
+        <div class="modal-body">
+            <p>Utiliza la tecnología y las decisiones únicas para bloquear comportamientos futuros. La automatización es la forma definitiva de hacerlo sencillo.</p>
+            <div class="example"><strong>Ejemplo:</strong><p>Para ahorrar dinero, no confíes en tu fuerza de voluntad cada mes. <strong>Acción:</strong> Configura una transferencia automática a tu cuenta de ahorros el día que cobras. La decisión se toma una vez y el hábito se ejecuta solo.</p></div>
+        </div>
+    </div>
+
+    <!-- Modals for Section 5: Law 4 -->
+    <div class="modal" id="modal-ley4-1">
+        <div class="modal-header"><div class="title">La regla cardinal del comportamiento</div><button data-close-button class="close-button">&times;</button></div>
+        <div class="modal-body">
+            <p>Lo que se recompensa de inmediato, se repite. Lo que se castiga de inmediato, se evita. El cerebro humano evolucionó para priorizar las recompensas inmediatas sobre las de largo plazo.</p>
+            <div class="example"><strong>Ejemplo:</strong><p>Comemos comida basura porque el placer es inmediato, aunque el perjuicio sea a largo plazo. Hacemos ejercicio con dificultad porque el dolor es inmediato y el beneficio es a largo plazo.</p></div>
+        </div>
+    </div>
+    <div class="modal" id="modal-ley4-2">
+        <div class="modal-header"><div class="title">Añadir una recompensa inmediata</div><button data-close-button class="close-button">&times;</button></div>
+        <div class="modal-body">
+            <p>Para que un buen hábito con recompensa demorada se mantenga, debemos añadirle una pequeña gratificación inmediata.</p>
+            <div class="example"><strong>Ejemplo:</strong><p>Cada vez que evitas un gasto innecesario (p. ej., un café para llevar), transfieres inmediatamente ese dinero a una cuenta para tus vacaciones soñadas. Ves el progreso al instante.</p></div>
+        </div>
+    </div>
+    <div class="modal" id="modal-ley4-3">
+        <div class="modal-header"><div class="title">Seguimiento de Hábitos (Habit Tracking)</div><button data-close-button class="close-button">&times;</button></div>
+        <div class="modal-body">
+            <p>Marcar en un calendario o app que has completado tu hábito es satisfactorio en sí mismo. Crea una señal visual de progreso y te motiva a no "romper la cadena".</p>
+            <div class="example"><strong>Ejemplo:</strong><p>Poner una "X" en un calendario de pared cada día que sales a correr. La visión de una cadena de "X" es una recompensa visual que no querrás romper.</p></div>
+        </div>
+    </div>
+    <div class="modal" id="modal-ley4-4">
+        <div class="modal-header"><div class="title">Nunca fallar dos veces</div><button data-close-button class="close-button">&times;</button></div>
+        <div class="modal-body">
+            <p>Todo el mundo falla. La diferencia entre los profesionales y los amateurs es que los profesionales vuelven al camino lo antes posible. Si fallas un día, tu única regla es no fallar al día siguiente.</p>
+            <div class="example"><strong>Ejemplo:</strong><p>Te saltaste el gimnasio el martes. No importa. El objetivo principal ahora es ir sí o sí el miércoles. Un fallo es un accidente; dos son el inicio de un nuevo (y mal) hábito.</p></div>
+        </div>
+    </div>
+    
+    <!-- Modals for Big Ideas -->
+    <div class="modal" id="modal-idea-1"><div class="modal-header"><div class="title">1. Mejora del 1%</div><button data-close-button class="close-button">&times;</button></div><div class="modal-body"><p><strong>Qué es:</strong> La idea de que pequeñas mejoras diarias, casi imperceptibles, conducen a resultados masivos con el tiempo.</p><p><strong>Por qué importa:</strong> Te libera de la presión de tener que hacer cambios drásticos. El éxito es el producto de los hábitos diarios.</p><p><strong>Cómo aplicarlo:</strong> Elige un hábito y mejóralo un 1% hoy. ¿Quieres leer más? Lee una página más que ayer.</p></div></div>
+    <div class="modal" id="modal-idea-2"><div class="modal-header"><div class="title">2. Sistemas > Metas</div><button data-close-button class="close-button">&times;</button></div><div class="modal-body"><p><strong>Qué es:</strong> Enfocarte en el proceso recurrente que te lleva al resultado, en lugar de obsesionarte con el resultado final.</p><p><strong>Por qué importa:</strong> Las metas son temporales. Los sistemas son para siempre y garantizan resultados continuos.</p><p><strong>Cómo aplicarlo:</strong> Define tu meta (ej: estar en forma) y luego construye un sistema para ello (ej: hacer ejercicio 3 veces/semana). Enfócate en ejecutar el sistema.</p></div></div>
+    <div class="modal" id="modal-idea-3"><div class="modal-header"><div class="title">3. Hábitos Basados en Identidad</div><button data-close-button class="close-button">&times;</button></div><div class="modal-body"><p><strong>Qué es:</strong> Centrar tu cambio en *quién* quieres ser, no en *qué* quieres conseguir.</p><p><strong>Por qué importa:</strong> Es la forma más profunda y duradera de cambio. Cuando un hábito es parte de tu identidad, no necesitas motivación.</p><p><strong>Cómo aplicarlo:</strong> Define el tipo de persona que quieres ser (ej: "Soy una persona sana"). Luego pregúntate: "¿Qué haría una persona sana en esta situación?".</p></div></div>
+    <div class="modal" id="modal-idea-4"><div class="modal-header"><div class="title">4. Las 4 Leyes del Cambio</div><button data-close-button class="close-button">&times;</button></div><div class="modal-body"><p><strong>Qué es:</strong> El framework central. Para crear un buen hábito, debes hacerlo (1) Obvio, (2) Atractivo, (3) Sencillo y (4) Satisfactorio.</p><p><strong>Por qué importa:</strong> Es una lista de verificación universal para diagnosticar por qué tus hábitos fallan y un manual para construir nuevos.</p><p><strong>Cómo aplicarlo:</strong> Ante cualquier hábito, pásalo por las 4 leyes. ¿Cómo puedo hacerlo más obvio? ¿Más atractivo? ¿Más sencillo? ¿Más satisfactorio?</p></div></div>
+    <div class="modal" id="modal-idea-5"><div class="modal-header"><div class="title">5. Apilamiento de Hábitos</div><button data-close-button class="close-button">&times;</button></div><div class="modal-body"><p><strong>Qué es:</strong> Anclar un nuevo hábito a uno que ya realizas automáticamente.</p><p><strong>Por qué importa:</strong> Aprovecha la inercia de tus rutinas existentes para introducir nuevos comportamientos sin esfuerzo.</p><p><strong>Cómo aplicarlo:</strong> Usa la fórmula: "Después de [HÁBITO ACTUAL], haré [HÁBITO NUEVO]". Ej: "Después de cepillarme los dientes, usaré hilo dental".</p></div></div>
+    <div class="modal" id="modal-idea-6"><div class="modal-header"><div class="title">6. Diseño del Entorno</div><button data-close-button class="close-button">&times;</button></div><div class="modal-body"><p><strong>Qué es:</strong> Modificar tu entorno para que las acciones correctas sean las más fáciles de realizar.</p><p><strong>Por qué importa:</strong> La fuerza de voluntad es limitada. Un buen diseño de entorno hace el trabajo por ti.</p><p><strong>Cómo aplicarlo:</strong> ¿Quieres comer más fruta? Pon un frutero a la vista. ¿Quieres usar menos el móvil? Déjalo en otra habitación.</p></div></div>
+    <div class="modal" id="modal-idea-7"><div class="modal-header"><div class="title">7. La Regla de los 2 Minutos</div><button data-close-button class="close-button">&times;</button></div><div class="modal-body"><p><strong>Qué es:</strong> Reducir cualquier nuevo hábito a una versión que tome menos de dos minutos en empezar.</p><p><strong>Por qué importa:</strong> Vence la procrastinación y la resistencia inicial. La acción genera la motivación.</p><p><strong>Cómo aplicarlo:</strong> "Correr 5 km" se convierte en "Ponerse las zapatillas de correr". "Escribir un libro" se convierte en "Escribir una frase".</p></div></div>
+    <div class="modal" id="modal-idea-8"><div class="modal-header"><div class="title">8. Agrupación de Tentaciones</div><button data-close-button class="close-button">&times;</button></div><div class="modal-body"><p><strong>Qué es:</strong> Combinar algo que necesitas hacer con algo que quieres hacer.</p><p><strong>Por qué importa:</strong> Hace que los hábitos difíciles o aburridos sean inmediatamente más atractivos.</p><p><strong>Cómo aplicarlo:</strong> "Solo me permitiré escuchar mi podcast favorito [quiero] mientras preparo la comida de la semana [necesito]".</p></div></div>
+    <div class="modal" id="modal-idea-9"><div class="modal-header"><div class="title">9. Seguimiento de Hábitos</div><button data-close-button class="close-button">&times;</button></div><div class="modal-body"><p><strong>Qué es:</strong> Un método simple para medir si realizaste un hábito, como marcar una X en un calendario.</p><p><strong>Por qué importa:</strong> Proporciona una recompensa visual inmediata (satisfacción) y te motiva a no "romper la cadena".</p><p><strong>Cómo aplicarlo:</strong> Coge un calendario o una app y marca cada día que completes tu hábito. El simple acto de marcarlo refuerza el comportamiento.</p></div></div>
+    <div class="modal" id="modal-idea-10"><div class="modal-header"><div class="title">10. Nunca Fallar Dos Veces</div><button data-close-button class="close-button">&times;</button></div><div class="modal-body"><p><strong>Qué es:</strong> La regla de oro para la recuperación. Si fallas un día en tu hábito, prioriza no fallar al día siguiente.</p><p><strong>Por qué importa:</strong> Acepta que la perfección es imposible, pero la consistencia es clave. Un error es un dato; dos son el inicio de una tendencia negativa.</p><p><strong>Cómo aplicarlo:</strong> ¿No fuiste al gimnasio hoy? No te castigues. Tu único objetivo es ir mañana.</p></div></div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const openModalButtons = document.querySelectorAll('[data-modal-target]');
+            const closeModalButtons = document.querySelectorAll('[data-close-button]');
+            const overlay = document.getElementById('overlay');
+
+            openModalButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const modal = document.querySelector(button.dataset.modalTarget);
+                    openModal(modal);
+                });
+            });
+
+            overlay.addEventListener('click', () => {
+                const modals = document.querySelectorAll('.modal.active');
+                modals.forEach(modal => {
+                    closeModal(modal);
+                });
+            });
+
+            closeModalButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const modal = button.closest('.modal');
+                    closeModal(modal);
+                });
+            });
+
+            function openModal(modal) {
+                if (modal == null) return;
+                modal.classList.add('active');
+                overlay.classList.add('active');
+            }
+
+            function closeModal(modal) {
+                if (modal == null) return;
+                modal.classList.remove('active');
+                overlay.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html> 
