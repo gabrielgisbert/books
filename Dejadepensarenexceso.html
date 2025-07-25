@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resumen Interactivo: ¡Deja de pensar en exceso!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Calm Neutrals -->
+    <!-- Application Structure Plan: The SPA is structured into five logical sections mirroring the source report, which is already well-organized for learning. A sticky top navigation allows easy jumping between: 1) Context (intro), 2) Summary (interactive accordion to break down content), 3) Big Ideas (interactive cards for exploration), 4) Application (clear columns for practical use), and 5) Mental Framework (a visual hierarchy using styled HTML). This structure was chosen to transform the linear text document into a non-linear, explorable experience, allowing the user to digest information in manageable chunks and focus on the sections most relevant to them at any given moment. -->
+    <!-- Visualization & Content Choices: 
+        - Report Info: Book Rating (7.5/10) -> Goal: Inform -> Viz: Canvas Donut Chart -> Interaction: Static visual -> Justification: Provides a quick, visually appealing summary of the book's quality. Library: Vanilla JS Canvas API.
+        - Report Info: Chapter Summaries -> Goal: Organize -> Presentation: Accordion -> Interaction: Click to expand/collapse -> Justification: Prevents a wall of text, making the dense information digestible and letting users focus on one section at a time. Library: Vanilla JS.
+        - Report Info: 10-15 Big Ideas -> Goal: Explore/Learn -> Presentation: Interactive Cards -> Interaction: Click to expand/collapse details -> Justification: Encourages active user engagement and makes learning the core concepts more memorable than a static list. Library: Vanilla JS.
+        - Report Info: Mental Framework -> Goal: Organize/Structure -> Presentation: Styled nested HTML lists -> Interaction: Static visual hierarchy -> Justification: Clearly visualizes the book's core logical structure (Concepts -> Principles -> Actions) without external libraries, using only semantic HTML and CSS for a clean, flowchart-like appearance. Library: Tailwind CSS.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f5f5f4; /* stone-100 */
+            color: #292524; /* stone-800 */
+        }
+        .card-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
+        }
+        .card.active .card-content {
+            max-height: 500px; /* Adjust as needed */
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+        .card.active .arrow {
+            transform: rotate(180deg);
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+        }
+        .accordion-item.active .accordion-content {
+            max-height: 1000px; /* Adjust as needed */
+        }
+        .accordion-item.active .accordion-arrow {
+            transform: rotate(90deg);
+        }
+        .framework-box {
+            border-left: 2px solid #a8a29e; /* stone-400 */
+            padding-left: 1.5rem;
+            margin-left: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="sticky top-0 z-50 bg-stone-100/80 backdrop-blur-md shadow-sm">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <span class="text-lg font-bold text-teal-800">Menú de Sabiduría</span>
+                <div class="hidden md:flex space-x-6">
+                    <a href="#contexto" class="text-stone-600 hover:text-teal-700 transition">Contexto</a>
+                    <a href="#resumen" class="text-stone-600 hover:text-teal-700 transition">Resumen</a>
+                    <a href="#grandes-ideas" class="text-stone-600 hover:text-teal-700 transition">Grandes Ideas</a>
+                    <a href="#aplicacion" class="text-stone-600 hover:text-teal-700 transition">Aplicación</a>
+                    <a href="#framework" class="text-stone-600 hover:text-teal-700 transition">Framework</a>
+                </div>
+                <div class="md:hidden">
+                    <select id="mobile-nav" class="bg-white border border-stone-300 rounded-md p-2 text-stone-700">
+                        <option value="#contexto">Contexto</option>
+                        <option value="#resumen">Resumen</option>
+                        <option value="#grandes-ideas">Grandes Ideas</option>
+                        <option value="#aplicacion">Aplicación</option>
+                        <option value="#framework">Framework</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto p-4 md:p-8">
+
+        <header class="text-center py-12" id="contexto">
+            <h1 class="text-4xl md:text-5xl font-bold text-teal-800">¡Deja de pensar en exceso!</h1>
+            <p class="text-stone-600 mt-4 text-lg">Una guía interactiva para dominar tu mente, basada en el libro de Devin White.</p>
+            <div class="flex justify-center items-center mt-8 space-x-4">
+                <div class="relative w-32 h-32">
+                    <canvas id="ratingChart" width="128" height="128"></canvas>
+                    <div class="absolute inset-0 flex flex-col items-center justify-center">
+                        <span class="text-3xl font-bold text-teal-700">7.5</span>
+                        <span class="text-sm text-stone-500">/ 10</span>
+                    </div>
+                </div>
+                <div class="text-left">
+                    <h2 class="text-xl font-semibold text-stone-700">Valoración General</h2>
+                    <p class="text-stone-500 max-w-xs">Calidad del libro y su contenido basada en ideas, novedad y criterio del autor.</p>
+                </div>
+            </div>
+        </header>
+
+        <section class="bg-white p-6 md:p-8 rounded-xl shadow-md my-12">
+            <h2 class="text-3xl font-bold text-teal-800 mb-2">Contexto General del Libro</h2>
+            <p class="text-stone-600 mb-6">Esta sección inicial establece el propósito y el alcance del libro. Nos introduce al problema central que busca resolver y nos da una visión panorámica de su temática y enfoque, permitiéndonos entender rápidamente si el contenido es relevante para nuestras necesidades.</p>
+            <div class="space-y-4">
+                <div>
+                    <h3 class="font-semibold text-lg text-stone-800">1.1 - ¿Qué problema o necesidad busca resolver?</h3>
+                    <p class="text-stone-600">El libro aborda el problema del "overthinking" o pensamiento excesivo: el ciclo de pensamientos negativos, preocupaciones y dudas que generan ansiedad, paralizan la toma de decisiones, dañan la autoestima y afectan negativamente a la salud física y mental, impidiendo vivir una vida plena y feliz.</p>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-lg text-stone-800">1.2 - Temática del libro (Palabras Clave)</h3>
+                    <div class="flex flex-wrap gap-2 mt-2">
+                        <span class="bg-teal-100 text-teal-800 text-sm font-medium px-3 py-1 rounded-full">Pensamiento excesivo</span>
+                        <span class="bg-teal-100 text-teal-800 text-sm font-medium px-3 py-1 rounded-full">Ansiedad</span>
+                        <span class="bg-teal-100 text-teal-800 text-sm font-medium px-3 py-1 rounded-full">Autoestima</span>
+                        <span class="bg-teal-100 text-teal-800 text-sm font-medium px-3 py-1 rounded-full">Autocontrol</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="my-12" id="resumen">
+            <h2 class="text-3xl font-bold text-teal-800 text-center mb-2">Resumen por Secciones</h2>
+            <p class="text-stone-600 text-center mb-8 max-w-3xl mx-auto">El contenido del libro se puede agrupar en tres grandes fases: diagnóstico, herramientas y aplicación. Explora cada sección para descubrir las ideas clave y conclusiones. Haz clic en cada título para expandir el contenido.</p>
+            <div class="space-y-4" id="accordion-container">
+                <div class="accordion-item bg-white rounded-xl shadow-md">
+                    <button class="accordion-button w-full text-left p-6 flex justify-between items-center">
+                        <span class="text-xl font-semibold text-stone-800">Fase 1: Comprendiendo el Origen y el Impacto (Cap. 1-4)</span>
+                        <span class="accordion-arrow text-teal-700 text-2xl transition-transform duration-300">&#x276F;</span>
+                    </button>
+                    <div class="accordion-content px-6">
+                        <div class="py-4 border-t border-stone-200">
+                            <h4 class="font-bold text-lg mb-2 text-stone-700">Ideas Clave:</h4>
+                            <ul class="list-disc list-inside space-y-2 text-stone-600">
+                                <li><b>La autoconciencia es el primer paso:</b> Identificar *qué* te preocupa y *por qué* es crucial antes de poder cambiar.</li>
+                                <li><b>El miedo al juicio ajeno alimenta la ansiedad:</b> Gran parte del "overthinking" nace de buscar una validación externa imaginaria.</li>
+                                <li><b>El estrés mental causa dolor físico:</b> La tensión mental se manifiesta en dolores de cabeza, fatiga y problemas musculares.</li>
+                                <li><b>Traumas y baja autoestima son catalizadores:</b> Experiencias pasadas negativas crean un terreno fértil para la duda y el miedo.</li>
+                            </ul>
+                            <h4 class="font-bold text-lg mt-4 mb-2 text-stone-700">Conclusión de la Sección:</h4>
+                            <p class="text-stone-600">Esta fase se enfoca en el diagnóstico. Nos obliga a entender que la raíz de la ansiedad no son los eventos, sino nuestra interpretación de ellos. La clave es asumir la responsabilidad de nuestros patrones mentales en lugar de culpar al entorno.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item bg-white rounded-xl shadow-md">
+                    <button class="accordion-button w-full text-left p-6 flex justify-between items-center">
+                        <span class="text-xl font-semibold text-stone-800">Fase 2: Herramientas y Estrategias para el Cambio (Cap. 5-8)</span>
+                        <span class="accordion-arrow text-teal-700 text-2xl transition-transform duration-300">&#x276F;</span>
+                    </button>
+                    <div class="accordion-content px-6">
+                         <div class="py-4 border-t border-stone-200">
+                            <h4 class="font-bold text-lg mb-2 text-stone-700">Ideas Clave:</h4>
+                            <ul class="list-disc list-inside space-y-2 text-stone-600">
+                                <li><b>Mindfulness y meditación te anclan en el presente:</b> Te sacan del ciclo de preocupación por el futuro o el pasado.</li>
+                                <li><b>El amor propio es tu mayor defensa:</b> Construye una confianza interna que actúa como escudo contra pensamientos negativos.</li>
+                                <li><b>La acción es el antídoto contra la parálisis:</b> Actuar, por pequeño que sea el paso, rompe el ciclo de pensar demasiado.</li>
+                                <li><b>Un sueño de calidad reinicia tu cerebro:</b> Es fundamental para la regulación emocional y la resiliencia mental.</li>
+                            </ul>
+                            <h4 class="font-bold text-lg mt-4 mb-2 text-stone-700">Conclusión de la Sección:</h4>
+                            <p class="text-stone-600">Esta parte pasa de la teoría a la acción. El mensaje central es que no eres un espectador pasivo de tus pensamientos; puedes intervenir activamente para "recablear" tu cerebro y construir un estilo de vida que promueva la calma y la confianza.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item bg-white rounded-xl shadow-md">
+                    <button class="accordion-button w-full text-left p-6 flex justify-between items-center">
+                        <span class="text-xl font-semibold text-stone-800">Fase 3: Verdades, Implementación y Perspectivas (Cap. 9-12)</span>
+                        <span class="accordion-arrow text-teal-700 text-2xl transition-transform duration-300">&#x276F;</span>
+                    </button>
+                    <div class="accordion-content px-6">
+                        <div class="py-4 border-t border-stone-200">
+                            <h4 class="font-bold text-lg mb-2 text-stone-700">Ideas Clave:</h4>
+                            <ul class="list-disc list-inside space-y-2 text-stone-600">
+                                <li><b>Invierte tu perspectiva: de problema a proyecto:</b> Enmarcar un desafío como un "proyecto" te da una sensación de control.</li>
+                                <li><b>Acepta que tus patrones afectan a los demás:</b> Reconocer tu impacto en tus seres queridos es un fuerte motivador para cambiar.</li>
+                                <li><b>Buscar ayuda profesional es un acto de fortaleza:</b> La terapia ofrece una perspectiva externa y objetiva que acelera el progreso.</li>
+                                <li><b>Aprende de lo que hacen los demás:</b> No estás solo; puedes probar tácticas que han funcionado para otros.</li>
+                            </ul>
+                            <h4 class="font-bold text-lg mt-4 mb-2 text-stone-700">Conclusión de la Sección:</h4>
+                            <p class="text-stone-600">La fase final es una llamada a la acción sostenida y a la aceptación. Nos pide ser honestos sobre nuestro impacto, abandonar el estigma de buscar ayuda y mantenernos abiertos a aprender. La transformación es un compromiso continuo.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="my-12" id="grandes-ideas">
+            <h2 class="text-3xl font-bold text-teal-800 text-center mb-2">Las 14 Grandes Ideas para Memorizar</h2>
+            <p class="text-stone-600 text-center mb-8 max-w-3xl mx-auto">Estos son los conceptos más importantes y poderosos de todo el libro. Interiorizarlos es clave para dominar tu mente. Haz clic en cada tarjeta para profundizar en su significado y aplicación.</p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="cards-container">
+            </div>
+        </section>
+
+        <section class="my-12" id="aplicacion">
+            <h2 class="text-3xl font-bold text-teal-800 text-center mb-2">Aplicación Práctica del Conocimiento</h2>
+            <p class="text-stone-600 text-center mb-8 max-w-3xl mx-auto">El conocimiento es inútil si no se aplica. Esta sección te muestra cómo integrar los principios del libro en tu vida y te ofrece técnicas de aprendizaje activo para convertir las ideas en hábitos.</p>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="font-semibold text-xl text-stone-800 mb-4">4.1 - ¿Cómo puedo usar este conocimiento?</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="font-bold text-teal-700">Vida Personal</h4>
+                            <p class="text-stone-600">Mejora tus relaciones al dejar de sobreanalizar y estar más presente. Toma decisiones más rápidas y alineadas con tus valores.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-teal-700">Vida Profesional</h4>
+                            <p class="text-stone-600">Aumenta tu confianza para proponer ideas, liderar proyectos y manejar el estrés. Establece límites claros para evitar el burnout.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-teal-700">Como Orador</h4>
+                            <p class="text-stone-600">Controla el miedo escénico con técnicas de respiración y conecta auténticamente con la audiencia al dejar de intentar impresionar.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <h3 class="font-semibold text-xl text-stone-800 mb-4">4.2 - Técnicas de Implementación Diaria</h3>
+                    <ul class="space-y-3 text-stone-600">
+                        <li class="flex items-start">
+                            <span class="text-teal-600 mr-3 mt-1">&#10003;</span>
+                            <span><b>El "Minuto de Anclaje":</b> Pon 3 alarmas al día. Cuando suenen, detente y haz 5 respiraciones profundas para volver al presente.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-teal-600 mr-3 mt-1">&#10003;</span>
+                            <span><b>Diario de "Una Sola Línea":</b> Antes de dormir, escribe tu pensamiento negativo más recurrente y una refutación positiva.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-teal-600 mr-3 mt-1">&#10003;</span>
+                            <span><b>La "Regla de los 5 Segundos":</b> Para vencer la procrastinación, cuenta 5-4-3-2-1 y muévete físicamente para empezar la tarea.</span>
+                        </li>
+                         <li class="flex items-start">
+                            <span class="text-teal-600 mr-3 mt-1">&#10003;</span>
+                            <span><b>Crear un "Santuario de Calma":</b> Designa un rincón de tu casa solo para actividades relajantes.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="my-12" id="framework">
+            <h2 class="text-3xl font-bold text-teal-800 text-center mb-2">Framework Mental del Libro</h2>
+            <p class="text-stone-600 text-center mb-8 max-w-3xl mx-auto">Este es el esqueleto lógico del libro, resumido en una estructura clara y jerárquica. Te ayuda a visualizar cómo las ideas se conectan entre sí, desde los conceptos abstractos hasta las acciones concretas que puedes realizar.</p>
+            <div class="bg-white p-6 md:p-8 rounded-xl shadow-md">
+                <div class="framework-item">
+                    <h3 class="text-2xl font-bold text-teal-800 mb-4">🔹 Concepto Principal: El Pensamiento Excesivo (Overthinking)</h3>
+                    <div class="framework-box">
+                        <p class="text-stone-600 mb-4">Un ciclo de pensamientos repetitivos y negativos que genera ansiedad y parálisis. No es resolución de problemas, es preocupación destructiva.</p>
+                        <div class="framework-item">
+                            <h4 class="text-xl font-semibold text-stone-700 mb-3">└── Principio Clave: El Autocontrol es una Habilidad Aprendida</h4>
+                            <div class="framework-box">
+                                <ul class="list-disc list-inside space-y-2 text-stone-600 mb-4">
+                                    <li><b>La Conciencia Precede al Cambio:</b> No puedes cambiar lo que no ves.</li>
+                                    <li><b>Tú Diriges tu Enfoque:</b> Tu mente irá donde dirijas tu atención.</li>
+                                    <li><b>La Aceptación Reduce la Resistencia:</b> Luchar contra tus emociones solo las hace más fuertes.</li>
+                                    <li><b>El Bienestar es Integral:</b> Debes cuidar mente, cuerpo y emociones.</li>
+                                </ul>
+                                <div class="framework-item">
+                                    <h5 class="text-lg font-semibold text-stone-700 mb-3">└── └── Acciones Prácticas para Tomar el Control</h5>
+                                    <div class="framework-box grid md:grid-cols-3 gap-4 text-sm">
+                                        <div class="bg-teal-50 p-3 rounded-lg">
+                                            <h6 class="font-bold text-teal-900">Mentales</h6>
+                                            <p class="text-teal-800">Cuestionar pensamientos, reencuadrar, crear mantras.</p>
+                                        </div>
+                                        <div class="bg-stone-200 p-3 rounded-lg">
+                                            <h6 class="font-bold text-stone-900">Físicas</h6>
+                                            <p class="text-stone-800">Respiración, ejercicio, sueño, grounding.</p>
+                                        </div>
+                                        <div class="bg-orange-100 p-3 rounded-lg">
+                                            <h6 class="font-bold text-orange-900">Conductuales</h6>
+                                            <p class="text-orange-800">Tomar acción, escribir, poner límites, buscar apoyo.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <footer class="text-center text-stone-500 mt-16 py-6 border-t border-stone-200">
+            <p>Aplicación interactiva creada a partir del resumen del libro "¡Deja de pensar en exceso!" de Devin White.</p>
+        </footer>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            
+            const rating = 7.5;
+            const canvas = document.getElementById('ratingChart');
+            const ctx = canvas.getContext('2d');
+            const size = 128;
+            const center = size / 2;
+            const radius = size / 2 - 10;
+            const lineWidth = 12;
+
+            function drawRatingChart() {
+                ctx.clearRect(0, 0, size, size);
+                
+                ctx.beginPath();
+                ctx.arc(center, center, radius, 0, 2 * Math.PI);
+                ctx.strokeStyle = '#e7e5e4'; // stone-200
+                ctx.lineWidth = lineWidth;
+                ctx.stroke();
+
+                ctx.beginPath();
+                const endAngle = (rating / 10) * 2 * Math.PI - (0.5 * Math.PI);
+                ctx.arc(center, center, radius, -0.5 * Math.PI, endAngle);
+                ctx.strokeStyle = '#0d9488'; // teal-600
+                ctx.lineWidth = lineWidth;
+                ctx.lineCap = 'round';
+                ctx.stroke();
+            }
+
+            drawRatingChart();
+
+            const accordionContainer = document.getElementById('accordion-container');
+            if (accordionContainer) {
+                accordionContainer.addEventListener('click', function (e) {
+                    const button = e.target.closest('.accordion-button');
+                    if (button) {
+                        const item = button.parentElement;
+                        const wasActive = item.classList.contains('active');
+                        
+                        document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('active'));
+                        
+                        if (!wasActive) {
+                            item.classList.add('active');
+                        }
+                    }
+                });
+            }
+
+            const bigIdeas = [
+                { title: "1. Identifica la Raíz", content: "Averiguar la causa real de tu ansiedad, no solo los síntomas. Si solo tratas el estrés superficial, la causa subyacente seguirá generando problemas. <b>Aplicación:</b> Lleva un diario durante una semana. Anota cuándo te sientes ansioso y qué estaba pasando. Busca patrones." },
+                { title: "2. La Mente Afecta al Cuerpo", content: "La conexión directa entre tu estado emocional y tu salud física. El dolor físico (migrañas, fatiga) puede ser una señal de que tu estrés mental está fuera de control. <b>Aplicación:</b> Cuando sientas un dolor físico sin causa aparente, pregúntate: '¿Qué he estado pensando o sintiendo últimamente?'." },
+                { title: "3. Tú No Eres Tus Pensamientos", content: "La habilidad de observar tus pensamientos como si fueran nubes en el cielo, sin dejar que te definan. Te libera de la tiranía de la voz crítica interna. <b>Aplicación:</b> Cuando aparezca un pensamiento negativo, di mentalmente: 'Estoy teniendo el pensamiento de que...'. Esto crea distancia." },
+                { title: "4. Acción > Preocupación", content: "Usar la acción, por pequeña que sea, para interrumpir el bucle de la preocupación. La preocupación te mantiene pasivo y atrapado; la acción te devuelve el poder. <b>Aplicación:</b> Si estás preocupado por una tarea, haz solo el primer paso. ¿Tienes que escribir un informe? Abre el documento y escribe solo el título." },
+                { title: "5. El Poder del 'Ahora'", content: "Enfocar tu atención plenamente en el momento presente. Es imposible estar ansioso por el futuro si tu mente está 100% enfocada en el ahora. <b>Aplicación:</b> Practica el mindfulness. Mientras te lavas los dientes, concéntrate solo en el sabor de la pasta, la sensación del cepillo, etc." },
+                { title: "6. El Amor Propio es un Escudo", content: "Aceptarte y valorarte incondicionalmente, con defectos y todo. Cuando te apruebas a ti mismo, dejas de necesitar la aprobación de los demás. <b>Aplicación:</b> Cada día, anota tres cosas que hiciste bien o de las que te sientes orgulloso." },
+                { title: "7. Deja de Intentar Impresionar", content: "Ser auténtico en lugar de adaptar tu personalidad para encajar. Te libera de una enorme carga mental y te permite conectar genuinamente con otros. <b>Aplicación:</b> En tu próxima conversación, expresa tu opinión respetuosamente en lugar de asentir para agradar." },
+                { title: "8. Acepta la Imperfección", content: "Abandonar la idea de que tienes que hacerlo todo perfecto. El perfeccionismo conduce a la procrastinación y la ansiedad. <b>Aplicación:</b> Entrega un proyecto cuando esté 'bien hecho', no cuando sea 'perfecto'. Fíjate un límite de tiempo." },
+                { title: "9. Controla lo Controlable", content: "Diferenciar entre lo que puedes cambiar y lo que no, y enfocar tu energía solo en lo primero. Te ahorra una cantidad inmensa de energía. <b>Aplicación:</b> Ante un problema, dibuja dos círculos: 'Cosas que puedo controlar' y 'Cosas que no'. Actúa solo sobre el primero." },
+                { title: "10. La Respiración es tu Ancla", content: "Usar la respiración consciente como una herramienta para calmar tu sistema nervioso al instante. Es la forma más rápida y disponible para gestionar el estrés. <b>Aplicación:</b> Practica la respiración 4-7-8: inhala 4s, sostén 7s, exhala 8s." },
+                { title: "11. El Sueño No es Negociable", content: "Tratar el sueño como una prioridad de salud. Un cerebro descansado es más resiliente, más positivo y menos propenso a la ansiedad. <b>Aplicación:</b> Establece una 'hora de apagado' para todos los dispositivos electrónicos una hora antes de dormir." },
+                { title: "12. Busca Ayuda", content: "Reconocer que no tienes que resolverlo todo solo y que la terapia es una herramienta válida. Un profesional puede darte una perspectiva objetiva. <b>Aplicación:</b> Si te sientes estancado, busca un terapeuta. Considéralo una consulta, no un compromiso de por vida." },
+                { title: "13. Reencuadre Positivo", content: "Cambiar conscientemente el lenguaje que usas para describir tus desafíos. El lenguaje da forma a tu realidad. <b>Aplicación:</b> La próxima vez que te enfrentes a un obstáculo, descríbelo en voz alta usando la palabra 'oportunidad' o 'desafío'." },
+                { title: "14. Tu Comportamiento Impacta", content: "Ser consciente de que tu estado de ánimo y tus acciones afectan a las personas que te rodean. A menudo, el deseo de no herir a nuestros seres queridos es el mayor catalizador para el cambio. <b>Aplicación:</b> Pregúntale a alguien de confianza: '¿Cómo te ha afectado mi estrés últimamente?'." }
+            ];
+
+            const cardsContainer = document.getElementById('cards-container');
+            if (cardsContainer) {
+                cardsContainer.innerHTML = bigIdeas.map(idea => `
+                    <div class="card bg-white rounded-xl shadow-md cursor-pointer overflow-hidden">
+                        <div class="p-6 flex justify-between items-center">
+                            <h3 class="font-semibold text-lg text-stone-800">${idea.title}</h3>
+                            <span class="arrow text-teal-700 text-2xl transition-transform duration-300">&#x2304;</span>
+                        </div>
+                        <div class="card-content px-6 text-stone-600">
+                            <p>${idea.content}</p>
+                        </div>
+                    </div>
+                `).join('');
+
+                cardsContainer.addEventListener('click', function(e) {
+                    const card = e.target.closest('.card');
+                    if (card) {
+                        card.classList.toggle('active');
+                    }
+                });
+            }
+            
+            const mobileNav = document.getElementById('mobile-nav');
+            if(mobileNav) {
+                mobileNav.addEventListener('change', function(e) {
+                    window.location.hash = e.target.value;
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>
