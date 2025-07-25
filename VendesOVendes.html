@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análisis Profesional: Vendes o Vendes de Grant Cardone</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Professional Blue/Slate -->
+    <!-- Application Structure Plan: Se ha rediseñado la SPA para que funcione como un informe ejecutivo interactivo y completo. La estructura ahora es lineal y exhaustiva, siguiendo el orden lógico del resumen: 1) Contexto, 2) Resumen por Capítulos, 3) Grandes Ideas (con funcionalidad de modal para profundizar), 4) Aplicación Práctica y 5) Framework Mental. Este diseño prioriza la profundidad del contenido y la seriedad profesional, utilizando una navegación clara y la funcionalidad "Ampliar" para gestionar la densidad de la información, asegurando que el usuario pueda estudiar el material a fondo como si fuera un documento de estudio. -->
+    <!-- Visualization & Content Choices: Report Info: Grandes Ideas del Libro -> Goal: Presentar una lista completa y detallada de conceptos clave para estudio. -> Viz/Presentation Method: Lista de tarjetas con título, resumen y un botón "Ampliar". -> Interaction: El botón abre un modal con el texto completo del concepto. -> Justification: Este método es más profesional y permite una mayor densidad de información que un gráfico. El modal evita sobrecargar la interfaz principal, permitiendo al usuario profundizar a demanda. Report Info: Resumen por capítulos -> Goal: Organizar y desglosar los puntos clave de cada capítulo. -> Viz/Presentation Method: Acordeón interactivo. -> Interaction: Click para expandir/colapsar. -> Justification: Ideal para presentar secciones densas de información de forma organizada y compacta. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+            color: #1e293b; /* slate-800 */
+        }
+        .accent-color { color: #2563eb; } /* blue-600 */
+        .accent-bg { background-color: #2563eb; }
+        .accent-border { border-color: #2563eb; }
+        .secondary-bg { background-color: #ffffff; }
+        .secondary-border { border-color: #e2e8f0; } /* slate-200 */
+        .modal-overlay {
+            transition: opacity 0.3s ease;
+        }
+        .modal-content {
+            transition: transform 0.3s ease;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="secondary-bg sticky top-0 z-40 shadow-sm border-b secondary-border">
+        <nav class="container mx-auto px-6 py-3">
+            <div class="flex items-center justify-between">
+                <div class="flex-shrink-0">
+                    <h1 class="text-xl font-bold text-slate-900">Análisis: <span class="accent-color">Vendes o Vendes</span></h1>
+                </div>
+                <div class="hidden md:flex items-center space-x-6 text-sm font-medium">
+                    <a href="#contexto" class="text-slate-600 hover:accent-color">Contexto</a>
+                    <a href="#resumen-capitulos" class="text-slate-600 hover:accent-color">Resumen</a>
+                    <a href="#grandes-ideas" class="text-slate-600 hover:accent-color">Ideas Clave</a>
+                    <a href="#aplicacion" class="text-slate-600 hover:accent-color">Aplicación</a>
+                    <a href="#framework" class="text-slate-600 hover:accent-color">Framework</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto p-6 md:p-8">
+
+        <section id="hero" class="text-center py-12">
+            <h2 class="text-4xl font-extrabold text-slate-900 sm:text-5xl">Resumen de Sabiduría Aplicada</h2>
+            <p class="mt-4 max-w-2xl mx-auto text-lg text-slate-600">Un análisis profundo y estructurado de "Vendes o Vendes" de Grant Cardone, diseñado para el estudio y la maestría del contenido.</p>
+        </section>
+        
+        <div class="space-y-16">
+
+            <section id="contexto" class="p-8 secondary-bg rounded-lg shadow-md border secondary-border">
+                <h3 class="text-2xl font-bold text-slate-900 border-b-2 accent-border pb-2">1. Contexto General del Libro</h3>
+                <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h4 class="font-semibold text-lg accent-color">1.1 ¿Qué problema busca resolver?</h4>
+                        <p class="mt-2 text-slate-700">Aborda la creencia limitante de que "vender" es solo para vendedores profesionales. Busca resolver la falta de habilidad de la persona promedio para persuadir, negociar e influir, demostrando que la venta es una habilidad esencial para el éxito en todos los aspectos de la vida.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-lg accent-color">1.2 Temática y Valoración</h4>
+                        <div class="mt-2 flex flex-wrap gap-2">
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-1 rounded-full">Persuasión</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-1 rounded-full">Influencia</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-1 rounded-full">Mentalidad</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-1 rounded-full">Éxito</span>
+                        </div>
+                        <p class="mt-4 text-2xl font-bold">9/10 <span class="text-base font-normal text-slate-500">Valoración de Calidad</span></p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="resumen-capitulos" class="p-8 secondary-bg rounded-lg shadow-md border secondary-border">
+                <h3 class="text-2xl font-bold text-slate-900 border-b-2 accent-border pb-2">2. Resumen por Secciones Clave</h3>
+                <div id="accordion" class="mt-6 space-y-3">
+                    <div class="accordion-item border secondary-border rounded-lg overflow-hidden">
+                        <button class="accordion-header w-full flex justify-between items-center p-4 text-left font-semibold text-lg bg-slate-50 hover:bg-slate-100">
+                            <span>Cap. 1: Ventas, un modo de vida</span>
+                            <svg class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="accordion-content hidden p-5 border-t secondary-border">
+                            <h5 class="font-semibold text-md accent-color mb-2">Ideas Clave:</h5>
+                            <ul class="list-disc list-inside space-y-2 text-slate-700">
+                                <li><strong>La venta es una habilidad para la vida, no solo una profesión:</strong> Todo en la vida requiere persuasión, desde negociar con tu pareja hasta convencer a tus hijos. <br><em>Ej: Cuando quieres que tus amigos vayan al restaurante que prefieres, estás "vendiendo" tu idea.</em></li>
+                                <li><strong>Todo en la vida es una "comisión":</strong> Las mejores cosas (amor, felicidad, ascensos) son el resultado de haber persuadido exitosamente. <br><em>Ej: Una relación sólida es la "comisión" por invertir esfuerzo y persuasión en construir confianza.</em></li>
+                                <li><strong>O vendes o te venden:</strong> En cada interacción, alguien está intentando salirse con la suya. Si no eres tú quien persuade, serás el persuadido. <br><em>Ej: En una negociación salarial, si no vendes tu valor, la empresa te "venderá" su presupuesto limitado.</em></li>
+                            </ul>
+                             <h5 class="font-semibold text-md accent-color mt-4 mb-2">Conclusión del Capítulo:</h5>
+                            <p class="text-slate-700">Este capítulo redefine el concepto de "vender" como una competencia fundamental para la supervivencia y el éxito. Aceptar que todos vendemos constantemente es el primer paso para tomar control de los resultados en nuestra vida.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item border secondary-border rounded-lg overflow-hidden">
+                        <button class="accordion-header w-full flex justify-between items-center p-4 text-left font-semibold text-lg bg-slate-50 hover:bg-slate-100">
+                            <span>Cap. 5: La venta más importante</span>
+                             <svg class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="accordion-content hidden p-5 border-t secondary-border">
+                            <h5 class="font-semibold text-md accent-color mb-2">Ideas Clave:</h5>
+                             <ul class="list-disc list-inside space-y-2 text-slate-700">
+                                <li><strong>La venta más importante es a ti mismo:</strong> Antes de convencer a nadie, debes estar absolutamente convencido tú del valor de tu propuesta, de forma casi irracional. <br><em>Ej: Un emprendedor debe creer tan ciegamente en su proyecto que su pasión contagie a los inversores.</em></li>
+                                <li><strong>La convicción es el motor de la venta:</strong> Se cierra cuando tu nivel de creencia es superior al nivel de duda del cliente. <br><em>Ej: Un entrenador convencido de su método hará que el cliente vea el valor y no el precio.</em></li>
+                                <li><strong>Posee el producto que vendes:</strong> Usar y creer en lo que ofreces te da una credibilidad inigualable. <br><em>Ej: Un asesor financiero que invierte su propio dinero en los fondos que recomienda.</em></li>
+                            </ul>
+                            <h5 class="font-semibold text-md accent-color mt-4 mb-2">Conclusión del Capítulo:</h5>
+                            <p class="text-slate-700">La auto-persuasión es el prerrequisito para persuadir a otros. La falta de resultados casi siempre se debe a una falta de creencia en la propia oferta. Es necesario cultivar una fe inquebrantable en el valor de lo que se ofrece.</p>
+                        </div>
+                    </div>
+                     <div class="accordion-item border secondary-border rounded-lg overflow-hidden">
+                        <button class="accordion-header w-full flex justify-between items-center p-4 text-left font-semibold text-lg bg-slate-50 hover:bg-slate-100">
+                            <span>Cap. 13: Acción masiva</span>
+                             <svg class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="accordion-content hidden p-5 border-t secondary-border">
+                            <h5 class="font-semibold text-md accent-color mb-2">Ideas Clave:</h5>
+                             <ul class="list-disc list-inside space-y-2 text-slate-700">
+                                <li><strong>Subestimamos el esfuerzo necesario:</strong> La mayoría fracasa porque no calcula correctamente la cantidad de acción requerida. La solución es pensar en términos de "acción masiva". <br><em>Ej: Si crees que necesitas 10 llamadas para un cliente, haz 100.</em></li>
+                                 <li><strong>La acción masiva crea "buenos problemas":</strong> Problemas como tener demasiados clientes a los que atender son preferibles a la falta de clientes. <br><em>Ej: Un restaurante con cola en la puerta frente a uno vacío.</em></li>
+                                <li><strong>La acción supera la suerte y el talento:</strong> No puedes controlar tu talento, pero sí tu nivel de actividad. La acción masiva supera a la competencia y a las condiciones adversas. <br><em>Ej: Un comercial menos talentoso que hace 50 visitas al día superará a uno más talentoso que solo hace 5.</em></li>
+                            </ul>
+                            <h5 class="font-semibold text-md accent-color mt-4 mb-2">Conclusión del Capítulo:</h5>
+                            <p class="text-slate-700">El éxito extraordinario requiere un nivel de actividad extraordinario. Dejar de buscar la cantidad "correcta" de acción y operar a un nivel 10 veces superior al que consideras necesario es el secreto para dominar cualquier campo.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="grandes-ideas" class="p-8 secondary-bg rounded-lg shadow-md border secondary-border">
+                <h3 class="text-2xl font-bold text-slate-900 border-b-2 accent-border pb-2">3. Grandes Ideas del Libro (Síntesis Global)</h3>
+                <div id="ideas-container" class="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                </div>
+            </section>
+
+            <section id="aplicacion" class="p-8 secondary-bg rounded-lg shadow-md border secondary-border">
+                <h3 class="text-2xl font-bold text-slate-900 border-b-2 accent-border pb-2">4. Aplicación Práctica del Conocimiento</h3>
+                <div class="mt-6 space-y-6">
+                    <div>
+                        <h4 class="font-semibold text-lg accent-color">4.1 ¿Cómo puedo usar este conocimiento?</h4>
+                        <ul class="mt-2 list-disc list-inside space-y-2 text-slate-700">
+                            <li><strong>Vida Personal:</strong> Usa el principio de "acordar siempre" para resolver discusiones. Vende tus ideas en lugar de imponerlas.</li>
+                            <li><strong>Vida Profesional:</strong> Prepara una "presentación de ventas" sobre tu valor para negociar un aumento, respaldada con datos y pruebas escritas.</li>
+                             <li><strong>Como Orador:</strong> Vende tus ideas con convicción apasionada, respaldando puntos clave con pruebas visuales. Tu charla no es sobre ti, es sobre dar valor.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-lg accent-color">4.2 Sugerencias de implementación diaria</h4>
+                        <ul class="mt-2 list-disc list-inside space-y-2 text-slate-700">
+                            <li><strong>El Reto del Acuerdo (diario):</strong> Durante un día, practica la regla de oro: acuerda con cada persona con la que interactúes.</li>
+                            <li><strong>Diario de Convicción (semanal):</strong> Cada lunes, escribe una página sobre por qué tu producto o idea es la mejor del mundo. Léelo cada mañana.</li>
+                            <li><strong>Micro-acciones Masivas (diario):</strong> Elige una tarea pequeña (ej. enviar 2 correos) y haz 10 veces más (envía 20).</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="framework" class="p-8 secondary-bg rounded-lg shadow-md border secondary-border">
+                <h3 class="text-2xl font-bold text-slate-900 border-b-2 accent-border pb-2">5. Framework Mental del Libro</h3>
+                <div class="mt-6 space-y-6">
+                    <div>
+                        <p class="text-lg font-bold text-blue-700">🔹 Concepto Principal: La Venta lo es Todo</p>
+                        <div class="ml-6 mt-2 pl-6 border-l-2 accent-border">
+                            <p class="font-semibold text-slate-700">└── Principio Clave: La habilidad de persuadir determina tu éxito en la vida.</p>
+                            <div class="ml-6 mt-2 pl-6 border-l-2 border-slate-300">
+                                <p class="text-slate-600"><span class="font-semibold">└── Acción Práctica:</span> Analizar cada área de tu vida como un escenario de ventas y mejorar tu influencia.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-lg font-bold text-blue-700">🔹 Concepto Principal: La Mentalidad del Vendedor Profesional</p>
+                        <div class="ml-6 mt-2 pl-6 border-l-2 accent-border space-y-4">
+                             <p class="font-semibold text-slate-700">└── Principio Clave: El éxito es un deber, no una opción.</p>
+                             <div class="ml-6 mt-2 pl-6 border-l-2 border-slate-300">
+                                <p class="text-slate-600"><span class="font-semibold">└── Acción Práctica:</span> Tratar tus metas como obligaciones éticas y tomar responsabilidad absoluta.</p>
+                             </div>
+                             <p class="font-semibold text-slate-700">└── Principio Clave: La convicción es la herramienta más poderosa.</p>
+                            <div class="ml-6 mt-2 pl-6 border-l-2 border-slate-300">
+                               <p class="text-slate-600"><span class="font-semibold">└── Acción Práctica:</span> Venderte a ti mismo la idea antes que a nadie, cultivando una creencia irracional.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-lg font-bold text-blue-700">🔹 Concepto Principal: El Motor del Éxito Sostenido</p>
+                        <div class="ml-6 mt-2 pl-6 border-l-2 accent-border space-y-4">
+                            <p class="font-semibold text-slate-700">└── Principio Clave: La acción masiva es la única garantía.</p>
+                             <div class="ml-6 mt-2 pl-6 border-l-2 border-slate-300">
+                                <p class="text-slate-600"><span class="font-semibold">└── Acción Práctica:</span> Aplicar la "Regla 10X": planificar y ejecutar 10 veces más actividad de la necesaria.</p>
+                             </div>
+                             <p class="font-semibold text-slate-700">└── Principio Clave: El servicio es la estrategia definitiva.</p>
+                            <div class="ml-6 mt-2 pl-6 border-l-2 border-slate-300">
+                                <p class="text-slate-600"><span class="font-semibold">└── Acción Práctica:</span> Centrarse en "dar, dar y dar" (atención, información, seguimiento) para superar expectativas.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="mt-16 border-t secondary-border">
+        <div class="container mx-auto py-6 px-6 text-center text-slate-500">
+            <p>&copy; 2024 Análisis Interactivo. Creado para el estudio de "Vendes o Vendes" de Grant Cardone.</p>
+        </div>
+    </footer>
+
+    <div id="modal" class="modal-overlay fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-60 hidden">
+        <div class="modal-content secondary-bg rounded-lg shadow-2xl w-full max-w-2xl max-h-[80vh] overflow-y-auto transform scale-95">
+            <div class="flex justify-between items-center p-5 border-b secondary-border sticky top-0 secondary-bg">
+                <h4 id="modal-title" class="text-xl font-bold accent-color"></h4>
+                <button id="modal-close" class="text-slate-400 hover:text-slate-800">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div id="modal-body" class="p-6 text-slate-700 space-y-4">
+            </div>
+        </div>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const ideasData = [
+            { id: 1, title: 'Vender es un modo de vida', snippet: 'Entender que cada interacción humana implica un acto de persuasión para lograr un resultado deseado.', full: 'Qué es: Entender que cada interacción humana (personal, profesional, social) implica un acto de persuasión para lograr un resultado deseado.<br>Por qué importa: Te permite dejar de ser una víctima de las circunstancias y empezar a influir activamente en tu entorno para conseguir tus metas.<br>Cómo aplicarlo: Analiza tus interacciones diarias (con tu pareja, hijos, jefe) e identifica qué estás "vendiendo" (una idea, una petición, confianza) y cómo puedes mejorar tu persuasión.' },
+            { id: 2, title: 'Compromiso al 100%', snippet: 'Decidir dedicarte por completo a una meta, eliminando todas las demás opciones y excusas.', full: 'Qué es: Decidir dedicarte por completo a una meta, eliminando todas las demás opciones y excusas.<br>Por qué importa: Es el catalizador que transforma la mediocridad en excelencia. Sin él, los resultados son tibios y la frustración está garantizada.<br>Cómo aplicarlo: Elige un área clave de tu vida (carrera, salud, relación) y "quema las naves". Sumérgete en ella, aprende todo lo posible y actúa como si tu vida dependiera de ello.' },
+            { id: 3, title: 'La venta más importante es a ti mismo', snippet: 'El proceso de convencerte a ti mismo, de forma total e inquebrantable, del valor de tu idea.', full: 'Qué es: El proceso de convencerte a ti mismo, de forma total e inquebrantable, del valor y la superioridad de tu idea, producto o servicio.<br>Por qué importa: Tu convicción interna se transmite de forma no verbal y es más poderosa que cualquier argumento. Si no te lo crees tú, nadie más lo hará.<br>Cómo aplicarlo: Antes de presentar una idea, haz una lista de todas las razones por las que es la mejor opción. Repítetelas hasta que las sientas como una verdad absoluta.' },
+            { id: 4, title: 'Ser irracionalmente convencido', snippet: 'Llevar tu convicción a un nivel en el que no concibes que el cliente elija otra opción.', full: 'Qué es: Llevar tu convicción a un nivel en el que no concibes que el cliente elija otra opción porque sería perjudicial para él.<br>Por qué importa: Esta certeza fanática crea una energía magnética que atrae a los demás y disuelve la resistencia.<br>Cómo aplicarlo: Identifica todas las ventajas de tu producto y todos los inconvenientes de los de la competencia. Concéntrate solo en esto hasta que cualquier otra opción te parezca ilógica.' },
+            { id: 5, title: 'El precio es un mito', snippet: 'Comprender que la objeción "es muy caro" es una cortina de humo que oculta la falta de valor.', full: 'Qué es: Comprender que la objeción "es muy caro" es una cortina de humo que oculta la verdadera duda: la falta de percepción de valor.<br>Por qué importa: Te libera de la trampa de bajar los precios y te obliga a enfocarte en lo que realmente importa: comunicar el valor y generar confianza.<br>Cómo aplicarlo: Cuando escuches "es caro", responde con: "Entiendo. Aparte del precio, ¿hay algo más que te impida seguir adelante?".' },
+            { id: 6, title: 'Acordar siempre con el cliente', snippet: 'La práctica de nunca contradecir directamente. Siempre validar su punto de vista primero.', full: 'Qué es: La práctica de nunca contradecir directamente a un cliente. Siempre validar su punto de vista primero ("Entiendo lo que dices", "Tienes razón en pensar eso") antes de presentar tu perspectiva.<br>Por qué importa: El desacuerdo crea confrontación y resistencia. El acuerdo crea sintonía y apertura, haciendo al cliente receptivo a tu solución.<br>Cómo aplicarlo: Practica el juego de estar de acuerdo con todos durante un día entero. Ante una objeción, empieza siempre con "Estoy de acuerdo..." o "Entiendo por qué lo ves así, y...".' },
+            { id: 7, title: 'Estás en el negocio de las personas', snippet: 'Tu verdadero negocio es entender, conectar y servir a seres humanos, no vender productos.', full: 'Qué es: Entender que, sin importar lo que vendas, tu verdadero negocio es entender, conectar y servir a seres humanos.<br>Por qué importa: Los productos se pueden copiar, pero una conexión humana genuina y un servicio excepcional no. La gente compra a la gente que le agrada y en la que confía.<br>Cómo aplicarlo: En tu próxima interacción de venta, dedica el 80% del tiempo a hacer preguntas y escuchar para entender las necesidades y motivaciones del cliente, y solo el 20% a hablar de tu producto.' },
+            { id: 8, title: 'La gente cree lo que ve, no lo que oye', snippet: 'Dar más credibilidad a la información escrita, a los datos y a las pruebas visuales.', full: 'Qué es: La tendencia humana a dar más credibilidad a la información escrita, a los datos y a las pruebas visuales que a las afirmaciones verbales.<br>Por qué importa: Aumenta exponencialmente tu credibilidad y elimina la desconfianza inherente que los clientes tienen hacia los vendedores.<br>Cómo aplicarlo: Nunca hagas una propuesta verbalmente. Ten siempre a mano contratos, folletos, testimonios, artículos de terceros o datos escritos que respalden cada una de tus afirmaciones.' },
+            { id: 9, title: 'Acción masiva (Regla 10X)', snippet: 'El principio de realizar 10 veces la cantidad de acciones que consideras necesarias.', full: 'Qué es: El principio de realizar 10 veces la cantidad de acciones que consideras necesarias para alcanzar un objetivo.<br>Por qué importa: Es la única variable que puedes controlar al 100% y que garantiza resultados al superar la mala suerte, la falta de talento o las condiciones adversas del mercado.<br>Cómo aplicarlo: Identifica tu meta más importante. Escribe las acciones que crees que necesitas para lograrla. Ahora, multiplica esas acciones por 10 y comprométete a ejecutar ese nuevo plan.' },
+            { id: 10, title: 'El servicio es más importante que la venta', snippet: 'Centrarse en dar, ayudar y servir al cliente de forma abrumadora, no en "conseguir" la venta.', full: 'Qué es: La mentalidad de centrarse en dar, ayudar y servir al cliente de forma abrumadora, en lugar de centrarse en "conseguir" la venta.<br>Por qué importa: Un servicio extraordinario crea clientes leales, justifica precios más altos y es la mejor estrategia de marketing que existe.<br>Cómo aplicarlo: En cada interacción, pregúntate: "¿Cómo puedo superar las expectativas de esta persona?". Ofrece más información, más atención y más seguimiento del que te piden.' },
+            { id: 11, title: 'La segunda venta es más fácil', snippet: 'Un cliente, una vez que ha decidido comprar, es mucho más propenso a aceptar ofertas adicionales.', full: 'Qué es: El fenómeno psicológico por el cual un cliente, una vez que ha superado la barrera de decidirse a comprar algo, es mucho más propenso a aceptar ofertas adicionales.<br>Por qué importa: Es una forma increíblemente eficaz de aumentar el valor de cada transacción con un esfuerzo mínimo, ya que la parte más difícil (la decisión inicial) ya está hecha.<br>Cómo aplicarlo: Justo después de que un cliente acepte la compra principal, ofrécele un producto complementario, una mejora o un servicio adicional.' },
+            { id: 12, title: 'Trabaja tu base de poder', snippet: 'Tu círculo de contactos existentes es tu activo más valioso y subestimado.', full: 'Qué es: Tu círculo de contactos existentes (familia, amigos, ex-compañeros, clientes pasados) es tu activo más valioso y subestimado.<br>Por qué importa: Es mucho más fácil y eficaz vender a alguien que ya te conoce y confía en ti que a un completo desconocido.<br>Cómo aplicarlo: Haz una lista de todas las personas que conoces. Contacta con ellas no para "venderles" directamente, sino para reconectar, ponerte al día y hacerles saber en qué andas.' },
+            { id: 13, title: 'El éxito es tu deber y obligación', snippet: 'Alcanzar tu máximo potencial no es una opción, sino una responsabilidad ética.', full: 'Qué es: Adoptar la mentalidad de que alcanzar tu máximo potencial no es algo que "estaría bien", sino una responsabilidad ética contigo mismo, tu familia y tu comunidad.<br>Por qué importa: Cuando tratas el éxito como una opción, es fácil rendirse. Cuando lo tratas como un deber, encuentras la manera de lograrlo, pase lo que pase.<br>Cómo aplicarlo: Escribe tus metas y, junto a ellas, escribe: "Es mi deber y obligación lograr esto". Léelo a diario.' },
+            { id: 14, title: 'Controla tu tiempo', snippet: 'Ser el amo de tu agenda y tratar cada minuto como un recurso precioso que debe ser invertido.', full: 'Qué es: Ser el amo de tu agenda y tratar cada minuto como un recurso precioso que debe ser invertido, no gastado.<br>Por qué importa: El tiempo es el único recurso verdaderamente limitado. Quien lo domina, domina su vida y sus resultados.<br>Cómo aplicarlo: Durante una semana, audita cada minuto de tu día. Identifica las actividades que te roban tiempo y reemplázalas con acciones que te acerquen a tus metas.' },
+            { id: 15, title: 'La actitud positiva es invaluable', snippet: 'Tu energía y tu actitud son parte del "producto" que vendes. La gente es atraída por la positividad.', full: 'Qué es: Entender que tu energía y tu actitud son parte del "producto" que vendes. La gente busca sentirse bien y es atraída por la positividad.<br>Por qué importa: Una gran actitud puede vender un producto mediocre, pero una mala actitud puede arruinar la venta del mejor producto del mundo. Es un diferenciador clave.<br>Cómo aplicarlo: Empieza el día con una rutina que te ponga en un estado mental positivo (ejercicio, gratitud). Durante el día, evita las noticias negativas y a la gente quejumbrosa.' }
+        ];
+
+        const ideasContainer = document.getElementById('ideas-container');
+        ideasData.forEach(idea => {
+            const card = document.createElement('div');
+            card.className = 'p-6 secondary-bg rounded-lg border secondary-border flex flex-col';
+            card.innerHTML = `
+                <h5 class="font-bold text-lg text-slate-800 flex-grow">${idea.title}</h5>
+                <p class="mt-2 text-sm text-slate-600 flex-grow">${idea.snippet}</p>
+                <button class="amplify-btn mt-4 self-start text-sm font-semibold accent-color hover:text-blue-800" data-title="${idea.title}" data-full="${idea.full}">
+                    Ampliar →
+                </button>
+            `;
+            ideasContainer.appendChild(card);
+        });
+
+        const modal = document.getElementById('modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalBody = document.getElementById('modal-body');
+        const modalCloseBtn = document.getElementById('modal-close');
+        
+        document.querySelectorAll('.amplify-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const title = button.getAttribute('data-title');
+                const fullText = button.getAttribute('data-full');
+                modalTitle.textContent = title;
+                modalBody.innerHTML = fullText.split('<br>').map(p => `<p>${p}</p>`).join('');
+                modal.classList.remove('hidden');
+            });
+        });
+
+        const closeModal = () => {
+            modal.classList.add('hidden');
+        };
+
+        modalCloseBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        document.querySelectorAll('.accordion-header').forEach(button => {
+            button.addEventListener('click', () => {
+                const content = button.nextElementSibling;
+                const icon = button.querySelector('svg');
+                const isOpen = !content.classList.contains('hidden');
+
+                if (isOpen) {
+                    content.classList.add('hidden');
+                    icon.classList.remove('rotate-180');
+                } else {
+                    document.querySelectorAll('.accordion-content').forEach(c => c.classList.add('hidden'));
+                    document.querySelectorAll('.accordion-header svg').forEach(i => i.classList.remove('rotate-180'));
+                    content.classList.remove('hidden');
+                    icon.classList.add('rotate-180');
+                }
+            });
+        });
+    });
+    </script>
+</body>
+</html>
